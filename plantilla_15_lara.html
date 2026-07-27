@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Te invito a celebrar mis 15 años. ¡Consulta toda la información de mi fiesta aquí!">
+<meta property="og:title" content="Mis 15 Años - Lara">
+<meta property="og:description" content="Acompáñame a celebrar una noche inolvidable. Confirma tu asistencia y conoce todos los detalles.">
+<meta property="og:image" content="images/lara-15/portada.jpg">
+<meta property="og:type" content="website">
+<title>Invitación de 15 Años</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          creamBg: '#F8F1E9',
+          blush: '#F3DEDD',
+          rose: '#E7C1C8',
+          roseDeep: '#E3B7C0',
+          ink: '#382A40',
+          musicPink: '#EA8EBB'
+        },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html{scroll-behavior:smooth;}
+  .fade-in{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease;}
+  .fade-in.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.fade-in{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;}}
+
+  .carrusel-track{display:flex;transition:transform .45s cubic-bezier(.65,0,.35,1);touch-action:pan-y;}
+  .carrusel-slide{flex:0 0 100%;}
+  .dot{width:7px;height:7px;border-radius:999px;background:rgba(56,42,64,0.25);transition:all .3s ease;}
+  .dot.active{width:20px;background:#382A40;}
+
+  .music-btn{box-shadow:0 10px 26px -8px rgba(56,42,64,0.45);}
+
+  @keyframes bounceSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-bounce-slow {
+    animation: bounceSlow 2.5s infinite ease-in-out;
+  }
+</style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden" style="background:#F8F1E9; color:#382A40;">
+
+<!-- ======================================================= -->
+<!-- PANEL DE CONFIGURACIÓN — editá solo esto para reutilizar -->
+<!-- ======================================================= -->
+<script>
+const CONFIG = {
+  // Datos principales
+  nombre: "Lara",
+  subtitulo: "Mis XV",
+  frase: "Hoy estoy radiante de emoción y de alegría. Al fin ha llegado mi día tan soñado y tan esperado. Quiero compartir con cada uno de ustedes esta noche única e inolvidable.",
+
+  // Fecha y hora del evento
+  fechaISO: "2026-12-05T21:00:00",
+  horaRecepcion: "21:00 p.m.",
+
+  // Identidad visual
+  colorFondo: "#F8F1E9",
+  colorBoton: "#E7C1C8",
+  colorTexto: "#382A40",
+  colorMusica: "#EA8EBB",
+
+  // Ubicación (URL directa a Google Maps)
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=-34.56053217296978,-58.462275723928876",
+  
+  // Dress code
+  dressCodeTitulo: "Elegante sport",
+  dressCodeDescripcion: "El lila y sus variantes están reservados.",
+
+  // Confirmación por WhatsApp
+  whatsappNumero: "5491100000000",
+  whatsappMensaje: "¡Hola! Quiero confirmar mi asistencia a los 15 años de Lara 🎉",
+
+  // Datos Bancarios para Mesa de Regalos
+  regaloTitular: "Lara Nombres Apellido",
+  regaloAlias: "LARA.MIS.XV",
+  regaloCbu: "0000003100084729104812",
+
+  // Música de fondo (MP3 local)
+  audioUrl: "images/lara-15/mis-iconos/musicachopin.mp3",
+
+  // Textos de secciones
+  tituloCarrusel: "Algunos momentos",
+  tituloRegalos: "Mesa de regalos",
+  mensajeRegalos: "Tu presencia es mi mayor regalo. Pero si deseas hacerme un detalle, podés hacerlo aquí:",
+
+  // Fotos variables
+  fotoPortada: "images/lara-15/portada.jpg",
+  fotoSecundaria: "images/lara-15/segunda_foto.jpg",
+  fotoRSVP: "images/lara-15/avatar.png",
+  fotosCarrusel: [
+    "images/lara-15/portada.jpg",
+    "images/lara-15/segunda_foto.jpg"
+  ]
+};
+</script>
+ 
+<!-- ======================================================= -->
+<!-- MARCADO — no hace falta tocar nada de acá abajo          -->
+<!-- ======================================================= -->
+
+<main>
+
+  <!-- PORTADA -->
+  <section class="relative min-h-[100svh] flex items-end overflow-hidden">
+    <img id="portada-img" src="images/lara-15/portada.jpg" alt="Portada Lara" class="absolute inset-0 w-full h-full object-cover object-center">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
+    <div class="relative z-10 w-full px-6 pb-14 pt-32 text-right text-white">
+      <h1 id="nombre-titulo" class="font-serif text-6xl sm:text-7xl leading-none mb-2"></h1>
+      <p id="subtitulo-titulo" class="font-serif italic text-2xl sm:text-3xl" style="color:#E7C1C8;"></p>
+    </div>
+  </section>
+
+  <!-- FRASE -->
+  <section class="bg-blush px-6 py-20">
+    <div class="fade-in max-w-sm mx-auto text-center flex flex-col items-center">
+      <p id="frase-texto" class="font-serif italic text-xl leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- FOTO + CUENTA REGRESIVA -->
+  <section class="grid md:grid-cols-2">
+    <div id="secundaria-bg" class="aspect-[4/5] md:aspect-auto bg-cover bg-center bg-gradient-to-br from-[#C9A6AE] to-[#8C6D78]"></div>
+    <div class="bg-roseDeep flex items-center justify-center px-8 py-16">
+      
+      <!-- Contenedor relativo centrado -->
+      <div class="fade-in text-center relative pt-8">
+        <!-- MARIPOSA SVG RESPONSIVE -->
+        <img 
+          src="images/lara-15/mis-iconos/mariposa.svg" 
+          alt="Mariposa" 
+          class="absolute pointer-events-none transform -rotate-12 z-10 w-14 sm:w-20 h-auto -left-6 sm:-left-12 -top-4 sm:-top-6"
+        />
+
+        <p class="font-serif italic text-xl mb-8">¡Cada vez falta menos!</p>
+        <div id="countdown" class="flex items-center justify-center gap-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO: RECEPCIÓN / UBICACIÓN / DRESS CODE -->
+  <section class="bg-creamBg px-6 py-20">
+    <div class="fade-in max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 text-center">
+      
+      <!-- 1. RECEPCIÓN -->
+      <div class="flex flex-col items-center gap-3 p-6 border-b sm:border-b-0 sm:border-r border-[#382A40]/20">
+        <img src="images/lara-15/mis-iconos/recepcion.svg" alt="Recepción" class="w-28 h-28 object-contain">
+        <h3 class="font-serif text-lg">Recepción</h3>
+        <p id="hora-recepcion" class="text-sm">20:00 hs</p>
+      </div>
+
+      <!-- 2. UBICACIÓN -->
+      <div class="flex flex-col items-center gap-3 p-6 border-b sm:border-b-0 sm:border-r border-[#382A40]/20">
+        <img src="images/lara-15/mis-iconos/ubicacionmaps.svg" alt="Ubicación" class="w-28 h-28 object-contain">
+        <h3 class="font-serif text-lg">Ubicación</h3>
+        <a id="ubicacion-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3 mt-1 transition-transform hover:-translate-y-0.5" style="background-color:#E7C1C8; color:#382A40;">Ver ubicación</a>
+      </div>
+
+      <!-- 3. DRESS CODE -->
+      <div class="flex flex-col items-center gap-3 p-6">
+        <img src="images/lara-15/mis-iconos/dresscode.svg" alt="Dress Code" class="w-28 h-28 object-contain">
+        <h3 id="dresscode-titulo" class="font-serif text-lg"></h3>
+        <p id="dresscode-desc" class="text-sm max-w-[160px]"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INFO PREMIUM: MÚSICA + ÁLBUM DE FOTOS -->
+  <section class="bg-[#F8F1E9] px-6 py-20 text-[#382A40]">
+    <div class="fade-in max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-center items-stretch">
+      
+      <!-- 🎵 TARJETA MÚSICA -->
+      <div class="bg-[#E7C1C8]/20 p-8 rounded-3xl flex flex-col items-center justify-between gap-6 border border-[#E7C1C8]/50 shadow-lg shadow-[#E7C1C8]/10 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4">
+          <img src="images/lara-15/mis-iconos/elegitumusica.svg" alt="Música" class="w-16 h-16 object-contain">
+          <h3 id="musica-titulo" class="font-serif text-2xl">¿Qué canción no puede faltar?</h3>
+          <p id="musica-mensaje" class="text-sm">Playlist colaborativa: ¡elegí tu canción favorita para la fiesta!</p>
+        </div>
+        <a id="musica-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-8 py-4 mt-2 transition-transform hover:-translate-y-0.5" style="background-color:#382A40; color:#FDF2F8;">Añadir Canción</a>
+      </div>
+
+      <!-- 📸 TARJETA ÁLBUM DE FOTOS -->
+      <div class="bg-[#C9A6AE]/20 p-8 rounded-3xl flex flex-col items-center justify-between gap-6 border border-[#C9A6AE]/50 shadow-lg shadow-[#C9A6AE]/10 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4">
+          <div class="rounded-full bg-[#382A40] p-4 flex items-center justify-center">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FDF2F8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          </div>
+          <h3 id="album-titulo" class="font-serif text-2xl">¿Sacaste fotos?</h3>
+          <p id="album-mensaje" class="text-sm">¡Subilas acá y armemos el álbum entre todos!</p>
+        </div>
+        <a id="album-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-8 py-4 mt-2 transition-transform hover:-translate-y-0.5" style="background-color:#C9A6AE; color:#FDF2F8;">Subir Fotos</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CARRUSEL DE FOTOS -->
+  <section class="bg-rose px-6 py-20">
+    <div class="fade-in text-center mb-10">
+      <h2 id="carrusel-titulo" class="font-serif italic text-3xl"></h2>
+    </div>
+    <div class="fade-in relative w-full max-w-sm mx-auto">
+      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br from-[#C9A6AE] to-[#8C6D78]">
+        <div id="carrusel-track" class="carrusel-track h-full"></div>
+        <button id="carrusel-prev" aria-label="Foto anterior" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors" style="color:#382A40;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="carrusel-next" aria-label="Foto siguiente" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors" style="color:#382A40;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div id="carrusel-dots" class="flex items-center justify-center gap-2 mt-5"></div>
+    </div>
+  </section>
+
+  <!-- MESA DE REGALOS -->
+  <section class="bg-creamBg px-6 py-20" aria-labelledby="regalos-titulo">
+    <div class="fade-in max-w-sm mx-auto text-center">
+      <h2 id="regalos-titulo" class="font-serif italic text-3xl mb-4"></h2>
+      <p id="regalos-mensaje" class="text-sm mb-8"></p>
+      
+      <div class="flex flex-col items-center justify-center gap-3">
+        <!-- BOTÓN SOBRE CON ANIMACIÓN -->
+        <button 
+          id="open-regalos-modal" 
+          type="button"
+          class="group relative focus:outline-none focus:ring-2 focus:ring-[#E7C1C8] rounded-full transition-transform active:scale-95 cursor-pointer" 
+          aria-label="Abrir modal con datos para mesa de regalos y datos bancarios"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+        >
+          <div class="relative flex items-center justify-center p-4 rounded-full bg-[#E7C1C8]/20 group-hover:bg-[#E7C1C8]/40 transition-colors">
+            <img 
+              src="images/lara-15/mis-iconos/sobre.svg" 
+              alt="Icono de sobre de carta interactivo para mesa de regalos" 
+              class="w-24 h-24 object-contain animate-bounce-slow group-hover:scale-110 transition-transform duration-300"
+              width="96"
+              height="96"
+              loading="lazy"
+            >
+          </div>
+        </button>
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#382A40]/70">Tocá el sobre para ver los datos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL / VENTANA EMERGENTE DE REGALOS -->
+  <div 
+    id="modal-regalos" 
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-regalos-titulo"
+    aria-hidden="true"
+  >
+    <div class="bg-[#F8F1E9] border border-[#E7C1C8] rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 id-modal-content">
+      <h3 id="modal-regalos-titulo" class="font-serif text-2xl mb-2 text-[#382A40]">Datos Bancarios</h3>
+      <p class="text-xs text-[#382A40]/80 mb-6">Muchas gracias por tu cariño y por acompañarme en este día tan especial.</p>
+      
+      <!-- DATOS (CBU / ALIAS) CON BOTONES PARA COPIAR -->
+      <div class="bg-white/60 p-4 rounded-2xl flex flex-col gap-3 text-left text-sm mb-6 border border-[#E7C1C8]/50">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-[#382A40]/60 block">Titular</span>
+          <span id="regalo-titular" class="font-semibold text-[#382A40]"></span>
+        </div>
+        
+        <div class="flex items-center justify-between gap-2 border-t border-[#E7C1C8]/30 pt-2">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-[#382A40]/60 block">Alias</span>
+            <span id="regalo-alias" class="font-bold text-[#382A40] text-base"></span>
+          </div>
+          <button type="button" id="copy-alias-btn" class="px-3 py-1 bg-[#E7C1C8] text-[#382A40] text-xs font-bold rounded-lg hover:bg-[#d8aeb6] transition-colors active:scale-95">
+            Copiar
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 border-t border-[#E7C1C8]/30 pt-2">
+          <div class="overflow-hidden">
+            <span class="text-[10px] uppercase font-bold text-[#382A40]/60 block">CBU / CVU</span>
+            <span id="regalo-cbu" class="font-mono text-xs text-[#382A40] break-all"></span>
+          </div>
+          <button type="button" id="copy-cbu-btn" class="px-3 py-1 bg-[#E7C1C8] text-[#382A40] text-xs font-bold rounded-lg hover:bg-[#d8aeb6] transition-colors active:scale-95 shrink-0">
+            Copiar
+          </button>
+        </div>
+      </div>
+
+      <!-- BOTÓN CERRAR -->
+      <button 
+        id="close-regalos-modal" 
+        type="button"
+        class="w-full py-3 rounded-full font-bold text-xs uppercase tracking-widest transition-transform active:scale-95 cursor-pointer" 
+        style="background-color:#E7C1C8; color:#382A40;"
+        aria-label="Cerrar datos bancarios"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+  <!-- RSVP -->
+  <section class="bg-creamBg px-6 py-20">
+    <div class="fade-in max-w-md mx-auto text-center flex flex-col items-center">
+      
+      <!-- AVATAR RESPONSIVE -->
+      <div class="w-full h-[320px] sm:w-[311px] sm:h-[390px] rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-[#C9A6AE] to-[#8C6D78] shadow-md">
+        <img id="rsvp-avatar" src="" alt="Foto de la quinceañera" loading="lazy" class="w-full h-full object-cover">
+      </div>
+
+      <p class="font-serif text-2xl mb-1">Por favor</p>
+      <p class="font-serif text-2xl mb-8">confirmar asistencia</p>
+
+      <!-- BOTÓN -->
+      <a id="rsvp-btn" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full font-bold text-sm px-9 py-3.5 shadow-md transition-transform hover:-translate-y-0.5" style="background-color:#E7C1C8; color:#382A40;">
+        Confirmar asistencia
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-rose text-center py-12 px-6" style="color:#382A40;">
+    <p class="text-sm mb-1">Diseñado con ♡ por Celebra Invitaciones</p>
+    <p class="text-xs opacity-70 mb-1">Todos los derechos reservados.</p>
+    <p class="text-xs opacity-70 mb-6">celebrainvitaciones@gmail.com</p>
+    <div class="flex items-center justify-center gap-4">
+      <a href="#" aria-label="WhatsApp" class="w-9 h-9 rounded-full border flex items-center justify-center hover:bg-white/40 transition-colors" style="border-color:rgba(56,42,64,0.3);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
+      </a>
+      
+      <!-- LINK DE FACEBOOK -->
+      <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full border flex items-center justify-center hover:bg-white/40 transition-colors" style="border-color:rgba(56,42,64,0.3);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </footer>
+
+</main>
+
+<!-- BOTÓN FLOTANTE DE MÚSICA -->
+<button id="music-toggle" aria-label="Reproducir música" class="music-btn fixed bottom-6 right-6 z-50 rounded-full flex items-center justify-center text-white" style="width:52px;height:52px;background-color:#EA8EBB;">
+  <svg id="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5V19L19 12L8 5Z"/></svg>
+  <svg id="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M7 5H10V19H7V5ZM14 5H17V19H14V5Z"/></svg>
+</button>
+
+<!-- REPRODUCTOR DE AUDIO LOCAL -->
+<audio id="audio-player" loop preload="auto">
+  <source src="images/lara-15/mis-iconos/musicachoping.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// ---------- Script Principal de la Invitación ----------
+(function () {
+  // ---------- Carga de datos desde CONFIG ----------
+  document.getElementById('nombre-titulo').textContent = CONFIG.nombre;
+  document.getElementById('subtitulo-titulo').textContent = CONFIG.subtitulo;
+  document.getElementById('frase-texto').textContent = CONFIG.frase;
+  document.getElementById('hora-recepcion').textContent = CONFIG.horaRecepcion;
+  document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo;
+  document.getElementById('dresscode-desc').textContent = CONFIG.dressCodeDescripcion;
+  document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel;
+  document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos;
+  document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos;
+  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl;
+  document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP;
+
+  // Cargar datos bancarios en el modal
+  document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular;
+  document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias;
+  document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu;
+
+  if (CONFIG.fotoPortada) document.getElementById('portada-img').src = CONFIG.fotoPortada;
+  if (CONFIG.fotoSecundaria && document.getElementById('secundaria-bg')) {
+    document.getElementById('secundaria-bg').style.backgroundImage = "url('" + CONFIG.fotoSecundaria + "')";
+  }
+
+  // ---------- Cuenta regresiva ----------
+  var countdownEl = document.getElementById('countdown');
+  var targetDate = new Date(CONFIG.fechaISO).getTime();
+
+  function unidad(valor, etiqueta) {
+    var wrap = document.createElement('div');
+    wrap.className = 'text-center';
+    wrap.innerHTML =
+      '<div class="font-serif text-3xl">' + String(valor).padStart(2, '0') + '</div>' +
+      '<div class="text-[0.58rem] font-bold uppercase tracking-widest opacity-70 mt-1">' + etiqueta + '</div>';
+    return wrap;
+  }
+
+  function separador() {
+    var s = document.createElement('div');
+    s.className = 'font-serif text-3xl opacity-50';
+    s.textContent = ':';
+    return s;
+  }
+
+  function renderCountdown() {
+    var now = new Date().getTime();
+    var diff = Math.max(0, targetDate - now);
+
+    var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = '';
+    countdownEl.appendChild(unidad(dias, 'Días'));
+    countdownEl.appendChild(separador());
+    countdownEl.appendChild(unidad(horas, 'Horas'));
+    countdownEl.appendChild(separador());
+    countdownEl.appendChild(unidad(minutos, 'Min'));
+    countdownEl.appendChild(separador());
+    countdownEl.appendChild(unidad(segundos, 'Seg'));
+  }
+
+  renderCountdown();
+  setInterval(renderCountdown, 1000);
+
+  // ---------- Carrusel de fotos ----------
+  var track = document.getElementById('carrusel-track');
+  var dotsWrap = document.getElementById('carrusel-dots');
+  var indice = 0;
+  var total = CONFIG.fotosCarrusel.length;
+
+  CONFIG.fotosCarrusel.forEach(function (src, i) {
+    var slide = document.createElement('div');
+    slide.className = 'carrusel-slide h-full';
+    var img = document.createElement('img');
+    img.src = src;
+    img.loading = 'lazy';
+    img.alt = 'Foto ' + (i + 1) + ' de ' + CONFIG.nombre;
+    img.className = 'w-full h-full object-cover';
+    slide.appendChild(img);
+    track.appendChild(slide);
+
+    var dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Ir a la foto ' + (i + 1));
+    dot.addEventListener('click', function () { irASlide(i); });
+    dotsWrap.appendChild(dot);
+  });
+
+  function irASlide(i) {
+    if (total === 0) return;
+    indice = (i + total) % total;
+    track.style.transform = 'translateX(-' + (indice * 100) + '%)';
+    dotsWrap.querySelectorAll('.dot').forEach(function (d, idx) {
+      d.classList.toggle('active', idx === indice);
+    });
+  }
+
+  document.getElementById('carrusel-prev').addEventListener('click', function () { irASlide(indice - 1); });
+  document.getElementById('carrusel-next').addEventListener('click', function () { irASlide(indice + 1); });
+
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var delta = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(delta) > 40) {
+      delta < 0 ? irASlide(indice + 1) : irASlide(indice - 1);
+    }
+  }, { passive: true });
+
+  // ---------- RSVP ----------
+  var mensaje = encodeURIComponent(CONFIG.whatsappMensaje);
+  document.getElementById('rsvp-btn').href = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + mensaje;
+
+  // ---------- Animación de aparición ----------
+  var faders = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    faders.forEach(function (el) { io.observe(el); });
+  } else {
+    faders.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // ---------- Modal Mesa de Regalos Interactivo ----------
+  var openModalBtn = document.getElementById('open-regalos-modal');
+  var closeModalBtn = document.getElementById('close-regalos-modal');
+  var modalRegalos = document.getElementById('modal-regalos');
+
+  if (openModalBtn && modalRegalos) {
+    function abrirModal() {
+      modalRegalos.classList.remove('opacity-0', 'pointer-events-none');
+      modalRegalos.setAttribute('aria-hidden', 'false');
+      openModalBtn.setAttribute('aria-expanded', 'true');
+      modalRegalos.querySelector('.id-modal-content').classList.remove('scale-95');
+      modalRegalos.querySelector('.id-modal-content').classList.add('scale-100');
+    }
+
+    function cerrarModal() {
+      modalRegalos.classList.add('opacity-0', 'pointer-events-none');
+      modalRegalos.setAttribute('aria-hidden', 'true');
+      openModalBtn.setAttribute('aria-expanded', 'false');
+      modalRegalos.querySelector('.id-modal-content').classList.remove('scale-100');
+      modalRegalos.querySelector('.id-modal-content').classList.add('scale-95');
+    }
+
+    openModalBtn.addEventListener('click', abrirModal);
+    if (closeModalBtn) closeModalBtn.addEventListener('click', cerrarModal);
+
+    modalRegalos.addEventListener('click', function (e) {
+      if (e.target === modalRegalos) cerrarModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modalRegalos.getAttribute('aria-hidden') === 'false') {
+        cerrarModal();
+      }
+    });
+  }
+
+  // Lógica de botones para copiar CBU y Alias con feedback visual
+  function copiarTexto(texto, btn) {
+    navigator.clipboard.writeText(texto).then(function() {
+      var textoOriginal = btn.innerText;
+      btn.innerText = "¡Copiado! ✓";
+      btn.classList.add('bg-emerald-200', 'text-emerald-900');
+      setTimeout(function() {
+        btn.innerText = textoOriginal;
+        btn.classList.remove('bg-emerald-200', 'text-emerald-900');
+      }, 2000);
+    });
+  }
+
+  var copyAliasBtn = document.getElementById('copy-alias-btn');
+  var copyCbuBtn = document.getElementById('copy-cbu-btn');
+
+  if (copyAliasBtn) {
+    copyAliasBtn.addEventListener('click', function() {
+      copiarTexto(CONFIG.regaloAlias, this);
+    });
+  }
+
+  if (copyCbuBtn) {
+    copyCbuBtn.addEventListener('click', function() {
+      copiarTexto(CONFIG.regaloCbu, this);
+    });
+  }
+
+  // ---------- Control de Audio MP3 ----------
+  var audio = document.getElementById('audio-player');
+  var musicBtn = document.getElementById('music-toggle');
+  var iconPlay = document.getElementById('icon-play');
+  var iconPause = document.getElementById('icon-pause');
+
+  if (audio && musicBtn) {
+    if (CONFIG.audioUrl) {
+      audio.querySelector('source').src = CONFIG.audioUrl;
+      audio.load();
+    }
+
+    musicBtn.addEventListener('click', function () {
+      if (audio.paused) {
+        audio.play().then(function() {
+          iconPlay.classList.add('hidden');
+          iconPause.classList.remove('hidden');
+        }).catch(function(e) {
+          console.log("Error al reproducir audio:", e);
+        });
+      } else {
+        audio.pause();
+        iconPlay.classList.remove('hidden');
+        iconPause.add('hidden');
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
