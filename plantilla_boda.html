@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Sofía & Mateo se casan. Conocé la fecha, el itinerario y confirmá tu asistencia.">
+<meta property="og:title" content="Boda de Sofía & Mateo">
+<meta property="og:description" content="Estás invitado a nuestra boda. Toda la información del gran día en un solo lugar.">
+<meta property="og:image" content="images/boda-sofia-mateo/portada.jpg">
+<meta property="og:type" content="website">
+<title>Boda de Sofía &amp; Mateo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          creamBg: '#FAF8F5',      // Crema Nude suave de fondo
+          cream2: '#F3EFEA',       // Fondo secundario cálido
+          primary: '#2C352E',      // Verde Oliva Profundo (Elegante & Sofisticado)
+          inkSoft: '#4A574D',      // Verde grisáceo suave
+          accent: '#C5A059',       // Champán Dorado / Rose Gold
+          accentSoft: '#E8DFD1'    // Dorado / Nude muy claro
+        },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html{scroll-behavior:smooth;}
+  body.gate-open{overflow:hidden;}
+  .fade-in{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease;}
+  .fade-in.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.fade-in{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;}}
+
+  .carrusel-track{display:flex;transition:transform .45s cubic-bezier(.65,0,.35,1);touch-action:pan-y;}
+  .carrusel-slide{flex:0 0 100%;}
+  .dot{width:7px;height:7px;border-radius:999px;background:rgba(44,53,46,0.25);transition:all .3s ease;}
+  .dot.active{width:20px;background:#C5A059;}
+
+  .music-btn{box-shadow:0 10px 26px -8px rgba(197,160,89,0.5);}
+
+  #welcome-gate{transition:opacity .6s ease;}
+  #welcome-gate.gate-hidden{opacity:0;pointer-events:none;}
+
+  .timeline-line{position:absolute;left:23px;top:6px;bottom:6px;width:1px;background:rgba(197,160,89,0.4);}
+  @media (min-width:640px){.timeline-line{left:50%;}}
+</style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden gate-open" style="background:#FAF8F5; color:#2C352E;">
+
+<!-- ======================================================= -->
+<!-- PANEL DE CONFIGURACIÓN — editá solo esto para reutilizar -->
+<!-- ======================================================= -->
+<script>
+const CONFIG = {
+  // Datos principales
+  novioA: "Sofía",
+  novioB: "Mateo",
+  tituloBienvenida: "¡Estás invitado!",
+  frase: "Hay momentos en la vida que son inolvidables, pero compartirlos con las personas que más queremos los hace inolvidables para siempre.",
+
+  // Imagen de fondo para la pantalla "Estás invitado" (Bienvenida)
+  fotoBienvenida: "images/boda-sofi/portadasofimateo.jpg", 
+
+  // Fecha y horarios
+  fechaISO: "2026-11-14T17:30:00",
+  fechaTexto: "14 de Noviembre, 2026",
+
+  // Identidad visual
+  colorFondo: "#FAF8F5",
+  colorPrimario: "#2C352E",
+  colorAcento: "#C5A059",
+
+  // Ubicaciones (solo Google Maps)
+  ceremonia: {
+    nombre: "Parroquia Nuestra Señora del Pilar",
+    direccion: "Recoleta, Buenos Aires",
+    mapsUrl: "https://maps.google.com/?q=Parroquia+Nuestra+Se%C3%B1ora+del+Pilar+Recoleta"
+  },
+  fiesta: {
+    nombre: "Quinta San Ignacio",
+    direccion: "Pilar, Buenos Aires",
+    mapsUrl: "https://maps.google.com/?q=Quinta+San+Ignacio+Pilar"
+  },
+
+  // Itinerario (línea de tiempo) — icono: 'church' | 'glass' | 'music' | 'moon'
+  itinerario: [
+    { icono: "church", titulo: "Ceremonia", hora: "17:30 hs", descripcion: "Parroquia Nuestra Señora del Pilar", mapsUrl: "https://maps.google.com/?q=Parroquia+Nuestra+Se%C3%B1ora+del+Pilar+Recoleta" },
+    { icono: "glass", titulo: "Recepción", hora: "19:00 hs", descripcion: "Bienvenida con tragos y aperitivos" },
+    { icono: "music", titulo: "Fiesta", hora: "20:30 hs", descripcion: "Quinta San Ignacio — a bailar toda la noche", mapsUrl: "https://maps.google.com/?q=Quinta+San+Ignacio+Pilar" },
+    { icono: "moon", titulo: "Trasnoche", hora: "01:00 hs", descripcion: "Para quienes lleguen hasta el final" }
+  ],
+
+  // Dress code
+  dressCodeTitulo: "Elegante / Formal",
+  dressCodeDescripcion: "Te esperamos con tu mejor look para acompañarnos esta noche.",
+
+  // Hospedaje
+  hospedajeMensaje: "Para quienes vengan de otra ciudad, dejamos algunas opciones de alojamiento cerca del salón.",
+  hospedajeUrl: "https://www.booking.com/searchresults.html?ss=Pilar",
+
+  // Preguntas para la Trivia
+  trivia: [
+    {
+      pregunta: "¿Dónde fue nuestra primera cita?",
+      opciones: ["En una cafetería de San Telmo", "En una plaza de Palermo", "En un concierto de rock", "En la playa"],
+      correcta: 0
+    },
+    {
+      pregunta: "¿Quién dio el primer paso?",
+      opciones: ["Sofía", "Mateo", "Un amigo en común los presentó", "Fue mutuo"],
+      correcta: 1
+    },
+    {
+      pregunta: "¿Cuál es nuestro destino de viaje soñado?",
+      opciones: ["Japón", "Italia", "Nueva Zelanda", "Egipto"],
+      correcta: 1
+    },
+    {
+      pregunta: "¿Quién cocina mejor en la pareja?",
+      opciones: ["Sofía prepara los mejores postres", "Mateo es el rey del asado", "Pedimos siempre delivery", "Cocinan excelente juntos"],
+      correcta: 3
+    },
+    {
+      pregunta: "¿Qué canción define nuestra historia?",
+      opciones: ["Perfect - Ed Sheeran", "All of Me - John Legend", "Yellow - Coldplay", "You're My Best Friend - Queen"],
+      correcta: 2
+    }
+  ],
+
+  // Confirmación por WhatsApp
+  whatsappNumero: "5491100000000",
+
+  // Datos bancarios para regalos
+  regaloTitular: "Sofía Rossi / Mateo Benítez",
+  regaloAlias: "SOFIA.Y.MATEO.BODA",
+  regaloCbu: "0000003100084729104812",
+  mensajeRegalos: "El mejor regalo es tu presencia en nuestro gran día. Si deseás hacernos un obsequio para nuestra luna de miel, podés hacerlo a través de la siguiente cuenta:",
+
+  // Música de fondo (MP3 local)
+  audioUrl: "images/boda-sofia-mateo/musica/vals-chopin.mp3",
+
+  // Textos de secciones
+  tituloCarrusel: "Un recorrido por nuestros mejores momentos juntos.",
+  tituloRegalos: "Mesa de regalos",
+  playlistMensaje: "Ayudanos a armar la playlist de la fiesta: sugerinos esa canción que no puede faltar.",
+  albumMensaje: "¡Subí tus fotos del día y armemos juntos el álbum del recuerdo!",
+
+  // Fotos variables
+  fotoPortada: "images/boda-sofi/portadasofimateo.jpg",
+  fotoRSVP: "images/boda-sofi/avatar.jpg",
+  fotosCarrusel: [
+    "images/boda-sofi/risa-sofimateo.jpg",
+    "images/boda-sofi/portadasofimateo.jpg",
+    "images/boda-sofi/foto3.jpg"
+  ]
+};
+</script>
+
+<!-- ======================================================= -->
+<!-- PANTALLA DE BIENVENIDA ("Estás invitado") CON IMAGEN DE FONDO -->
+<!-- ======================================================= -->
+<div id="welcome-gate" class="fixed inset-0 z-[100] flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-cover bg-center">
+  <!-- Imagen de Fondo Dinámica y Overlay para mejor legibilidad -->
+  <img id="gate-bg-img" src="" alt="Fondo Bienvenida" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px]"></div>
+
+  <!-- Decoración botánica -->
+  <svg class="absolute -top-6 -left-10 w-40 h-40 opacity-40 text-white z-10" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 5C50 40 50 100 50 135" stroke="currentColor" stroke-width="1"/>
+    <path d="M50 30C50 30 35 22 30 32C25 42 40 46 50 40" stroke="currentColor" stroke-width="1"/>
+    <path d="M50 55C50 55 65 47 70 57C75 67 60 71 50 65" stroke="currentColor" stroke-width="1"/>
+    <path d="M50 80C50 80 35 72 30 82C25 92 40 96 50 90" stroke="currentColor" stroke-width="1"/>
+  </svg>
+  <svg class="absolute -bottom-6 -right-10 w-40 h-40 opacity-40 rotate-180 z-10" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#C5A059;">
+    <path d="M50 5C50 40 50 100 50 135" stroke="currentColor" stroke-width="1"/>
+    <path d="M50 30C50 30 35 22 30 32C25 42 40 46 50 40" stroke="currentColor" stroke-width="1"/>
+    <path d="M50 55C50 55 65 47 70 57C75 67 60 71 50 65" stroke="currentColor" stroke-width="1"/>
+    <path d="M50 80C50 80 35 72 30 82C25 92 40 96 50 90" stroke="currentColor" stroke-width="1"/>
+  </svg>
+
+  <div class="relative z-10 max-w-sm text-white">
+    <div class="inline-flex items-center gap-2.5 text-[0.68rem] font-bold tracking-[0.25em] uppercase mb-6" style="color:#E8DFD1;">
+      <span class="w-5 h-px" style="background:#E8DFD1;"></span>Nos casamos<span class="w-5 h-px" style="background:#E8DFD1;"></span>
+    </div>
+    <h1 id="gate-titulo" class="font-serif italic text-5xl sm:text-6xl leading-none mb-5 drop-shadow-md"></h1>
+    <p class="font-serif text-2xl mb-10 tracking-wide text-stone-100 drop-shadow">Sofía &amp; Mateo</p>
+    <button id="btn-abrir-invitacion" class="rounded-full px-10 py-4 font-bold text-sm uppercase tracking-widest transition-all hover:scale-105 hover:shadow-xl cursor-pointer" style="background:#C5A059; color:#2C352E;">
+      Abrir invitación
+    </button>
+  </div>
+</div>
+
+<!-- ======================================================= -->
+<!-- CONTENIDO PRINCIPAL -->
+<!-- ======================================================= -->
+
+<main>
+
+  <!-- PORTADA / FOTO PRINCIPAL -->
+  <section class="relative min-h-[90svh] flex items-end overflow-hidden">
+    <img id="portada-img" src="" alt="Sofía y Mateo" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10"></div>
+    <div class="relative z-10 w-full px-6 pb-14 pt-32 text-center text-white">
+      <div class="text-[0.68rem] font-bold tracking-[0.3em] uppercase text-white/80 mb-5">Nos Casamos</div>
+      <h1 class="font-serif italic text-5xl sm:text-6xl leading-none mb-4"><span id="nombre-a"></span> &amp; <span id="nombre-b"></span></h1>
+      <p id="portada-fecha" class="text-xs tracking-widest uppercase text-white/80"></p>
+    </div>
+  </section>
+
+  <!-- CUENTA REGRESIVA -->
+  <section class="px-6 py-16" style="background:#F3EFEA;">
+    <div class="fade-in text-center max-w-md mx-auto">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="mx-auto mb-4" style="color:#C5A059;">
+        <circle cx="9" cy="14" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="15" cy="14" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <p class="font-serif italic text-lg mb-6" style="color:#2C352E;">¡Cada vez falta menos!</p>
+      <div id="countdown" class="flex items-center justify-center gap-3"></div>
+    </div>
+  </section>
+
+  <!-- 1. FRASE -->
+  <section class="px-6 py-20" style="background:#FAF8F5;">
+    <div class="fade-in max-w-sm mx-auto text-center">
+      <p id="frase-texto" class="font-serif italic text-xl leading-relaxed" style="color:#2C352E;"></p>
+    </div>
+  </section>
+
+  <!-- 2. CARRUSEL DE FOTOS (REUBICADO ABAJO DE LA FRASE) -->
+  <section class="pb-20 pt-10" style="background:#FAF8F5;">
+    <div class="fade-in text-center mb-10 px-6">
+      <h2 id="carrusel-titulo" class="font-serif italic text-3xl max-w-md mx-auto"></h2>
+    </div>
+    <div class="fade-in relative w-full">
+      <div class="relative w-full h-[60vh] sm:h-[75vh] overflow-hidden bg-stone-200">
+        <div id="carrusel-track" class="carrusel-track h-full w-full"></div>
+        <button id="carrusel-prev" aria-label="Foto anterior" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/75 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors cursor-pointer" style="color:#2C352E;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="carrusel-next" aria-label="Foto siguiente" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/75 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors cursor-pointer" style="color:#2C352E;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div id="carrusel-dots" class="flex items-center justify-center gap-2 mt-5"></div>
+    </div>
+  </section>
+
+  <!-- 3. ITINERARIO — LÍNEA DE TIEMPO (REUBICADO ABAJO DE LAS FOTOS) -->
+  <section class="px-6 py-20" style="background:#F3EFEA;">
+    <div class="fade-in max-w-2xl mx-auto">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2.5 text-[0.7rem] font-bold tracking-[0.2em] uppercase mb-4" style="color:#C5A059;">
+          <span class="w-5 h-px" style="background:#C5A059;"></span>Itinerario<span class="w-5 h-px" style="background:#C5A059;"></span>
+        </div>
+        <h2 class="font-serif italic text-3xl">Así va a ser la noche</h2>
+      </div>
+      <div id="itinerario-lista" class="relative"></div>
+
+      <!-- Dress code -->
+      <div class="text-center mt-14">
+        <h3 id="dresscode-titulo" class="font-serif text-lg font-semibold"></h3>
+        <p id="dresscode-desc" class="text-sm max-w-[280px] mx-auto mt-1" style="color:#4A574D;"></p>
+        <a id="calendario-btn" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3 border mt-6 transition-transform hover:scale-105" style="border-color:#2C352E; color:#2C352E;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M3 10H21" stroke="currentColor" stroke-width="1.4"/><path d="M8 3V7M16 3V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Agregar a mi calendario
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIVIA DE LOS NOVIOS -->
+  <section class="px-6 py-20" style="background:#FAF8F5;">
+    <div class="fade-in max-w-md mx-auto text-center">
+      <div class="inline-flex items-center gap-2.5 text-[0.7rem] font-bold tracking-[0.2em] uppercase mb-3" style="color:#C5A059;">
+        <span class="w-5 h-px" style="background:#C5A059;"></span>¿Cuánto nos conocés?<span class="w-5 h-px" style="background:#C5A059;"></span>
+      </div>
+      <h2 class="font-serif italic text-3xl mb-8">Trivia de los Novios</h2>
+
+      <div id="trivia-card" class="bg-white rounded-3xl p-8 shadow-sm border border-stone-100 flex flex-col justify-between min-h-[320px]">
+        <div>
+          <div class="flex items-center justify-between text-xs font-bold text-stone-400 mb-4">
+            <span id="trivia-step">Pregunta 1 de 5</span>
+            <span id="trivia-score">Puntos: 0</span>
+          </div>
+          <p id="trivia-pregunta" class="font-serif text-xl mb-6 text-left font-semibold text-[#2C352E]"></p>
+          <div id="trivia-opciones" class="flex flex-col gap-3"></div>
+        </div>
+        <div id="trivia-feedback" class="mt-4 text-sm font-semibold hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYLIST + ÁLBUM -->
+  <section class="px-6 py-20" style="background:#F3EFEA;">
+    <div class="fade-in max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center items-stretch">
+
+      <div class="p-8 rounded-3xl bg-white flex flex-col items-center justify-between gap-6 border shadow-sm transition-transform hover:-translate-y-1" style="border-color:rgba(197,160,89,0.3);">
+        <div class="flex flex-col items-center gap-4">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="color:#C5A059;"><circle cx="8" cy="17" r="2.4" stroke="currentColor" stroke-width="1.3"/><circle cx="17" cy="15" r="2.4" stroke="currentColor" stroke-width="1.3"/><path d="M10.3 17V6.5L19.3 4.5V15" stroke="currentColor" stroke-width="1.3"/></svg>
+          <h3 class="font-serif text-2xl">¿Qué canción no puede faltar?</h3>
+          <p id="playlist-mensaje" class="text-sm" style="color:#4A574D;"></p>
+        </div>
+        <a id="playlist-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-8 py-4" style="background:#2C352E; color:#FAF8F5;">Sugerir canción</a>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-white flex flex-col items-center justify-between gap-6 border shadow-sm transition-transform hover:-translate-y-1" style="border-color:rgba(197,160,89,0.3);">
+        <div class="flex flex-col items-center gap-4">
+          <div class="rounded-full p-4 flex items-center justify-center" style="background:#C5A059;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FAF8F5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl">¿Sacaste fotos?</h3>
+          <p id="album-mensaje" class="text-sm" style="color:#4A574D;"></p>
+        </div>
+        <a id="album-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-8 py-4" style="background:#C5A059; color:#2C352E;">Subir fotos</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MESA DE REGALOS -->
+  <section class="px-6 py-20" style="background:#FAF8F5;" aria-labelledby="regalos-titulo">
+    <div class="fade-in max-w-sm mx-auto text-center">
+      <h2 id="regalos-titulo" class="font-serif italic text-3xl mb-4"></h2>
+      <p id="regalos-mensaje" class="text-sm mb-8" style="color:#4A574D;"></p>
+
+      <div class="flex flex-col items-center justify-center gap-3">
+        <button
+          id="open-regalos-modal"
+          type="button"
+          class="group relative focus:outline-none rounded-full transition-transform active:scale-95 cursor-pointer"
+          aria-label="Abrir modal con datos bancarios para el regalo"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+        >
+          <div class="relative flex items-center justify-center p-6 rounded-full transition-colors" style="background:rgba(197,160,89,0.18);">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="color:#C5A059;" class="group-hover:scale-110 transition-transform duration-300">
+              <rect x="3" y="6" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="1.3"/>
+            </svg>
+          </div>
+        </button>
+        <span class="text-xs font-semibold uppercase tracking-widest" style="color:#4A574D;">Tocá el sobre para ver los datos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOSPEDAJE -->
+  <section class="px-6 py-20" style="background:#F3EFEA;">
+    <div class="fade-in max-w-sm mx-auto text-center bg-white rounded-3xl shadow-sm p-10 flex flex-col items-center gap-4 border border-stone-100">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" style="color:#C5A059;">
+        <path d="M3 20V6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M3 12H18C19.6569 12 21 13.3431 21 15V20" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="5" y="8" width="6" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M3 20H21" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <h2 class="font-serif italic text-2xl">Hospedaje</h2>
+      <p id="hospedaje-mensaje" class="text-sm" style="color:#4A574D;"></p>
+      <a id="hospedaje-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-8 py-3.5 mt-2 transition-transform hover:scale-105" style="background:#2C352E; color:#FAF8F5;">Ver hospedaje</a>
+    </div>
+  </section>
+
+  <!-- MODAL DE REGALOS -->
+  <div
+    id="modal-regalos"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-regalos-titulo"
+    aria-hidden="true"
+  >
+    <div class="bg-[#FAF8F5] border rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 id-modal-content" style="border-color:#C5A059;">
+      <h3 id="modal-regalos-titulo" class="font-serif text-2xl mb-2">Datos Bancarios</h3>
+      <p class="text-xs mb-6" style="color:#4A574D;">Muchas gracias por tu cariño y por acompañarnos en este día tan especial.</p>
+
+      <div class="bg-white p-4 rounded-2xl flex flex-col gap-3 text-left text-sm mb-6 border" style="border-color:rgba(197,160,89,0.3);">
+        <div>
+          <span class="text-[10px] uppercase font-bold block" style="color:#4A574D;">Titular</span>
+          <span id="regalo-titular" class="font-semibold"></span>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t pt-2" style="border-color:rgba(197,160,89,0.2);">
+          <div>
+            <span class="text-[10px] uppercase font-bold block" style="color:#4A574D;">Alias</span>
+            <span id="regalo-alias" class="font-bold text-base"></span>
+          </div>
+          <button type="button" id="copy-alias-btn" class="px-3 py-1 text-xs font-bold rounded-lg transition-colors active:scale-95 cursor-pointer" style="background:#C5A059; color:#2C352E;">Copiar</button>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t pt-2" style="border-color:rgba(197,160,89,0.2);">
+          <div class="overflow-hidden">
+            <span class="text-[10px] uppercase font-bold block" style="color:#4A574D;">CBU / CVU</span>
+            <span id="regalo-cbu" class="font-mono text-xs break-all"></span>
+          </div>
+          <button type="button" id="copy-cbu-btn" class="px-3 py-1 text-xs font-bold rounded-lg transition-colors active:scale-95 shrink-0 cursor-pointer" style="background:#C5A059; color:#2C352E;">Copiar</button>
+        </div>
+      </div>
+
+      <button
+        id="close-regalos-modal"
+        type="button"
+        class="w-full py-3 rounded-full font-bold text-xs uppercase tracking-widest transition-transform active:scale-95 cursor-pointer"
+        style="background:#2C352E; color:#FAF8F5;"
+        aria-label="Cerrar datos bancarios"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+  <!-- RSVP -->
+  <section class="px-6 py-20" style="background:#F3EFEA;">
+    <div class="fade-in max-w-md mx-auto text-center flex flex-col items-center">
+      <div class="w-full h-[320px] sm:w-[311px] sm:h-[390px] rounded-2xl overflow-hidden mb-8 shadow-md">
+        <img id="rsvp-avatar" src="" alt="Sofía y Mateo" loading="lazy" class="w-full h-full object-cover">
+      </div>
+
+      <p class="font-serif text-2xl mb-1">Por favor</p>
+      <p class="font-serif text-2xl mb-8">confirmar asistencia</p>
+
+      <form id="rsvp-form" class="w-full flex flex-col gap-5 text-left mb-8">
+        <div>
+          <label class="text-xs font-bold uppercase tracking-widest block mb-2" style="color:#4A574D;">¿Vas a acompañarnos?</label>
+          <select id="rsvp-asistencia" class="w-full rounded-lg border px-4 py-3 text-sm bg-white" style="border-color:rgba(44,53,46,0.2);">
+            <option value="Sí, voy a asistir">Sí, voy a asistir</option>
+            <option value="No voy a poder asistir">No voy a poder asistir</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs font-bold uppercase tracking-widest block mb-2" style="color:#4A574D;">Menú</label>
+          <select id="rsvp-menu" class="w-full rounded-lg border px-4 py-3 text-sm bg-white" style="border-color:rgba(44,53,46,0.2);">
+            <option value="Regular">Regular</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Celíaco">Celíaco</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs font-bold uppercase tracking-widest block mb-2" style="color:#4A574D;">Acompañantes</label>
+          <input id="rsvp-acompanantes" type="number" min="0" value="0" class="w-full rounded-lg border px-4 py-3 text-sm bg-white" style="border-color:rgba(44,53,46,0.2);">
+        </div>
+      </form>
+
+      <button id="rsvp-btn" type="button" class="inline-flex items-center gap-2 rounded-full font-bold text-sm px-9 py-3.5 shadow-md transition-transform hover:-translate-y-0.5 cursor-pointer" style="background:#2C352E; color:#FAF8F5;">
+        Confirmar asistencia
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-12 px-6" style="background:#FAF8F5; color:#2C352E;">
+    <p class="text-sm mb-1">Diseñado con ♡ por Celebra Invitaciones</p>
+    <p class="text-xs opacity-70 mb-1">Todos los derechos reservados.</p>
+    <p class="text-xs opacity-70 mb-6">celebrainvitaciones@gmail.com</p>
+    <div class="flex items-center justify-center gap-4">
+      <a href="#" aria-label="WhatsApp" class="w-9 h-9 rounded-full border flex items-center justify-center hover:bg-black/5 transition-colors" style="border-color:rgba(44,53,46,0.3);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full border flex items-center justify-center hover:bg-black/5 transition-colors" style="border-color:rgba(44,53,46,0.3);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </footer>
+
+</main>
+
+<!-- BOTÓN FLOTANTE DE MÚSICA -->
+<button id="music-toggle" aria-label="Reproducir música" class="music-btn fixed bottom-6 right-6 z-50 rounded-full flex items-center justify-center cursor-pointer" style="width:52px;height:52px;background-color:#C5A059; color:#2C352E;">
+  <svg id="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5V19L19 12L8 5Z"/></svg>
+  <svg id="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M7 5H10V19H7V5ZM14 5H17V19H14V5Z"/></svg>
+</button>
+
+<!-- REPRODUCTOR DE AUDIO LOCAL -->
+<audio id="audio-player" loop preload="auto">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<script>
+(function () {
+  // ---------- Íconos del itinerario ----------
+  var ICONOS = {
+    church: '<path d="M12 2L12 6" stroke="currentColor" stroke-width="1.3"/><path d="M6 21V10L12 6L18 10V21" stroke="currentColor" stroke-width="1.3"/><path d="M9 21V15H15V21" stroke="currentColor" stroke-width="1.3"/><path d="M4 21H20" stroke="currentColor" stroke-width="1.3"/>',
+    glass: '<path d="M7 3V10C7 12 9 13 9 13V20" stroke="currentColor" stroke-width="1.2"/><path d="M4 3H10" stroke="currentColor" stroke-width="1.2"/><path d="M17 3V10C17 12 15 13 15 13V20" stroke="currentColor" stroke-width="1.2"/><path d="M14 3H20" stroke="currentColor" stroke-width="1.2"/>',
+    music: '<circle cx="8" cy="17" r="2.4" stroke="currentColor" stroke-width="1.3"/><circle cx="17" cy="15" r="2.4" stroke="currentColor" stroke-width="1.3"/><path d="M10.3 17V6.5L19.3 4.5V15" stroke="currentColor" stroke-width="1.3"/>',
+    moon: '<path d="M20 14.5C18.7 15.7 17 16.4 15.1 16.4C10.9 16.4 7.5 13 7.5 8.8C7.5 6.9 8.2 5.2 9.4 3.9C5.6 4.7 2.7 8.1 2.7 12.1C2.7 16.8 6.5 20.6 11.2 20.6C15.2 20.6 18.6 17.9 19.4 14.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>'
+  };
+
+  // ---------- Carga de datos desde CONFIG ----------
+  document.getElementById('gate-titulo').textContent = CONFIG.tituloBienvenida;
+  document.getElementById('nombre-a').textContent = CONFIG.novioA;
+  document.getElementById('nombre-b').textContent = CONFIG.novioB;
+  document.getElementById('portada-fecha').textContent = CONFIG.fechaTexto;
+  document.getElementById('frase-texto').textContent = CONFIG.frase;
+
+  // Asignar imagen de bienvenida de fondo
+  if (CONFIG.fotoBienvenida) {
+    document.getElementById('gate-bg-img').src = CONFIG.fotoBienvenida;
+  }
+
+  document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo;
+  document.getElementById('dresscode-desc').textContent = CONFIG.dressCodeDescripcion;
+
+  document.getElementById('hospedaje-mensaje').textContent = CONFIG.hospedajeMensaje;
+  document.getElementById('hospedaje-btn').href = CONFIG.hospedajeUrl;
+
+  document.getElementById('playlist-mensaje').textContent = CONFIG.playlistMensaje;
+  document.getElementById('playlist-btn').href = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent('¡Hola! Mi sugerencia de canción para la fiesta es: ');
+  document.getElementById('album-mensaje').textContent = CONFIG.albumMensaje;
+
+  document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel;
+  document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos;
+  document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos;
+  document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular;
+  document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias;
+  document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu;
+
+  document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP;
+  if (CONFIG.fotoPortada) document.getElementById('portada-img').src = CONFIG.fotoPortada;
+
+  // ---------- Audio ----------
+  var audioPlayer = document.getElementById('audio-player');
+  if (CONFIG.audioUrl) {
+    audioPlayer.querySelector('source').src = CONFIG.audioUrl;
+    audioPlayer.load();
+  }
+
+  // ---------- Welcome Gate ----------
+  var welcomeGate = document.getElementById('welcome-gate');
+  document.getElementById('btn-abrir-invitacion').addEventListener('click', function () {
+    welcomeGate.classList.add('gate-hidden');
+    document.body.classList.remove('gate-open');
+    if (CONFIG.audioUrl) {
+      audioPlayer.play().catch(function() { console.log("Autoplay bloqueado"); });
+      toggleMusicIcons(true);
+    }
+  });
+
+  // ---------- Control Música ----------
+  var musicBtn = document.getElementById('music-toggle');
+  var iconPlay = document.getElementById('icon-play');
+  var iconPause = document.getElementById('icon-pause');
+
+  function toggleMusicIcons(isPlaying) {
+    if (isPlaying) {
+      iconPlay.classList.add('hidden');
+      iconPause.classList.remove('hidden');
+    } else {
+      iconPlay.classList.remove('hidden');
+      iconPause.classList.add('hidden');
+    }
+  }
+
+  musicBtn.addEventListener('click', function () {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      toggleMusicIcons(true);
+    } else {
+      audioPlayer.pause();
+      toggleMusicIcons(false);
+    }
+  });
+
+  // ---------- Itinerario (timeline dinámico) ----------
+  var itinerarioEl = document.getElementById('itinerario-lista');
+  var linea = document.createElement('div');
+  linea.className = 'timeline-line';
+  itinerarioEl.appendChild(linea);
+
+  CONFIG.itinerario.forEach(function (paso, i) {
+    var fila = document.createElement('div');
+    fila.className = 'relative flex sm:justify-center items-start gap-5 sm:gap-10 mb-10 last:mb-0';
+
+    var lado = i % 2 === 0 ? 'sm:flex-row-reverse' : 'sm:flex-row';
+    fila.className += ' ' + lado;
+
+    var nodoIcono = document.createElement('div');
+    nodoIcono.className = 'relative z-10 flex items-center justify-center w-12 h-12 rounded-full shrink-0 shadow-sm border border-amber-200';
+    nodoIcono.style.background = '#FAF8F5';
+    nodoIcono.style.color = '#C5A059';
+    nodoIcono.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none">' + (ICONOS[paso.icono] || '') + '</svg>';
+
+    var tarjeta = document.createElement('div');
+    tarjeta.className = 'bg-white p-5 rounded-2xl border border-stone-100 shadow-sm flex-1 sm:max-w-xs text-left';
+
+    var hora = document.createElement('span');
+    hora.className = 'text-xs font-bold uppercase tracking-widest block mb-1';
+    hora.style.color = '#C5A059';
+    hora.textContent = paso.hora;
+
+    var titulo = document.createElement('h3');
+    titulo.className = 'font-serif text-lg font-semibold mb-1';
+    titulo.textContent = paso.titulo;
+
+    var desc = document.createElement('p');
+    desc.className = 'text-xs leading-relaxed';
+    desc.style.color = '#4A574D';
+    desc.textContent = paso.descripcion;
+
+    tarjeta.appendChild(hora);
+    tarjeta.appendChild(titulo);
+    tarjeta.appendChild(desc);
+
+    if (paso.mapsUrl) {
+      var mapLink = document.createElement('a');
+      mapLink.href = paso.mapsUrl;
+      mapLink.target = '_blank';
+      mapLink.rel = 'noopener';
+      mapLink.className = 'inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider mt-3 transition-colors';
+      mapLink.style.color = '#C5A059';
+      mapLink.innerHTML = 'Cómo llegar <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      tarjeta.appendChild(mapLink);
+    }
+
+    fila.appendChild(nodoIcono);
+    fila.appendChild(tarjeta);
+    itinerarioEl.appendChild(fila);
+  });
+
+  // ---------- Countdown ----------
+  function actualizarCountdown() {
+    var objetivo = new Date(CONFIG.fechaISO).getTime();
+    var ahora = new Date().getTime();
+    var dif = objetivo - ahora;
+
+    var el = document.getElementById('countdown');
+    if (dif <= 0) {
+      el.innerHTML = '<p class="font-serif text-2xl" style="color:#C5A059;">¡Llegó el gran día!</p>';
+      return;
+    }
+
+    var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+    var horas = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+    var seg = Math.floor((dif % (1000 * 60)) / 1000);
+
+    var unidades = [
+      { val: dias, label: 'Días' },
+      { val: horas, label: 'Hs' },
+      { val: min, label: 'Min' },
+      { val: seg, label: 'Seg' }
+    ];
+
+    el.innerHTML = unidades.map(function (u) {
+      return '<div class="bg-white rounded-2xl p-3 min-w-[68px] border border-stone-200/60 shadow-sm">' +
+               '<span class="font-serif text-2xl font-bold block" style="color:#2C352E;">' + String(u.val).padStart(2, '0') + '</span>' +
+               '<span class="text-[10px] uppercase font-semibold tracking-wider" style="color:#4A574D;">' + u.label + '</span>' +
+             '</div>';
+    }).join('');
+  }
+  actualizarCountdown();
+  setInterval(actualizarCountdown, 1000);
+
+  // ---------- Trivia logic ----------
+  var triviaIndex = 0;
+  var triviaPuntos = 0;
+
+  function renderTrivia() {
+    var item = CONFIG.trivia[triviaIndex];
+    document.getElementById('trivia-step').textContent = 'Pregunta ' + (triviaIndex + 1) + ' de ' + CONFIG.trivia.length;
+    document.getElementById('trivia-score').textContent = 'Puntos: ' + triviaPuntos;
+    document.getElementById('trivia-pregunta').textContent = item.pregunta;
+
+    var opcionesEl = document.getElementById('trivia-opciones');
+    opcionesEl.innerHTML = '';
+    var feedbackEl = document.getElementById('trivia-feedback');
+    feedbackEl.classList.add('hidden');
+
+    item.opciones.forEach(function (opt, idx) {
+      var btn = document.createElement('button');
+      btn.className = 'w-full text-left px-5 py-3.5 rounded-xl border border-stone-200 text-sm font-medium transition-all hover:border-[#C5A059] active:scale-[0.98] cursor-pointer';
+      btn.style.color = '#2C352E';
+      btn.textContent = opt;
+      btn.onclick = function () {
+        var btns = opcionesEl.querySelectorAll('button');
+        btns.forEach(function (b) { b.disabled = true; });
+
+        if (idx === item.correcta) {
+          btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
+          triviaPuntos += 20;
+          feedbackEl.textContent = '¡Correcto! 🎉';
+          feedbackEl.className = 'mt-4 text-sm font-semibold text-emerald-600 block';
+        } else {
+          btn.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-800');
+          btns[item.correcta].classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
+          feedbackEl.textContent = '¡Casi! La respuesta correcta era otra.';
+          feedbackEl.className = 'mt-4 text-sm font-semibold text-rose-500 block';
+        }
+
+        setTimeout(function () {
+          triviaIndex++;
+          if (triviaIndex < CONFIG.trivia.length) {
+            renderTrivia();
+          } else {
+            mostrarResultadoTrivia();
+          }
+        }, 1600);
+      };
+      opcionesEl.appendChild(btn);
+    });
+  }
+
+  function mostrarResultadoTrivia() {
+    var card = document.getElementById('trivia-card');
+    card.innerHTML = '<div class="my-auto text-center py-6">' +
+      '<h3 class="font-serif text-2xl mb-2" style="color:#2C352E;">¡Trivia Completada!</h3>' +
+      '<p class="text-sm mb-4" style="color:#4A574D;">Obtuviste <strong class="text-lg" style="color:#C5A059;">' + triviaPuntos + '</strong> de 100 puntos.</p>' +
+      '<button id="reiniciar-trivia" class="px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest" style="background:#2C352E; color:#FAF8F5;">Jugar de nuevo</button>' +
+    '</div>';
+    document.getElementById('reiniciar-trivia').onclick = function() {
+      triviaIndex = 0;
+      triviaPuntos = 0;
+      location.reload();
+    };
+  }
+  if (CONFIG.trivia && CONFIG.trivia.length) renderTrivia();
+
+  // ---------- Carrusel de Fotos ----------
+  var carruselTrack = document.getElementById('carrusel-track');
+  var dotsEl = document.getElementById('carrusel-dots');
+  var carruselIndex = 0;
+
+  CONFIG.fotosCarrusel.forEach(function (src, i) {
+    var slide = document.createElement('div');
+    slide.className = 'carrusel-slide h-full w-full flex-shrink-0';
+    slide.innerHTML = '<img src="' + src + '" alt="Foto ' + (i + 1) + '" class="w-full h-full object-cover">';
+    carruselTrack.appendChild(slide);
+
+    var dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Ir a la foto ' + (i + 1));
+    dot.onclick = function () { moverCarrusel(i); };
+    dotsEl.appendChild(dot);
+  });
+
+  function moverCarrusel(index) {
+    carruselIndex = index;
+    carruselTrack.style.transform = 'translateX(-' + (carruselIndex * 100) + '%)';
+    var dots = dotsEl.querySelectorAll('.dot');
+    dots.forEach(function (d, idx) {
+      if (idx === carruselIndex) d.classList.add('active');
+      else d.classList.remove('active');
+    });
+  }
+
+  document.getElementById('carrusel-prev').onclick = function () {
+    var nextIndex = carruselIndex - 1 < 0 ? CONFIG.fotosCarrusel.length - 1 : carruselIndex - 1;
+    moverCarrusel(nextIndex);
+  };
+  document.getElementById('carrusel-next').onclick = function () {
+    var nextIndex = (carruselIndex + 1) % CONFIG.fotosCarrusel.length;
+    moverCarrusel(nextIndex);
+  };
+
+  // ---------- Modal de Regalos ----------
+  var modalRegalos = document.getElementById('modal-regalos');
+  var openModalBtn = document.getElementById('open-regalos-modal');
+  var closeModalBtn = document.getElementById('close-regalos-modal');
+
+  function toggleModal(show) {
+    if (show) {
+      modalRegalos.classList.remove('opacity-0', 'pointer-events-none');
+      modalRegalos.classList.add('opacity-100');
+    } else {
+      modalRegalos.classList.remove('opacity-100');
+      modalRegalos.classList.add('opacity-0', 'pointer-events-none');
+    }
+  }
+
+  openModalBtn.onclick = function () { toggleModal(true); };
+  closeModalBtn.onclick = function () { toggleModal(false); };
+  modalRegalos.onclick = function (e) { if (e.target === modalRegalos) toggleModal(false); };
+
+  // Copiar Alias / CBU
+  document.getElementById('copy-alias-btn').onclick = function () {
+    navigator.clipboard.writeText(CONFIG.regaloAlias);
+    this.textContent = '¡Copiado!';
+    var self = this;
+    setTimeout(function () { self.textContent = 'Copiar'; }, 2000);
+  };
+  document.getElementById('copy-cbu-btn').onclick = function () {
+    navigator.clipboard.writeText(CONFIG.regaloCbu);
+    this.textContent = '¡Copiado!';
+    var self = this;
+    setTimeout(function () { self.textContent = 'Copiar'; }, 2000);
+  };
+
+  // ---------- RSVP (Confirmación por WhatsApp) ----------
+  document.getElementById('rsvp-btn').onclick = function () {
+    var asistencia = document.getElementById('rsvp-asistencia').value;
+    var menu = document.getElementById('rsvp-menu').value;
+    var acomp = document.getElementById('rsvp-acompanantes').value;
+
+    var msj = '¡Hola! Confirmo mi respuesta para la boda:' +
+      '\n- Asistencia: ' + asistencia +
+      '\n- Menú preferido: ' + menu +
+      '\n- Acompañantes: ' + acomp;
+
+    var url = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(msj);
+    window.open(url, '_blank');
+  };
+
+  // ---------- Animaciones Fade-In al Scroll ----------
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(function (el) {
+    observer.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

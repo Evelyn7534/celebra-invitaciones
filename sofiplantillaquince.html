@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Te invito a celebrar mis 15 años. ¡Consulta toda la información de mi fiesta aquí!">
+<meta property="og:title" content="Mis 15 Años - Sofía">
+<meta property="og:description" content="Acompáñame a celebrar una noche inolvidable. Confirma tu asistencia y conoce todos los detalles.">
+<meta property="og:type" content="website">
+<title>Mis 15 Años - Sofía</title>
+
+<!-- PRECONNECT Y FUENTES -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          creamBg: '#FAF6F0',
+          blush: '#F4EAE6',
+          rose: '#E8C2CA',
+          roseDeep: '#D8A7B1',
+          lavender: '#E2D4F0',
+          ink: '#2D1B2D',
+          goldAccent: '#D4AF37',
+          violetAccent: '#7B5294'
+        },
+        fontFamily: {
+          breathing: ['"Breathing"', '"Alex Brush"', 'cursive'],
+          serif: ['"Playfair Display"', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  @font-face {
+    font-family: 'Breathing';
+    src: url('https://fonts.cdnfonts.com/s/93121/Breathing.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: #FAF6F0; color: #2D1B2D; }
+
+  /* ANIMACIONES DE SCROLL (AOS) */
+  .reveal {
+    opacity: 0;
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  .reveal-up { transform: translateY(40px); }
+  .reveal-down { transform: translateY(-40px); }
+  .reveal-left { transform: translateX(-40px); }
+  .reveal-right { transform: translateX(40px); }
+  .reveal-zoom { transform: scale(0.92); }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translate(0) scale(1);
+  }
+
+  /* EFECTOS Y GLOW */
+  .btn-glow {
+    position: relative;
+    box-shadow: 0 0 20px rgba(123, 82, 148, 0.35);
+    transition: all 0.4s ease;
+  }
+  .btn-glow:hover {
+    box-shadow: 0 0 30px rgba(123, 82, 148, 0.6);
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  /* CARRUSEL ANCHO COMPLETO */
+  .carrusel-track { display: flex; transition: transform .6s cubic-bezier(.65,0,.35,1); touch-action: pan-y; }
+  .carrusel-slide { flex: 0 0 100%; min-width: 100%; }
+  .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.4); transition: all .3s ease; }
+  .dot.active { width: 28px; background: #FAF6F0; }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+  }
+  .animate-float { animation: floatSlow 4s infinite ease-in-out; }
+
+  @keyframes pulseLight {
+    0%, 100% { opacity: 0.9; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  .animate-pulse-btn { animation: pulseLight 2s infinite ease-in-out; }
+</style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+<!-- ======================================================= -->
+<!-- PANEL DE CONFIGURACIÓN — Edita los datos de Sofía aquí  -->
+<!-- ======================================================= -->
+<script>
+const CONFIG = {
+  nombre: "Sofía",
+  presentacionTitulo: "Mis 15 años",
+  subtitulo: "Mis XV Años",
+  frase: "Hay momentos en la vida que son irrepetibles, pero compartirlos con las personas que más querés los hace inolvidables. ¡Acompáñame a celebrar mi noche soñada!",
+
+  // Fecha y hora del evento
+  fechaISO: "2026-11-21T21:00:00",
+  fechaTextual: "Sábado, 21 de Noviembre de 2026", // <--- AÑADIDO: Fecha textual para mostrar
+  horaRecepcion: "21:00 hs",
+
+  // Ubicación
+  mapsUrl: "https://maps.google.com",
+  
+  // Dress code
+  dressCodeTitulo: "Elegante",
+  dressCodeDescripcion: "Reservado el color blanco y rosa dorado.",
+
+  // Confirmación por WhatsApp
+  whatsappNumero: "5491100000000",
+  whatsappMensaje: "¡Hola Sofi! Quiero confirmar mi asistencia a tus 15 años 🎉",
+
+  // Datos Bancarios
+  regaloTitular: "Sofía Nombres Apellido",
+  regaloAlias: "SOFIA.MIS.15",
+  regaloCbu: "0000003100084729104812",
+
+  // Música de fondo / Links
+  audioUrl: "musica.mp3",
+  playlistUrl: "#",
+  albumFotosUrl: "#",
+
+  // Textos
+  tituloCarrusel: "Mis Momentos",
+  tituloRegalos: "Mesa de Regalos",
+  mensajeRegalos: "El mejor regalo es tu presencia en esta noche tan especial, pero si deseas hacerme un detalle:",
+
+  // Fotos de Sofía
+  fotoPortada: "images/sofiaquince/sofiadespalda.png",
+  fotoSecundaria: "images/sofiaquince/sofia.png",
+  fotoRSVP: "images/sofiaquince/rsvpsofiaquince.png",
+  fotosCarrusel: [
+    "images/sofiaquince/sofiariendo.png",
+    "images/sofiaquince/sofia.png",
+    "images/sofiaquince/sofiaaa.png",
+    "images/sofiaquince/sofiadespalda.png"
+  ],
+
+  // PREGUNTAS DE LA TRIVIA
+  trivia: [
+    {
+      pregunta: "¿Cuál es el color favorito de Sofía?",
+      opciones: ["Rosa Gold", "Lila", "Verde Agua", "Negro"],
+      correcta: 1
+    },
+    {
+      pregunta: "¿Qué comida le gusta más?",
+      opciones: ["Sushi", "Hamburguesas", "Pastas", "Pizza"],
+      correcta: 2
+    },
+    {
+      pregunta: "¿Cuál es su pasatiempo preferido?",
+      opciones: ["Bailar", "Escuchar Música", "Ver Series", "Entrenar"],
+      correcta: 0
+    }
+  ]
+};
+</script>
+
+<main>
+
+  <!-- HERO PRESENTACIÓN -->
+  <section class="relative min-h-[100svh] flex flex-col justify-between items-center overflow-hidden px-6 py-12 text-center bg-ink">
+    <img id="portada-img" src="" alt="Portada Sofía" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 opacity-60">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/90"></div>
+
+    <div class="relative z-10 pt-8 reveal reveal-down">
+      <span class="text-xs uppercase tracking-[0.3em] text-rose font-semibold bg-ink/40 px-4 py-1.5 rounded-full border border-rose/30 backdrop-blur-sm">
+        Te invito a celebrar
+      </span>
+    </div>
+
+    <div class="relative z-10 my-auto flex flex-col items-center justify-center space-y-2">
+      <h2 id="presentacion-texto" class="font-breathing text-6xl sm:text-8xl md:text-9xl text-rose font-normal tracking-wide drop-shadow-lg leading-tight select-none">
+        Mis 15 años
+      </h2>
+      <h1 id="nombre-titulo" class="font-serif italic text-4xl sm:text-6xl text-white font-light tracking-wider uppercase mt-2">
+        Sofía
+      </h1>
+      <div class="w-16 h-[1px] bg-rose/60 my-4"></div>
+    </div>
+
+    <div class="relative z-10 pb-6 reveal reveal-up">
+      <a 
+        href="#bienvenida" 
+        class="btn-glow animate-pulse-btn inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-[0.2em] bg-violetAccent text-white hover:bg-violetAccent/90 transition-all cursor-pointer border border-lavender/30"
+      >
+        <span>Ver Invitación</span>
+        <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FRASE -->
+  <section id="bienvenida" class="bg-blush/60 px-6 py-24 relative overflow-hidden">
+    <div class="max-w-2xl mx-auto text-center reveal reveal-zoom">
+      <span class="font-breathing text-5xl text-violetAccent block mb-2">Sofía</span>
+      <p id="frase-texto" class="font-serif italic text-xl sm:text-2xl text-ink/90 leading-relaxed font-light"></p>
+    </div>
+  </section>
+
+  <!-- FOTO + CUENTA REGRESIVA -->
+  <section class="grid md:grid-cols-2 overflow-hidden">
+    <div id="secundaria-bg" class="aspect-[4/5] md:aspect-auto bg-cover bg-center reveal reveal-left min-h-[300px]"></div>
+    
+    <div class="bg-lavender/40 flex items-center justify-center px-8 py-20 relative">
+      <div class="reveal reveal-right text-center relative w-full max-w-md">
+        <h3 class="font-serif italic text-2xl sm:text-3xl text-ink mb-2">¡Cada vez falta menos!</h3>
+        <p class="text-xs uppercase tracking-widest text-ink/60 mb-8 font-semibold">Cuenta Regresiva</p>
+        
+        <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 p-4 rounded-3xl bg-white/60 backdrop-blur-md border border-white/80 shadow-sm"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLES DEL EVENTO -->
+  <section class="bg-creamBg px-6 py-24">
+    <!-- CORREGIDO: md:grid-cols-4 para dar espacio a la nueva tarjeta -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center flex-wrap justify-center">
+      
+      <!-- AÑADIDO: Tarjeta de "Cuándo" (Fecha) -->
+      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow">
+        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-ink">Cuándo</h3>
+        <p id="fecha-textual" class="text-sm font-medium text-ink/80 mt-2 leading-relaxed"></p>
+      </div>
+
+      <!-- RECEPCIÓN Y HORA -->
+      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow" style="transition-delay: 100ms;">
+        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-ink">Recepción</h3>
+        <p id="hora-recepcion" class="text-sm font-medium text-ink/80 mt-2"></p>
+      </div>
+
+      <!-- FIESTA Y MAPA -->
+      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow" style="transition-delay: 200ms;">
+        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-ink">Fiesta</h3>
+        <a id="ubicacion-btn" href="#" target="_blank" rel="noopener" class="btn-glow inline-block text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3.5 mt-4 bg-violetAccent text-white transition-transform">
+          Cómo llegar
+        </a>
+      </div>
+
+      <!-- DRESS CODE -->
+      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow" style="transition-delay: 300ms;">
+        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 id="dresscode-titulo" class="font-serif text-xl font-semibold text-ink"></h3>
+        <p id="dresscode-desc" class="text-xs text-ink/70 mt-2 max-w-[180px]"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARRUSEL AUTOMÁTICO DE ANCHO COMPLETO -->
+  <section class="bg-ink py-16 text-white overflow-hidden relative">
+    <div class="reveal reveal-up text-center mb-8 px-6">
+      <h2 id="carrusel-titulo" class="font-breathing text-5xl sm:text-6xl text-rose"></h2>
+      <p class="text-xs uppercase tracking-[0.2em] text-white/60">Recuerdos Inolvidables</p>
+    </div>
+
+    <div id="carrusel-container" class="relative w-full overflow-hidden shadow-2xl">
+      <div id="carrusel-track" class="carrusel-track h-[60vh] sm:h-[75vh]"></div>
+
+      <button id="carrusel-prev" aria-label="Anterior" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ink/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-violetAccent transition-colors border border-white/20 z-10">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button id="carrusel-next" aria-label="Siguiente" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ink/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-violetAccent transition-colors border border-white/20 z-10">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div id="carrusel-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2.5 z-10 bg-ink/40 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN TRIVIA -->
+  <section class="bg-lavender/30 px-6 py-24 border-y border-rose/20">
+    <div class="reveal reveal-up max-w-xl mx-auto text-center">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-violetAccent bg-white/80 px-4 py-1.5 rounded-full border border-violetAccent/20">Juego Interactivo</span>
+      <h2 class="font-breathing text-5xl sm:text-6xl text-ink mt-3 mb-2">¿Cuánto conocés a Sofía?</h2>
+      <p class="text-xs text-ink/70 mb-8">Demuestra qué tan bien conoces a la cumpleañera respondiendo estas preguntas.</p>
+
+      <div id="trivia-card" class="bg-white p-6 sm:p-8 rounded-3xl shadow-lg border border-rose/30 text-left transition-all">
+        <div class="flex justify-between items-center mb-6 border-b border-creamBg pb-3">
+          <span id="trivia-paso" class="text-xs font-bold text-violetAccent uppercase tracking-wider">Pregunta 1 de 3</span>
+          <span id="trivia-score" class="text-xs font-semibold bg-blush px-3 py-1 rounded-full text-ink">Puntos: 0</span>
+        </div>
+
+        <h3 id="trivia-pregunta" class="font-serif text-xl sm:text-2xl text-ink font-semibold mb-6"></h3>
+
+        <div id="trivia-opciones" class="flex flex-col gap-3"></div>
+
+        <div id="trivia-feedback" class="hidden mt-6 p-4 rounded-2xl text-center text-sm font-semibold"></div>
+
+        <button id="trivia-next-btn" class="hidden w-full mt-6 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest bg-violetAccent text-white shadow-md hover:bg-violetAccent/90 transition-all">
+          Siguiente Pregunta
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÚSICA Y FOTOS -->
+  <section class="bg-creamBg px-6 py-20">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+      
+      <!-- SUGERIR MÚSICA -->
+      <div class="reveal reveal-left bg-white/80 p-8 rounded-3xl border border-rose/30 shadow-sm flex flex-col items-center justify-between">
+        <div class="p-4 rounded-full bg-blush mb-3 text-violetAccent">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 .895-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 .895-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <h3 class="font-serif text-2xl text-ink font-semibold">¿Qué tema no puede faltar?</h3>
+          <p class="text-xs text-ink/70">Ayúdame a armar la playlist perfecta para la fiesta.</p>
+        </div>
+        <a id="musica-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3.5 mt-6 bg-ink text-white hover:bg-violetAccent transition-colors">Sugerir Canción</a>
+      </div>
+
+      <!-- SUBIR FOTOS -->
+      <div class="reveal reveal-right bg-white/80 p-8 rounded-3xl border border-rose/30 shadow-sm flex flex-col items-center justify-between">
+        <div class="p-4 rounded-full bg-blush mb-3 text-violetAccent">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <h3 class="font-serif text-2xl text-ink font-semibold">Compartí tus fotos</h3>
+          <p class="text-xs text-ink/70">Subí las fotos que saques durante la noche.</p>
+        </div>
+        <a id="album-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3.5 mt-6 bg-roseDeep text-white hover:bg-violetAccent transition-colors">Subir Fotos</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MESA DE REGALOS -->
+  <section class="bg-blush/40 px-6 py-24">
+    <div class="reveal reveal-up max-w-sm mx-auto text-center">
+      <h2 id="regalos-titulo" class="font-serif italic text-3xl text-ink mb-3"></h2>
+      <p id="regalos-mensaje" class="text-xs text-ink/70 leading-relaxed mb-8"></p>
+      
+      <button 
+        id="open-regalos-modal" 
+        type="button"
+        class="group inline-flex flex-col items-center gap-3 focus:outline-none cursor-pointer" 
+      >
+        <div class="p-6 rounded-full bg-white shadow-md border border-rose/30 group-hover:scale-105 transition-transform">
+          <span class="text-3xl">🎁</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-violetAccent group-hover:underline">Tocar para ver datos bancarios</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- MODAL DE REGALOS -->
+  <div 
+    id="modal-regalos" 
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+  >
+    <div class="bg-creamBg border border-rose/40 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 id-modal-content">
+      <h3 class="font-serif text-2xl text-ink mb-2">Datos Bancarios</h3>
+      <p class="text-xs text-ink/70 mb-6">Muchas gracias por acompañarme en este momento.</p>
+      
+      <div class="bg-white p-4 rounded-2xl flex flex-col gap-3 text-left text-sm mb-6 border border-rose/20 shadow-sm">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-ink/50 block">Titular</span>
+          <span id="regalo-titular" class="font-semibold text-ink"></span>
+        </div>
+        
+        <div class="flex items-center justify-between gap-2 border-t border-creamBg pt-2">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-ink/50 block">Alias</span>
+            <span id="regalo-alias" class="font-bold text-violetAccent text-base"></span>
+          </div>
+          <button type="button" id="copy-alias-btn" class="px-3 py-1.5 bg-lavender text-ink text-xs font-bold rounded-lg hover:bg-violetAccent hover:text-white transition-colors">
+            Copiar
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 border-t border-creamBg pt-2">
+          <div class="overflow-hidden">
+            <span class="text-[10px] uppercase font-bold text-ink/50 block">CBU</span>
+            <span id="regalo-cbu" class="font-mono text-xs text-ink break-all"></span>
+          </div>
+          <button type="button" id="copy-cbu-btn" class="px-3 py-1.5 bg-lavender text-ink text-xs font-bold rounded-lg hover:bg-violetAccent hover:text-white transition-colors shrink-0">
+            Copiar
+          </button>
+        </div>
+      </div>
+
+      <button 
+        id="close-regalos-modal" 
+        type="button"
+        class="w-full py-3.5 rounded-full font-bold text-xs uppercase tracking-widest bg-violetAccent text-white shadow-md active:scale-95 transition-transform"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+ <!-- RSVP / CONFIRMACIÓN DE ASISTENCIA -->
+  <section class="bg-creamBg px-6 py-20 flex justify-center items-center">
+    <div class="reveal reveal-up max-w-md w-full text-center flex flex-col items-center">
+      
+      <!-- CONTENEDOR FOTO REDONDA CON CORTE RECTIFICADO -->
+      <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-blush mb-8">
+        <img 
+          id="rsvp-avatar" 
+          src="" 
+          alt="Sofía" 
+          loading="lazy" 
+          class="w-full h-full object-cover object-center scale-[1.85] transition-transform duration-500"
+        >
+      </div>
+
+      <h3 class="font-breathing text-5xl sm:text-6xl text-violetAccent mb-2 tracking-wide">
+        Confirmación
+      </h3>
+      
+      <p class="font-serif italic text-xl sm:text-2xl text-ink/80 mb-8 font-light">
+        ¿Me acompañás esa noche?
+      </p>
+
+      <a 
+        id="rsvp-btn" 
+        href="#" 
+        target="_blank" 
+        rel="noopener" 
+        class="btn-glow inline-flex items-center justify-center gap-3 rounded-full font-bold text-xs uppercase tracking-[0.18em] px-8 py-4 bg-[#059669] hover:bg-[#047857] text-white transition-all shadow-lg active:scale-95"
+      >
+        <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>Confirmar Asistencia</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER CON PROMO DE NEGOCIO Y REDES
+  =========================================== -->
+  <footer class="bg-ink text-creamBg px-6 pt-20 pb-12 text-center border-t border-white/10 relative overflow-hidden">
+    
+    <!-- Decoración sutil de fondo (Opcional) -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+      <svg width="100%" height="100%"><defs><pattern id="polka" width="20" height="20" patternUnits="userSpaceOnWrite"><circle cx="10" cy="10" r="1" fill="#fff"/></pattern></defs><rect width="100%" height="100%" fill="url(#polka)"/></svg>
+    </div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
+      
+      <!-- 1. TÍTULO PROMOCIONAL (Tipografía cursiva Breathing) -->
+      <div class="reveal reveal-up mb-12">
+        <h4 class="font-breathing text-5xl sm:text-6xl text-rose tracking-wide mb-2 leading-tight">
+          ¿Te gustó esta invitación?
+        </h4>
+        <p class="font-serif italic text-xl text-creamBg/80 font-light">
+          Creá la tuya en minutos y sorprendé a todos
+        </p>
+      </div>
+
+      <!-- 2. LLAMADO A LA ACCIÓN (CTA) CLARO Y DIRECTO -->
+      <div class="reveal reveal-up mb-16" style="transition-delay: 150ms;">
+        <a 
+          href="TU_TIENDA_O_LINK_AQUÍ" 
+          target="_blank" 
+          rel="noopener"
+          class="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-rose/50 text-rose text-xs font-bold uppercase tracking-[0.2em] hover:bg-rose hover:text-ink transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+        >
+          <span>Ver todas las plantillas</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+        <p class="text-[11px] text-creamBg/50 mt-4 uppercase tracking-widest">
+          Diseños editables para Cumpleaños, Bodas y Baby Showers
+        </p>
+      </div>
+
+      <!-- Separador sutil -->
+      <div class="w-20 h-px bg-white/10 mx-auto mb-16"></div>
+
+      <!-- 3. LINKS A REDES SOCIALES (SVG limpios) -->
+      <div class="reveal reveal-up flex items-center justify-center gap-8 mb-16 text-creamBg/60" style="transition-delay: 300ms;">
+        
+        <!-- Instagram -->
+        <a href="TU_INSTAGRAM_LINK" target="_blank" rel="noopener" aria-label="Siguenos en Instagram" class="hover:text-rose transition-colors transform hover:scale-110">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.646-.069-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="TU_TIKTOK_LINK" target="_blank" rel="noopener" aria-label="Siguenos en TikTok" class="hover:text-rose transition-colors transform hover:scale-110">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12.525.9a2.345 2.345 0 00-1.01 0 2.133 2.133 0 00-.77.34 2.22 2.22 0 00-.51.52A12.37 12.37 0 018.66 4.98a12.636 12.636 0 01-1.39 1.12 12.502 12.502 0 01-1.63.85c-.6.25-1.22.46-1.85.62-.64.16-1.29.28-1.95.34a10.873 10.873 0 01-1.42.04 2.227 2.227 0 00-.57.11 2.062 2.062 0 00-.51.27 2.261 2.261 0 00-.39.43 2.023 2.023 0 00-.24.52 2.251 2.251 0 00-.1.57 2.1 2.1 0 000 1.01 2.062 2.062 0 00.27.51 2.261 2.261 0 00.43.39 2.023 2.023 0 00.52.24 2.251 2.251 0 00.57.1h.46a10.378 10.378 0 001.3-.08 10.262 10.262 0 001.27-.24 10.151 10.151 0 001.21-.4 10.007 10.007 0 001.12-.55 10.02 10.02 0 001.03-.66 9.873 9.873 0 00.9-.76 9.92 9.92 0 00.77-.86 9.774 9.774 0 00.64-.93V18c0 1.63-.64 3.19-1.78 4.34-1.15 1.15-2.71 1.79-4.34 1.79s-3.19-.64-4.34-1.79C1.19 21.19.55 19.63.55 18s.64-3.19 1.79-4.34c1.07-1.07 2.47-1.69 3.97-1.77.36-.02.72-.03 1.07-.03v2.87c-.55 0-1.1.22-1.51.62-.41.41-.63.96-.63 1.51 0 .55.22 1.1.63 1.51.41.41.96.63 1.51.63.55 0 1.1-.22 1.51-.63.4-.4.62-.95.63-1.5V1c.64-.04 1.28-.04 1.92 0a2.091 2.091 0 00.52.27 2.158 2.158 0 00.57.1 2.2 2.2 0 001.01 0 2.133 2.133 0 00.77-.34 2.22 2.22 0 00.51-.52 2.115 2.115 0 011.45 2.58 2.08 2.08 0 00-.11.57 2.112 2.112 0 000 1.01 2.15 2.15 0 00.34.77l.03.03v.01l.03.03c.14.19.3.37.49.52.19.16.4.29.62.39a2.127 2.127 0 001.52.01 2.23 2.23 0 00.57-.27 2.052 2.052 0 00.46-.41 2.233 2.233 0 013.31.06 2.052 2.052 0 00.41.46 2.23 2.23 0 00.27.57 2.127 2.127 0 00-.01 1.52 2.1 2.1 0 00-.39.62c-.15.19-.33.35-.52.49v.03c-.22.16-.47.28-.73.36-.26.08-.53.13-.8.13s-.54-.05-.8-.13c-.26-.08-.51-.2-.73-.36v-.03c-.19-.14-.35-.32-.49-.52v-.03c-.08-.13-.15-.27-.2-.4a2.126 2.126 0 01-2.96-1c-.05-.08-.09-.16-.13-.24z"/></svg>
+        </a>
+
+        <!-- Pinterest -->
+        <a href="TU_PINTEREST_LINK" target="_blank" rel="noopener" aria-label="Siguenos en Pinterest" class="hover:text-rose transition-colors transform hover:scale-110">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.965 1.406-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378 0 0-.601 2.288-.745 2.843-.271 1.042-1.002 2.348-1.494 3.146 1.12.345 2.308.531 3.54.531 6.621 0 11.988-5.367 11.988-11.987C24.005 5.367 18.638 0 12.017 0z"/></svg>
+        </a>
+      </div>
+
+      <!-- 4. CRÉDITOS FINALES (Originales, ajustados para el nuevo footer) -->
+      <div class="border-t border-white/5 pt-8 text-xs text-creamBg/40">
+        <p class="font-serif text-sm text-rose/60 mb-2">Sofía • Mis 15 Años</p>
+        <p class="opacity-60 mb-1">Diseñado con ♡ para una noche inolvidable</p>
+        <p class="opacity-40 text-[10px]">© <span id="current-year"></span> - Invitación Digital Interactiva</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Pequeño script para el año actual automático -->
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+</main>
+
+<script>
+(function () {
+  // Carga de Configuración
+  document.getElementById('nombre-titulo').textContent = CONFIG.nombre;
+  document.getElementById('frase-texto').textContent = CONFIG.frase;
+  // AÑADIDO: Cargar fecha textual
+  document.getElementById('fecha-textual').textContent = CONFIG.fechaTextual; 
+  document.getElementById('hora-recepcion').textContent = CONFIG.horaRecepcion;
+  document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo;
+  document.getElementById('dresscode-desc').textContent = CONFIG.dressCodeDescripcion;
+  document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel;
+  document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos;
+  document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos;
+  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl;
+  document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP;
+
+  document.getElementById('musica-btn').href = CONFIG.playlistUrl;
+  document.getElementById('album-btn').href = CONFIG.albumFotosUrl;
+
+  document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular;
+  document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias;
+  document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu;
+
+  if (CONFIG.fotoPortada) document.getElementById('portada-img').src = CONFIG.fotoPortada;
+  if (CONFIG.fotoSecundaria && document.getElementById('secundaria-bg')) {
+    document.getElementById('secundaria-bg').style.backgroundImage = "url('" + CONFIG.fotoSecundaria + "')";
+  }
+
+  // ---------- ANIMACIONES AL SCROLL ----------
+  var reveals = document.querySelectorAll('.reveal');
+  function checkScroll() {
+    var triggerBottom = window.innerHeight * 0.88;
+    reveals.forEach(function (el) {
+      if (el.getBoundingClientRect().top < triggerBottom) el.classList.add('active');
+    });
+  }
+  window.addEventListener('scroll', checkScroll);
+  checkScroll();
+
+  // ---------- CUENTA REGRESIVA ----------
+  var countdownEl = document.getElementById('countdown');
+  var targetDate = new Date(CONFIG.fechaISO).getTime();
+
+  function renderCountdown() {
+    var diff = Math.max(0, targetDate - new Date().getTime());
+    var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = `
+      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(d).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Días</span></div>
+      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(h).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Hs</span></div>
+      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(m).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Min</span></div>
+      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(s).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Seg</span></div>
+    `;
+  }
+  renderCountdown();
+  setInterval(renderCountdown, 1000);
+
+  // ---------- CARRUSEL AUTOMÁTICO & FULL WIDTH ----------
+  var track = document.getElementById('carrusel-track');
+  var dotsWrap = document.getElementById('carrusel-dots');
+  var carruselContainer = document.getElementById('carrusel-container');
+  var indice = 0;
+  var total = CONFIG.fotosCarrusel.length;
+  var autoSlideTimer = null;
+
+  CONFIG.fotosCarrusel.forEach(function (src, i) {
+    var slide = document.createElement('div');
+    slide.className = 'carrusel-slide h-full w-full';
+    var img = document.createElement('img');
+    img.src = src;
+    img.loading = 'lazy';
+    img.className = 'w-full h-full object-cover';
+    slide.appendChild(img);
+    track.appendChild(slide);
+
+    var dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', function () { irASlide(i); reiniciarTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+
+  function irASlide(i) {
+    if (total === 0) return;
+    indice = (i + total) % total;
+    track.style.transform = 'translateX(-' + (indice * 100) + '%)';
+    dotsWrap.querySelectorAll('.dot').forEach(function (d, idx) {
+      d.classList.toggle('active', idx === indice);
+    });
+  }
+
+  function siguienteSlide() { irASlide(indice + 1); }
+  function iniciarTimer() { autoSlideTimer = setInterval(siguienteSlide, 3500); }
+  function reiniciarTimer() { clearInterval(autoSlideTimer); iniciarTimer(); }
+
+  document.getElementById('carrusel-prev').addEventListener('click', function () { irASlide(indice - 1); reiniciarTimer(); });
+  document.getElementById('carrusel-next').addEventListener('click', function () { irASlide(indice + 1); reiniciarTimer(); });
+
+  carruselContainer.addEventListener('mouseenter', function() { clearInterval(autoSlideTimer); });
+  carruselContainer.addEventListener('mouseleave', function() { iniciarTimer(); });
+
+  iniciarTimer();
+
+  // ---------- LÓGICA DE LA TRIVIA ----------
+  var triviaIndex = 0;
+  var triviaScore = 0;
+  var preguntas = CONFIG.trivia;
+
+  var pasoEl = document.getElementById('trivia-paso');
+  var scoreEl = document.getElementById('trivia-score');
+  var preguntaEl = document.getElementById('trivia-pregunta');
+  var opcionesEl = document.getElementById('trivia-opciones');
+  var feedbackEl = document.getElementById('trivia-feedback');
+  var nextBtn = document.getElementById('trivia-next-btn');
+
+  function cargarPregunta() {
+    var item = preguntas[triviaIndex];
+    pasoEl.textContent = `Pregunta ${triviaIndex + 1} de ${preguntas.length}`;
+    preguntaEl.textContent = item.pregunta;
+    opcionesEl.innerHTML = '';
+    feedbackEl.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+
+    item.opciones.forEach(function (opcion, idx) {
+      var btn = document.createElement('button');
+      btn.className = 'w-full text-left p-4 rounded-2xl border border-rose/30 bg-creamBg/50 text-ink font-medium text-sm hover:bg-lavender/50 transition-all flex items-center justify-between cursor-pointer';
+      btn.innerHTML = `<span>${opcion}</span><span class="w-5 h-5 rounded-full border border-violetAccent/30 flex items-center justify-center text-xs"></span>`;
+      btn.addEventListener('click', function () { seleccionarRespuesta(idx, item.correcta); });
+      opcionesEl.appendChild(btn);
+    });
+  }
+
+  function seleccionarRespuesta(seleccionada, correcta) {
+    var btns = opcionesEl.querySelectorAll('button');
+    btns.forEach(function (b) { b.disabled = true; b.classList.add('cursor-not-allowed'); });
+
+    if (seleccionada === correcta) {
+      triviaScore += 10;
+      scoreEl.textContent = `Puntos: ${triviaScore}`;
+      btns[seleccionada].classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+      feedbackEl.textContent = '¡Correcto! 🎉 Conoces muy bien a Sofía.';
+      feedbackEl.className = 'mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-emerald-100 text-emerald-900 border border-emerald-300';
+    } else {
+      btns[seleccionada].classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+      btns[correcta].classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+      feedbackEl.textContent = '¡Casi! Esa no era la respuesta correcta.';
+      feedbackEl.className = 'mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-rose-100 text-rose-900 border border-rose-300';
+    }
+
+    feedbackEl.classList.remove('hidden');
+
+    if (triviaIndex < preguntas.length - 1) {
+      nextBtn.classList.remove('hidden');
+    } else {
+      setTimeout(mostrarResultadoFinal, 1500);
+    }
+  }
+
+  function mostrarResultadoFinal() {
+    var tarjeta = document.getElementById('trivia-card');
+    tarjeta.innerHTML = `
+      <div class="text-center py-6">
+        <h3 class="font-breathing text-5xl text-violetAccent mb-2">¡Trivia Completada!</h3>
+        <p class="font-serif text-2xl text-ink font-semibold mb-4">Lograste ${triviaScore} puntos</p>
+        <p class="text-sm text-ink/80 mb-6">
+          ${triviaScore === preguntas.length * 10 
+            ? '¡Increíble! Sos un súper amigo/a y conocés a Sofía a la perfección. 💖' 
+            : '¡Muy bien jugado! Gracias por demostrar cuánto querés a Sofía en su día. ✨'}
+        </p>
+        <button onclick="location.reload()" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest bg-violetAccent text-white">
+          Jugar de nuevo
+        </button>
+      </div>
+    `;
+  }
+
+  nextBtn.addEventListener('click', function () {
+    triviaIndex++;
+    cargarPregunta();
+  });
+
+  cargarPregunta();
+
+  // ---------- RSVP ----------
+  document.getElementById('rsvp-btn').href = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(CONFIG.whatsappMensaje);
+
+  // ---------- MODAL Y COPIAR DATOS ----------
+  var openModalBtn = document.getElementById('open-regalos-modal');
+  var closeModalBtn = document.getElementById('close-regalos-modal');
+  var modalRegalos = document.getElementById('modal-regalos');
+
+  if (openModalBtn && modalRegalos) {
+    openModalBtn.addEventListener('click', function() {
+      modalRegalos.classList.remove('opacity-0', 'pointer-events-none');
+      modalRegalos.querySelector('.id-modal-content').classList.replace('scale-95', 'scale-100');
+    });
+    closeModalBtn.addEventListener('click', function() {
+      modalRegalos.classList.add('opacity-0', 'pointer-events-none');
+      modalRegalos.querySelector('.id-modal-content').classList.replace('scale-100', 'scale-95');
+    });
+  }
+
+  function copiarTexto(texto, btn) {
+    navigator.clipboard.writeText(texto).then(function() {
+      var prevText = btn.textContent;
+      btn.textContent = '¡Copiado!';
+      btn.classList.add('bg-violetAccent', 'text-white');
+      setTimeout(function() {
+        btn.textContent = prevText;
+        btn.classList.remove('bg-violetAccent', 'text-white');
+      }, 2000);
+    });
+  }
+
+  document.getElementById('copy-alias-btn').addEventListener('click', function() {
+    copiarTexto(CONFIG.regaloAlias, this);
+  });
+  document.getElementById('copy-cbu-btn').addEventListener('click', function() {
+    copiarTexto(CONFIG.regaloCbu, this);
+  });
+})();
+</script>
+</body>
+</html>

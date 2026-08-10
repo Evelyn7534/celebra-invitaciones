@@ -41,122 +41,102 @@
 
 <header class="sticky top-0 z-50 bg-bg/85 backdrop-blur-md border-b border-line">
   <nav class="max-w-[1180px] mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
-    <a href="celebra-landing.html" class="flex items-center gap-2 font-serif text-xl font-semibold">
+    <a href="index.html" class="flex items-center gap-2 font-serif text-xl font-semibold">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
       </svg>
       Celebra
     </a>
     <div class="hidden md:flex items-center gap-9 text-sm font-semibold">
       <a href="catalogo.html" class="text-primary font-bold border-b-2 border-accent pb-1">Diseños</a>
-      <a href="celebra-landing.html#caracteristicas" class="text-inkSoft hover:text-primary transition-colors">Qué incluye</a>
-      <a href="celebra-landing.html#precios" class="text-inkSoft hover:text-primary transition-colors">Precios</a>
-      <a href="celebra-landing.html#faq" class="text-inkSoft hover:text-primary transition-colors">Preguntas</a>
+      <a href="index.html#caracteristicas" class="text-inkSoft hover:text-primary transition-colors">Qué incluye</a>
+      <a href="index.html#precios" class="text-inkSoft hover:text-primary transition-colors">Precios</a>
+      <a href="index.html#faq" class="text-inkSoft hover:text-primary transition-colors">Preguntas</a>
     </div>
-    <a href="celebra-landing.html#precios" class="inline-flex items-center rounded-full bg-primary text-white text-sm font-bold px-6 py-3 border border-accent/60 hover:bg-primaryDark hover:border-accent transition-colors">
-      Crear Invitación
-    </a>
   </nav>
 </header>
 
 <main>
 
   <!-- ENCABEZADO -->
-  <section class="pt-16 md:pt-20 pb-10 text-center">
+  <section class="pt-12 md:pt-20 pb-6 md:pb-10 text-center">
     <div class="max-w-2xl mx-auto px-6">
       <div class="inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark">
         <span class="w-[22px] h-px bg-accent inline-block"></span>Catálogo Completo
       </div>
-      <h1 class="font-serif text-4xl md:text-5xl mt-5 mb-5">Nuestro Catálogo de Diseños</h1>
-      <p class="text-inkSoft text-lg">Explorá cada estilo y encontrá la invitación que mejor cuenta tu historia. Todos los diseños son 100% editables.</p>
+      <h1 class="font-serif text-3xl md:text-5xl mt-3 md:mt-5 mb-3 md:mb-5">Nuestro Catálogo de Diseños</h1>
+      <p class="text-inkSoft text-base md:text-lg">Explorá cada estilo y encontrá la invitación que mejor cuenta tu historia. Todos los diseños son 100% editables.</p>
     </div>
   </section>
 
   <!-- FILTROS -->
   <section class="pb-4">
-    <div class="max-w-[1180px] mx-auto px-6 md:px-10 flex flex-wrap items-center justify-center gap-3">
-      <button data-filter="todos" class="filter-btn bg-primary text-white text-sm font-bold px-6 py-2.5 rounded-full transition-colors">Todos</button>
-      <button data-filter="bodas" class="filter-btn bg-white text-ink border border-line text-sm font-bold px-6 py-2.5 rounded-full hover:border-accent transition-colors">Bodas</button>
-      <button data-filter="15anos" class="filter-btn bg-white text-ink border border-line text-sm font-bold px-6 py-2.5 rounded-full hover:border-accent transition-colors">15 Años</button>
-      <button data-filter="bautismos" class="filter-btn bg-white text-ink border border-line text-sm font-bold px-6 py-2.5 rounded-full hover:border-accent transition-colors">Bautismos</button>
+    <div class="max-w-[1180px] mx-auto px-4 md:px-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+      <button data-filter="bodas" class="filter-btn bg-white text-ink border border-line text-xs sm:text-sm font-bold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:border-accent transition-colors">Bodas</button>
+      <button data-filter="15anos" class="filter-btn bg-white text-ink border border-line text-xs sm:text-sm font-bold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:border-accent transition-colors">15 Años</button>
+      <button data-filter="bautismos" class="filter-btn bg-white text-ink border border-line text-xs sm:text-sm font-bold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:border-accent transition-colors">Bautismos</button>
     </div>
   </section>
 
   <!-- GRID DE DISEÑOS -->
-  <section class="py-16 md:py-20">
-    <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center">
+  <section class="py-6 md:py-12">
+    <div class="max-w-[1180px] mx-auto px-3 sm:px-6 md:px-10">
+      <!-- Grid ajustado -->
+      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-6 sm:gap-6 lg:gap-8 justify-items-center">
 
         <!-- BODA 1 -->
-        <article data-cat="bodas" class="group w-11/12 sm:w-full max-w-sm h-full flex flex-col bg-surface rounded-3xl shadow-md overflow-hidden">
-          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#EDE8D6] to-[#C9D2BC]" style="flex-basis:60%;">
-            <img src="images/invitacion-boda.png" alt="Invitación de Boda - Atardecer" loading="lazy" width="220" height="440" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[-2deg] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-0">
-          </div>
-          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white flex-1">
-            <h3 class="font-serif text-2xl text-ink">Boda Atardecer</h3>
-            <p class="text-inkSoft text-sm text-center -mt-3">Elegancia romántica junto al mar.</p>
-            <a href="plantilla_boda_01.html" class="mt-auto inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver Demo En Vivo</a>
-          </div>
+        <article data-cat="bodas" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
+          <a href="plantilla_boda.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación de Boda - Atardecer" class="relative inline-block focus:outline-none">
+            <img src="images/sofimateo.png" alt="Tarjeta de invitación digital interactiva para boda - Modelo Atardecer" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+          </a>
+          <a href="plantilla_boda.html" target="_blank" rel="noopener" title="Ver diseño de invitación de boda Atardecer" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
+            <span>Ver Diseño</span>
+            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">1</span>
+          </a>
         </article>
 
         <!-- BODA 2 -->
-        <article data-cat="bodas" class="group w-11/12 sm:w-full max-w-sm h-full flex flex-col bg-surface rounded-3xl shadow-md overflow-hidden">
-          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#1C232A] to-[#33424D]" style="flex-basis:60%;">
-            <img src="images/invitacion-boda.png" alt="Invitación de Boda - Tinta y Oro" loading="lazy" width="220" height="440" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[2deg] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-0">
-          </div>
-          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white flex-1">
-            <h3 class="font-serif text-2xl text-ink">Tinta &amp; Oro</h3>
-            <p class="text-inkSoft text-sm text-center -mt-3">Sobria, moderna y sofisticada.</p>
-            <a href="#" class="mt-auto inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver Demo En Vivo</a>
-          </div>
+        <article data-cat="bodas" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
+          <a href="romimateoplantilla_boda.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación de Boda - Tinta y Oro" class="relative inline-block focus:outline-none">
+            <img src="images/mockupsromimateo.png" alt="Tarjeta de invitación digital interactiva para boda - Modelo Tinta y Oro" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+          </a>
+          <a href="romimateoplantilla_boda.html" target="_blank" rel="noopener" title="Ver diseño de invitación de boda Tinta y Oro" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
+            <span>Ver Diseño</span>
+            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">2</span>
+          </a>
         </article>
 
-        <!-- 15 AÑOS 1 -->
-        <article data-cat="15anos" class="group w-11/12 sm:w-full max-w-sm h-full flex flex-col bg-surface rounded-3xl shadow-md overflow-hidden">
-          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#FBF3F0] to-[#F0CFC7]" style="flex-basis:60%;">
-            <img src="images/invitacion-15anos.png" alt="Invitación de 15 Años - Fiesta" loading="lazy" width="220" height="440" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[2deg] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-0">
-          </div>
-          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white flex-1">
-            <h3 class="font-serif text-2xl text-ink">Mis Quince</h3>
-            <p class="text-inkSoft text-sm text-center -mt-3">Fiesta y color para el gran día.</p>
-            <a href="#" class="mt-auto inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver Demo En Vivo</a>
-          </div>
+        <!-- 15 AÑOS 1 (LARA) -->
+        <article data-cat="15anos" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
+          <a href="sofiplantillaquince.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Lara" class="relative inline-block focus:outline-none">
+            <img src="images/sofiquincemockup.png" alt="Tarjeta de invitación digital interactiva para 15 años - Modelo Lara" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+          </a>
+          <a href="sofiplantillaquince.html" target="_blank" rel="noopener" title="Ver diseño Lara" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
+            <span>Ver Diseño</span>
+            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">1</span>
+          </a>
         </article>
 
         <!-- 15 AÑOS 2 -->
-        <article data-cat="15anos" class="group w-11/12 sm:w-full max-w-sm h-full flex flex-col bg-surface rounded-3xl shadow-md overflow-hidden">
-          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#E9DCF0] to-[#C9A9DC]" style="flex-basis:60%;">
-            <img src="images/invitacion-15anos.png" alt="Invitación de 15 Años - Lila Real" loading="lazy" width="220" height="440" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[-2deg] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-0">
-          </div>
-          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white flex-1">
-            <h3 class="font-serif text-2xl text-ink">Lila Real</h3>
-            <p class="text-inkSoft text-sm text-center -mt-3">Un toque de realeza y color.</p>
-            <a href="#" class="mt-auto inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver Demo En Vivo</a>
-          </div>
+        <article data-cat="15anos" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
+          <a href="plantilla_15_lara.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño 2" class="relative inline-block focus:outline-none">
+            <img src="images/mockup1.png" alt="Tarjeta de invitación digital interactiva para 15 años - Modelo Lila Real" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+          </a>
+          <a href="plantilla_15_lara.html" target="_blank" rel="noopener" title="Ver diseño 2" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
+            <span>Ver Diseño</span>
+            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">2</span>
+          </a>
         </article>
 
         <!-- BAUTISMO 1 -->
-        <article data-cat="bautismos" class="group w-11/12 sm:w-full max-w-sm h-full flex flex-col bg-surface rounded-3xl shadow-md overflow-hidden">
-          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#DDF0EA] to-[#9FD6C4]" style="flex-basis:60%;">
-            <img src="images/invitacion-bautismo.png" alt="Invitación de Bautismo - Sereno" loading="lazy" width="220" height="440" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[-2deg] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-0">
-          </div>
-          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white flex-1">
-            <h3 class="font-serif text-2xl text-ink">Bautismo Sereno</h3>
-            <p class="text-inkSoft text-sm text-center -mt-3">Dulzura y ternura en cada detalle.</p>
-            <a href="#" class="mt-auto inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver Demo En Vivo</a>
-          </div>
-        </article>
-
-        <!-- BAUTISMO 2 -->
-        <article data-cat="bautismos" class="group w-11/12 sm:w-full max-w-sm h-full flex flex-col bg-surface rounded-3xl shadow-md overflow-hidden">
-          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#FFF7E8] to-[#F3D98A]" style="flex-basis:60%;">
-            <img src="images/invitacion-bautismo.png" alt="Invitación de Bautismo - Dorado Suave" loading="lazy" width="220" height="440" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[2deg] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-0">
-          </div>
-          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white flex-1">
-            <h3 class="font-serif text-2xl text-ink">Bendición Dorada</h3>
-            <p class="text-inkSoft text-sm text-center -mt-3">Calidez y luz para el bautismo.</p>
-            <a href="#" class="mt-auto inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver Demo En Vivo</a>
-          </div>
+        <article data-cat="bautismos" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
+          <a href="plantilla_bautismo.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación de Bautismo - Sereno" class="relative inline-block focus:outline-none">
+            <img src="images/invitacion-bautismo.png" alt="Tarjeta de invitación digital interactiva para bautismo" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+          </a>
+          <a href="plantilla_bautismo.html" target="_blank" rel="noopener" title="Ver diseño de Bautismo" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
+            <span>Ver Diseño</span>
+            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">1</span>
+          </a>
         </article>
 
       </div>
@@ -195,7 +175,7 @@
           <a href="#" class="mt-auto text-center rounded-lg bg-primary text-white font-bold text-sm px-7 py-3.5 hover:bg-primaryDark transition-colors">Elegir Esenciales</a>
         </div>
 
-        <!-- PLAN 2: CELEBRACIÓN (DESTACADO) -->
+        <!-- PLAN 2: CELEBRACIÓN -->
         <div class="h-full flex flex-col gap-6 bg-primary rounded-3xl shadow-2xl p-10 relative lg:-translate-y-4">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-ink text-[0.68rem] font-bold uppercase tracking-widest px-5 py-2 rounded-full shadow-md whitespace-nowrap">Más Elegido</div>
           <div class="text-[0.72rem] font-bold tracking-widest uppercase text-accentSoft mt-2">Celebración</div>
@@ -260,9 +240,9 @@
       </div>
       <div>
         <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Producto</h4>
-        <a href="celebra-landing.html#caracteristicas" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Qué incluye</a>
+        <a href="index.html#caracteristicas" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Qué incluye</a>
         <a href="catalogo.html" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Diseños</a>
-        <a href="celebra-landing.html#precios" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Precios</a>
+        <a href="index.html#precios" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Precios</a>
       </div>
       <div>
         <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Empresa</h4>
@@ -295,28 +275,39 @@
 </footer>
 
 <script>
-  // Filtrado instantáneo por categoría — vanilla JS, sin dependencias, sin recrear el DOM.
   (function () {
     var buttons = document.querySelectorAll('.filter-btn');
     var cards = document.querySelectorAll('[data-cat]');
 
-    function setActive(activeBtn) {
+    function filterCategory(catName) {
+      var activeBtn = document.querySelector('.filter-btn[data-filter="' + catName + '"]');
+      if (!activeBtn) {
+        catName = 'bodas';
+        activeBtn = document.querySelector('.filter-btn[data-filter="bodas"]');
+      }
+
       buttons.forEach(function (b) {
-        b.classList.remove('bg-primary', 'text-white', 'border-primary');
+        b.classList.remove('bg-primary', 'text-white');
         b.classList.add('bg-white', 'text-ink', 'border', 'border-line');
       });
       activeBtn.classList.remove('bg-white', 'text-ink', 'border', 'border-line');
       activeBtn.classList.add('bg-primary', 'text-white');
+
+      cards.forEach(function (card) {
+        var show = card.dataset.cat === catName;
+        card.classList.toggle('hidden', !show);
+      });
     }
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var categoryFromUrl = urlParams.get('cat') || window.location.hash.replace('#', '');
+
+    filterCategory(categoryFromUrl || 'bodas');
 
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var filter = btn.dataset.filter;
-        setActive(btn);
-        cards.forEach(function (card) {
-          var show = filter === 'todos' || card.dataset.cat === filter;
-          card.classList.toggle('hidden', !show);
-        });
+        filterCategory(filter);
       });
     });
   })();

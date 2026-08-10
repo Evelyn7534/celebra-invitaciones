@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Romina & Mateo se casan. Conocé la fecha, el itinerario y confirmá tu asistencia.">
+<meta property="og:title" content="Boda de Romina & Mateo">
+<meta property="og:description" content="Estás invitado a nuestra boda. Toda la información del gran día en un solo lugar.">
+<meta property="og:image" content="images/romimateo/romiportada.png">
+<meta property="og:type" content="website">
+<title>Boda de Romina &amp; Mateo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          creamBg: '#F7F4F0',
+          creamSection: '#EFEBE4',
+          navyDark: '#1E2C3D',
+          navySoft: '#2C3E55',
+          goldAccent: '#B39258',
+          textMuted: '#5C6773'
+        },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body.gate-open { overflow: hidden; }
+
+  /* --- ANIMACIONES DE SCROLL Y PARALLAX --- */
+  
+  /* Parallax en hero */
+  .parallax-bg {
+    will-change: transform;
+    transition: transform 0.1s cubic-bezier(0,0,0.2,1);
+  }
+  .parallax-text {
+    will-change: transform, opacity;
+    transition: transform 0.1s cubic-bezier(0,0,0.2,1);
+  }
+
+  /* Entrada de Secciones (Slide Up & Fade In) */
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(45px) scale(0.985);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-section.in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Entrada de Textos y Títulos */
+  .reveal-text {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-text.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Elementos Escalados en Secuencia (Staggered Children) */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stagger-item.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Líneas Divisoras Animadas */
+  .line-expand {
+    width: 0px;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .line-expand.in {
+    width: 38px;
+  }
+
+  /* Indicador de Scroll flotante */
+  @keyframes bounceIndicator {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); opacity: 0.8; }
+    40% { transform: translateY(8px); opacity: 1; }
+    60% { transform: translateY(4px); opacity: 0.9; }
+  }
+  .animate-bounce-slow {
+    animation: bounceIndicator 2.4s infinite;
+  }
+
+  .music-btn { box-shadow: 0 12px 30px -6px rgba(30, 44, 61, 0.35); }
+  #welcome-gate { transition: opacity .7s ease; }
+  #welcome-gate.gate-hidden { opacity: 0; pointer-events: none; }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-section, .reveal-text, .stagger-item, .parallax-bg, .parallax-text {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden gate-open text-[#1E2C3D]" style="background:#F7F4F0;">
+
+<!-- ======================================================= -->
+<!-- PANEL DE CONFIGURACIÓN — editá solo esto para reutilizar -->
+<!-- ======================================================= -->
+<script>
+const CONFIG = {
+  // Datos principales
+  novioA: "Romina",
+  novioB: "Mateo",
+  tituloBienvenida: "¡Estás invitado!",
+  frase: "Hay momentos en la vida que son inolvidables, pero compartirlos con las personas que más queremos los hace inolvidables para siempre.",
+
+  // Imagen de fondo para la pantalla "Estás invitado" (Bienvenida)
+  fotoBienvenida: "images/romimateo/romiportada.png",
+
+  // Fecha y horarios
+  fechaISO: "2026-11-14T17:30:00",
+  fechaTexto: "14 de Noviembre, 2026",
+
+  // Ubicaciones
+  ceremonia: {
+    nombre: "Parroquia Nuestra Señora del Pilar",
+    direccion: "Recoleta, Buenos Aires",
+    mapsUrl: "https://maps.google.com/?q=Parroquia+Nuestra+Se%C3%B1ora+del+Pilar+Recoleta"
+  },
+  fiesta: {
+    nombre: "Quinta San Ignacio",
+    direccion: "Pilar, Buenos Aires",
+    mapsUrl: "https://maps.google.com/?q=Quinta+San+Ignacio+Pilar"
+  },
+
+  // Itinerario
+  itinerario: [
+    { icono: "church", titulo: "Ceremonia", hora: "17:30 hs", descripcion: "Parroquia Nuestra Señora del Pilar", mapsUrl: "https://maps.google.com/?q=Parroquia+Nuestra+Se%C3%B1ora+del+Pilar+Recoleta" },
+    { icono: "glass", titulo: "Recepción", hora: "19:00 hs", descripcion: "Bienvenida con tragos y aperitivos" },
+    { icono: "music", titulo: "Fiesta", hora: "20:30 hs", descripcion: "Quinta San Ignacio — a bailar toda la noche", mapsUrl: "https://maps.google.com/?q=Quinta+San+Ignacio+Pilar" },
+    { icono: "moon", titulo: "Trasnoche", hora: "01:00 hs", descripcion: "Para quienes lleguen hasta el final" }
+  ],
+
+  // Dress code
+  dressCodeTitulo: "Elegante / Formal",
+  dressCodeDescripcion: "Te esperamos con tu mejor look para acompañarnos esta noche.",
+
+  // Hospedaje
+  hospedajeMensaje: "Para quienes vengan de otra ciudad, dejamos algunas opciones de alojamiento cerca del salón.",
+  hospedajeUrl: "https://www.booking.com/searchresults.html?ss=Pilar",
+
+  // Trivia
+  trivia: [
+    { pregunta: "¿Dónde fue nuestra primera cita?", opciones: ["En una cafetería de San Telmo", "En una plaza de Palermo", "En un concierto de rock", "En la playa"], correcta: 0 },
+    { pregunta: "¿Quién dio el primer paso?", opciones: ["Romina", "Mateo", "Un amigo en común los presentó", "Fue mutuo"], correcta: 1 },
+    { pregunta: "¿Cuál es nuestro destino de viaje soñado?", opciones: ["Japón", "Italia", "Nueva Zelanda", "Egipto"], correcta: 1 },
+    { pregunta: "¿Quién cocina mejor en la pareja?", opciones: ["Romina prepara los mejores postres", "Mateo es el rey del asado", "Pedimos siempre delivery", "Cocinan excelente juntos"], correcta: 3 },
+    { pregunta: "¿Qué canción define nuestra historia?", opciones: ["Perfect - Ed Sheeran", "All of Me - John Legend", "Yellow - Coldplay", "You're My Best Friend - Queen"], correcta: 2 }
+  ],
+
+  // WhatsApp y Regalos
+  whatsappNumero: "5491100000000",
+  regaloTitular: "Romina / Mateo",
+  regaloAlias: "Romina.Y.Mateo.BODA",
+  regaloCbu: "0000003100084729104812",
+  mensajeRegalos: "El mejor regalo es tu presencia en nuestro gran día. Si deseás hacernos un obsequio para nuestra luna de miel, podés hacerlo a través de la siguiente cuenta:",
+
+  // Audio
+  audioUrl: "images/romimateo/musica/thinkingoutloud.mp3",
+
+  // Textos generales
+  tituloRegalos: "Mesa de Regalos",
+  playlistMensaje: "Ayudanos a armar la playlist de la fiesta: sugerinos esa canción que no puede faltar.",
+  playlistUrl: "https://spotify.com",
+  albumMensaje: "¡Subí tus fotos del día y armemos juntos el álbum del recuerdo!",
+  albumUrl: "https://photos.google.com",
+
+  // Fotos de la Galería estilo Tríptico (3 fotos verticales)
+  fotoPortada: "images/romimateo/romiportada.png",
+  fotoRSVP: "images/romimateo/boda-romidos.png",
+  fotosGaleria: [
+    "images/romimateo/boda-romi3.png", // Foto 1
+    "images/romimateo/boda-romidos.png", // Foto 2
+    "images/romimateo/boda-romi.png"    // Foto 3
+  ]
+};
+</script>
+
+<!-- PANTALLA DE BIENVENIDA -->
+<div id="welcome-gate" class="fixed inset-0 z-[100] flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-cover bg-center">
+  <img id="gate-bg-img" src="" alt="Fondo Bienvenida" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0 bg-[#1E2C3D]/60 backdrop-blur-[3px]"></div>
+
+  <div class="relative z-10 max-w-sm text-white">
+    <div class="inline-flex items-center gap-3 text-[0.65rem] font-medium tracking-[0.3em] uppercase mb-6" style="color:#B39258;">
+      <span class="w-6 h-px" style="background:#B39258;"></span>Nos casamos<span class="w-6 h-px" style="background:#B39258;"></span>
+    </div>
+    <h1 id="gate-titulo" class="font-serif italic text-5xl sm:text-6xl leading-none mb-4 tracking-wide"></h1>
+    <p id="gate-pareja" class="font-serif text-2xl mb-12 tracking-wider text-stone-200 font-light"></p>
+    <button id="btn-abrir-invitacion" class="rounded-full px-10 py-4 font-semibold text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:scale-105 shadow-lg cursor-pointer border border-[#B39258]/40" style="background:#1E2C3D; color:#F7F4F0;">
+      Abrir invitación
+    </button>
+  </div>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main>
+
+  <!-- PORTADA PRINCIPAL CON EFECTO PARALLAX -->
+  <section class="relative min-h-[92svh] flex items-end overflow-hidden">
+    <img id="portada-img" src="" alt="Novios" loading="lazy" class="parallax-bg absolute inset-0 w-full h-[115%] -top-[7.5%] object-cover object-center">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#1E2C3D]/90 via-[#1E2C3D]/35 to-transparent"></div>
+    
+    <div class="parallax-text relative z-10 w-full px-6 pb-20 pt-32 text-center text-white flex flex-col items-center">
+      <div class="text-[0.65rem] font-semibold tracking-[0.35em] uppercase mb-4" style="color:#B39258;">Nos Casamos</div>
+      <h1 class="font-serif italic text-5xl sm:text-7xl leading-none mb-5 font-normal"><span id="nombre-a"></span> &amp; <span id="nombre-b"></span></h1>
+      <p id="portada-fecha" class="text-xs tracking-[0.25em] uppercase text-stone-300 font-light mb-8"></p>
+      
+      <!-- Indicador de Scroll -->
+      <div class="animate-bounce-slow flex flex-col items-center gap-1.5 opacity-80">
+        <span class="text-[9px] uppercase tracking-[0.25em] font-medium" style="color:#B39258;">Deslizá</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:#B39258;"><path d="M12 5V19M12 19L6 13M12 19L18 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUENTA REGRESIVA CON EFECTO SLIDE-UP -->
+  <section class="reveal-section px-6 py-20 text-white relative overflow-hidden" style="background:#1E2C3D;">
+    <div class="text-center max-w-md mx-auto relative z-10">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="reveal-text mx-auto mb-4" style="color:#B39258;">
+        <circle cx="9" cy="14" r="4.5" stroke="currentColor" stroke-width="1"/>
+        <circle cx="15" cy="14" r="4.5" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <p class="reveal-text font-serif italic text-2xl mb-10 text-stone-200 font-light">¡Cada vez falta menos!</p>
+      
+      <!-- Contador funcional con escalonado -->
+      <div id="countdown" class="grid grid-cols-4 gap-3 sm:gap-5 max-w-md mx-auto">
+        <div class="stagger-item bg-white/[0.05] backdrop-blur-md p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center">
+          <span id="cd-days" class="font-serif text-3xl sm:text-4xl font-normal text-white">00</span>
+          <span class="text-[9px] uppercase font-medium tracking-[0.2em] mt-2 text-stone-400">Días</span>
+        </div>
+        <div class="stagger-item bg-white/[0.05] backdrop-blur-md p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center" style="transition-delay: 0.1s;">
+          <span id="cd-hours" class="font-serif text-3xl sm:text-4xl font-normal text-white">00</span>
+          <span class="text-[9px] uppercase font-medium tracking-[0.2em] mt-2 text-stone-400">Hs</span>
+        </div>
+        <div class="stagger-item bg-white/[0.05] backdrop-blur-md p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center" style="transition-delay: 0.2s;">
+          <span id="cd-minutes" class="font-serif text-3xl sm:text-4xl font-normal text-white">00</span>
+          <span class="text-[9px] uppercase font-medium tracking-[0.2em] mt-2 text-stone-400">Min</span>
+        </div>
+        <div class="stagger-item bg-white/[0.05] backdrop-blur-md p-4 rounded-xl border border-white/10 flex flex-col items-center justify-center" style="transition-delay: 0.3s;">
+          <span id="cd-seconds" class="font-serif text-3xl sm:text-4xl font-normal" style="color:#B39258;">00</span>
+          <span class="text-[9px] uppercase font-medium tracking-[0.2em] mt-2 text-stone-400">Seg</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRASE CON LÍNEAS EXPANDIBLES -->
+  <section class="reveal-section px-6 py-20" style="background:#F7F4F0;">
+    <div class="max-w-lg mx-auto text-center flex flex-col items-center">
+      <span class="line-expand h-px mb-8" style="background:#B39258;"></span>
+      <p id="frase-texto" class="reveal-text font-serif italic text-2xl leading-relaxed font-normal" style="color:#1E2C3D;"></p>
+      <span class="line-expand h-px mt-8" style="background:#B39258;"></span>
+    </div>
+  </section>
+
+  <!-- GALERÍA MINIMALISTA CON REVELACIÓN ESCALONADA -->
+  <section class="reveal-section pb-24 pt-4 px-4 sm:px-8" style="background:#F7F4F0;">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 items-center">
+      <div class="stagger-item overflow-hidden rounded-md aspect-[3/4] border border-[#1E2C3D]/10 shadow-sm transition-transform duration-500 hover:scale-[1.02]">
+        <img id="galeria-img-1" src="" alt="Foto Galería 1" class="w-full h-full object-cover">
+      </div>
+      <div class="stagger-item overflow-hidden rounded-md aspect-[3/4] border border-[#1E2C3D]/10 shadow-sm transition-transform duration-500 hover:scale-[1.02]" style="transition-delay: 0.15s;">
+        <img id="galeria-img-2" src="" alt="Foto Galería 2" class="w-full h-full object-cover">
+      </div>
+      <div class="stagger-item overflow-hidden rounded-md aspect-[3/4] border border-[#1E2C3D]/10 shadow-sm transition-transform duration-500 hover:scale-[1.02]" style="transition-delay: 0.3s;">
+        <img id="galeria-img-3" src="" alt="Foto Galería 3" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section class="reveal-section px-6 py-24" style="background:#EFEBE4;">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="reveal-text inline-flex items-center gap-3 text-[0.65rem] font-semibold tracking-[0.25em] uppercase mb-3" style="color:#B39258;">
+          <span class="w-6 h-px" style="background:#B39258;"></span>Cronograma<span class="w-6 h-px" style="background:#B39258;"></span>
+        </div>
+        <h2 class="reveal-text font-serif italic text-4xl sm:text-5xl font-normal" style="color:#1E2C3D;">Itinerario de la Boda</h2>
+      </div>
+
+      <div id="itinerario-lista" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+
+      <!-- Dress code -->
+      <div class="reveal-text text-center mt-16 p-10 rounded-2xl bg-[#F7F4F0] border border-[#1E2C3D]/10 shadow-sm max-w-md mx-auto">
+        <div class="inline-block p-3.5 rounded-full mb-4" style="background:rgba(30,44,61,0.05);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="color:#1E2C3D;"><path d="M20.38 3.46L16 2l-4 4-4-4-4.38 1.46A2 2 0 002 5.35V20a2 2 0 002 2h16a2 2 0 002-2V5.35a2 2 0 00-1.62-1.89z" stroke="currentColor" stroke-width="1.2"/></svg>
+        </div>
+        <h3 id="dresscode-titulo" class="font-serif text-2xl font-normal mb-2" style="color:#1E2C3D;"></h3>
+        <p id="dresscode-desc" class="text-xs sm:text-sm leading-relaxed max-w-[280px] mx-auto" style="color:#5C6773;"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIVIA -->
+  <section class="reveal-section px-6 py-24" style="background:#F7F4F0;">
+    <div class="max-w-md mx-auto text-center">
+      <div class="reveal-text inline-flex items-center gap-3 text-[0.65rem] font-semibold tracking-[0.25em] uppercase mb-3" style="color:#B39258;">
+        <span class="w-6 h-px" style="background:#B39258;"></span>¿Cuánto nos conocés?<span class="w-6 h-px" style="background:#B39258;"></span>
+      </div>
+      <h2 class="reveal-text font-serif italic text-4xl mb-10 font-normal" style="color:#1E2C3D;">Trivia de los Novios</h2>
+
+      <div id="trivia-card" class="bg-white rounded-2xl p-8 sm:p-10 shadow-sm border border-[#1E2C3D]/10 flex flex-col justify-between min-h-[340px]">
+        <div>
+          <div class="flex items-center justify-between text-[11px] uppercase font-semibold tracking-wider text-stone-400 mb-6">
+            <span id="trivia-step">Pregunta 1 de 5</span>
+            <span id="trivia-score">Puntos: 0</span>
+          </div>
+          <p id="trivia-pregunta" class="font-serif text-xl sm:text-2xl mb-8 text-left font-normal" style="color:#1E2C3D;"></p>
+          <div id="trivia-opciones" class="flex flex-col gap-3"></div>
+        </div>
+        <div id="trivia-feedback" class="mt-4 text-sm font-semibold hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYLIST + ÁLBUM -->
+  <section class="reveal-section px-6 py-24" style="background:#EFEBE4;">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center items-stretch">
+      <div class="stagger-item p-10 rounded-2xl bg-[#F7F4F0] flex flex-col items-center justify-between gap-8 border border-[#1E2C3D]/10 shadow-sm transition-all hover:shadow-md">
+        <div class="flex flex-col items-center gap-4">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" style="color:#1E2C3D;"><circle cx="8" cy="17" r="2.4" stroke="currentColor" stroke-width="1.2"/><circle cx="17" cy="15" r="2.4" stroke="currentColor" stroke-width="1.2"/><path d="M10.3 17V6.5L19.3 4.5V15" stroke="currentColor" stroke-width="1.2"/></svg>
+          <h3 class="font-serif text-2xl font-normal" style="color:#1E2C3D;">¿Qué canción no puede faltar?</h3>
+          <p id="playlist-mensaje" class="text-xs sm:text-sm leading-relaxed" style="color:#5C6773;"></p>
+        </div>
+        <a id="playlist-btn" href="#" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.2em] rounded-full px-8 py-4 transition-all duration-300 hover:scale-105" style="background:#1E2C3D; color:#F7F4F0;">Sugerir canción</a>
+      </div>
+
+      <div class="stagger-item p-10 rounded-2xl bg-[#F7F4F0] flex flex-col items-center justify-between gap-8 border border-[#1E2C3D]/10 shadow-sm transition-all hover:shadow-md" style="transition-delay: 0.15s;">
+        <div class="flex flex-col items-center gap-4">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1E2C3D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <h3 class="font-serif text-2xl font-normal" style="color:#1E2C3D;">¿Sacaste fotos?</h3>
+          <p id="album-mensaje" class="text-xs sm:text-sm leading-relaxed" style="color:#5C6773;"></p>
+        </div>
+        <a id="album-btn" href="#" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.2em] rounded-full px-8 py-4 transition-all duration-300 hover:scale-105" style="background:#1E2C3D; color:#F7F4F0;">Subir fotos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESA DE REGALOS -->
+  <section class="reveal-section px-6 py-24" style="background:#F7F4F0;" aria-labelledby="regalos-titulo">
+    <div class="max-w-md mx-auto text-center">
+      <h2 id="regalos-titulo" class="reveal-text font-serif italic text-4xl mb-4 font-normal" style="color:#1E2C3D;"></h2>
+      <p id="regalos-mensaje" class="reveal-text text-xs sm:text-sm leading-relaxed mb-10" style="color:#5C6773;"></p>
+      <div class="reveal-text flex flex-col items-center justify-center gap-4">
+        <button id="open-regalos-modal" type="button" class="group relative focus:outline-none rounded-full transition-transform active:scale-95 cursor-pointer">
+          <div class="relative flex items-center justify-center p-7 rounded-full border border-[#1E2C3D]/15 transition-all duration-300 group-hover:border-[#1E2C3D]" style="background:#EFEBE4;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style="color:#1E2C3D;" class="group-hover:scale-110 transition-transform duration-300">
+              <rect x="3" y="6" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </div>
+        </button>
+        <span class="text-[11px] font-semibold uppercase tracking-[0.2em]" style="color:#5C6773;">Tocá el sobre para ver los datos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOSPEDAJE -->
+  <section class="reveal-section px-6 py-24" style="background:#EFEBE4;">
+    <div class="max-w-sm mx-auto text-center bg-[#F7F4F0] rounded-2xl shadow-sm p-10 flex flex-col items-center gap-5 border border-[#1E2C3D]/10">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style="color:#1E2C3D;">
+        <path d="M3 20V6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M3 12H18C19.6569 12 21 13.3431 21 15V20" stroke="currentColor" stroke-width="1.2"/>
+        <rect x="5" y="8" width="6" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M3 20H21" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <h2 class="font-serif italic text-3xl font-normal" style="color:#1E2C3D;">Hospedaje</h2>
+      <p id="hospedaje-mensaje" class="text-xs sm:text-sm leading-relaxed" style="color:#5C6773;"></p>
+      <a id="hospedaje-btn" href="#" target="_blank" rel="noopener" class="text-xs font-semibold uppercase tracking-[0.2em] rounded-full px-8 py-4 mt-2 transition-transform hover:scale-105" style="background:#1E2C3D; color:#F7F4F0;">Ver hospedaje</a>
+    </div>
+  </section>
+
+  <!-- MODAL DE REGALOS -->
+  <div id="modal-regalos" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E2C3D]/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="bg-[#F7F4F0] border rounded-2xl p-6 sm:p-10 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300" style="border-color:#B39258;">
+      <h3 class="font-serif text-3xl mb-2 font-normal" style="color:#1E2C3D;">Datos Bancarios</h3>
+      <p class="text-xs leading-relaxed mb-6" style="color:#5C6773;">Muchas gracias por tu cariño y por acompañarnos en este día tan especial.</p>
+      <div class="bg-white p-5 rounded-xl flex flex-col gap-4 text-left text-xs mb-6 border border-[#1E2C3D]/10">
+        <div>
+          <span class="text-[10px] uppercase font-semibold tracking-wider block mb-1" style="color:#5C6773;">Titular</span>
+          <span id="regalo-titular" class="font-semibold text-sm" style="color:#1E2C3D;"></span>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t pt-3 border-stone-100">
+          <div>
+            <span class="text-[10px] uppercase font-semibold tracking-wider block mb-1" style="color:#5C6773;">Alias</span>
+            <span id="regalo-alias" class="font-bold text-base" style="color:#1E2C3D;"></span>
+          </div>
+          <button type="button" id="copy-alias-btn" class="px-4 py-2 text-[11px] uppercase font-semibold rounded-lg transition-colors cursor-pointer" style="background:#1E2C3D; color:#F7F4F0;">Copiar</button>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t pt-3 border-stone-100">
+          <div class="overflow-hidden">
+            <span class="text-[10px] uppercase font-semibold tracking-wider block mb-1" style="color:#5C6773;">CBU / CVU</span>
+            <span id="regalo-cbu" class="font-mono text-xs break-all" style="color:#1E2C3D;"></span>
+          </div>
+          <button type="button" id="copy-cbu-btn" class="px-4 py-2 text-[11px] uppercase font-semibold rounded-lg shrink-0 transition-colors cursor-pointer" style="background:#1E2C3D; color:#F7F4F0;">Copiar</button>
+        </div>
+      </div>
+      <button id="close-regalos-modal" type="button" class="w-full py-3.5 rounded-full font-semibold text-xs uppercase tracking-[0.2em] cursor-pointer border border-[#1E2C3D]/20" style="background:transparent; color:#1E2C3D;">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- RSVP -->
+  <section class="reveal-section px-6 py-24" style="background:#F7F4F0;">
+    <div class="max-w-md mx-auto text-center flex flex-col items-center">
+      <div class="w-full h-[320px] sm:w-[310px] sm:h-[390px] rounded-lg overflow-hidden mb-10 shadow-sm border border-[#1E2C3D]/10">
+        <img id="rsvp-avatar" src="" alt="Novios" loading="lazy" class="w-full h-full object-cover">
+      </div>
+      <p class="reveal-text font-serif text-3xl font-normal leading-tight" style="color:#1E2C3D;">Por favor</p>
+      <p class="reveal-text font-serif text-3xl font-normal mb-10" style="color:#1E2C3D;">confirmar asistencia</p>
+
+      <form id="rsvp-form" class="reveal-text w-full flex flex-col gap-6 text-left mb-10">
+        <div>
+          <label class="text-[10px] font-semibold uppercase tracking-[0.2em] block mb-2" style="color:#5C6773;">Nombre completo</label>
+          <input id="rsvp-nombre" type="text" placeholder="Tu nombre" required class="w-full rounded-xl border px-4 py-3.5 text-sm bg-white outline-none focus:border-[#1E2C3D] transition-colors" style="border-color:rgba(30,44,61,0.15);">
+        </div>
+        <div>
+          <label class="text-[10px] font-semibold uppercase tracking-[0.2em] block mb-2" style="color:#5C6773;">¿Vas a acompañarnos?</label>
+          <select id="rsvp-asistencia" class="w-full rounded-xl border px-4 py-3.5 text-sm bg-white outline-none focus:border-[#1E2C3D] transition-colors" style="border-color:rgba(30,44,61,0.15);">
+            <option value="Sí, voy a asistir">Sí, voy a asistir</option>
+            <option value="No voy a poder asistir">No voy a poder asistir</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] font-semibold uppercase tracking-[0.2em] block mb-2" style="color:#5C6773;">Menú</label>
+          <select id="rsvp-menu" class="w-full rounded-xl border px-4 py-3.5 text-sm bg-white outline-none focus:border-[#1E2C3D] transition-colors" style="border-color:rgba(30,44,61,0.15);">
+            <option value="Regular">Regular</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Celíaco">Celíaco</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-[10px] font-semibold uppercase tracking-[0.2em] block mb-2" style="color:#5C6773;">Acompañantes</label>
+          <input id="rsvp-acompanantes" type="number" min="0" value="0" class="w-full rounded-xl border px-4 py-3.5 text-sm bg-white outline-none focus:border-[#1E2C3D] transition-colors" style="border-color:rgba(30,44,61,0.15);">
+        </div>
+      </form>
+
+      <button id="rsvp-btn" type="button" class="reveal-text w-full sm:w-auto inline-flex justify-center items-center gap-2 rounded-full font-semibold text-xs uppercase tracking-[0.2em] px-10 py-4 shadow-md transition-transform hover:-translate-y-0.5 cursor-pointer" style="background:#1E2C3D; color:#F7F4F0;">
+        Confirmar asistencia
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-16 px-6 border-t border-[#1E2C3D]/10" style="background:#EFEBE4; color:#1E2C3D;">
+    <p class="text-xs font-medium mb-1">Diseñado con ♡ por Celebra Invitaciones</p>
+    <p class="text-[11px] opacity-60 mb-1">Todos los derechos reservados.</p>
+    <p class="text-[11px] opacity-60 mb-8">celebrainvitaciones@gmail.com</p>
+    <div class="flex items-center justify-center gap-4">
+      <a id="footer-wa" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full border border-[#1E2C3D]/20 flex items-center justify-center hover:bg-[#1E2C3D] hover:text-white transition-all">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-full border border-[#1E2C3D]/20 flex items-center justify-center hover:bg-[#1E2C3D] hover:text-white transition-all">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </footer>
+
+</main>
+
+<!-- BOTÓN MÚSICA Y REPRODUCTOR -->
+<button id="music-toggle" aria-label="Reproducir música" class="music-btn fixed bottom-6 right-6 z-50 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-110" style="width:52px;height:52px;background-color:#1E2C3D; color:#F7F4F0; border: 1px solid rgba(179,146,88,0.4);">
+  <svg id="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5V19L19 12L8 5Z"/></svg>
+  <svg id="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M7 5H10V19H7V5ZM14 5H17V19H14V5Z"/></svg>
+</button>
+
+<audio id="audio-player" loop preload="auto">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const ICONOS = {
+    church: '<path d="M12 2L12 6" stroke="currentColor" stroke-width="1.2"/><path d="M6 21V10L12 6L18 10V21" stroke="currentColor" stroke-width="1.2"/><path d="M9 21V15H15V21" stroke="currentColor" stroke-width="1.2"/><path d="M4 21H20" stroke="currentColor" stroke-width="1.2"/>',
+    glass: '<path d="M7 3V10C7 12 9 13 9 13V20" stroke="currentColor" stroke-width="1.2"/><path d="M4 3H10" stroke="currentColor" stroke-width="1.2"/><path d="M17 3V10C17 12 15 13 15 13V20" stroke="currentColor" stroke-width="1.2"/><path d="M14 3H20" stroke="currentColor" stroke-width="1.2"/>',
+    music: '<circle cx="8" cy="17" r="2.4" stroke="currentColor" stroke-width="1.2"/><circle cx="17" cy="15" r="2.4" stroke="currentColor" stroke-width="1.2"/><path d="M10.3 17V6.5L19.3 4.5V15" stroke="currentColor" stroke-width="1.2"/>',
+    moon: '<path d="M20 14.5C18.7 15.7 17 16.4 15.1 16.4C10.9 16.4 7.5 13 7.5 8.8C7.5 6.9 8 5.2 8.9 3.8C4.8 4.6 1.8 8.2 1.8 12.5C1.8 17.2 5.6 21 10.3 21C14.6 21 18.2 18 19 13.9C17.6 14.8 15.9 15.3 14 15.3" stroke="currentColor" stroke-width="1.2"/>'
+  };
+
+  // 1. INICIALIZAR TEXTOS E IMÁGENES DESDE CONFIG
+  document.getElementById("gate-bg-img").src = CONFIG.fotoBienvenida;
+  document.getElementById("gate-titulo").textContent = CONFIG.tituloBienvenida;
+  document.getElementById("gate-pareja").textContent = `${CONFIG.novioA} & ${CONFIG.novioB}`;
+  
+  document.getElementById("portada-img").src = CONFIG.fotoPortada;
+  document.getElementById("nombre-a").textContent = CONFIG.novioA;
+  document.getElementById("nombre-b").textContent = CONFIG.novioB;
+  document.getElementById("portada-fecha").textContent = CONFIG.fechaTexto;
+  
+  document.getElementById("frase-texto").textContent = `"${CONFIG.frase}"`;
+
+  // Fotos galería
+  if (CONFIG.fotosGaleria[0]) document.getElementById("galeria-img-1").src = CONFIG.fotosGaleria[0];
+  if (CONFIG.fotosGaleria[1]) document.getElementById("galeria-img-2").src = CONFIG.fotosGaleria[1];
+  if (CONFIG.fotosGaleria[2]) document.getElementById("galeria-img-3").src = CONFIG.fotosGaleria[2];
+
+  // Dresscode, Hospedaje, Regalos y enlaces
+  document.getElementById("dresscode-titulo").textContent = CONFIG.dressCodeTitulo;
+  document.getElementById("dresscode-desc").textContent = CONFIG.dressCodeDescripcion;
+  document.getElementById("playlist-mensaje").textContent = CONFIG.playlistMensaje;
+  document.getElementById("playlist-btn").href = CONFIG.playlistUrl || "#";
+  document.getElementById("album-mensaje").textContent = CONFIG.albumMensaje;
+  document.getElementById("album-btn").href = CONFIG.albumUrl || "#";
+  
+  document.getElementById("regalos-titulo").textContent = CONFIG.tituloRegalos;
+  document.getElementById("regalos-mensaje").textContent = CONFIG.mensajeRegalos;
+  document.getElementById("regalo-titular").textContent = CONFIG.regaloTitular;
+  document.getElementById("regalo-alias").textContent = CONFIG.regaloAlias;
+  document.getElementById("regalo-cbu").textContent = CONFIG.regaloCbu;
+
+  document.getElementById("hospedaje-mensaje").textContent = CONFIG.hospedajeMensaje;
+  document.getElementById("hospedaje-btn").href = CONFIG.hospedajeUrl;
+
+  document.getElementById("rsvp-avatar").src = CONFIG.fotoRSVP;
+  document.getElementById("footer-wa").href = `https://wa.me/${CONFIG.whatsappNumero}`;
+
+  // Audio setup
+  const audioPlayer = document.getElementById("audio-player");
+  audioPlayer.querySelector("source").src = CONFIG.audioUrl;
+  audioPlayer.load();
+
+  // 2. BIENVENIDA Y MÚSICA
+  const welcomeGate = document.getElementById("welcome-gate");
+  const btnAbrir = document.getElementById("btn-abrir-invitacion");
+  const musicToggle = document.getElementById("music-toggle");
+  const iconPlay = document.getElementById("icon-play");
+  const iconPause = document.getElementById("icon-pause");
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      audioPlayer.pause();
+      iconPlay.classList.remove("hidden");
+      iconPause.classList.add("hidden");
+      isPlaying = false;
+    } else {
+      audioPlayer.play().then(() => {
+        iconPlay.classList.add("hidden");
+        iconPause.classList.remove("hidden");
+        isPlaying = true;
+      }).catch(err => console.log("Audio block:", err));
+    }
+  }
+
+  btnAbrir.addEventListener("click", function() {
+    welcomeGate.classList.add("gate-hidden");
+    document.body.classList.remove("gate-open");
+    toggleMusic();
+  });
+
+  musicToggle.addEventListener("click", toggleMusic);
+
+  // 3. ITINERARIO DINÁMICO
+  const itinerarioContainer = document.getElementById("itinerario-lista");
+  itinerarioContainer.innerHTML = CONFIG.itinerario.map((item, index) => `
+    <div class="stagger-item bg-[#F7F4F0] p-8 rounded-2xl border border-[#1E2C3D]/10 shadow-sm flex flex-col justify-between" style="transition-delay: ${index * 0.12}s;">
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="p-3.5 rounded-xl" style="background:rgba(30,44,61,0.06); color:#1E2C3D;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">${ICONOS[item.icono] || ICONOS.glass}</svg>
+          </div>
+          <span class="text-[11px] font-semibold tracking-wider px-3.5 py-1.5 rounded-full" style="background:#EFEBE4; color:#1E2C3D;">${item.hora}</span>
+        </div>
+        <h3 class="font-serif text-2xl font-normal mb-2" style="color:#1E2C3D;">${item.titulo}</h3>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color:#5C6773;">${item.descripcion}</p>
+      </div>
+      ${item.mapsUrl ? `<a href="${item.mapsUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.15em] mt-6 transition-colors hover:opacity-75" style="color:#1E2C3D;">Cómo llegar &rarr;</a>` : ''}
+    </div>
+  `).join('');
+
+  // 4. COUNTDOWN
+  const targetDate = new Date(CONFIG.fechaISO).getTime();
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference > 0) {
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById("cd-days").textContent = String(days).padStart(2, '0');
+      document.getElementById("cd-hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("cd-minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("cd-seconds").textContent = String(seconds).padStart(2, '0');
+    }
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // 5. EFECTO PARALLAX CON FLUIDEZ DE 60FPS
+  const bgImage = document.getElementById("portada-img");
+  const textHero = document.querySelector(".parallax-text");
+  let lastKnownScrollPosition = 0;
+  let ticking = false;
+
+  function handleParallax(scrollPos) {
+    if (bgImage && scrollPos < window.innerHeight * 1.2) {
+      bgImage.style.transform = `translate3d(0, ${scrollPos * 0.3}px, 0)`;
+      if (textHero) {
+        textHero.style.transform = `translate3d(0, ${scrollPos * 0.12}px, 0)`;
+        textHero.style.opacity = Math.max(0, 1 - scrollPos / (window.innerHeight * 0.8));
+      }
+    }
+  }
+
+  window.addEventListener("scroll", function () {
+    lastKnownScrollPosition = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        handleParallax(lastKnownScrollPosition);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // 6. INTERSECTION OBSERVER PARA REVELAR ELEMENTOS EN SCROLL
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: "0px 0px -60px 0px",
+    threshold: 0.12
+  });
+
+  document.querySelectorAll(".reveal-section, .reveal-text, .stagger-item, .line-expand").forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // 7. MODAL REGALOS Y COPIAR DATOS
+  const modalRegalos = document.getElementById("modal-regalos");
+  const openRegalosBtn = document.getElementById("open-regalos-modal");
+  const closeRegalosBtn = document.getElementById("close-regalos-modal");
+
+  openRegalosBtn.addEventListener("click", () => {
+    modalRegalos.classList.remove("opacity-0", "pointer-events-none");
+    modalRegalos.firstElementChild.classList.remove("scale-95");
+  });
+
+  closeRegalosBtn.addEventListener("click", () => {
+    modalRegalos.classList.add("opacity-0", "pointer-events-none");
+    modalRegalos.firstElementChild.classList.add("scale-95");
+  });
+
+  document.getElementById("copy-alias-btn").addEventListener("click", function () {
+    navigator.clipboard.writeText(CONFIG.regaloAlias);
+    this.textContent = "¡Copiado!";
+    setTimeout(() => this.textContent = "Copiar", 2000);
+  });
+
+  document.getElementById("copy-cbu-btn").addEventListener("click", function () {
+    navigator.clipboard.writeText(CONFIG.regaloCbu);
+    this.textContent = "¡Copiado!";
+    setTimeout(() => this.textContent = "Copiar", 2000);
+  });
+
+  // 8. TRIVIA INTERACTIVA
+  let triviaIndex = 0;
+  let triviaScore = 0;
+
+  function renderTrivia() {
+    if (triviaIndex >= CONFIG.trivia.length) {
+      document.getElementById("trivia-card").innerHTML = `
+        <div class="text-center py-8">
+          <h3 class="font-serif text-3xl mb-3 font-normal" style="color:#1E2C3D;">¡Trivia finalizada!</h3>
+          <p class="text-base mb-8" style="color:#5C6773;">Puntaje final: <span class="font-bold" style="color:#1E2C3D;">${triviaScore} / ${CONFIG.trivia.length}</span></p>
+          <button onclick="location.reload()" class="px-8 py-3.5 rounded-full font-semibold text-xs uppercase tracking-[0.2em]" style="background:#1E2C3D; color:#F7F4F0;">Jugar de nuevo</button>
+        </div>
+      `;
+      return;
+    }
+
+    const item = CONFIG.trivia[triviaIndex];
+    document.getElementById("trivia-step").textContent = `Pregunta ${triviaIndex + 1} de ${CONFIG.trivia.length}`;
+    document.getElementById("trivia-score").textContent = `Puntos: ${triviaScore}`;
+    document.getElementById("trivia-pregunta").textContent = item.pregunta;
+
+    const opcionesContainer = document.getElementById("trivia-opciones");
+    opcionesContainer.innerHTML = item.opciones.map((opt, idx) => `
+      <button onclick="checkTrivia(${idx})" class="w-full text-left p-4 rounded-xl border text-xs sm:text-sm transition-all hover:border-[#1E2C3D] hover:bg-[#F7F4F0]" style="border-color:rgba(30,44,61,0.15); color:#1E2C3D;">
+        ${opt}
+      </button>
+    `).join('');
+  }
+
+  window.checkTrivia = function (selectedIndex) {
+    const item = CONFIG.trivia[triviaIndex];
+    if (selectedIndex === item.correcta) {
+      triviaScore++;
+    }
+    triviaIndex++;
+    renderTrivia();
+  };
+
+  renderTrivia();
+
+  // 9. ENVÍO DE RSVP VÍA WHATSAPP
+  document.getElementById("rsvp-btn").addEventListener("click", function () {
+    const nombre = document.getElementById("rsvp-nombre").value;
+    const asistencia = document.getElementById("rsvp-asistencia").value;
+    const menu = document.getElementById("rsvp-menu").value;
+    const acompanantes = document.getElementById("rsvp-acompanantes").value;
+
+    if (!nombre) {
+      alert("Por favor ingresá tu nombre completo");
+      return;
+    }
+
+    const text = `*Confirmación de Asistencia - Boda ${CONFIG.novioA} & ${CONFIG.novioB}*%0A%0A` +
+      `*Nombre:* ${nombre}%0A` +
+      `*Asistencia:* ${asistencia}%0A` +
+      `*Menú:* ${menu}%0A` +
+      `*Acompañantes:* ${acompanantes}`;
+
+    window.open(`https://wa.me/${CONFIG.whatsappNumero}?text=${text}`, "_blank");
+  });
+});
+</script>
+
+</body>
+</html>

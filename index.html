@@ -55,6 +55,10 @@
   background-image: url('images/portadabg.jpg');
 }  .swatch-row::-webkit-scrollbar{height:6px;}
   .swatch-row::-webkit-scrollbar-thumb{background:#E6E2D6;border-radius:99px;}
+  /* Permite que el menú desplegable aparezca al pasar el mouse sobre "Diseños" */
+  .dropdown:hover .dropdown-menu { 
+    display: block; 
+  }
 </style>
 </head>
 <body class="bg-bg text-ink font-sans antialiased">
@@ -63,26 +67,44 @@
   💡 ¡30% DE DESCUENTO abonando mediante Transferencia Bancaria! Podés señar con el 50% para congelar el precio.
 </div>
 
-<header class="sticky top-0 z-50 bg-bg/85 backdrop-blur-md border-b border-line">
+<!-- NAVBAR COMPLETA -->
+<header class="sticky top-0 z-50 bg-bg/90 backdrop-blur-md border-b border-line">
   <nav class="max-w-[1180px] mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-2 font-serif text-xl font-semibold">
+    
+    <!-- LOGO -->
+    <a href="index.html" class="flex items-center gap-2 font-serif text-xl font-semibold text-ink">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
       </svg>
       Celebra
     </a>
-    <div class="hidden md:flex items-center gap-9 text-sm font-semibold text-inkSoft">
-      <a href="catalogo.html" target="_blank" class="hover:text-[#C9A96E] transition-colors">Diseños</a>
-      <a href="#caracteristicas" class="hover:text-primary transition-colors">Qué incluye</a>
-      <a href="#precios" class="hover:text-primary transition-colors">Precios</a>
-      <a href="#faq" class="hover:text-primary transition-colors">Preguntas</a>
+
+    <!-- MENÚ PRINCIPAL -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-inkSoft">
+      
+      <!-- DROPDOWN DISEÑOS -->
+      <div class="relative dropdown py-2">
+        <a href="catalogo.html" class="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer">
+          Diseños
+          <svg class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu hidden absolute left-0 top-full pt-2 w-48 z-50">
+          <div class="bg-white rounded-xl shadow-xl border border-line p-2 flex flex-col gap-1">
+            <a href="catalogo.html?cat=bodas" class="px-4 py-2 text-xs font-bold text-ink hover:bg-cream2 hover:text-primary rounded-lg transition-colors">Bodas</a>
+            <a href="catalogo.html?cat=15anos" class="px-4 py-2 text-xs font-bold text-ink hover:bg-cream2 hover:text-primary rounded-lg transition-colors">15 Años</a>
+            <a href="catalogo.html?cat=bautismos" class="px-4 py-2 text-xs font-bold text-ink hover:bg-cream2 hover:text-primary rounded-lg transition-colors">Infantiles y Bautismos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENLACES -->
+      <a href="index.html#sobre-nosotras" class="hover:text-primary transition-colors">Sobre nosotras</a>
+      <a href="index.html#precios" class="hover:text-primary transition-colors">Precios</a>
+      <a href="index.html#contacto" class="hover:text-primary transition-colors">Contacto</a>
     </div>
-    <a href="#precios" class="inline-flex items-center rounded-full bg-primary text-white text-sm font-bold px-6 py-3 border border-accent/60 hover:bg-primaryDark hover:border-accent transition-colors">
-      Crear Invitación
-    </a>
+
   </nav>
 </header>
-
 <main>
 
   <!-- HERO -->
@@ -135,27 +157,28 @@
       <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 justify-items-center">
 
         <!-- BODAS -->
-        <div class="w-11/12 sm:w-full max-w-sm">
-          <div class="h-full flex flex-col bg-surface rounded-3xl shadow-lg overflow-hidden">
-            <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#EDE8D6] to-[#C9D2BC]" style="flex-basis:60%;">
-              <img src="images/invitacion-boda.png" alt="Invitación de Boda" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[-2deg] hover:rotate-0 transition-transform duration-300 ease-in-out">
-            </div>
-            <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
-              <h3 class="font-serif text-2xl md:text-3xl text-ink">Bodas</h3>
-              <a href="#" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
-            </div>
+      <div class="w-11/12 sm:w-full max-w-sm">
+        <div class="h-full flex flex-col bg-surface rounded-3xl shadow-lg overflow-hidden">
+          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#EDE8D6] to-[#C9D2BC]" style="flex-basis:60%;">
+            <img src="images/invitacion-boda.png" alt="Invitación de Boda" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[-2deg] hover:rotate-0 transition-transform duration-300 ease-in-out">
+          </div>
+          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
+            <h3 class="font-serif text-2xl md:text-3xl text-ink">Bodas</h3>
+            <!-- AQUÍ ESTÁ EL CAMBIO EN EL HREF: -->
+            <a href="catalogo.html?cat=bodas" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
           </div>
         </div>
+     </div>
 
         <!-- 15 AÑOS -->
         <div class="w-11/12 sm:w-full max-w-sm">
           <div class="h-full flex flex-col bg-surface rounded-3xl shadow-lg overflow-hidden">
             <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#FBF3F0] to-[#F0CFC7]" style="flex-basis:60%;">
-              <img src="images/invitacion-15anos.png" alt="Invitación de 15 Años" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-300 ease-in-out">
+              <img src="images/invitacion-quince.png" alt="Invitación de 15 Años" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-300 ease-in-out">
             </div>
             <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
               <h3 class="font-serif text-2xl md:text-3xl text-ink">15 Años</h3>
-              <a href="#" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
+              <a href="catalogo.html?cat=15anos" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
             </div>
           </div>
         </div>
@@ -168,28 +191,7 @@
             </div>
             <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
               <h3 class="font-serif text-2xl md:text-3xl text-ink">Bautismos</h3>
-              <a href="#" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- GRADUACIONES -->
-        <div class="w-11/12 sm:w-full max-w-sm">
-          <div class="h-full flex flex-col bg-surface rounded-3xl shadow-lg overflow-hidden">
-            <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#EAEFFB] to-[#B9C6EA]" style="flex-basis:60%;">
-              <div class="w-[160px] max-h-[240px] aspect-[9/16] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-300 ease-in-out bg-gradient-to-br from-[#F0F3FC] to-[#CBD5EF] flex flex-col items-center justify-center gap-3 text-[#1E2A4D] px-4">
-                <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 3L2 8L12 13L22 8L12 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-                  <path d="M6 10.5V15.5C6 15.5 8.5 18 12 18C15.5 18 18 15.5 18 15.5V10.5" stroke="currentColor" stroke-width="1.3"/>
-                  <path d="M22 8V14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-                </svg>
-                <div class="text-[0.55rem] font-bold tracking-widest uppercase">Graduación</div>
-                <div class="font-serif text-sm leading-tight">Promoción 2026</div>
-              </div>
-            </div>
-            <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
-              <h3 class="font-serif text-2xl md:text-3xl text-ink">Graduaciones</h3>
-              <a href="#" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
+              <a href="catalogo.html?cat=bautismos" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
             </div>
           </div>
         </div>
