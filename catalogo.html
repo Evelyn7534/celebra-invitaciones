@@ -4,6 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catálogo de Diseños — Celebra</title>
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2053754282028690');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -32,18 +52,85 @@
     }
   }
 </script>
-</head>
-<body class="bg-bg text-ink font-sans antialiased">
+<style>
+  /* Animación flotante suave para los mockups */
+  @keyframes floatSlow {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  .animate-float-slow {
+    animation: floatSlow 4.5s ease-in-out infinite;
+  }
 
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Efecto Shimmer al pasar el mouse por el botón "Ver Diseño" */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+      60deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    );
+    transform: rotate(25deg);
+    transition: all 0.65s ease;
+  }
+  .btn-shimmer:hover::after {
+    left: 130%;
+  }
+
+  /* Botón flotante de WhatsApp */
+  .btn-wsp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-wsp-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+</style>
+</head>
+<body class="bg-bg text-ink font-sans antialiased overflow-x-hidden">
+
+<!-- BANNER SUPERIOR -->
 <div class="w-full bg-accent text-ink text-center text-sm font-semibold py-2.5 px-4">
-  💡 ¡30% DE DESCUENTO abonando mediante Transferencia Bancaria! Podés señar con el 50% para congelar el precio.
+  💡 ¡10% DE DESCUENTO abonando mediante Transferencia Bancaria! Podés señar con el 50% para congelar el precio.
 </div>
 
+<!-- HEADER -->
 <header class="sticky top-0 z-50 bg-bg/85 backdrop-blur-md border-b border-line">
   <nav class="max-w-[1180px] mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2 font-serif text-xl font-semibold">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
       </svg>
       Celebra
     </a>
@@ -64,89 +151,70 @@
       <div class="inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark">
         <span class="w-[22px] h-px bg-accent inline-block"></span>Catálogo Completo
       </div>
-      <h1 class="font-serif text-3xl md:text-5xl mt-3 md:mt-5 mb-3 md:mb-5">Nuestro Catálogo de Diseños</h1>
-      <p class="text-inkSoft text-base md:text-lg">Explorá cada estilo y encontrá la invitación que mejor cuenta tu historia. Todos los diseños son 100% editables.</p>
+      <h1 class="font-serif text-3xl md:text-5xl mt-3 md:mt-5 mb-3 md:mb-5">Nuestro Catálogo de Diseños de 15 Años</h1>
+      <p class="text-inkSoft text-base md:text-lg">Explorá cada estilo y encontrá la invitación ideal para tu fiesta. Todos nuestros diseños son 100% editables.</p>
     </div>
   </section>
 
-  <!-- FILTROS -->
-  <section class="pb-4">
-    <div class="max-w-[1180px] mx-auto px-4 md:px-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-      <button data-filter="bodas" class="filter-btn bg-white text-ink border border-line text-xs sm:text-sm font-bold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:border-accent transition-colors">Bodas</button>
-      <button data-filter="15anos" class="filter-btn bg-white text-ink border border-line text-xs sm:text-sm font-bold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:border-accent transition-colors">15 Años</button>
-      <button data-filter="bautismos" class="filter-btn bg-white text-ink border border-line text-xs sm:text-sm font-bold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:border-accent transition-colors">Bautismos</button>
-    </div>
-  </section>
+  <!-- GRID DE DISEÑOS (SIN FILTROS) -->
+<section class="py-6 md:py-12">
+  <div class="max-w-[1180px] mx-auto px-3 sm:px-6 md:px-10">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-8 sm:gap-6 lg:gap-8 justify-items-center items-stretch">
 
-  <!-- GRID DE DISEÑOS -->
-  <section class="py-6 md:py-12">
-    <div class="max-w-[1180px] mx-auto px-3 sm:px-6 md:px-10">
-      <!-- Grid ajustado -->
-      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-6 sm:gap-6 lg:gap-8 justify-items-center">
-
-        <!-- BODA 1 -->
-        <article data-cat="bodas" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
-          <a href="plantilla_boda.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación de Boda - Atardecer" class="relative inline-block focus:outline-none">
-            <img src="images/sofimateo.png" alt="Tarjeta de invitación digital interactiva para boda - Modelo Atardecer" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </a>
-          <a href="plantilla_boda.html" target="_blank" rel="noopener" title="Ver diseño de invitación de boda Atardecer" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
-            <span>Ver Diseño</span>
-            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">1</span>
-          </a>
-        </article>
-
-        <!-- BODA 2 -->
-        <article data-cat="bodas" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
-          <a href="romimateoplantilla_boda.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación de Boda - Tinta y Oro" class="relative inline-block focus:outline-none">
-            <img src="images/mockupsromimateo.png" alt="Tarjeta de invitación digital interactiva para boda - Modelo Tinta y Oro" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </a>
-          <a href="romimateoplantilla_boda.html" target="_blank" rel="noopener" title="Ver diseño de invitación de boda Tinta y Oro" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
-            <span>Ver Diseño</span>
-            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">2</span>
-          </a>
-        </article>
-
-        <!-- 15 AÑOS 1 (LARA) -->
-        <article data-cat="15anos" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
-          <a href="sofiplantillaquince.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Lara" class="relative inline-block focus:outline-none">
+      <!-- 1. DISEÑO LARA -->
+      <article class="reveal group flex flex-col items-center justify-between gap-3 w-full" style="transition-delay: 100ms;">
+        <a href="sofiplantillaquince.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño Lara" class="relative inline-block focus:outline-none">
+          <div class="animate-float-slow">
             <img src="images/sofiquincemockup.png" alt="Tarjeta de invitación digital interactiva para 15 años - Modelo Lara" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </a>
-          <a href="sofiplantillaquince.html" target="_blank" rel="noopener" title="Ver diseño Lara" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
-            <span>Ver Diseño</span>
-            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">1</span>
-          </a>
-        </article>
+          </div>
+        </a>
+      </article>
 
-        <!-- 15 AÑOS 2 -->
-        <article data-cat="15anos" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
-          <a href="plantilla_15_lara.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño 2" class="relative inline-block focus:outline-none">
-            <img src="images/mockup1.png" alt="Tarjeta de invitación digital interactiva para 15 años - Modelo Lila Real" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </a>
-          <a href="plantilla_15_lara.html" target="_blank" rel="noopener" title="Ver diseño 2" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
-            <span>Ver Diseño</span>
-            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">2</span>
-          </a>
-        </article>
+      <!-- 2. DISEÑO 2 -->
+      <article class="reveal group flex flex-col items-center justify-between gap-3 w-full" style="transition-delay: 200ms;">
+        <a href="plantilla_15_lara.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño 2" class="relative inline-block focus:outline-none">
+          <div class="animate-float-slow" style="animation-delay: 0.8s;">
+            <img src="images/mockup1.png" alt="Tarjeta de invitación digital interactiva para 15 años - Diseño 2" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+          </div>
+        </a>
+      </article>
+       <!-- 3. DISEÑO 3 -->
+      <article class="reveal group flex flex-col items-center justify-between gap-3 w-full" style="transition-delay: 200ms;">
+        <a href="martiquince.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño 2" class="relative inline-block focus:outline-none">
+          <div class="animate-float-slow" style="animation-delay: 0.8s;">
+            <img src="images/martinaquince-mockup.png" alt="Tarjeta de invitación digital interactiva para 15 años - Diseño 2" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+          </div>
+        </a>
+      </article>
 
-        <!-- BAUTISMO 1 -->
-        <article data-cat="bautismos" class="group flex flex-col items-center gap-1.5 sm:gap-2.5 transition-transform duration-300 hover:-translate-y-1 w-full">
-          <a href="plantilla_bautismo.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación de Bautismo - Sereno" class="relative inline-block focus:outline-none">
-            <img src="images/invitacion-bautismo.png" alt="Tarjeta de invitación digital interactiva para bautismo" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </a>
-          <a href="plantilla_bautismo.html" target="_blank" rel="noopener" title="Ver diseño de Bautismo" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-[#B5955C] to-[#9A7B44] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-md hover:shadow-lg hover:from-[#9A7B44] hover:to-[#826535] active:scale-95 transition-all duration-200">
-            <span>Ver Diseño</span>
-            <span class="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-white text-[#9A7B44] rounded-full text-[9px] sm:text-[11px] font-extrabold">1</span>
-          </a>
-        </article>
+
+      <!-- 3. TARJETA DISEÑO PERSONALIZADO (se mantiene igual) -->
+      <article class="reveal col-span-2 md:col-span-1 flex flex-col items-center justify-center text-center bg-cream2 border-2 border-dashed border-accent/60 rounded-3xl p-6 sm:p-8 w-full min-h-[360px] sm:min-h-[420px] transition-transform duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md" style="transition-delay: 300ms;">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-surface border border-line flex items-center justify-center shadow-inner mb-4 text-accent animate-float-slow" style="animation-delay: 1.5s;">
+          <svg class="w-8 h-8 sm:w-10 sm:h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-ink mb-2">¿No encontraste tu diseño ideal?</h2>
+        <p class="text-xs sm:text-sm text-inkSoft leading-relaxed max-w-xs mb-6">Contanos cómo lo imaginás y lo creamos especialmente para vos.</p>
+        <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20una%20invitaci%C3%B3n%20personalizada%20que%20no%20encontr%C3%A9%20en%20el%20cat%C3%A1logo" target="_blank" rel="noopener" class="btn-shimmer inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wider px-6 py-3 shadow-md hover:bg-primaryDark active:scale-95 transition-all duration-200">
+          <span>Contanos tu idea</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
 
       </div>
     </div>
   </section>
 
   <!-- PRECIOS -->
-  <section id="precios" class="py-24 md:py-28 bg-cream2">
+  <section id="precios" class="py-20 md:py-28 bg-cream2">
     <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-      <div class="max-w-xl mx-auto text-center mb-16">
+      <div class="max-w-xl mx-auto text-center mb-16 reveal">
         <div class="inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
           <span class="w-[22px] h-px bg-accent inline-block"></span>Planes
         </div>
@@ -154,70 +222,119 @@
         <p class="text-inkSoft text-lg">Elegí el plan que mejor se adapte a tu celebración. Podés mejorar de plan en cualquier momento.</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-7 items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
 
-        <!-- PLAN 1: ESENCIALES -->
-        <div class="h-full flex flex-col gap-6 bg-white rounded-3xl shadow-md p-10">
-          <div class="text-[0.72rem] font-bold tracking-widest uppercase text-accent">Esenciales</div>
-          <div class="text-lg text-inkSoft">Perfecto para eventos íntimos</div>
-          <div class="flex items-baseline gap-2">
-            <span class="font-serif text-4xl md:text-5xl text-ink">$41.000</span>
+        <!-- PLAN 1: CLÁSICA -->
+        <div class="reveal h-full flex flex-col justify-between bg-white rounded-3xl shadow-md p-8 sm:p-10 border border-line" style="transition-delay: 100ms;">
+          <div class="space-y-6">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-accentSoft/40 flex items-center justify-center text-xl shrink-0">
+                🤍
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-ink">Clásica</h3>
+                <p class="text-xs sm:text-sm text-inkSoft">Perfecto para eventos íntimos</p>
+              </div>
+            </div>
+
+            <div class="flex items-baseline gap-1">
+              <span class="font-serif text-4xl sm:text-5xl font-bold text-ink">$45.000</span>
+              <span class="text-xs text-inkSoft font-semibold">/ pago único</span>
+            </div>
+
+            <ul class="flex flex-col gap-3 text-inkSoft text-sm pt-2 border-t border-line">
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">💬</span>
+                <span>Confirmación por WhatsApp</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">📸</span>
+                <span>Hasta 10 fotos</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">🎵</span>
+                <span>Música de fondo</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">📍</span>
+                <span>Mapa interactivo</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">🎁</span>
+                <span>Mesa de regalos</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">⚡</span>
+                <span>Entrega express en 24hs (+$12.000, opcional)</span>
+              </li>
+            </ul>
           </div>
-          <div class="text-sm text-inkSoft -mt-4">pago único</div>
-          <ul class="flex flex-col gap-3 text-inkSoft text-[0.92rem] mt-2">
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>1 diseño de invitación a elección</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Hasta 100 invitados</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Confirmación de asistencia (RSVP) por WhatsApp</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Mapa interactivo (Cómo llegar)</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Optimizado para celulares</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Alojamiento online por 3 meses</li>
-          </ul>
-          <a href="#" class="mt-auto text-center rounded-lg bg-primary text-white font-bold text-sm px-7 py-3.5 hover:bg-primaryDark transition-colors">Elegir Esenciales</a>
+
+          <div class="flex flex-col sm:flex-row gap-3 mt-8">
+            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20plan%20Cl%C3%A1sica" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-primary text-white font-bold text-sm py-3.5 hover:bg-primaryDark transition-colors shadow-sm">Elegir Clásica</a>
+            <a href="sofiplantillaquince.html" target="_blank" rel="noopener" class="text-center rounded-xl border border-line bg-surface text-ink font-bold text-sm px-5 py-3.5 hover:border-accent transition-colors">Ver ejemplo</a>
+          </div>
         </div>
 
-        <!-- PLAN 2: CELEBRACIÓN -->
-        <div class="h-full flex flex-col gap-6 bg-primary rounded-3xl shadow-2xl p-10 relative lg:-translate-y-4">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-ink text-[0.68rem] font-bold uppercase tracking-widest px-5 py-2 rounded-full shadow-md whitespace-nowrap">Más Elegido</div>
-          <div class="text-[0.72rem] font-bold tracking-widest uppercase text-accentSoft mt-2">Celebración</div>
-          <div class="text-lg text-white/85">Nuestro paquete más elegido</div>
-          <div class="flex items-baseline gap-2">
-            <span class="font-serif text-4xl md:text-5xl text-white">$55.000</span>
+        <!-- PLAN 2: PREMIUM CELEBRA -->
+        <div class="reveal h-full flex flex-col justify-between bg-primary rounded-3xl shadow-2xl p-8 sm:p-10 relative border border-primaryDark" style="transition-delay: 200ms;">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-ink text-[0.68rem] font-bold uppercase tracking-widest px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+            Más Elegido
           </div>
-          <div class="text-sm text-white/70 -mt-4">pago único</div>
-          <ul class="flex flex-col gap-3 text-white/90 text-[0.92rem] mt-2">
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Todo lo del plan Esenciales</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Invitados ilimitados</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Confirmación con listado en vivo</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Álbum digital para que los invitados suban fotos</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Sugerencias de música (Playlist integrada)</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Cuenta regresiva para el evento</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Alojamiento online por 1 año</li>
-          </ul>
-          <a href="#" class="mt-auto text-center rounded-lg bg-accent text-ink font-bold text-sm px-7 py-3.5 hover:bg-accentSoft transition-colors">Comenzar Celebración</a>
-        </div>
 
-        <!-- PLAN 3: GRAND AFFAIR -->
-        <div class="h-full flex flex-col gap-6 bg-white rounded-3xl shadow-md p-10">
-          <div class="text-[0.72rem] font-bold tracking-widest uppercase text-accent">Grand Affair</div>
-          <div class="text-lg text-inkSoft">Para un día verdaderamente inolvidable</div>
-          <div class="flex items-baseline gap-2">
-            <span class="font-serif text-4xl md:text-5xl text-ink">$70.000</span>
+          <div class="space-y-6">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-accent/30 flex items-center justify-center text-xl shrink-0">
+                ✨
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-white">Premium Celebra</h3>
+                <p class="text-xs sm:text-sm text-accentSoft">Nuestro paquete más elegido</p>
+              </div>
+            </div>
+
+            <div class="flex items-baseline gap-1">
+              <span class="font-serif text-4xl sm:text-5xl font-bold text-white">$65.000</span>
+              <span class="text-xs text-white/70 font-semibold">/ pago único</span>
+            </div>
+
+            <p class="text-xs font-bold uppercase tracking-wider text-accentSoft pt-2 border-t border-white/15">
+              Todo lo de Clásica, más:
+            </p>
+
+            <ul class="flex flex-col gap-3 text-white/90 text-sm">
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">📋</span>
+                <span>Sistema de confirmación propio con listado en vivo y recordatorio automático a quien no confirmó</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">🎯</span>
+                <span>Trivia interactiva para tus invitados</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">📱</span>
+                <span>Álbum de fotos por QR con tu diseño</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">🎶</span>
+                <span>Playlist personalizada</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="shrink-0">🛍️</span>
+                <span>Wishlist (opcional)</span>
+              </li>
+            </ul>
           </div>
-          <div class="text-sm text-inkSoft -mt-4">pago único</div>
-          <ul class="flex flex-col gap-3 text-inkSoft text-[0.92rem] mt-2">
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Todo lo del plan Celebración</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Invitación personalizada con nombre por invitado</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Trivia interactiva para entretener a los invitados</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Muro de fotos con código QR para el salón</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Entrega urgente garantizada en 24 horas</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Soporte de diseño prioritario y de por vida</li>
-          </ul>
-          <a href="#" class="mt-auto text-center rounded-lg bg-primary text-white font-bold text-sm px-7 py-3.5 hover:bg-primaryDark transition-colors">Elegir Grand Affair</a>
+
+          <div class="flex flex-col sm:flex-row gap-3 mt-8">
+            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20plan%20Premium%20Celebra" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-accent text-ink font-bold text-sm py-3.5 hover:bg-accentSoft transition-colors shadow-md">Elegir Premium Celebra</a>
+            <a href="sofiplantillaquince.html" target="_blank" rel="noopener" class="text-center rounded-xl border border-white/20 text-white font-bold text-sm px-5 py-3.5 hover:bg-white/10 transition-colors">Ver ejemplo</a>
+          </div>
         </div>
 
       </div>
 
-      <p class="text-center text-inkSoft text-sm mt-14 max-w-xl mx-auto">
+      <p class="reveal text-center text-inkSoft text-sm mt-12 max-w-xl mx-auto">
         💡 Obtené un <strong class="text-ink font-bold">30% de descuento</strong> abonando mediante Transferencia Bancaria. Podés señar con el 50% para congelar el precio.
       </p>
     </div>
@@ -225,6 +342,7 @@
 
 </main>
 
+<!-- FOOTER -->
 <footer class="bg-ink text-white/80 pt-20 pb-8">
   <div class="max-w-[1180px] mx-auto px-6 md:px-10">
     <div class="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-14 border-b border-white/15">
@@ -235,8 +353,12 @@
           </svg>
           Celebra
         </div>
-        <p class="mt-4 text-white/60 text-sm max-w-xs">Invitaciones digitales para bodas, quinceañeras, bautismos, graduaciones y cada celebración que lo merezca.</p>
-        <p class="mt-4 text-white/40 text-xs">Nuestros canales están verificados. Ante cualquier duda, escribinos únicamente por los medios listados abajo.</p>
+        <p class="mt-4 text-white/60 text-sm max-w-xs leading-relaxed">
+          Invitaciones digitales e interactivas diseñadas especialmente para hacer inolvidable tu fiesta de 15 años.
+        </p>
+        <p class="mt-4 text-white/40 text-xs leading-relaxed">
+          Nuestros canales están verificados. Ante cualquier duda, escribinos únicamente por los medios listados abajo.
+        </p>
       </div>
       <div>
         <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Producto</h4>
@@ -252,7 +374,7 @@
       </div>
       <div>
         <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Contacto</h4>
-        <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" class="block text-sm mb-3 hover:text-accentSoft transition-colors">WhatsApp</a>
+        <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" class="block text-sm mb-3 hover:text-accentSoft transition-colors">WhatsApp</a>
         <a href="mailto:hola@celebra.com" class="block text-sm mb-3 hover:text-accentSoft transition-colors">hola@celebra.com</a>
         <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Instagram</a>
       </div>
@@ -263,7 +385,7 @@
         <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
         </a>
-        <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
+        <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
         </a>
         <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
@@ -274,43 +396,40 @@
   </div>
 </footer>
 
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://wa.me/5491136218114" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="btn-wsp-float bg-[#25D366] text-white p-3.5 md:p-4 rounded-full flex items-center justify-center cursor-pointer"
+   aria-label="Contactar por WhatsApp">
+  <svg class="w-7 h-7 md:w-8 md:h-8 fill-current" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18c-1.6 0-3.09-.44-4.36-1.2l-.31-.18-3.03.8.81-2.95-.2-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8Zm4.32-5.67c-.24-.12-1.4-.69-1.62-.77-.22-.08-.38-.12-.53.12-.16.24-.61.77-.75.93-.14.16-.28.18-.51.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.28-.73-1.75-.19-.46-.39-.4-.53-.4h-.45c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z"/>
+  </svg>
+</a>
+
+<!-- JAVASCRIPT: Scroll Reveal con IntersectionObserver -->
 <script>
-  (function () {
-    var buttons = document.querySelectorAll('.filter-btn');
-    var cards = document.querySelectorAll('[data-cat]');
+  document.addEventListener('DOMContentLoaded', function () {
+    var observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
 
-    function filterCategory(catName) {
-      var activeBtn = document.querySelector('.filter-btn[data-filter="' + catName + '"]');
-      if (!activeBtn) {
-        catName = 'bodas';
-        activeBtn = document.querySelector('.filter-btn[data-filter="bodas"]');
-      }
-
-      buttons.forEach(function (b) {
-        b.classList.remove('bg-primary', 'text-white');
-        b.classList.add('bg-white', 'text-ink', 'border', 'border-line');
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+        }
       });
-      activeBtn.classList.remove('bg-white', 'text-ink', 'border', 'border-line');
-      activeBtn.classList.add('bg-primary', 'text-white');
+    }, observerOptions);
 
-      cards.forEach(function (card) {
-        var show = card.dataset.cat === catName;
-        card.classList.toggle('hidden', !show);
-      });
-    }
-
-    var urlParams = new URLSearchParams(window.location.search);
-    var categoryFromUrl = urlParams.get('cat') || window.location.hash.replace('#', '');
-
-    filterCategory(categoryFromUrl || 'bodas');
-
-    buttons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var filter = btn.dataset.filter;
-        filterCategory(filter);
-      });
+    var revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(function (el) {
+      observer.observe(el);
     });
-  })();
+  });
 </script>
 
 </body>

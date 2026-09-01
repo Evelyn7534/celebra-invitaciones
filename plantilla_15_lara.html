@@ -92,14 +92,18 @@ const CONFIG = {
   regaloTitular: "Lara Nombres Apellido",
   regaloAlias: "LARA.MIS.XV",
   regaloCbu: "0000003100084729104812",
+  wishlistUrl: "https://www.amazon.com/baby-reg/homepage", // URL de ejemplo para wishlist
+
+  // Pase de Ingreso / Código QR (Plan Premium)
+  qrCodigoFicticio: "INV-LARAXV-2026-8942",
 
   // Música de fondo (MP3 local)
   audioUrl: "images/lara-15/mis-iconos/musicachopin.mp3",
 
   // Textos de secciones
   tituloCarrusel: "Algunos momentos",
-  tituloRegalos: "Mesa de regalos",
-  mensajeRegalos: "Tu presencia es mi mayor regalo. Pero si deseas hacerme un detalle, podés hacerlo aquí:",
+  tituloRegalos: "Regalos & Wishlist",
+  mensajeRegalos: "Tu presencia es mi mayor regalo. Pero si querés hacerme un detalle, podés elegir la opción que te sea más cómoda:",
 
   // Fotos variables
   fotoPortada: "images/lara-15/portada.jpg",
@@ -139,10 +143,7 @@ const CONFIG = {
   <section class="grid md:grid-cols-2">
     <div id="secundaria-bg" class="aspect-[4/5] md:aspect-auto bg-cover bg-center bg-gradient-to-br from-[#C9A6AE] to-[#8C6D78]"></div>
     <div class="bg-roseDeep flex items-center justify-center px-8 py-16">
-      
-      <!-- Contenedor relativo centrado -->
       <div class="fade-in text-center relative pt-8">
-        <!-- MARIPOSA SVG RESPONSIVE -->
         <img 
           src="images/lara-15/mis-iconos/mariposa.svg" 
           alt="Mariposa" 
@@ -180,6 +181,25 @@ const CONFIG = {
         <p id="dresscode-desc" class="text-sm max-w-[160px]"></p>
       </div>
 
+    </div>
+  </section>
+
+  <!-- PLAN PREMIUM: PASE CON CÓDIGO QR FICTICIO -->
+  <section class="bg-blush px-6 py-20 border-y border-[#E7C1C8]/50">
+    <div class="fade-in max-w-md mx-auto text-center flex flex-col items-center bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-[#E7C1C8] shadow-lg">
+      <span class="text-[10px] font-bold uppercase tracking-widest bg-[#E7C1C8] text-[#382A40] px-3 py-1 rounded-full mb-4">Pase Personal e Intransferible</span>
+      <h3 class="font-serif text-2xl mb-2 text-[#382A40]">Acreditación / Pase de Ingreso</h3>
+      <p class="text-xs text-[#382A40]/80 mb-6">Presentá este código QR en la entrada del salón para ingresar a la fiesta.</p>
+      
+      <!-- CONTENEDOR CÓDIGO QR FICTICIO -->
+      <div class="bg-white p-4 rounded-2xl border-2 border-dashed border-[#E7C1C8] shadow-inner flex flex-col items-center mb-4">
+        <svg class="w-44 h-44" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="200" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 10H80V80H10V10ZM25 25V65H65V25H25ZM35 35H55V55H35V35ZM120 10H190V80H120V10ZM135 25V65H175V25H135ZM145 35H165V55H145V35ZM10 120H80V190H10V120ZM25 135V175H65V135H25ZM35 145H55V165H35V145ZM100 10H110V30H100V10ZM100 40H110V70H100V40ZM90 80H110V100H90V80ZM120 90H140V110H120V90ZM150 90H170V100H150V90ZM180 90H190V120H180V90ZM90 110H100V140H90V110ZM110 120H130V130H110V120ZM140 120H160V140H140V120ZM170 130H190V150H170V130ZM100 150H120V170H100V150ZM130 150H150V180H130V150ZM160 160H190V170H160V160ZM90 180H110V190H90V180ZM120 180H140V190H120V180ZM170 180H190V190H170V180Z" fill="#382A40"/>
+        </svg>
+        <span id="qr-codigo" class="font-mono text-[11px] font-bold text-[#382A40]/70 mt-2 tracking-wider"></span>
+      </div>
+      <p class="text-[10px] italic text-[#382A40]/60">Código único válido para 1 acceso</p>
     </div>
   </section>
 
@@ -231,35 +251,72 @@ const CONFIG = {
     </div>
   </section>
 
-  <!-- MESA DE REGALOS -->
+  <!-- MESA DE REGALOS + WISHLIST -->
   <section class="bg-creamBg px-6 py-20" aria-labelledby="regalos-titulo">
-    <div class="fade-in max-w-sm mx-auto text-center">
+    <div class="fade-in max-w-md mx-auto text-center">
       <h2 id="regalos-titulo" class="font-serif italic text-3xl mb-4"></h2>
       <p id="regalos-mensaje" class="text-sm mb-8"></p>
       
-      <div class="flex flex-col items-center justify-center gap-3">
-        <!-- BOTÓN SOBRE CON ANIMACIÓN -->
-        <button 
-          id="open-regalos-modal" 
-          type="button"
-          class="group relative focus:outline-none focus:ring-2 focus:ring-[#E7C1C8] rounded-full transition-transform active:scale-95 cursor-pointer" 
-          aria-label="Abrir modal con datos para mesa de regalos y datos bancarios"
-          aria-haspopup="dialog"
-          aria-expanded="false"
-        >
-          <div class="relative flex items-center justify-center p-4 rounded-full bg-[#E7C1C8]/20 group-hover:bg-[#E7C1C8]/40 transition-colors">
-            <img 
-              src="images/lara-15/mis-iconos/sobre.svg" 
-              alt="Icono de sobre de carta interactivo para mesa de regalos" 
-              class="w-24 h-24 object-contain animate-bounce-slow group-hover:scale-110 transition-transform duration-300"
-              width="96"
-              height="96"
-              loading="lazy"
-            >
+      <!-- CONTENEDOR DE DOS OPCIONES DE REGALO -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
+        
+        <!-- OPCIÓN 1: MESA DE REGALOS / TRANSFERENCIA BANCARIA -->
+        <div class="flex flex-col items-center justify-between p-6 bg-white/80 rounded-2xl border border-[#E7C1C8] shadow-sm">
+          <div class="flex flex-col items-center gap-2">
+            <div class="p-3 rounded-full bg-[#E7C1C8]/20">
+              <img 
+                src="images/lara-15/mis-iconos/sobre.svg" 
+                alt="Icono de sobre de carta para transferencia" 
+                class="w-12 h-12 object-contain animate-bounce-slow"
+                width="48"
+                height="48"
+              >
+            </div>
+            <h4 class="font-serif text-lg font-semibold text-[#382A40]">Mesa de Regalos</h4>
+            <p class="text-[11px] text-[#382A40]/70 mb-2">Si preferís realizar una transferencia o regalo en efectivo.</p>
           </div>
-        </button>
-        <span class="text-xs font-semibold uppercase tracking-widest text-[#382A40]/70">Tocá el sobre para ver los datos</span>
+          <button 
+            id="open-regalos-modal" 
+            type="button"
+            class="w-full mt-2 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-widest transition-transform active:scale-95 cursor-pointer shadow-sm hover:bg-[#d8aeb6]" 
+            style="background-color:#E7C1C8; color:#382A40;"
+            aria-label="Ver datos bancarios"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+          >
+            Ver Datos CBU
+          </button>
+        </div>
+
+        <!-- OPCIÓN 2: WISHLIST / LISTA DE REGALOS FÍSICOS -->
+        <div class="flex flex-col items-center justify-between p-6 bg-white/80 rounded-2xl border border-[#E7C1C8] shadow-sm">
+          <div class="flex flex-col items-center gap-2">
+            <div class="p-3 rounded-full bg-[#E7C1C8]/20">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#382A40" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                <rect x="2" y="7" width="20" height="5"></rect>
+                <line x1="12" y1="22" x2="12" y2="7"></line>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+              </svg>
+            </div>
+            <h4 class="font-serif text-lg font-semibold text-[#382A40]">Wishlist de Regalos</h4>
+            <p class="text-[11px] text-[#382A40]/70 mb-2">Mirá la lista de cosas y detalles que me encantarían.</p>
+          </div>
+          <a 
+            id="wishlist-btn" 
+            href="#" 
+            target="_blank" 
+            rel="noopener"
+            class="w-full mt-2 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-widest text-center transition-transform active:scale-95 cursor-pointer shadow-sm border border-[#382A40]/30 hover:bg-[#382A40]/5" 
+            style="color:#382A40;"
+          >
+            Ver Wishlist
+          </a>
+        </div>
+
       </div>
+
     </div>
   </section>
 
@@ -336,20 +393,71 @@ const CONFIG = {
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-rose text-center py-12 px-6" style="color:#382A40;">
-    <p class="text-sm mb-1">Diseñado con ♡ por Celebra Invitaciones</p>
-    <p class="text-xs opacity-70 mb-1">Todos los derechos reservados.</p>
-    <p class="text-xs opacity-70 mb-6">celebrainvitaciones@gmail.com</p>
-    <div class="flex items-center justify-center gap-4">
-      <a href="#" aria-label="WhatsApp" class="w-9 h-9 rounded-full border flex items-center justify-center hover:bg-white/40 transition-colors" style="border-color:rgba(56,42,64,0.3);">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
-      </a>
+  <!-- FOOTER OFICIAL CELEBRA INVITACIONES -->
+  <footer class="bg-[#E7C1C8] text-[#382A40] py-12 px-6 border-t border-[#382A40]/10">
+    <div class="max-w-md mx-auto text-center flex flex-col items-center gap-4">
       
-      <!-- LINK DE FACEBOOK -->
-      <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full border flex items-center justify-center hover:bg-white/40 transition-colors" style="border-color:rgba(56,42,64,0.3);">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <!-- Llamado a la acción principal -->
+      <div class="flex flex-col items-center">
+        <p class="font-serif italic text-lg mb-1">¿Te gustó esta invitación?</p>
+        <p class="text-xs opacity-80 mb-4">Diseñá la tuya con nosotros y compartila con todos tus invitados.</p>
+        
+        <a 
+          href="https://celebrainvitaciones.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-block bg-[#382A40] text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-full shadow-md hover:bg-[#2e2135] transition-all transform hover:-translate-y-0.5 active:scale-95"
+        >
+          Crear mi Invitación
+        </a>
+      </div>
+
+      <!-- Separador suave -->
+      <div class="w-12 h-[1px] bg-[#382A40]/20 my-2"></div>
+
+      <!-- Copyright y Marca -->
+      <div>
+        <p class="text-xs font-semibold">Celebra Invitaciones Web</p>
+        <p class="text-[11px] opacity-70 mt-0.5">Todos los derechos reservados.</p>
+      </div>
+
+      <!-- Email de contacto -->
+      <a 
+        href="mailto:celebrainvitaciones@gmail.com" 
+        class="text-xs opacity-80 hover:opacity-100 underline decoration-[#382A40]/40 transition-opacity"
+      >
+        celebrainvitaciones@gmail.com
       </a>
+
+      <!-- Redes Sociales -->
+      <div class="flex items-center justify-center gap-4 mt-1">
+        <!-- WhatsApp -->
+        <a 
+          href="https://wa.me/5491100000000" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="WhatsApp Celebra Invitaciones" 
+          class="w-9 h-9 rounded-full border border-[#382A40]/30 flex items-center justify-center hover:bg-[#382A40] hover:text-white transition-colors"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a 
+          href="https://www.facebook.com/celebrainvitacioness/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Facebook Celebra Invitaciones" 
+          class="w-9 h-9 rounded-full border border-[#382A40]/30 flex items-center justify-center hover:bg-[#382A40] hover:text-white transition-colors"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
     </div>
   </footer>
 
@@ -381,6 +489,10 @@ const CONFIG = {
   document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos;
   document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl;
   document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP;
+
+  // Cargar Wishlist y QR ficticio
+  document.getElementById('wishlist-btn').href = CONFIG.wishlistUrl;
+  document.getElementById('qr-codigo').textContent = CONFIG.qrCodigoFicticio;
 
   // Cargar datos bancarios en el modal
   document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular;
@@ -586,7 +698,7 @@ const CONFIG = {
       } else {
         audio.pause();
         iconPlay.classList.remove('hidden');
-        iconPause.add('hidden');
+        iconPause.classList.add('hidden');
       }
     });
   }

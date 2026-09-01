@@ -99,6 +99,17 @@
 </head>
 <body class="font-sans antialiased overflow-x-hidden">
 
+<!-- BOTÓN DE MÚSICA MP3 (DERECHA Y FIX) -->
+<div class="fixed top-5 right-5 z-50">
+  <button id="music-toggle-btn" aria-label="Reproducir / Pausar Música" class="w-12 h-12 rounded-full bg-violetAccent text-white flex items-center justify-center shadow-xl border border-rose/30 hover:scale-110 transition-transform cursor-pointer">
+    <!-- Icono Play -->
+    <svg id="music-play-icon" class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <!-- Icono Pause (oculto inicialmente) -->
+    <svg id="music-pause-icon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+  <audio id="bg-audio" loop></audio>
+</div>
+
 <!-- ======================================================= -->
 <!-- PANEL DE CONFIGURACIÓN — Edita los datos de Sofía aquí  -->
 <!-- ======================================================= -->
@@ -111,7 +122,7 @@ const CONFIG = {
 
   // Fecha y hora del evento
   fechaISO: "2026-11-21T21:00:00",
-  fechaTextual: "Sábado, 21 de Noviembre de 2026", // <--- AÑADIDO: Fecha textual para mostrar
+  fechaTextual: "Sábado, 21 de Noviembre de 2026",
   horaRecepcion: "21:00 hs",
 
   // Ubicación
@@ -131,7 +142,7 @@ const CONFIG = {
   regaloCbu: "0000003100084729104812",
 
   // Música de fondo / Links
-  audioUrl: "musica.mp3",
+  audioUrl: "mis iconos/chopin.mp3",
   playlistUrl: "#",
   albumFotosUrl: "#",
 
@@ -232,10 +243,9 @@ const CONFIG = {
 
   <!-- DETALLES DEL EVENTO -->
   <section class="bg-creamBg px-6 py-24">
-    <!-- CORREGIDO: md:grid-cols-4 para dar espacio a la nueva tarjeta -->
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center flex-wrap justify-center">
       
-      <!-- AÑADIDO: Tarjeta de "Cuándo" (Fecha) -->
+      <!-- Tarjeta de "Cuándo" (Fecha) -->
       <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow">
         <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -422,7 +432,6 @@ const CONFIG = {
   <section class="bg-creamBg px-6 py-20 flex justify-center items-center">
     <div class="reveal reveal-up max-w-md w-full text-center flex flex-col items-center">
       
-      <!-- CONTENEDOR FOTO REDONDA CON CORTE RECTIFICADO -->
       <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-blush mb-8">
         <img 
           id="rsvp-avatar" 
@@ -460,24 +469,23 @@ const CONFIG = {
   =========================================== -->
   <footer class="bg-ink text-creamBg px-6 pt-20 pb-12 text-center border-t border-white/10 relative overflow-hidden">
     
-    <!-- Decoración sutil de fondo (Opcional) -->
     <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
       <svg width="100%" height="100%"><defs><pattern id="polka" width="20" height="20" patternUnits="userSpaceOnWrite"><circle cx="10" cy="10" r="1" fill="#fff"/></pattern></defs><rect width="100%" height="100%" fill="url(#polka)"/></svg>
     </div>
 
     <div class="max-w-4xl mx-auto relative z-10">
       
-      <!-- 1. TÍTULO PROMOCIONAL (Tipografía cursiva Breathing) -->
+      <!-- 1. TÍTULO PROMOCIONAL -->
       <div class="reveal reveal-up mb-12">
         <h4 class="font-breathing text-5xl sm:text-6xl text-rose tracking-wide mb-2 leading-tight">
-          ¿Te gustó esta invitación?
+          ¿Te gustó esta página?
         </h4>
         <p class="font-serif italic text-xl text-creamBg/80 font-light">
           Creá la tuya en minutos y sorprendé a todos
         </p>
       </div>
 
-      <!-- 2. LLAMADO A LA ACCIÓN (CTA) CLARO Y DIRECTO -->
+      <!-- 2. LLAMADO A LA ACCIÓN (CTA) -->
       <div class="reveal reveal-up mb-16" style="transition-delay: 150ms;">
         <a 
           href="TU_TIENDA_O_LINK_AQUÍ" 
@@ -495,29 +503,29 @@ const CONFIG = {
         </p>
       </div>
 
-      <!-- Separador sutil -->
+      <!-- Separador -->
       <div class="w-20 h-px bg-white/10 mx-auto mb-16"></div>
 
-      <!-- 3. LINKS A REDES SOCIALES (SVG limpios) -->
+      <!-- 3. REDES SOCIALES (Instagram, Facebook, WhatsApp) -->
       <div class="reveal reveal-up flex items-center justify-center gap-8 mb-16 text-creamBg/60" style="transition-delay: 300ms;">
         
         <!-- Instagram -->
-        <a href="TU_INSTAGRAM_LINK" target="_blank" rel="noopener" aria-label="Siguenos en Instagram" class="hover:text-rose transition-colors transform hover:scale-110">
+        <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Síguenos en Instagram" class="hover:text-rose transition-colors transform hover:scale-110">
           <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.646-.069-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
 
-        <!-- TikTok -->
-        <a href="TU_TIKTOK_LINK" target="_blank" rel="noopener" aria-label="Siguenos en TikTok" class="hover:text-rose transition-colors transform hover:scale-110">
-          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12.525.9a2.345 2.345 0 00-1.01 0 2.133 2.133 0 00-.77.34 2.22 2.22 0 00-.51.52A12.37 12.37 0 018.66 4.98a12.636 12.636 0 01-1.39 1.12 12.502 12.502 0 01-1.63.85c-.6.25-1.22.46-1.85.62-.64.16-1.29.28-1.95.34a10.873 10.873 0 01-1.42.04 2.227 2.227 0 00-.57.11 2.062 2.062 0 00-.51.27 2.261 2.261 0 00-.39.43 2.023 2.023 0 00-.24.52 2.251 2.251 0 00-.1.57 2.1 2.1 0 000 1.01 2.062 2.062 0 00.27.51 2.261 2.261 0 00.43.39 2.023 2.023 0 00.52.24 2.251 2.251 0 00.57.1h.46a10.378 10.378 0 001.3-.08 10.262 10.262 0 001.27-.24 10.151 10.151 0 001.21-.4 10.007 10.007 0 001.12-.55 10.02 10.02 0 001.03-.66 9.873 9.873 0 00.9-.76 9.92 9.92 0 00.77-.86 9.774 9.774 0 00.64-.93V18c0 1.63-.64 3.19-1.78 4.34-1.15 1.15-2.71 1.79-4.34 1.79s-3.19-.64-4.34-1.79C1.19 21.19.55 19.63.55 18s.64-3.19 1.79-4.34c1.07-1.07 2.47-1.69 3.97-1.77.36-.02.72-.03 1.07-.03v2.87c-.55 0-1.1.22-1.51.62-.41.41-.63.96-.63 1.51 0 .55.22 1.1.63 1.51.41.41.96.63 1.51.63.55 0 1.1-.22 1.51-.63.4-.4.62-.95.63-1.5V1c.64-.04 1.28-.04 1.92 0a2.091 2.091 0 00.52.27 2.158 2.158 0 00.57.1 2.2 2.2 0 001.01 0 2.133 2.133 0 00.77-.34 2.22 2.22 0 00.51-.52 2.115 2.115 0 011.45 2.58 2.08 2.08 0 00-.11.57 2.112 2.112 0 000 1.01 2.15 2.15 0 00.34.77l.03.03v.01l.03.03c.14.19.3.37.49.52.19.16.4.29.62.39a2.127 2.127 0 001.52.01 2.23 2.23 0 00.57-.27 2.052 2.052 0 00.46-.41 2.233 2.233 0 013.31.06 2.052 2.052 0 00.41.46 2.23 2.23 0 00.27.57 2.127 2.127 0 00-.01 1.52 2.1 2.1 0 00-.39.62c-.15.19-.33.35-.52.49v.03c-.22.16-.47.28-.73.36-.26.08-.53.13-.8.13s-.54-.05-.8-.13c-.26-.08-.51-.2-.73-.36v-.03c-.19-.14-.35-.32-.49-.52v-.03c-.08-.13-.15-.27-.2-.4a2.126 2.126 0 01-2.96-1c-.05-.08-.09-.16-.13-.24z"/></svg>
+        <!-- Facebook (reemplazado) -->
+        <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Síguenos en Facebook" class="hover:text-rose transition-colors transform hover:scale-110">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
 
-        <!-- Pinterest -->
-        <a href="TU_PINTEREST_LINK" target="_blank" rel="noopener" aria-label="Siguenos en Pinterest" class="hover:text-rose transition-colors transform hover:scale-110">
-          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.965 1.406-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378 0 0-.601 2.288-.745 2.843-.271 1.042-1.002 2.348-1.494 3.146 1.12.345 2.308.531 3.54.531 6.621 0 11.988-5.367 11.988-11.987C24.005 5.367 18.638 0 12.017 0z"/></svg>
+        <!-- WhatsApp (añadido) -->
+        <a href="https://wa.me/message/JOQHWJMOS5VAH1" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" class="hover:text-rose transition-colors transform hover:scale-110">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         </a>
       </div>
 
-      <!-- 4. CRÉDITOS FINALES (Originales, ajustados para el nuevo footer) -->
+      <!-- 4. CRÉDITOS FINALES -->
       <div class="border-t border-white/5 pt-8 text-xs text-creamBg/40">
         <p class="font-serif text-sm text-rose/60 mb-2">Sofía • Mis 15 Años</p>
         <p class="opacity-60 mb-1">Diseñado con ♡ para una noche inolvidable</p>
@@ -527,7 +535,6 @@ const CONFIG = {
     </div>
   </footer>
 
-  <!-- Pequeño script para el año actual automático -->
   <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
 </main>
 
@@ -536,7 +543,6 @@ const CONFIG = {
   // Carga de Configuración
   document.getElementById('nombre-titulo').textContent = CONFIG.nombre;
   document.getElementById('frase-texto').textContent = CONFIG.frase;
-  // AÑADIDO: Cargar fecha textual
   document.getElementById('fecha-textual').textContent = CONFIG.fechaTextual; 
   document.getElementById('hora-recepcion').textContent = CONFIG.horaRecepcion;
   document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo;
@@ -544,215 +550,229 @@ const CONFIG = {
   document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel;
   document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos;
   document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos;
-  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl;
+
+  // Asignar imágenes
+  document.getElementById('portada-img').src = CONFIG.fotoPortada;
+  document.getElementById('secundaria-bg').style.backgroundImage = `url('${CONFIG.fotoSecundaria}')`;
   document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP;
 
+  // Asignar links
+  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl;
   document.getElementById('musica-btn').href = CONFIG.playlistUrl;
   document.getElementById('album-btn').href = CONFIG.albumFotosUrl;
+  document.getElementById('rsvp-btn').href = `https://wa.me/${CONFIG.whatsappNumero}?text=${encodeURIComponent(CONFIG.whatsappMensaje)}`;
 
+  // Datos regalos
   document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular;
   document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias;
   document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu;
 
-  if (CONFIG.fotoPortada) document.getElementById('portada-img').src = CONFIG.fotoPortada;
-  if (CONFIG.fotoSecundaria && document.getElementById('secundaria-bg')) {
-    document.getElementById('secundaria-bg').style.backgroundImage = "url('" + CONFIG.fotoSecundaria + "')";
-  }
+  // Lógica Botón Música MP3
+  const audioEl = document.getElementById('bg-audio');
+  document.getElementById('bg-audio').src = CONFIG.audioUrl;
+  const musicBtn = document.getElementById('music-toggle-btn');
+  const playIcon = document.getElementById('music-play-icon');
+  const pauseIcon = document.getElementById('music-pause-icon');
 
-  // ---------- ANIMACIONES AL SCROLL ----------
-  var reveals = document.querySelectorAll('.reveal');
-  function checkScroll() {
-    var triggerBottom = window.innerHeight * 0.88;
-    reveals.forEach(function (el) {
-      if (el.getBoundingClientRect().top < triggerBottom) el.classList.add('active');
-    });
-  }
-  window.addEventListener('scroll', checkScroll);
-  checkScroll();
-
-  // ---------- CUENTA REGRESIVA ----------
-  var countdownEl = document.getElementById('countdown');
-  var targetDate = new Date(CONFIG.fechaISO).getTime();
-
-  function renderCountdown() {
-    var diff = Math.max(0, targetDate - new Date().getTime());
-    var d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    var s = Math.floor((diff % (1000 * 60)) / 1000);
-
-    countdownEl.innerHTML = `
-      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(d).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Días</span></div>
-      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(h).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Hs</span></div>
-      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(m).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Min</span></div>
-      <div class="flex flex-col"><span class="font-serif text-2xl sm:text-3xl font-bold text-violetAccent">${String(s).padStart(2, '0')}</span><span class="text-[9px] uppercase font-bold text-ink/60">Seg</span></div>
-    `;
-  }
-  renderCountdown();
-  setInterval(renderCountdown, 1000);
-
-  // ---------- CARRUSEL AUTOMÁTICO & FULL WIDTH ----------
-  var track = document.getElementById('carrusel-track');
-  var dotsWrap = document.getElementById('carrusel-dots');
-  var carruselContainer = document.getElementById('carrusel-container');
-  var indice = 0;
-  var total = CONFIG.fotosCarrusel.length;
-  var autoSlideTimer = null;
-
-  CONFIG.fotosCarrusel.forEach(function (src, i) {
-    var slide = document.createElement('div');
-    slide.className = 'carrusel-slide h-full w-full';
-    var img = document.createElement('img');
-    img.src = src;
-    img.loading = 'lazy';
-    img.className = 'w-full h-full object-cover';
-    slide.appendChild(img);
-    track.appendChild(slide);
-
-    var dot = document.createElement('button');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', function () { irASlide(i); reiniciarTimer(); });
-    dotsWrap.appendChild(dot);
+  musicBtn.addEventListener('click', () => {
+    if (audioEl.paused) {
+      audioEl.play();
+      playIcon.classList.add('hidden');
+      pauseIcon.classList.remove('hidden');
+    } else {
+      audioEl.pause();
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+    }
   });
 
-  function irASlide(i) {
-    if (total === 0) return;
-    indice = (i + total) % total;
-    track.style.transform = 'translateX(-' + (indice * 100) + '%)';
-    dotsWrap.querySelectorAll('.dot').forEach(function (d, idx) {
-      d.classList.toggle('active', idx === indice);
-    });
-  }
+  // Lógica Modal Regalos
+  const modal = document.getElementById('modal-regalos');
+  const openModalBtn = document.getElementById('open-regalos-modal');
+  const closeModalBtn = document.getElementById('close-regalos-modal');
 
-  function siguienteSlide() { irASlide(indice + 1); }
-  function iniciarTimer() { autoSlideTimer = setInterval(siguienteSlide, 3500); }
-  function reiniciarTimer() { clearInterval(autoSlideTimer); iniciarTimer(); }
+  openModalBtn.addEventListener('click', () => {
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+  });
 
-  document.getElementById('carrusel-prev').addEventListener('click', function () { irASlide(indice - 1); reiniciarTimer(); });
-  document.getElementById('carrusel-next').addEventListener('click', function () { irASlide(indice + 1); reiniciarTimer(); });
+  closeModalBtn.addEventListener('click', () => {
+    modal.classList.add('opacity-0', 'pointer-events-none');
+  });
 
-  carruselContainer.addEventListener('mouseenter', function() { clearInterval(autoSlideTimer); });
-  carruselContainer.addEventListener('mouseleave', function() { iniciarTimer(); });
+  // Copiar Alias y CBU
+  document.getElementById('copy-alias-btn').addEventListener('click', function() {
+    navigator.clipboard.writeText(CONFIG.regaloAlias);
+    this.textContent = '¡Copiado!';
+    setTimeout(() => this.textContent = 'Copiar', 2000);
+  });
 
-  iniciarTimer();
+  document.getElementById('copy-cbu-btn').addEventListener('click', function() {
+    navigator.clipboard.writeText(CONFIG.regaloCbu);
+    this.textContent = '¡Copiado!';
+    setTimeout(() => this.textContent = 'Copiar', 2000);
+  });
 
-  // ---------- LÓGICA DE LA TRIVIA ----------
-  var triviaIndex = 0;
-  var triviaScore = 0;
-  var preguntas = CONFIG.trivia;
+  // Cuenta Regresiva
+  const eventDate = new Date(CONFIG.fechaISO).getTime();
+  const countdownContainer = document.getElementById('countdown');
 
-  var pasoEl = document.getElementById('trivia-paso');
-  var scoreEl = document.getElementById('trivia-score');
-  var preguntaEl = document.getElementById('trivia-pregunta');
-  var opcionesEl = document.getElementById('trivia-opciones');
-  var feedbackEl = document.getElementById('trivia-feedback');
-  var nextBtn = document.getElementById('trivia-next-btn');
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = eventDate - now;
 
-  function cargarPregunta() {
-    var item = preguntas[triviaIndex];
-    pasoEl.textContent = `Pregunta ${triviaIndex + 1} de ${preguntas.length}`;
-    preguntaEl.textContent = item.pregunta;
-    opcionesEl.innerHTML = '';
-    feedbackEl.classList.add('hidden');
-    nextBtn.classList.add('hidden');
-
-    item.opciones.forEach(function (opcion, idx) {
-      var btn = document.createElement('button');
-      btn.className = 'w-full text-left p-4 rounded-2xl border border-rose/30 bg-creamBg/50 text-ink font-medium text-sm hover:bg-lavender/50 transition-all flex items-center justify-between cursor-pointer';
-      btn.innerHTML = `<span>${opcion}</span><span class="w-5 h-5 rounded-full border border-violetAccent/30 flex items-center justify-center text-xs"></span>`;
-      btn.addEventListener('click', function () { seleccionarRespuesta(idx, item.correcta); });
-      opcionesEl.appendChild(btn);
-    });
-  }
-
-  function seleccionarRespuesta(seleccionada, correcta) {
-    var btns = opcionesEl.querySelectorAll('button');
-    btns.forEach(function (b) { b.disabled = true; b.classList.add('cursor-not-allowed'); });
-
-    if (seleccionada === correcta) {
-      triviaScore += 10;
-      scoreEl.textContent = `Puntos: ${triviaScore}`;
-      btns[seleccionada].classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
-      feedbackEl.textContent = '¡Correcto! 🎉 Conoces muy bien a Sofía.';
-      feedbackEl.className = 'mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-emerald-100 text-emerald-900 border border-emerald-300';
-    } else {
-      btns[seleccionada].classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
-      btns[correcta].classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
-      feedbackEl.textContent = '¡Casi! Esa no era la respuesta correcta.';
-      feedbackEl.className = 'mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-rose-100 text-rose-900 border border-rose-300';
+    if (diff <= 0) {
+      countdownContainer.innerHTML = "<div class='col-span-4 text-center font-serif text-lg font-bold text-violetAccent'>¡Es hoy! 🎉</div>";
+      return;
     }
 
-    feedbackEl.classList.remove('hidden');
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    if (triviaIndex < preguntas.length - 1) {
-      nextBtn.classList.remove('hidden');
-    } else {
-      setTimeout(mostrarResultadoFinal, 1500);
-    }
-  }
-
-  function mostrarResultadoFinal() {
-    var tarjeta = document.getElementById('trivia-card');
-    tarjeta.innerHTML = `
-      <div class="text-center py-6">
-        <h3 class="font-breathing text-5xl text-violetAccent mb-2">¡Trivia Completada!</h3>
-        <p class="font-serif text-2xl text-ink font-semibold mb-4">Lograste ${triviaScore} puntos</p>
-        <p class="text-sm text-ink/80 mb-6">
-          ${triviaScore === preguntas.length * 10 
-            ? '¡Increíble! Sos un súper amigo/a y conocés a Sofía a la perfección. 💖' 
-            : '¡Muy bien jugado! Gracias por demostrar cuánto querés a Sofía en su día. ✨'}
-        </p>
-        <button onclick="location.reload()" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest bg-violetAccent text-white">
-          Jugar de nuevo
-        </button>
+    countdownContainer.innerHTML = `
+      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
+        <span class="font-serif text-2xl font-bold text-violetAccent">${days}</span>
+        <span class="text-[10px] uppercase font-bold text-ink/50">Días</span>
+      </div>
+      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
+        <span class="font-serif text-2xl font-bold text-violetAccent">${hours}</span>
+        <span class="text-[10px] uppercase font-bold text-ink/50">Hs</span>
+      </div>
+      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
+        <span class="font-serif text-2xl font-bold text-violetAccent">${minutes}</span>
+        <span class="text-[10px] uppercase font-bold text-ink/50">Min</span>
+      </div>
+      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
+        <span class="font-serif text-2xl font-bold text-violetAccent">${seconds}</span>
+        <span class="text-[10px] uppercase font-bold text-ink/50">Seg</span>
       </div>
     `;
   }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-  nextBtn.addEventListener('click', function () {
-    triviaIndex++;
-    cargarPregunta();
+  // Carrusel
+  const track = document.getElementById('carrusel-track');
+  const dotsContainer = document.getElementById('carrusel-dots');
+  let currentIndex = 0;
+
+  CONFIG.fotosCarrusel.forEach((src, idx) => {
+    const slide = document.createElement('div');
+    slide.className = 'carrusel-slide h-full';
+    slide.innerHTML = `<img src="${src}" class="w-full h-full object-cover object-center" alt="Foto ${idx + 1}">`;
+    track.appendChild(slide);
+
+    const dot = document.createElement('button');
+    dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+    dot.addEventListener('click', () => goToSlide(idx));
+    dotsContainer.appendChild(dot);
   });
 
-  cargarPregunta();
-
-  // ---------- RSVP ----------
-  document.getElementById('rsvp-btn').href = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(CONFIG.whatsappMensaje);
-
-  // ---------- MODAL Y COPIAR DATOS ----------
-  var openModalBtn = document.getElementById('open-regalos-modal');
-  var closeModalBtn = document.getElementById('close-regalos-modal');
-  var modalRegalos = document.getElementById('modal-regalos');
-
-  if (openModalBtn && modalRegalos) {
-    openModalBtn.addEventListener('click', function() {
-      modalRegalos.classList.remove('opacity-0', 'pointer-events-none');
-      modalRegalos.querySelector('.id-modal-content').classList.replace('scale-95', 'scale-100');
-    });
-    closeModalBtn.addEventListener('click', function() {
-      modalRegalos.classList.add('opacity-0', 'pointer-events-none');
-      modalRegalos.querySelector('.id-modal-content').classList.replace('scale-100', 'scale-95');
-    });
-  }
-
-  function copiarTexto(texto, btn) {
-    navigator.clipboard.writeText(texto).then(function() {
-      var prevText = btn.textContent;
-      btn.textContent = '¡Copiado!';
-      btn.classList.add('bg-violetAccent', 'text-white');
-      setTimeout(function() {
-        btn.textContent = prevText;
-        btn.classList.remove('bg-violetAccent', 'text-white');
-      }, 2000);
+  function goToSlide(index) {
+    currentIndex = index;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    Array.from(dotsContainer.children).forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
     });
   }
 
-  document.getElementById('copy-alias-btn').addEventListener('click', function() {
-    copiarTexto(CONFIG.regaloAlias, this);
+  document.getElementById('carrusel-prev').addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? CONFIG.fotosCarrusel.length - 1 : currentIndex - 1;
+    goToSlide(currentIndex);
   });
-  document.getElementById('copy-cbu-btn').addEventListener('click', function() {
-    copiarTexto(CONFIG.regaloCbu, this);
+
+  document.getElementById('carrusel-next').addEventListener('click', () => {
+    currentIndex = (currentIndex === CONFIG.fotosCarrusel.length - 1) ? 0 : currentIndex + 1;
+    goToSlide(currentIndex);
   });
+
+  setInterval(() => {
+    currentIndex = (currentIndex === CONFIG.fotosCarrusel.length - 1) ? 0 : currentIndex + 1;
+    goToSlide(currentIndex);
+  }, 4000);
+
+  // Trivia
+  let triviaPaso = 0;
+  let score = 0;
+
+  function loadTrivia() {
+    const q = CONFIG.trivia[triviaPaso];
+    document.getElementById('trivia-paso').textContent = `Pregunta ${triviaPaso + 1} de ${CONFIG.trivia.length}`;
+    document.getElementById('trivia-pregunta').textContent = q.pregunta;
+    
+    const opcionesDiv = document.getElementById('trivia-opciones');
+    opcionesDiv.innerHTML = '';
+    
+    document.getElementById('trivia-feedback').classList.add('hidden');
+    document.getElementById('trivia-next-btn').classList.add('hidden');
+
+    q.opciones.forEach((opc, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'w-full py-3 px-4 rounded-xl text-left border border-rose/30 hover:bg-blush font-medium text-sm transition-colors';
+      btn.textContent = opc;
+      btn.addEventListener('click', () => selectTriviaOption(idx));
+      opcionesDiv.appendChild(btn);
+    });
+  }
+
+  function selectTriviaOption(selected) {
+    const q = CONFIG.trivia[triviaPaso];
+    const feedback = document.getElementById('trivia-feedback');
+    const optionsBtns = document.getElementById('trivia-opciones').children;
+
+    Array.from(optionsBtns).forEach(b => b.disabled = true);
+
+    if (selected === q.correcta) {
+      score += 10;
+      document.getElementById('trivia-score').textContent = `Puntos: ${score}`;
+      feedback.textContent = "¡Correcto! 🎉";
+      feedback.className = "mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-emerald-100 text-emerald-800";
+    } else {
+      feedback.textContent = `¡Incorrecto! La respuesta correcta era: ${q.opciones[q.correcta]}`;
+      feedback.className = "mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-rose-100 text-rose-800";
+    }
+
+    feedback.classList.remove('hidden');
+
+    const nextBtn = document.getElementById('trivia-next-btn');
+    if (triviaPaso < CONFIG.trivia.length - 1) {
+      nextBtn.textContent = 'Siguiente Pregunta';
+      nextBtn.classList.remove('hidden');
+    } else {
+      nextBtn.textContent = 'Finalizar Juego';
+      nextBtn.classList.remove('hidden');
+    }
+  }
+
+  document.getElementById('trivia-next-btn').addEventListener('click', () => {
+    triviaPaso++;
+    if (triviaPaso < CONFIG.trivia.length) {
+      loadTrivia();
+    } else {
+      document.getElementById('trivia-card').innerHTML = `
+        <div class="text-center py-6">
+          <h3 class="font-serif text-2xl font-bold text-ink mb-2">¡Juego Completado!</h3>
+          <p class="text-sm text-ink/70 mb-4">Puntaje final: <span class="font-bold text-violetAccent">${score} puntos</span></p>
+          <button onclick="location.reload()" class="py-3 px-8 rounded-full font-bold text-xs uppercase tracking-widest bg-violetAccent text-white shadow-md">Volver a jugar</button>
+        </div>
+      `;
+    }
+  });
+
+  loadTrivia();
+
+  // Scroll Reveal (AOS)
+  const reveals = document.querySelectorAll('.reveal');
+  function checkReveal() {
+    const triggerBottom = window.innerHeight * 0.88;
+    reveals.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < triggerBottom) el.classList.add('active');
+    });
+  }
+  window.addEventListener('scroll', checkReveal);
+  checkReveal();
 })();
 </script>
 </body>

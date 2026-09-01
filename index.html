@@ -3,10 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Celebra — Invitaciones digitales para cada celebración</title>
+<title>Celebra — Invitaciones digitales para cumpleaños e hitos inolvidables</title>
+<meta name="description" content="Invitaciones digitales interactivas e inolvidables para tu fiesta de cumpleaños. Confirmación de asistencia, música, mapa, fotos y más. ¡Lista en minutos!">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2053754282028690');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -17,7 +37,7 @@
           primaryDark: '#435377',
           accent: '#C9A96E',
           accentSoft: '#E4D4B0',
-          whats: '#3E8562',
+          whats: '#25D366',
           ink: '#262B36',
           inkSoft: '#5B6270',
           bg: '#FBFAF7',
@@ -40,9 +60,8 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1;transform:translateY(0);}
   @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;}}
+  
   .eyebrow::before{content:"";width:22px;height:1px;background:#C9A96E;display:inline-block;}
-  .phone-frame{position:relative;overflow:hidden;box-shadow:0 30px 60px -20px rgba(38,43,54,0.35);}
-  .phone-frame .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:46%;height:18px;background:rgba(251,250,247,0.95);border-radius:0 0 12px 12px;z-index:2;}
   .faq-icon{width:20px;height:20px;flex-shrink:0;position:relative;}
   .faq-icon::before,.faq-icon::after{content:"";position:absolute;background:#262B36;transition:transform .3s ease, opacity .3s ease;}
   .faq-icon::before{width:100%;height:1.5px;top:50%;left:0;transform:translateY(-50%);}
@@ -51,81 +70,85 @@
   .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
   .trust-dots span{width:28px;height:28px;border-radius:50%;border:2px solid #FBFAF7;margin-left:-10px;}
   .trust-dots span:first-child{margin-left:0;}
-.hero-bg {
-  background-image: url('images/portadabg.jpg');
-}  .swatch-row::-webkit-scrollbar{height:6px;}
-  .swatch-row::-webkit-scrollbar-thumb{background:#E6E2D6;border-radius:99px;}
-  /* Permite que el menú desplegable aparezca al pasar el mouse sobre "Diseños" */
-  .dropdown:hover .dropdown-menu { 
-    display: block; 
+  .hero-bg { background-image: url('images/portadabg.jpg'); }
+
+  .btn-wsp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-wsp-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   }
 </style>
 </head>
 <body class="bg-bg text-ink font-sans antialiased">
 
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20consultar%20por%20una%20invitaci%C3%B3n" target="_blank" rel="noopener" aria-label="Contacto por WhatsApp" class="btn-wsp-float bg-whats text-white p-3.5 rounded-full flex items-center justify-center">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18c-1.6 0-3.09-.44-4.36-1.2l-.31-.18-3.03.8.81-2.95-.2-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8Zm4.32-5.67c-.24-.12-1.4-.69-1.62-.77-.22-.08-.38-.12-.53.12-.16.24-.61.77-.75.93-.14.16-.28.18-.51.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.28-.73-1.75-.19-.46-.39-.4-.53-.4h-.45c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z"/>
+  </svg>
+</a>
+
+<!-- BANNER SUPERIOR DE DESCUENTO -->
 <div class="w-full bg-accent text-ink text-center text-sm font-semibold py-2.5 px-4">
-  💡 ¡30% DE DESCUENTO abonando mediante Transferencia Bancaria! Podés señar con el 50% para congelar el precio.
+  💡 ¡10% DE DESCUENTO abonando mediante Transferencia Bancaria! Podés señar con el 50% para congelar el precio.
 </div>
 
-<!-- NAVBAR COMPLETA -->
+<!-- NAVBAR -->
 <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur-md border-b border-line">
   <nav class="max-w-[1180px] mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
     
-    <!-- LOGO -->
-    <a href="index.html" class="flex items-center gap-2 font-serif text-xl font-semibold text-ink">
+    <a href="#" class="flex items-center gap-2 font-serif text-xl font-semibold text-ink">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
       </svg>
       Celebra
     </a>
 
-    <!-- MENÚ PRINCIPAL -->
     <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-inkSoft">
-      
-      <!-- DROPDOWN DISEÑOS -->
-      <div class="relative dropdown py-2">
-        <a href="catalogo.html" class="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer">
-          Diseños
-          <svg class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-        <div class="dropdown-menu hidden absolute left-0 top-full pt-2 w-48 z-50">
-          <div class="bg-white rounded-xl shadow-xl border border-line p-2 flex flex-col gap-1">
-            <a href="catalogo.html?cat=bodas" class="px-4 py-2 text-xs font-bold text-ink hover:bg-cream2 hover:text-primary rounded-lg transition-colors">Bodas</a>
-            <a href="catalogo.html?cat=15anos" class="px-4 py-2 text-xs font-bold text-ink hover:bg-cream2 hover:text-primary rounded-lg transition-colors">15 Años</a>
-            <a href="catalogo.html?cat=bautismos" class="px-4 py-2 text-xs font-bold text-ink hover:bg-cream2 hover:text-primary rounded-lg transition-colors">Infantiles y Bautismos</a>
-          </div>
-        </div>
-      </div>
+      <a href="catalogo.html" class="hover:text-primary transition-colors">Diseños</a>
+      <a href="#caracteristicas" class="hover:text-primary transition-colors">¿Qué incluye?</a>
+      <a href="#sobre-nosotras" class="hover:text-primary transition-colors">Cómo funciona</a>
+      <a href="#precios" class="hover:text-primary transition-colors">Precios</a>
+      <a href="#faq" class="hover:text-primary transition-colors">Preguntas Frecuentes</a>
+    </div>
 
-      <!-- ENLACES -->
-      <a href="index.html#sobre-nosotras" class="hover:text-primary transition-colors">Sobre nosotras</a>
-      <a href="index.html#precios" class="hover:text-primary transition-colors">Precios</a>
-      <a href="index.html#contacto" class="hover:text-primary transition-colors">Contacto</a>
+    <div class="hidden md:block">
+      <a href="#precios" class="bg-primary text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-primaryDark transition-colors">
+        Crear Invitación
+      </a>
     </div>
 
   </nav>
 </header>
+
 <main>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="relative min-h-[92vh] hero-bg bg-cover bg-center bg-no-repeat overflow-hidden">
     <div class="absolute inset-0 bg-white/35"></div>
     <div class="relative z-10 flex flex-col justify-center min-h-[92vh] px-6 md:px-16 py-16">
       <div class="max-w-xl">
         <div class="inline-flex items-center gap-2 text-[0.72rem] font-bold tracking-wide uppercase text-primaryDark bg-white/80 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 mb-6 w-fit shadow-sm">
-          Tu invitación, lista en minutos
+          Tu invitación web, lista en minutos
         </div>
         <h1 class="font-serif text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.08] mb-6 drop-shadow-sm">
-          Tus momentos más felices, <em class="italic text-primaryDark">compartidos de forma única.</em>
+          Tu próximo festejo, <em class="italic text-primaryDark">compartido de forma inolvidable.</em>
         </h1>
         <p class="text-ink text-lg max-w-md mb-9 drop-shadow-sm">
-          Bodas, quinceañeras, bautizos, graduaciones y cada momento que merezca ser celebrado. Diseña y comparte de forma única.
+          Diseñá la tarjeta digital para tu cumpleaños de 15, 18, 25, 30 o la edad que celebres. Sorprendé a tus invitados con confirmación de asistencia, música, fotos y ubicación en un solo lugar.
         </p>
         <div class="flex flex-wrap items-center gap-4 mb-10">
           <a href="#precios" class="inline-flex items-center gap-2 rounded-full bg-primary text-white font-bold text-sm px-8 py-4 border border-accent hover:bg-primaryDark transition-all hover:-translate-y-0.5 shadow-md">
             Crear Invitación
           </a>
-          <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 rounded-full border border-whats text-whats font-bold text-sm px-7 py-4 hover:bg-whats hover:text-white transition-colors bg-white/80 backdrop-blur-sm shadow-sm">
+          <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20consultar%20por%20una%20invitaci%C3%B3n%20para%20un%20cumplea%C3%B1os" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 rounded-full border border-whats text-whats font-bold text-sm px-7 py-4 hover:bg-whats hover:text-white transition-colors bg-white/80 backdrop-blur-sm shadow-sm">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18c-1.6 0-3.09-.44-4.36-1.2l-.31-.18-3.03.8.81-2.95-.2-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8Zm4.32-5.67c-.24-.12-1.4-.69-1.62-.77-.22-.08-.38-.12-.53.12-.16.24-.61.77-.75.93-.14.16-.28.18-.51.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.28-.73-1.75-.19-.46-.39-.4-.53-.4h-.45c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z"/></svg>
             Consultar por WhatsApp
           </a>
@@ -143,63 +166,91 @@
     </div>
   </section>
 
-  <!-- CATÁLOGO POR CATEGORÍA -->
-  <section id="plantillas" class="py-24 md:py-28 bg-cream2">
-    <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-      <div class="reveal max-w-xl mx-auto text-center mb-16">
-        <div class="eyebrow inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
-          Míralo en acción
-        </div>
-        <h2 class="font-serif text-3xl md:text-4xl mt-4 mb-4">Un diseño para cada tipo de celebración</h2>
-        <p class="text-inkSoft text-lg">Elegí la categoría de tu evento y descubrí los diseños disponibles. Todos son totalmente editables.</p>
+ <!-- CATÁLOGO / PLANTILLAS -->
+<section id="plantillas" class="py-16 md:py-28 bg-cream2">
+  <div class="max-w-[1180px] mx-auto px-4 sm:px-6 md:px-10">
+    
+    <div class="reveal max-w-2xl mx-auto text-center mb-10 md:mb-16">
+      <div class="eyebrow inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
+        Descubrí nuestras plantillas
       </div>
-
-      <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 justify-items-center">
-
-        <!-- BODAS -->
-      <div class="w-11/12 sm:w-full max-w-sm">
-        <div class="h-full flex flex-col bg-surface rounded-3xl shadow-lg overflow-hidden">
-          <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#EDE8D6] to-[#C9D2BC]" style="flex-basis:60%;">
-            <img src="images/invitacion-boda.png" alt="Invitación de Boda" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[-2deg] hover:rotate-0 transition-transform duration-300 ease-in-out">
-          </div>
-          <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
-            <h3 class="font-serif text-2xl md:text-3xl text-ink">Bodas</h3>
-            <!-- AQUÍ ESTÁ EL CAMBIO EN EL HREF: -->
-            <a href="catalogo.html?cat=bodas" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
-          </div>
-        </div>
-     </div>
-
-        <!-- 15 AÑOS -->
-        <div class="w-11/12 sm:w-full max-w-sm">
-          <div class="h-full flex flex-col bg-surface rounded-3xl shadow-lg overflow-hidden">
-            <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#FBF3F0] to-[#F0CFC7]" style="flex-basis:60%;">
-              <img src="images/invitacion-quince.png" alt="Invitación de 15 Años" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-300 ease-in-out">
-            </div>
-            <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
-              <h3 class="font-serif text-2xl md:text-3xl text-ink">15 Años</h3>
-              <a href="catalogo.html?cat=15anos" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- BAUTISMOS -->
-        <div class="w-11/12 sm:w-full max-w-sm">
-          <div class="h-full flex flex-col bg-surface rounded-3xl shadow-lg overflow-hidden">
-            <div class="flex items-center justify-center p-10 bg-gradient-to-br from-[#DDF0EA] to-[#9FD6C4]" style="flex-basis:60%;">
-              <img src="images/invitacion-bautismo.png" alt="Invitación de Bautismo" class="w-auto max-h-[240px] mx-auto rounded-2xl border-4 border-white shadow-xl rotate-[-2deg] hover:rotate-0 transition-transform duration-300 ease-in-out">
-            </div>
-            <div class="flex flex-col items-center gap-5 px-8 py-10 bg-white" style="flex-basis:40%;">
-              <h3 class="font-serif text-2xl md:text-3xl text-ink">Bautismos</h3>
-              <a href="catalogo.html?cat=bautismos" class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold px-8 py-3.5 hover:bg-primaryDark transition-colors w-full text-center">Ver catálogo</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <h2 class="font-serif text-2xl md:text-4xl mt-3 mb-3 md:mb-4">Diseños para cada etapa de tu vida</h2>
+      <p class="text-inkSoft text-base md:text-lg leading-relaxed">
+        15, 18, 25, 30, 50 años o simplemente una excusa para festejar. Encontrá la estética que mejor conecte con el concepto de tu fiesta.
+      </p>
     </div>
-  </section>
 
+    <!-- CAMBIO CLAVE: grid-cols-2 en mobile (para que entren 2 al lado) y gap-3.5 para reducir espacio en celus -->
+    <div class="reveal grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 items-stretch">
+
+      <!-- MOCKUP 1 -->
+      <div class="group relative flex flex-col justify-between p-4 sm:p-6 md:p-8 bg-gradient-to-b from-white to-[#FDF8F6] rounded-2xl border border-line shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+        <span class="self-start text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-primaryDark bg-cream2 px-2.5 py-1 rounded-full mb-3 sm:mb-6 leading-tight">
+          Party & Night
+        </span>
+        <div class="my-auto py-2 sm:py-4 flex items-center justify-center">
+          <img src="images/eventocelebra.png" alt="Diseño de invitación Fiesta" class="w-auto max-h-[140px] sm:max-h-[180px] md:max-h-[220px] rounded-xl shadow-md group-hover:scale-105 group-hover:rotate-1 transition-transform duration-300 ease-out">
+        </div>
+        <div class="mt-2 sm:mt-4 text-center">  
+          <span class="text-[11px] sm:text-xs font-semibold text-inkSoft group-hover:text-primary transition-colors leading-tight block">Ideal 18, 20 & 25 Años</span>
+        </div>
+      </div>
+
+      <!-- MOCKUP 2 -->
+      <div class="group relative flex flex-col justify-between p-4 sm:p-6 md:p-8 bg-gradient-to-b from-white to-[#FAF6F0] rounded-2xl border border-line shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+        <span class="self-start text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-primaryDark bg-cream2 px-2.5 py-1 rounded-full mb-3 sm:mb-6 leading-tight">
+          Elegante & Botánico
+        </span>
+        <div class="my-auto py-2 sm:py-4 flex items-center justify-center">
+          <img src="images/mockup1.png" alt="Diseño de invitación Elegante" class="w-auto max-h-[140px] sm:max-h-[180px] md:max-h-[220px] rounded-xl shadow-md group-hover:scale-105 group-hover:-rotate-1 transition-transform duration-300 ease-out">
+        </div>
+        <div class="mt-2 sm:mt-4 text-center">
+          <span class="text-[11px] sm:text-xs font-semibold text-inkSoft group-hover:text-primary transition-colors leading-tight block">Ideal 15, 30 & 50 Años</span>
+        </div>
+      </div>
+
+      <!-- MOCKUP 3 -->
+      <div class="group relative flex flex-col justify-between p-4 sm:p-6 md:p-8 bg-gradient-to-b from-white to-[#F4F6F5] rounded-2xl border border-line shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+        <span class="self-start text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-primaryDark bg-cream2 px-2.5 py-1 rounded-full mb-3 sm:mb-6 leading-tight">
+          Minimal & Chic
+        </span>
+        <div class="my-auto py-2 sm:py-4 flex items-center justify-center">
+          <img src="images/invitacion-quince.png" alt="Diseño de invitación Minimal" class="w-auto max-h-[140px] sm:max-h-[180px] md:max-h-[220px] rounded-xl shadow-md group-hover:scale-105 group-hover:rotate-1 transition-transform duration-300 ease-out">
+        </div>
+        <div class="mt-2 sm:mt-4 text-center">
+          <span class="text-[11px] sm:text-xs font-semibold text-inkSoft group-hover:text-primary transition-colors leading-tight block">Cualquier Edad</span>
+        </div>
+      </div>
+
+      <!-- CARD PERSONALIZADA -->
+      <div class="flex flex-col bg-surface rounded-2xl border-2 border-dashed border-accent/60 p-4 sm:p-6 md:p-8 justify-between items-center text-center shadow-sm hover:border-accent transition-colors">
+        <div class="my-auto flex flex-col items-center gap-2 sm:gap-4 py-2">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accentSoft/30 flex items-center justify-center text-accent shrink-0">
+            <svg width="20" height="20" class="sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+            </svg>
+          </div>
+          <h3 class="font-serif text-base sm:text-xl font-semibold text-ink leading-tight">¿Buscás algo único?</h3>
+          <p class="text-inkSoft text-[11px] sm:text-xs leading-relaxed max-w-[200px]">Contanos tu idea y diseñamos a tu medida.</p>
+        </div>
+        <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20una%20invitaci%C3%B3n%20personalizada%20para%20un%20cumplea%C3%B1os" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl bg-accent text-white text-[11px] sm:text-xs font-bold px-3 py-2.5 sm:px-4 sm:py-3.5 hover:bg-accent/90 transition-colors w-full text-center shadow-sm mt-2">
+          Diseño a Pedido
+        </a>
+      </div>
+
+    </div>
+
+    <div class="reveal text-center mt-10 md:mt-12">
+      <a href="catalogo.html" class="inline-flex items-center justify-center gap-3 rounded-full bg-primary text-white text-xs sm:text-sm font-bold px-6 py-3.5 sm:px-8 sm:py-4 hover:bg-primaryDark transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+        <span>Ver catálogo completo</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
 
   <!-- QUÉ INCLUYE -->
   <section id="caracteristicas" class="py-24 md:py-28">
@@ -271,12 +322,12 @@
         <div class="bg-surface p-7 flex flex-col gap-3.5 hover:bg-cream2 transition-colors">
           <svg class="w-9 h-9 text-primaryDark" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3 13L8.5 8L13 12L21 6" stroke="currentColor" stroke-width="1.3"/><path d="M12 21H8M16 21H10" stroke="currentColor" stroke-width="1.2"/></svg>
           <h3 class="font-semibold text-base">Álbum y música de fondo</h3>
-          <p class="text-inkSoft text-[0.88rem]">Sumá tu book de preboda o las fotos que quieras, con una melodía ambiente propia.</p>
+          <p class="text-inkSoft text-[0.88rem]">Sumá tus fotos favoritas con una melodía ambiente propia.</p>
         </div>
 
         <div class="bg-surface p-7 flex flex-col gap-3.5 hover:bg-cream2 transition-colors">
           <svg class="w-9 h-9 text-primaryDark" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="16" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 20C2 16.5 4.5 14 8 14C11.5 14 14 16.5 14 20" stroke="currentColor" stroke-width="1.3"/><path d="M12 20C12 16.9 14 14.5 16.5 14.2" stroke="currentColor" stroke-width="1.3"/></svg>
-          <h3 class="font-semibold text-base">Padrinos y protagonistas</h3>
+          <h3 class="font-semibold text-base">Padrinos o personas especiales</h3>
           <p class="text-inkSoft text-[0.88rem]">Un espacio especial para presentar a quienes acompañan tu celebración.</p>
         </div>
 
@@ -301,27 +352,27 @@
       </div>
       <div class="reveal grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
         <div class="flex flex-col gap-2">
-          <h3 class="font-serif text-xl">Fácil de compartir</h3>
+          <h3 class="font-serif text-xl font-semibold">Fácil de compartir</h3>
           <p class="text-inkSoft text-[0.95rem]">Enviá tu invitación por WhatsApp, redes o mensaje de texto en un solo toque.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <h3 class="font-serif text-xl">Envíos ilimitados</h3>
+          <h3 class="font-serif text-xl font-semibold">Envíos ilimitados</h3>
           <p class="text-inkSoft text-[0.95rem]">Invitá a todos tus invitados sin límites ni costos adicionales por cada envío.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <h3 class="font-serif text-xl">Entrega rápida</h3>
+          <h3 class="font-serif text-xl font-semibold">Entrega rápida</h3>
           <p class="text-inkSoft text-[0.95rem]">Armá tu invitación hoy mismo, o pedinos ayuda y la tenés lista en pocos días.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <h3 class="font-serif text-xl">Sin gastos de impresión</h3>
+          <h3 class="font-serif text-xl font-semibold">Sin gastos de impresión</h3>
           <p class="text-inkSoft text-[0.95rem]">Ahorrá el papel, la imprenta y el envío postal de las invitaciones tradicionales.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <h3 class="font-serif text-xl">Todo integrado</h3>
+          <h3 class="font-serif text-xl font-semibold">Todo integrado</h3>
           <p class="text-inkSoft text-[0.95rem]">Confirmaciones, mapas y galería funcionan dentro de tu invitación, sin links externos.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <h3 class="font-serif text-xl">A tu medida</h3>
+          <h3 class="font-serif text-xl font-semibold">A tu medida</h3>
           <p class="text-inkSoft text-[0.95rem]">Elegís qué incluir según el estilo y las necesidades de tu celebración.</p>
         </div>
       </div>
@@ -329,31 +380,40 @@
   </section>
 
   <!-- CÓMO FUNCIONA -->
-  <section class="py-24 md:py-28">
+  <section id="sobre-nosotras" class="py-24 md:py-28">
     <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-      <div class="reveal max-w-xl mb-16">
-        <div class="eyebrow flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark">
-          Tres pasos
+      <div class="reveal max-w-xl mx-auto text-center mb-16">
+        <div class="eyebrow inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
+          Paso a paso
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl mt-4 mb-4">De la idea al enlace compartido, hoy mismo</h2>
+        <h2 class="font-serif text-3xl md:text-4xl mt-4">¿Cómo funciona?</h2>
       </div>
 
-      <div class="reveal grid md:grid-cols-3 gap-12 relative">
-        <div class="hidden md:block absolute top-[34px] left-[16.6%] right-[16.6%] h-px bg-line"></div>
-        <div class="relative flex flex-col gap-5">
-          <div class="w-[68px] h-[68px] rounded-full bg-surface border border-accent flex items-center justify-center font-serif italic text-2xl text-accent">I</div>
-          <h3 class="font-semibold text-xl">Encuentra la plantilla ideal.</h3>
-          <p class="text-inkSoft max-w-xs">Diseños profesionales adaptados a cualquier estilo y temporada.</p>
+      <div class="reveal relative grid md:grid-cols-3 gap-8 text-center">
+        <div class="hidden md:block absolute top-1/2 left-1/6 right-1/6 h-0.5 bg-line -translate-y-6 z-0"></div>
+
+        <div class="relative z-10 flex flex-col items-center gap-4">
+          <div class="w-16 h-16 rounded-full bg-cream2 text-accent font-serif text-2xl font-bold flex items-center justify-center border border-accent/30 shadow-sm">
+            I
+          </div>
+          <h3 class="font-serif text-xl font-semibold">Encontrá la plantilla ideal</h3>
+          <p class="text-inkSoft text-sm max-w-xs">Elegí entre nuestros diseños adaptables a cualquier edad y estilo de fiesta.</p>
         </div>
-        <div class="relative flex flex-col gap-5">
-          <div class="w-[68px] h-[68px] rounded-full bg-surface border border-accent flex items-center justify-center font-serif italic text-2xl text-accent">II</div>
-          <h3 class="font-semibold text-xl">Suma tus datos y fotos.</h3>
-          <p class="text-inkSoft max-w-xs">Personaliza colores, fuentes y detalles a la medida de tu evento.</p>
+
+        <div class="relative z-10 flex flex-col items-center gap-4">
+          <div class="w-16 h-16 rounded-full bg-cream2 text-accent font-serif text-2xl font-bold flex items-center justify-center border border-accent/30 shadow-sm">
+            II
+          </div>
+          <h3 class="font-serif text-xl font-semibold">Sumá tus datos y fotos</h3>
+          <p class="text-inkSoft text-sm max-w-xs">Completá la información del evento, música, dress code y tus fotos favoritas.</p>
         </div>
-        <div class="relative flex flex-col gap-5">
-          <div class="w-[68px] h-[68px] rounded-full bg-surface border border-accent flex items-center justify-center font-serif italic text-2xl text-accent">III</div>
-          <h3 class="font-semibold text-xl">Comparte por WhatsApp o enlace personalizado.</h3>
-          <p class="text-inkSoft max-w-xs">Recibe confirmaciones en tiempo real desde tu panel de control.</p>
+
+        <div class="relative z-10 flex flex-col items-center gap-4">
+          <div class="w-16 h-16 rounded-full bg-cream2 text-accent font-serif text-2xl font-bold flex items-center justify-center border border-accent/30 shadow-sm">
+            III
+          </div>
+          <h3 class="font-serif text-xl font-semibold">Compartí por WhatsApp o enlace</h3>
+          <p class="text-inkSoft text-sm max-w-xs">Enviá la invitación a todos tus invitados en un clic y empezá a recibir las confirmaciones.</p>
         </div>
       </div>
     </div>
@@ -361,246 +421,310 @@
 
   <!-- PRECIOS -->
   <section id="precios" class="py-24 md:py-28 bg-cream2">
-    <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-      <div class="reveal max-w-xl mx-auto text-center mb-16">
+    <div class="max-w-[840px] mx-auto px-6 md:px-10">
+      <div class="reveal text-center mb-16">
         <div class="eyebrow inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
-          Planes
+          Planes simples
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl mt-4 mb-4">Un precio único, recuerdos para siempre.</h2>
-        <p class="text-inkSoft text-lg">Elegí el plan que mejor se adapte a tu celebración. Podés mejorar de plan en cualquier momento.</p>
+        <h2 class="font-serif text-3xl md:text-4xl mt-4">Elegí el plan perfecto para tu evento</h2>
       </div>
 
-      <div class="reveal grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-7 items-stretch">
+      <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- PLAN 1: CLÁSICA -->
+        <div class="bg-surface rounded-3xl p-8 border border-line flex flex-col justify-between shadow-sm relative">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-accentSoft/40 flex items-center justify-center text-xl mb-4">
+              🤍
+            </div>
+            <h3 class="font-serif text-2xl font-bold mb-1">Clásica</h3>
+            <p class="text-inkSoft text-xs mb-6">Perfecto para festejos íntimos o familiares</p>
+            <div class="text-3xl font-bold text-ink mb-6">$45.000</div>
 
-        <!-- PLAN 1: ESENCIALES -->
-        <div class="h-full flex flex-col gap-6 bg-white rounded-3xl shadow-md p-10">
-          <div class="text-[0.72rem] font-bold tracking-widest uppercase text-accent">Esenciales</div>
-          <div class="text-lg text-inkSoft">Perfecto para eventos íntimos</div>
-          <div class="flex items-baseline gap-2">
-            <span class="font-serif text-4xl md:text-5xl text-ink">$41.000</span>
+            <ul class="space-y-3.5 text-sm text-inkSoft mb-8">
+              <li class="flex items-start gap-2.5"><span>💬</span> <span>Confirmación por WhatsApp</span></li>
+              <li class="flex items-start gap-2.5"><span>📸</span> <span>Hasta 10 fotos</span></li>
+              <li class="flex items-start gap-2.5"><span>🎵</span> <span>Música de fondo</span></li>
+              <li class="flex items-start gap-2.5"><span>📍</span> <span>Mapa interactivo</span></li>
+              <li class="flex items-start gap-2.5"><span>🎁</span> <span>Mesa de regalos / Datos bancarios</span></li>
+              <li class="flex items-start gap-2.5"><span>⚡</span> <span>Entrega express en 12hs (+$12.000, opcional)</span></li>
+            </ul>
           </div>
-          <div class="text-sm text-inkSoft -mt-4">pago único</div>
-          <ul class="flex flex-col gap-3 text-inkSoft text-[0.92rem] mt-2">
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>1 diseño de invitación a elección</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Hasta 100 invitados</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Confirmación de asistencia (RSVP) por WhatsApp</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Mapa interactivo (Cómo llegar)</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Optimizado para celulares</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Alojamiento online por 3 meses</li>
-          </ul>
-          <a href="#" class="mt-auto text-center rounded-lg bg-primary text-white font-bold text-sm px-7 py-3.5 hover:bg-primaryDark transition-colors">Elegir Esenciales</a>
+
+          <div class="flex flex-col gap-3">
+            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20Plan%20Cl%C3%A1sica%20para%20mi%20cumplea%C3%B1os" target="_blank" rel="noopener" class="w-full text-center py-3.5 px-4 bg-primary text-white font-bold text-sm rounded-xl hover:bg-primaryDark transition-colors">
+              Elegir Clásica
+            </a>
+            <a href="martiquince.html" class="w-full text-center py-3.5 px-4 border border-primary text-primary font-bold text-sm rounded-xl hover:bg-primary/5 transition-colors">
+              Ver ejemplo
+            </a>
+          </div>
         </div>
 
-        <!-- PLAN 2: CELEBRACIÓN (DESTACADO) -->
-        <div class="h-full flex flex-col gap-6 bg-primary rounded-3xl shadow-2xl p-10 relative lg:-translate-y-4">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-ink text-[0.68rem] font-bold uppercase tracking-widest px-5 py-2 rounded-full shadow-md whitespace-nowrap">Más Elegido</div>
-          <div class="text-[0.72rem] font-bold tracking-widest uppercase text-accentSoft mt-2">Celebración</div>
-          <div class="text-lg text-white/85">Nuestro paquete más elegido</div>
-          <div class="flex items-baseline gap-2">
-            <span class="font-serif text-4xl md:text-5xl text-white">$55.000</span>
+        <!-- PLAN 2: PREMIUM CELEBRA -->
+        <div class="bg-primary text-white rounded-3xl p-8 border border-primary flex flex-col justify-between shadow-xl relative lg:-translate-y-4">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink font-bold text-xs px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
+            Más Elegido
           </div>
-          <div class="text-sm text-white/70 -mt-4">pago único</div>
-          <ul class="flex flex-col gap-3 text-white/90 text-[0.92rem] mt-2">
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Todo lo del plan Esenciales</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Invitados ilimitados</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Confirmación con listado en vivo</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Álbum digital para que los invitados suban fotos</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Sugerencias de música (Playlist integrada)</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Cuenta regresiva para el evento</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-accentSoft shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Alojamiento online por 1 año</li>
-          </ul>
-          <a href="#" class="mt-auto text-center rounded-lg bg-accent text-ink font-bold text-sm px-7 py-3.5 hover:bg-accentSoft transition-colors">Comenzar Celebración</a>
-        </div>
 
-        <!-- PLAN 3: GRAND AFFAIR -->
-        <div class="h-full flex flex-col gap-6 bg-white rounded-3xl shadow-md p-10">
-          <div class="text-[0.72rem] font-bold tracking-widest uppercase text-accent">Grand Affair</div>
-          <div class="text-lg text-inkSoft">Para un día verdaderamente inolvidable</div>
-          <div class="flex items-baseline gap-2">
-            <span class="font-serif text-4xl md:text-5xl text-ink">$70.000</span>
+          <div>
+            <div class="w-12 h-12 rounded-full bg-accent/30 flex items-center justify-center text-xl mb-4">
+              ✨
+            </div>
+            <h3 class="font-serif text-2xl font-bold mb-1">Premium Celebra</h3>
+            <p class="text-white/80 text-xs mb-6">La experiencia completa e interactiva</p>
+            <div class="text-3xl font-bold text-white mb-6">$65.000</div>
+
+            <div class="text-xs uppercase tracking-wider font-semibold text-accentSoft mb-4">
+              Todo lo de Clásica, más:
+            </div>
+
+            <ul class="space-y-3.5 text-sm text-white/90 mb-8">
+              <li class="flex items-start gap-2.5"><span>📋</span> <span>Sistema de confirmación propio con listado en vivo y recordatorio automático a quien no confirmó</span></li>
+              <li class="flex items-start gap-2.5"><span>🎯</span> <span>Trivia interactiva para tus invitados</span></li>
+              <li class="flex items-start gap-2.5"><span>📱</span> <span>Álbum de fotos por QR con tu diseño</span></li>
+              <li class="flex items-start gap-2.5"><span>🎶</span> <span>Playlist personalizada</span></li>
+              <li class="flex items-start gap-2.5"><span>🛍️</span> <span>Wishlist (opcional)</span></li>
+            </ul>
           </div>
-          <div class="text-sm text-inkSoft -mt-4">pago único</div>
-          <ul class="flex flex-col gap-3 text-inkSoft text-[0.92rem] mt-2">
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Todo lo del plan Celebración</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Invitación personalizada con nombre por invitado</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Trivia interactiva para entretener a los invitados</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Muro de fotos con código QR para el salón</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Entrega urgente garantizada en 24 horas</li>
-            <li class="flex gap-2.5"><svg class="w-4 h-4 mt-0.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 12L9.5 17.5L20 6" stroke="currentColor" stroke-width="2"/></svg>Soporte de diseño prioritario y de por vida</li>
-          </ul>
-          <a href="#" class="mt-auto text-center rounded-lg bg-primary text-white font-bold text-sm px-7 py-3.5 hover:bg-primaryDark transition-colors">Elegir Grand Affair</a>
+
+          <div class="flex flex-col gap-3">
+            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20Plan%20Premium%20Celebra%20para%20mi%20cumplea%C3%B1os" target="_blank" rel="noopener" class="w-full text-center py-3.5 px-4 bg-accent text-ink font-bold text-sm rounded-xl hover:bg-accent/90 transition-colors">
+              Elegir Premium Celebra
+            </a>
+            <a href="plantilla_15_lara.html" class="w-full text-center py-3.5 px-4 border border-accent text-accent font-bold text-sm rounded-xl hover:bg-white/10 transition-colors">
+              Ver ejemplo
+            </a>
+          </div>
         </div>
 
       </div>
 
-      <p class="reveal text-center text-inkSoft text-sm mt-14 max-w-xl mx-auto">
-        💡 Obtené un <strong class="text-ink font-bold">30% de descuento</strong> abonando mediante Transferencia Bancaria. Podés señar con el 50% para congelar el precio.
+      <p class="reveal text-center text-sm text-inkSoft mt-10">
+        💡 Obtené un 10% de descuento abonando mediante Transferencia Bancaria. Podés señar con el 50% para congelar el precio.
       </p>
     </div>
   </section>
 
-
-  <!-- FAQ -->
+  <!-- PREGUNTAS FRECUENTES -->
   <section id="faq" class="py-24 md:py-28">
-    <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-      <div class="reveal max-w-xl mx-auto text-center mb-14">
+    <div class="max-w-[760px] mx-auto px-6 md:px-10">
+      <div class="reveal text-center mb-16">
         <div class="eyebrow inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
-          Preguntas
+          Resolvé tus dudas
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl mt-4">Lo que necesitás saber</h2>
+        <h2 class="font-serif text-3xl md:text-4xl mt-4">Preguntas Frecuentes</h2>
       </div>
 
-      <div class="reveal max-w-2xl mx-auto space-y-10">
-
+      <div class="reveal space-y-8">
+        
+        <!-- FUNCIONES Y SERVICIOS -->
         <div>
-          <h3 class="text-[0.75rem] font-bold tracking-widest uppercase text-accent mb-3">Sobre los planes</h3>
-          <div class="border-t border-line">
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Cuál es la diferencia entre los tres planes?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">El plan Estándar confirma por WhatsApp, sin recopilar más datos. El Premium suma un sistema de confirmación propio con listado en tiempo real. El Premium Plus+ agrega una invitación personalizada con el nombre de cada invitado, trivia y muro de fotos QR.</p></div>
+          <h3 class="font-serif text-xl font-semibold mb-4 text-primaryDark border-b border-line pb-2">Sobre las invitaciones y funciones</h3>
+          <div class="space-y-3">
+            
+            <div class="faq-item bg-surface border border-line rounded-2xl p-5 cursor-pointer">
+              <div class="faq-q flex justify-between items-center font-semibold text-sm">
+                ¿Qué es la función de Wishlist (Lista de Deseos)?
+                <div class="faq-icon"></div>
+              </div>
+              <div class="faq-a text-xs text-inkSoft leading-relaxed">
+                <p class="pt-3">Es una sección opcional incluida en el Plan Premium donde podés armar una lista con sugerencias de regalos que te gustaría recibir (con links a tiendas o descripciones). Tus invitados pueden verla y reservar o elegir un regalo para evitar obsequios repetidos o simplemente orientar a quienes no saben qué regalarte.</p>
+              </div>
             </div>
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Cuántas fotos puedo incluir?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">Recomendamos hasta 10 fotos: una de portada, ocho para la galería y una de cierre. También podés elegir una versión sin fotos.</p></div>
+
+            <div class="faq-item bg-surface border border-line rounded-2xl p-5 cursor-pointer">
+              <div class="faq-q flex justify-between items-center font-semibold text-sm">
+                ¿Las invitaciones sirven para cualquier edad?
+                <div class="faq-icon"></div>
+              </div>
+              <div class="faq-a text-xs text-inkSoft leading-relaxed">
+                <p class="pt-3">¡Sí, absolutamente! Sirven para cumpleaños de 15, 18, 20, 30, 40, 50 años o cualquier hito que quieras festejar. Adaptamos los textos, tipografías y paleta de colores para que encajen perfectamente con la estética de tu evento.</p>
+              </div>
             </div>
+
+            <div class="faq-item bg-surface border border-line rounded-2xl p-5 cursor-pointer">
+              <div class="faq-q flex justify-between items-center font-semibold text-sm">
+                ¿Cuál es la diferencia entre el plan Clásica y Premium Celebra?
+                <div class="faq-icon"></div>
+              </div>
+              <div class="faq-a text-xs text-inkSoft leading-relaxed">
+                <p class="pt-3">La versión Clásica recibe la confirmación directamente por mensaje de WhatsApp y cuenta con las funciones esenciales. La versión Premium incluye un panel interactivo propio con lista en vivo de confirmados, avisos/recordatorios automáticos, trivia interactiva de preguntas, álbum fotográfico por código QR, wishlist y playlist sugerida por invitados.</p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-surface border border-line rounded-2xl p-5 cursor-pointer">
+              <div class="faq-q flex justify-between items-center font-semibold text-sm">
+                ¿Puedo modificar la información una vez entregada la invitación?
+                <div class="faq-icon"></div>
+              </div>
+              <div class="faq-a text-xs text-inkSoft leading-relaxed">
+                <p class="pt-3">¡Sí! Podés actualizar direcciones, horarios, enlaces o indicaciones en cualquier momento sin alterar el link que ya les enviaste a tus invitados.</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
+        <!-- TIEMPOS Y PAGOS -->
         <div>
-          <h3 class="text-[0.75rem] font-bold tracking-widest uppercase text-accent mb-3">Sobre la confirmación de invitados</h3>
-          <div class="border-t border-line">
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Cómo veo quién confirmó su asistencia?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">En los planes Premium y Premium Plus+ accedés a un listado que se actualiza al instante, con opción de descargarlo en Excel cuando quieras.</p></div>
-            </div>
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Mis invitados necesitan descargar una aplicación?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">No. Cada invitación es una página web que se abre al instante desde un enlace, sin nada que instalar.</p></div>
-            </div>
-          </div>
-        </div>
+          <h3 class="font-serif text-xl font-semibold mb-4 text-primaryDark border-b border-line pb-2">Tiempos y Formas de Pago</h3>
+          <div class="space-y-3">
 
-        <div>
-          <h3 class="text-[0.75rem] font-bold tracking-widest uppercase text-accent mb-3">Sobre tiempos y cambios</h3>
-          <div class="border-t border-line">
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Cuánto tiempo lleva armar la invitación?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">Si la armás vos mismo, la mayoría termina en 15 a 20 minutos. Si preferís que te ayudemos, escribinos por WhatsApp y coordinamos los tiempos según tu evento.</p></div>
+            <div class="faq-item bg-surface border border-line rounded-2xl p-5 cursor-pointer">
+              <div class="faq-q flex justify-between items-center font-semibold text-sm">
+                ¿Cuánto tarda en entregarse la invitación?
+                <div class="faq-icon"></div>
+              </div>
+              <div class="faq-a text-xs text-inkSoft leading-relaxed">
+                <p class="pt-3">El tiempo habitual de entrega es de 48 a 72 horas hábiles una vez enviada toda la información del evento. Si tenés urgencia, disponemos del servicio Express para tenerla lista en menos de 12 horas.</p>
+              </div>
             </div>
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Puedo modificar los datos después de compartir el enlace?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">Sí. Los cambios se actualizan al instante en el mismo enlace, sin necesidad de reenviar nada si cambia un horario o un lugar.</p></div>
-            </div>
-          </div>
-        </div>
 
-        <div>
-          <h3 class="text-[0.75rem] font-bold tracking-widest uppercase text-accent mb-3">Pagos</h3>
-          <div class="border-t border-line">
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Hay una vista previa gratuita antes de pagar?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">Sí, podés diseñar y previsualizar tu invitación completa sin costo. El pago se solicita al momento de publicarla.</p></div>
+            <div class="faq-item bg-surface border border-line rounded-2xl p-5 cursor-pointer">
+              <div class="faq-q flex justify-between items-center font-semibold text-sm">
+                ¿Cuáles son los medios de pago disponibles?
+                <div class="faq-icon"></div>
+              </div>
+              <div class="faq-a text-xs text-inkSoft leading-relaxed">
+                <p class="pt-3">Aceptamos transferencias bancarias (con un 10% de descuento exclusivo) y Mercado Pago. Podés señar con el 50% para congelar la tarifa y abonar el saldo antes de la entrega final.</p>
+              </div>
             </div>
-            <div class="faq-item border-b border-line">
-              <button class="faq-q w-full text-left py-6 flex items-center justify-between gap-5 font-serif text-lg"><span>¿Debo pagar por cada invitación enviada?</span><span class="faq-icon"></span></button>
-              <div class="faq-a"><p class="pb-6 text-inkSoft max-w-lg">No. Pagás un monto único según el plan elegido y podés compartir tu invitación con la cantidad de invitados que necesites, sin límites.</p></div>
-            </div>
+
           </div>
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL DE CONTACTO -->
+  <section id="contacto" class="py-20 bg-primary text-white text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-3xl md:text-4xl mb-4">¿Empezamos a diseñar tu invitación?</h2>
+      <p class="text-white/80 text-base mb-8">Escribinos por WhatsApp y resolvemos todas tus dudas en minutos.</p>
+      <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20consultar%20por%20una%20invitaci%C3%B3n" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 bg-accent text-ink font-bold px-8 py-4 rounded-full hover:bg-accent/90 transition-colors shadow-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18c-1.6 0-3.09-.44-4.36-1.2l-.31-.18-3.03.8.81-2.95-.2-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8Zm4.32-5.67c-.24-.12-1.4-.69-1.62-.77-.22-.08-.38-.12-.53.12-.16.24-.61.77-.75.93-.14.16-.28.18-.51.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.28-.73-1.75-.19-.46-.39-.4-.53-.4h-.45c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z"/></svg>
+        Hablar por WhatsApp
+      </a>
     </div>
   </section>
 
 </main>
 
-<footer class="bg-ink text-white/80 pt-20 pb-8">
+<!-- FOOTER COMPLETO CON ICONOS SOCIALES -->
+<footer class="bg-ink text-white/80 pt-16 pb-12 border-t border-line/10">
   <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-    <div class="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-14 border-b border-white/15">
-      <div>
-        <div class="flex items-center gap-2 font-serif text-xl font-semibold text-white">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+      
+      <!-- COLUMNA 1: LOGO Y DESCRIPCIÓN -->
+      <div class="md:col-span-1 flex flex-col gap-4">
+        <a href="#" class="flex items-center gap-2 font-serif text-2xl font-semibold text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
           </svg>
           Celebra
+        </a>
+        <p class="text-xs text-white/60 leading-relaxed">
+          Invitaciones digitales interactivas para hacer de tu fiesta un evento inolvidable desde el primer momento.
+        </p>
+      </div>
+
+      <!-- COLUMNA 2: NAVEGACIÓN -->
+      <div class="flex flex-col gap-3">
+        <h4 class="font-serif text-sm font-semibold text-white tracking-wide uppercase">Navegación</h4>
+        <ul class="space-y-2 text-xs text-white/60">
+          <li><a href="catalogo.html" class="hover:text-accent transition-colors">Catálogo de Diseños</a></li>
+          <li><a href="#caracteristicas" class="hover:text-accent transition-colors">¿Qué incluye?</a></li>
+          <li><a href="#sobre-nosotras" class="hover:text-accent transition-colors">Paso a paso</a></li>
+          <li><a href="#precios" class="hover:text-accent transition-colors">Planes y Precios</a></li>
+          <li><a href="#faq" class="hover:text-accent transition-colors">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMNA 3: EJEMPLOS -->
+      <div class="flex flex-col gap-3">
+        <h4 class="font-serif text-sm font-semibold text-white tracking-wide uppercase">Ejemplos</h4>
+        <ul class="space-y-2 text-xs text-white/60">
+          <li><a href="martiquince.html" class="hover:text-accent transition-colors">Modelo Clásica</a></li>
+          <li><a href="catalogo.html" class="hover:text-accent transition-colors">Modelo Premium</a></li>
+          <li><a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20ver%20ejemplos%20de%20invitaciones" target="_blank" rel="noopener" class="hover:text-accent transition-colors">Pedir más ejemplos</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMNA 4: CONTACTO Y REDES SOCIALES -->
+      <div class="flex flex-col gap-4">
+        <h4 class="font-serif text-sm font-semibold text-white tracking-wide uppercase">Contacto y Redes</h4>
+        <p class="text-xs text-white/60 leading-relaxed">
+          ¿Tenés alguna consulta? Respondemos al instante por WhatsApp.
+        </p>
+        <a href="https://wa.me/5491136218114?text=Hola!%20Tengo%20una%20consulta" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-bold text-accent hover:underline">
+          <span>+54 9 11 3621-8114</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <!-- ICONOS SOCIALES -->
+        <div class="flex items-center gap-3 pt-2">
+          <!-- INSTAGRAM -->
+          <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/10 hover:bg-accent hover:text-ink flex items-center justify-center transition-colors text-white">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <!-- FACEBOOK -->
+          <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white/10 hover:bg-accent hover:text-ink flex items-center justify-center transition-colors text-white">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
         </div>
-        <p class="mt-4 text-white/60 text-sm max-w-xs">Invitaciones digitales para bodas, quinceañeras, bautismos, graduaciones y cada celebración que lo merezca.</p>
-        <p class="mt-4 text-white/40 text-xs">Nuestros canales están verificados. Ante cualquier duda, escribinos únicamente por los medios listados abajo.</p>
       </div>
-      <div>
-        <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Producto</h4>
-        <a href="#caracteristicas" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Qué incluye</a>
-        <a href="#plantillas" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Diseños</a>
-        <a href="#precios" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Precios</a>
-      </div>
-      <div>
-        <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Empresa</h4>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Nosotros</a>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Contacto</a>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Blog</a>
-      </div>
-      <div>
-        <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Contacto</h4>
-        <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" class="block text-sm mb-3 hover:text-accentSoft transition-colors">WhatsApp</a>
-        <a href="mailto:hola@celebra.com" class="block text-sm mb-3 hover:text-accentSoft transition-colors">hola@celebra.com</a>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Instagram</a>
-      </div>
+
     </div>
-    <div class="flex flex-wrap items-center justify-between gap-4 pt-8">
-      <div class="text-sm text-white/40">© 2026 Celebra. Todos los derechos reservados.</div>
-      <div class="flex gap-3.5">
-        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
-        </a>
-        <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
-        </a>
-        <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        </a>
+
+    <!-- SUBFOOTER -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+      <p>© Celebra — Invitaciones Digitales Interactivas. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <a href="#faq" class="hover:text-white transition-colors">Soporte</a>
+        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- SCRIPT PARA INTERACTIVIDAD DE FAQ Y ANIMACIONES -->
 <script>
-  // FAQ accordion
+  // FAQ Desplegables
   document.querySelectorAll('.faq-item').forEach(item => {
-    const q = item.querySelector('.faq-q');
-    const a = item.querySelector('.faq-a');
-    q.addEventListener('click', () => {
+    item.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(openItem => {
-        if(openItem !== item){
-          openItem.classList.remove('open');
-          openItem.querySelector('.faq-a').style.maxHeight = null;
-        }
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        const ans = i.querySelector('.faq-a');
+        if(ans) ans.style.maxHeight = null;
       });
-      if(isOpen){
-        item.classList.remove('open');
-        a.style.maxHeight = null;
-      } else {
+      if(!isOpen) {
         item.classList.add('open');
-        a.style.maxHeight = a.scrollHeight + 'px';
+        const ans = item.querySelector('.faq-a');
+        if(ans) ans.style.maxHeight = ans.scrollHeight + "px";
       }
     });
   });
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, {threshold:0.12});
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('in'));
-  }
+  // Animaciones Scroll (Reveal)
+  const observerOptions = { threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>

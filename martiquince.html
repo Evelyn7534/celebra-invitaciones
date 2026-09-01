@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Te invito a celebrar mis 15 años.">
+<title>Mis 15 Años - Martina</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          tealDeep: '#0B5473',
+          wineDeep: '#500A2D',
+          lavenderBg: '#DFD9E5',
+          inkDark: '#1A0812',
+        },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+
+  /* 1. FOTO DE FONDO PERMANENTE Y FIJA */
+  .bg-fixed-full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    z-index: -10;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Capa de atenuación para garantizar legibilidad */
+  .bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    z-index: -9;
+    background: linear-gradient(180deg, rgba(26, 8, 18, 0.4) 0%, rgba(26, 8, 18, 0.2) 50%, rgba(26, 8, 18, 0.6) 100%);
+    pointer-events: none;
+  }
+
+  /* Animaciones de Scroll */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .fade-in.in { opacity: 1; transform: translateY(0); }
+
+  /* Carrusel */
+  .carrusel-track { display: flex; transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); touch-action: pan-y; }
+  .carrusel-slide { flex: 0 0 100%; }
+  .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.3); transition: all 0.3s ease; }
+  .dot.active { width: 24px; background: #fff; }
+
+  /* Ajuste de sombra para botón de música */
+  .music-btn { box-shadow: 0 10px 30px rgba(11, 84, 115, 0.4); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body class="font-sans antialiased text-inkDark selection:bg-tealDeep selection:text-white">
+
+<!-- FOTO FIJA DE FONDO -->
+<div id="main-background" class="bg-fixed-full"></div>
+<div class="bg-overlay"></div>
+
+<!-- CONFIGURACIÓN DE DATOS -->
+<script>
+const CONFIG = {
+  nombre: "Martina",
+  subtitulo: "Mis 15 Años",
+  frase: "Hay momentos en la vida que son especiales por sí solos, pero compartirlos con las personas que más quiero los hace inolvidables. ¡Te espero para celebrar juntos!",
+
+  fechaISO: "2026-11-14T21:00:00",
+  fechaTextual: "Sábado, 14 de Noviembre de 2026",
+  horaRecepcion: "21:00 hs",
+
+  mapsUrl: "https://maps.google.com/?q=Salon+de+Eventos",
+
+  dressCodeTitulo: "Elegante",
+  dressCodeDescripcion: "El color azul noche está reservado para la quinceañera.",
+
+  whatsappNumero: "5491100000000",
+  whatsappMensaje: "¡Hola Martina! Confirmo mi asistencia a tu fiesta de 15 años 🎉",
+
+  regaloTitular: "Martina Pérez",
+  regaloAlias: "MARTINA.MIS.XV",
+  regaloCbu: "0000003100098234105611",
+
+  audioUrl: "images/martiquince/iconos/mileycyrus.mp3",
+
+  tituloCarrusel: "Mis Momentos",
+  tituloRegalos: "Mesa de Regalos",
+  mensajeRegalos: "Mi mejor regalo es tu presencia. Si deseas hacerme un detalle, podés colaborar con mi viaje de sueños:",
+
+  fotoPortada: "images/martiquince/backgroundmartina.jpg",
+  fotoRSVP: "images/martiquince/avatarmarti.jpg",
+  fotosCarrusel: [
+    "images/martiquince/martiglobos.png",
+    "images/martiquince/martidos.png",
+    "images/martiquince/martitres.png",
+    
+  ]
+};
+</script>
+
+<main class="relative z-10">
+
+  <!-- 1. HERO / PORTADA -->
+  <section class="min-h-[100svh] flex flex-col justify-between px-6 py-12 text-center text-white">
+    <div class="pt-6">
+      <span class="inline-block text-[11px] uppercase tracking-[0.3em] font-medium px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+        Te invito a celebrar
+      </span>
+    </div>
+
+    <div class="my-auto py-12">
+      <p id="subtitulo-titulo" class="font-serif italic text-2xl sm:text-3xl text-lavenderBg/90 mb-2"></p>
+      <h1 id="nombre-titulo" class="font-serif text-7xl sm:text-9xl font-bold tracking-tight text-white drop-shadow-lg"></h1>
+    </div>
+
+    <div class="animate-bounce flex flex-col items-center gap-2 opacity-80">
+      <span class="text-[10px] uppercase tracking-widest font-semibold">Deslizá para ver más</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </section>
+
+  <!-- 2. TARJETA DE FRASE -->
+  <section class="px-4 py-12">
+    <div class="fade-in max-w-xl mx-auto bg-white/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/40 text-center">
+      <div class="w-10 h-0.5 bg-wineDeep/40 mx-auto mb-6"></div>
+      <p id="frase-texto" class="font-serif italic text-lg sm:text-2xl text-inkDark leading-relaxed"></p>
+      <div class="w-10 h-0.5 bg-wineDeep/40 mx-auto mt-6"></div>
+    </div>
+  </section>
+
+  <!-- 3. CONTADOR / CUENTA REGRESIVA -->
+  <section class="px-4 py-12">
+    <div class="fade-in max-w-xl mx-auto bg-inkDark/75 backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/10 text-center text-white">
+      <h2 class="font-serif italic text-2xl sm:text-3xl mb-8 text-lavenderBg">¡Cada vez falta menos!</h2>
+      <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- 4. DETALLES DEL EVENTO -->
+  <section class="px-4 py-12">
+    <div class="fade-in max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="bg-white/85 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/50 text-center flex flex-col items-center justify-between">
+        <div class="w-12 h-12 rounded-2xl bg-tealDeep/10 flex items-center justify-center text-tealDeep mb-4">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <h3 class="font-serif text-xl font-bold text-wineDeep mb-2">Cuándo</h3>
+          <p id="fecha-textual" class="text-sm font-semibold text-inkDark/90 leading-snug"></p>
+          <p id="hora-recepcion" class="text-xs text-inkDark/70 mt-1"></p>
+        </div>
+      </div>
+
+      <div class="bg-white/85 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/50 text-center flex flex-col items-center justify-between">
+        <div class="w-12 h-12 rounded-2xl bg-tealDeep/10 flex items-center justify-center text-tealDeep mb-4">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="w-full">
+          <h3 class="font-serif text-xl font-bold text-wineDeep mb-3">Ubicación</h3>
+          <a id="ubicacion-btn" href="#" target="_blank" rel="noopener" class="inline-block w-full py-3 px-4 rounded-full bg-tealDeep text-white text-xs font-bold uppercase tracking-wider hover:bg-tealDeep/90 transition-all shadow-md active:scale-95">Cómo llegar</a>
+        </div>
+      </div>
+
+      <div class="bg-white/85 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/50 text-center flex flex-col items-center justify-between">
+        <div class="w-12 h-12 rounded-2xl bg-tealDeep/10 flex items-center justify-center text-tealDeep mb-4">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 0-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+        </div>
+        <div>
+          <h3 id="dresscode-titulo" class="font-serif text-xl font-bold text-wineDeep mb-1"></h3>
+          <p id="dresscode-desc" class="text-xs text-inkDark/80 leading-relaxed"></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. GALERÍA DE FOTOS -->
+  <section class="px-4 py-12">
+    <div class="fade-in max-w-3xl mx-auto bg-inkDark/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/10 overflow-hidden">
+      <h2 id="carrusel-titulo" class="font-serif italic text-3xl text-center text-white mb-6"></h2>
+      <div class="relative w-full h-[50vh] sm:h-[65vh] rounded-2xl overflow-hidden">
+        <div id="carrusel-track" class="carrusel-track h-full w-full"></div>
+        <button id="carrusel-prev" aria-label="Anterior" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60 transition-colors">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="carrusel-next" aria-label="Siguiente" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60 transition-colors">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div id="carrusel-dots" class="flex items-center justify-center gap-2 mt-4"></div>
+    </div>
+  </section>
+
+  <!-- 6. MESA DE REGALOS -->
+  <section class="px-4 py-12">
+    <div class="fade-in max-w-xl mx-auto bg-white/85 backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/50 text-center">
+      <h2 id="regalos-titulo" class="font-serif italic text-3xl text-wineDeep mb-3"></h2>
+      <p id="regalos-mensaje" class="text-sm text-inkDark/80 mb-6 leading-relaxed max-w-md mx-auto"></p>
+      <button id="open-regalos-modal" type="button" class="px-8 py-4 rounded-full bg-wineDeep text-white text-xs font-bold uppercase tracking-widest hover:bg-wineDeep/90 transition-all shadow-lg active:scale-95">
+        Ver datos bancarios
+      </button>
+    </div>
+  </section>
+
+  <!-- MODAL BANCARIO -->
+  <div id="modal-regalos" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-inkDark/60 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 id-modal-content">
+      <h3 class="font-serif text-2xl font-bold mb-2 text-wineDeep">Datos Bancarios</h3>
+      <p class="text-xs text-inkDark/70 mb-6">Muchas gracias por acompañarme en este día tan especial.</p>
+      
+      <div class="bg-lavenderBg/30 p-4 rounded-2xl flex flex-col gap-3 text-left text-sm mb-6 border border-lavenderBg/60">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-wineDeep/60 block">Titular</span>
+          <span id="regalo-titular" class="font-semibold text-inkDark"></span>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t border-wineDeep/10 pt-2">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-wineDeep/60 block">Alias</span>
+            <span id="regalo-alias" class="font-bold text-wineDeep text-base"></span>
+          </div>
+          <button type="button" id="copy-alias-btn" class="px-3 py-1 bg-tealDeep text-white text-xs font-bold rounded-lg hover:bg-tealDeep/90 transition-colors">Copiar</button>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t border-wineDeep/10 pt-2">
+          <div class="overflow-hidden">
+            <span class="text-[10px] uppercase font-bold text-wineDeep/60 block">CBU / CVU</span>
+            <span id="regalo-cbu" class="font-mono text-xs text-inkDark break-all"></span>
+          </div>
+          <button type="button" id="copy-cbu-btn" class="px-3 py-1 bg-tealDeep text-white text-xs font-bold rounded-lg hover:bg-tealDeep/90 transition-colors shrink-0">Copiar</button>
+        </div>
+      </div>
+      <button id="close-regalos-modal" type="button" class="w-full py-3.5 rounded-full font-bold text-xs uppercase tracking-widest bg-wineDeep text-white active:scale-95">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- 7. CONFIRMACIÓN RSVP -->
+  <section class="px-4 py-12">
+    <div class="fade-in max-w-md mx-auto bg-white/85 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/50 text-center flex flex-col items-center">
+      <!-- Avatar con borde fino -->
+      <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-2 border-white shadow-md">
+        <img id="rsvp-avatar" src="" alt="Foto de la quinceañera" class="w-full h-full object-cover">
+      </div>
+      <h2 class="font-serif text-3xl text-wineDeep mb-2">Asistencia</h2>
+      <p class="text-xs text-inkDark/70 mb-6">Por favor, confirmá tu presencia antes de la fecha para organizar mejor la fiesta.</p>
+      
+      <!-- Botón sin ícono -->
+      <a id="rsvp-btn" href="#" target="_blank" rel="noopener" class="w-full py-4 rounded-full font-bold text-xs uppercase tracking-widest bg-tealDeep text-white shadow-lg hover:bg-tealDeep/90 transition-all active:scale-95 flex items-center justify-center">
+        Confirmar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+ <!-- ==========================================
+     FOOTER CON PROMO DE NEGOCIO Y REDES
+=========================================== -->
+<footer class="bg-inkDark/80 backdrop-blur-md text-white/90 px-6 pt-20 pb-12 text-center border-t border-white/10 relative overflow-hidden mt-16">
+  
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+    <svg width="100%" height="100%"><defs><pattern id="polka" width="20" height="20" patternUnits="userSpaceOnWrite"><circle cx="10" cy="10" r="1" fill="#fff"/></pattern></defs><rect width="100%" height="100%" fill="url(#polka)"/></svg>
+  </div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    
+    <!-- 1. TÍTULO PROMOCIONAL -->
+    <div class="fade-in mb-12">
+      <h4 class="font-serif italic text-4xl sm:text-5xl text-lavenderBg tracking-wide mb-3 leading-tight">
+        ¿Te gustó esta página?
+      </h4>
+      <p class="font-sans text-lg sm:text-xl text-white/80 font-light">
+        Creá la tuya en minutos y sorprendé a todos
+      </p>
+    </div>
+
+    <!-- 2. LLAMADO A LA ACCIÓN (CTA) -->
+    <div class="fade-in mb-16">
+      <a 
+        href="https://celebrainvitaciones.com/" 
+        target="_blank" 
+        rel="noopener"
+        class="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-white/30 text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-inkDark transition-all duration-300 transform hover:-translate-y-1 shadow-lg active:scale-95"
+      >
+        <span>Ver todas las plantillas</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+      <p class="text-[11px] text-white/50 mt-4 uppercase tracking-widest">
+        Diseños editables para Cumpleaños, Bodas y Baby Showers
+      </p>
+    </div>
+
+    <!-- Separador -->
+    <div class="w-20 h-px bg-white/10 mx-auto mb-16"></div>
+
+    <!-- 3. REDES SOCIALES (Instagram, Facebook, WhatsApp) -->
+    <div class="fade-in flex items-center justify-center gap-8 mb-16 text-white/70">
+      
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Síguenos en Instagram" class="hover:text-white transition-colors transform hover:scale-110">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.646-.069-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Síguenos en Facebook" class="hover:text-white transition-colors transform hover:scale-110">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/message/JOQHWJMOS5VAH1" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" class="hover:text-white transition-colors transform hover:scale-110">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      </a>
+    </div>
+
+    <!-- 4. CRÉDITOS FINALES -->
+    <div class="border-t border-white/10 pt-8 text-xs text-white/50">
+      <p class="font-serif text-sm text-lavenderBg mb-2">Martina • Mis 15 Años</p>
+      <p class="opacity-70 mb-1">Diseñado con ♡ para una noche inolvidable</p>
+      <p class="opacity-40 text-[10px]">© <span id="current-year"></span> - Invitación Digital Interactiva</p>
+    </div>
+
+  </div>
+</footer>
+
+</main>
+
+<!-- REPRODUCTOR DE MÚSICA -->
+<button id="music-toggle" aria-label="Música" class="music-btn fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center text-white bg-tealDeep active:scale-90 transition-transform">
+  <svg id="icon-play" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5V19L19 12L8 5Z"/></svg>
+  <svg id="icon-pause" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" class="hidden"><path d="M7 5H10V19H7V5ZM14 5H17V19H14V5Z"/></svg>
+</button>
+
+<audio id="audio-player" loop preload="auto">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<script>
+(function () {
+  // Asignar imagen de fondo fija
+  var mainBg = document.getElementById('main-background');
+  if (mainBg && CONFIG.fotoPortada) {
+    mainBg.style.backgroundImage = "url('" + CONFIG.fotoPortada + "')";
+  }
+
+  // Asignar textos
+  document.getElementById('nombre-titulo').textContent = CONFIG.nombre || '';
+  document.getElementById('subtitulo-titulo').textContent = CONFIG.subtitulo || '';
+  document.getElementById('frase-texto').textContent = CONFIG.frase || '';
+  document.getElementById('fecha-textual').textContent = CONFIG.fechaTextual || '';
+  document.getElementById('hora-recepcion').textContent = CONFIG.horaRecepcion || '';
+  document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo || '';
+  document.getElementById('dresscode-desc').textContent = CONFIG.dressCodeDescripcion || '';
+  document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel || '';
+  document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos || '';
+  document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos || '';
+  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl || '#';
+  document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP || '';
+
+  // Datos bancarios
+  document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular || '';
+  document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias || '';
+  document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu || '';
+
+  // ---------- COUNTDOWN REDISEÑADO ----------
+  var countdownEl = document.getElementById('countdown');
+  var targetDate = new Date(CONFIG.fechaISO).getTime();
+
+  function crearUnidadContador(valor, label) {
+    return `
+      <div class="flex flex-col items-center bg-white/10 rounded-2xl p-3 border border-white/10">
+        <span class="font-serif text-2xl sm:text-3xl font-bold text-white">${String(valor).padStart(2, '0')}</span>
+        <span class="text-[9px] sm:text-[10px] uppercase font-semibold text-lavenderBg/70 tracking-wider mt-1">${label}</span>
+      </div>
+    `;
+  }
+
+  function renderCountdown() {
+    if (!countdownEl) return;
+    var now = new Date().getTime();
+    var diff = Math.max(0, targetDate - now);
+
+    var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = 
+      crearUnidadContador(dias, 'Días') +
+      crearUnidadContador(horas, 'Hs') +
+      crearUnidadContador(minutos, 'Min') +
+      crearUnidadContador(segundos, 'Seg');
+  }
+  renderCountdown();
+  setInterval(renderCountdown, 1000);
+
+  // ---------- CARRUSEL ----------
+  var track = document.getElementById('carrusel-track');
+  var dotsWrap = document.getElementById('carrusel-dots');
+  var indice = 0;
+  var total = (CONFIG.fotosCarrusel && CONFIG.fotosCarrusel.length) || 0;
+
+  if (track && dotsWrap && total > 0) {
+    CONFIG.fotosCarrusel.forEach(function (src, i) {
+      var slide = document.createElement('div');
+      slide.className = 'carrusel-slide h-full';
+      slide.innerHTML = `<img src="${src}" class="w-full h-full object-cover" alt="Foto ${i+1}">`;
+      track.appendChild(slide);
+
+      var dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', function () { irASlide(i); });
+      dotsWrap.appendChild(dot);
+    });
+
+    function irASlide(i) {
+      indice = (i + total) % total;
+      track.style.transform = 'translateX(-' + (indice * 100) + '%)';
+      dotsWrap.querySelectorAll('.dot').forEach(function (d, idx) {
+        d.classList.toggle('active', idx === indice);
+      });
+    }
+
+    document.getElementById('carrusel-prev').addEventListener('click', function () { irASlide(indice - 1); });
+    document.getElementById('carrusel-next').addEventListener('click', function () { irASlide(indice + 1); });
+  }
+
+  // ---------- RSVP ----------
+  var rsvpBtn = document.getElementById('rsvp-btn');
+  if (rsvpBtn) {
+    rsvpBtn.href = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(CONFIG.whatsappMensaje || '');
+  }
+
+  // ---------- SCROLL REVEAL ----------
+  var faders = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    faders.forEach(function (el) { io.observe(el); });
+  } else {
+    faders.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // ---------- MODAL BANCARIO ----------
+  var openModalBtn = document.getElementById('open-regalos-modal');
+  var closeModalBtn = document.getElementById('close-regalos-modal');
+  var modalRegalos = document.getElementById('modal-regalos');
+
+  if (openModalBtn && modalRegalos) {
+    openModalBtn.addEventListener('click', function () {
+      modalRegalos.classList.remove('opacity-0', 'pointer-events-none');
+      modalRegalos.querySelector('.id-modal-content').classList.remove('scale-95');
+    });
+
+    function cerrarModal() {
+      modalRegalos.classList.add('opacity-0', 'pointer-events-none');
+      modalRegalos.querySelector('.id-modal-content').classList.add('scale-95');
+    }
+
+    closeModalBtn.addEventListener('click', cerrarModal);
+    modalRegalos.addEventListener('click', function (e) {
+      if (e.target === modalRegalos) cerrarModal();
+    });
+  }
+
+  // ---------- COPIAR TEXTO ----------
+  function copiar(texto, btn) {
+    if (!navigator.clipboard) return;
+    navigator.clipboard.writeText(texto).then(function() {
+      var t = btn.innerText;
+      btn.innerText = "✓";
+      setTimeout(function() { btn.innerText = t; }, 2000);
+    });
+  }
+  document.getElementById('copy-alias-btn').addEventListener('click', function() { copiar(CONFIG.regaloAlias, this); });
+  document.getElementById('copy-cbu-btn').addEventListener('click', function() { copiar(CONFIG.regaloCbu, this); });
+
+  // ---------- MÚSICA ----------
+  var audio = document.getElementById('audio-player');
+  var musicBtn = document.getElementById('music-toggle');
+  if (audio && musicBtn && CONFIG.audioUrl) {
+    audio.querySelector('source').src = CONFIG.audioUrl;
+    audio.load();
+    musicBtn.addEventListener('click', function () {
+      if (audio.paused) {
+        audio.play();
+        document.getElementById('icon-play').classList.add('hidden');
+        document.getElementById('icon-pause').classList.remove('hidden');
+      } else {
+        audio.pause();
+        document.getElementById('icon-play').classList.remove('hidden');
+        document.getElementById('icon-pause').classList.add('hidden');
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
