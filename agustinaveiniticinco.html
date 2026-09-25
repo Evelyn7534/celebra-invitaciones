@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="¡Te invito a celebrar mis 25 años! Agustina">
+<title>Agustina - My 25th 🍸✨</title>
+
+<!-- FUENTES: Cormorant Garamond (Editorial Chic) + Plus Jakarta Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          partyGold: '#E5C384',      /* Dorado Champán Satinado */
+          partyGoldHover: '#F0D49D', /* Dorado Mousse */
+          roseAccent: '#E08E9D',     /* Rosa Nude / Chicle Chic */
+          deepMagenta: '#801A49',    /* Magenta Noche */
+          nightDark: '#120911',      /* Negro Bordo Profundo */
+          violetGlow: '#1E0E1B',     /* Fondo de tarjetas Glass */
+          champagneLight: '#FDF8F2', /* Crema Sedoso */
+        },
+        fontFamily: {
+          display: ['"Cormorant Garamond"', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+
+  /* FONDO FIJO CON MÁS BRILLO */
+  .bg-fixed-full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    z-index: -10;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Aumenta el brillo y resalta las luces */
+    filter: brightness(1.15) contrast(1.05);
+  }
+
+  /* Capa de atenuación balanceada (+20% más oscura) */
+  .bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    z-index: -9;
+    background: linear-gradient(180deg, rgba(18, 9, 17, 0.40) 0%, rgba(30, 14, 27, 0.55) 50%, rgba(18, 9, 17, 0.70) 100%);
+    pointer-events: none;
+  }
+
+  /* Animaciones de Scroll */
+  .fade-in { 
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
+  }
+  .fade-in.in { opacity: 1; transform: translateY(0); }
+
+  /* Carrusel Estilo Polaroid/Editorial */
+  .carrusel-track { display: flex; transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); touch-action: pan-y; }
+  .carrusel-slide { flex: 0 0 100%; }
+  .dot { width: 7px; height: 7px; border-radius: 999px; background: rgba(255,255,255,0.25); transition: all 0.3s ease; }
+  .dot.active { width: 22px; background: #E5C384; }
+
+  /* Botón flotante de música */
+  .music-btn { box-shadow: 0 8px 25px rgba(229, 195, 132, 0.25); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body class="font-sans antialiased text-champagneLight selection:bg-roseAccent selection:text-nightDark">
+
+<!-- ANIMAL PRINT FIJO DE FONDO -->
+<div id="main-background" class="bg-fixed-full"></div>
+<div class="bg-overlay"></div>
+
+<!-- CONFIGURACIÓN DE DATOS -->
+<script>
+const CONFIG = {
+  nombre: "AGUSTINA",
+  numero: "25",
+  frase: "✨ Sin protocolo, muchas fotos 📸 🥂 y copas llenas. 🍾💫 Te espero para pasar una noche inolvidable. ✨",
+
+  fechaISO: "2026-10-17T22:30:00",
+  fechaTextual: "Sábado, 17 de Octubre de 2026",
+  horaRecepcion: "22:30 hs (Puntual para el brindis)",
+
+  mapsUrl: "https://maps.google.com/?q=Salon+o+Bar+Festejo",
+
+  dressCodeTitulo: "GLAM & PARTY VIBES",
+  dressCodeDescripcion: "Brillitos, actitud y muchas ganas de bailar. Ponete algo con lo que rompas la pista 🪩",
+
+  whatsappNumero: "5491100000000",
+  whatsappMensaje: "Obvio amiga, no me lo pierdo ✨🍸🍾",
+
+  // PLAYLIST SPOTIFY / SUGERENCIAS
+  spotifyPlaylistUrl: "https://spotify.com",
+  whatsappPlaylistMsg: "¡Hola Agus! 🎵 Para la fiesta no puede faltar esta canción: ",
+
+  regaloTitular: "Agustina Pérez",
+  regaloAlias: "AGUS.25.FIESTA",
+  regaloCbu: "0000003100098234105611",
+
+  audioUrl: "images/agus25/musica.mp3",
+
+  tituloCarrusel: "📸✨",
+  tituloRegalos: "Regalos & Fondo de Copas 🥂",
+  mensajeRegalos: "Tu presencia y ganas de perrear son lo más importante. Pero si querés hacerme un mimo para mi próximo viaje o para el fondo de shots, ¡se super agradece!",
+
+  // RUTAS DE IMÁGENES
+  fotoPortada: "images/agustina/background.jpg", 
+  fotoRSVP: "images/agustina/avatar.svg",
+  fotosCarrusel: [
+    "images/agustina/agustinamigas.jpg",
+    "images/agustina/carrouselagustina.jpg",
+  ]
+};
+</script>
+
+<main class="relative z-10">
+
+  <!-- 1. HERO / PORTADA REDISEÑADA CON NÚMERO 25 GIGANTE Y JERARQUÍA EDITORIAL -->
+  <section class="min-h-[100svh] flex flex-col justify-between px-4 sm:px-6 py-8 text-center text-white relative overflow-hidden">
+    
+    <!-- COMPOSICIÓN TIPOGRÁFICA PRINCIPAL -->
+    <div class="my-auto py-4 flex flex-col items-center justify-center max-w-3xl mx-auto w-full relative z-10">
+      
+      <!-- CONTENEDOR MULTICAPA CON EL 25 DE FONDO ENORME -->
+      <div class="relative w-full flex flex-col items-center justify-center">
+        
+        <!-- NÚMERO 25 MONUMENTAL / TRASLÚCIDO -->
+        <span id="numero-gigante" class="font-display font-bold text-[130px] xs:text-[160px] sm:text-[220px] md:text-[280px] leading-none select-none text-transparent bg-clip-text bg-gradient-to-b from-partyGold/25 via-roseAccent/15 to-transparent absolute -z-10 tracking-tighter scale-110 sm:scale-100">
+        </span>
+
+        <!-- ETIQUETA / TAG SUPERIOR -->
+        <span class="text-[10px] sm:text-xs font-sans tracking-[0.4em] uppercase text-partyGold font-medium mb-1 drop-shadow">
+          My Birthday Celebration
+        </span>
+
+        <!-- NOMBRE PRINCIPAL ENORME Y LEGIBLE -->
+        <h1 id="nombre-titulo" class="font-display text-5xl xs:text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-wider leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-champagneLight to-partyGold drop-shadow-2xl uppercase">
+        </h1>
+
+      <!-- INSIGNIA ELEGANTE -->
+<div class="mt-4 sm:mt-6 px-6 py-2 rounded-full bg-violetGlow/60 backdrop-blur-md border border-partyGold/40 text-xs sm:text-sm tracking-[0.2em] uppercase font-serif text-partyGold shadow-lg flex items-center gap-2">
+  <span>✨ MIS</span>
+  <span id="numero-badge" class="text-white font-bold font-display text-base sm:text-lg"></span>
+  <span>AÑOS ✨</span>
+</div>
+      </div>
+
+    </div>
+
+    <!-- FLECHA DE DESPLAZAMIENTO -->
+    <div class="animate-bounce flex flex-col items-center gap-1.5 opacity-75 z-10">
+      <span class="text-[9px] uppercase tracking-[0.2em] font-semibold text-partyGold">Deslizá hacia abajo</span>
+      <svg class="w-4 h-4 text-partyGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </section>
+
+  <!-- 2. TARJETA DE FRASE DE ENTRADA -->
+  <section class="px-4 py-6">
+    <div class="fade-in max-w-xl mx-auto bg-violetGlow/75 backdrop-blur-md rounded-2xl p-7 sm:p-10 shadow-xl border border-white/10 text-center relative overflow-hidden">
+      <div class="w-10 h-0.5 bg-partyGold/40 mx-auto mb-5 rounded-full"></div>
+      <p id="frase-texto" class="font-display text-2xl sm:text-3xl text-champagneLight leading-relaxed italic font-normal"></p>
+      <div class="w-10 h-0.5 bg-partyGold/40 mx-auto mt-5 rounded-full"></div>
+    </div>
+  </section>
+
+  <!-- 3. CONTADOR / CUENTA REGRESIVA -->
+  <section class="px-4 py-6">
+    <div class="fade-in max-w-xl mx-auto bg-nightDark/80 backdrop-blur-md rounded-2xl p-7 sm:p-9 shadow-xl border border-white/10 text-center text-white">
+      <div class="flex items-center justify-center gap-2 mb-5">
+        <svg class="w-5 h-5 text-roseAccent animate-spin" style="animation-duration: 10s;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="1.5"/><path stroke-width="1.2" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path stroke-width="1.2" d="M2 12h20"/></svg>
+        <h2 class="font-display text-2xl sm:text-3xl font-semibold tracking-wide text-white">Cuenta Regresiva</h2>
+      </div>
+      <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-3 max-w-md mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- 4. DETALLES DEL EVENTO -->
+  <section class="px-4 py-6">
+    <div class="fade-in max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+      
+      <!-- CUÁNDO -->
+      <div class="bg-violetGlow/75 backdrop-blur-md p-7 rounded-2xl shadow-lg border border-white/10 text-center flex flex-col items-center justify-between">
+        <div class="w-12 h-12 rounded-xl bg-partyGold/10 flex items-center justify-center text-partyGold mb-4 border border-partyGold/20">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display text-xl font-semibold tracking-wide text-partyGold mb-1">Cuándo</h3>
+          <p id="fecha-textual" class="text-xs font-semibold text-white leading-snug"></p>
+          <p id="hora-recepcion" class="text-[11px] text-champagneLight/70 mt-1 font-normal"></p>
+        </div>
+      </div>
+
+      <!-- UBICACIÓN -->
+      <div class="bg-violetGlow/75 backdrop-blur-md p-7 rounded-2xl shadow-lg border border-white/10 text-center flex flex-col items-center justify-between">
+        <div class="w-12 h-12 rounded-xl bg-partyGold/10 flex items-center justify-center text-partyGold mb-4 border border-partyGold/20">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="w-full">
+          <h3 class="font-display text-xl font-semibold tracking-wide text-partyGold mb-3">Dónde</h3>
+          <a id="ubicacion-btn" href="#" target="_blank" rel="noopener" class="inline-block w-full py-2.5 px-4 rounded-full bg-partyGold text-nightDark text-[11px] font-bold uppercase tracking-wider hover:bg-partyGoldHover transition-all shadow-md active:scale-95">Abrir Mapa</a>
+        </div>
+      </div>
+
+      <!-- DRESS CODE -->
+      <div class="bg-violetGlow/75 backdrop-blur-md p-7 rounded-2xl shadow-lg border border-white/10 text-center flex flex-col items-center justify-between">
+        <div class="w-12 h-12 rounded-xl bg-partyGold/10 flex items-center justify-center text-partyGold mb-4 border border-partyGold/20">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 22h8M12 11v11M19 3l-7 8-7-8h14z"/></svg>
+        </div>
+        <div>
+          <h3 id="dresscode-titulo" class="font-display text-xl font-semibold tracking-wide text-partyGold mb-1"></h3>
+          <p id="dresscode-desc" class="text-[11px] text-champagneLight/80 leading-relaxed font-normal"></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. ÁLBUM DE FOTOS -->
+  <section class="px-4 py-6">
+    <div class="fade-in max-w-3xl mx-auto bg-violetGlow/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/15 overflow-hidden">
+      <div class="text-center mb-6">
+        <span class="text-[10px] uppercase tracking-[0.2em] font-semibold text-roseAccent block mb-1">Galería</span>
+        <h2 id="carrusel-titulo" class="font-display text-3xl sm:text-4xl font-semibold tracking-wide text-white"></h2>
+      </div>
+
+      <div class="relative w-full h-[48vh] sm:h-[62vh] rounded-2xl overflow-hidden bg-nightDark/90 p-2 border border-partyGold/20 shadow-2xl">
+        <div id="carrusel-track" class="carrusel-track h-full w-full rounded-xl overflow-hidden"></div>
+        
+        <button id="carrusel-prev" aria-label="Anterior" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-nightDark/70 border border-white/20 text-white flex items-center justify-center hover:bg-partyGold hover:text-nightDark transition-all active:scale-90">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="carrusel-next" aria-label="Siguiente" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-nightDark/70 border border-white/20 text-white flex items-center justify-center hover:bg-partyGold hover:text-nightDark transition-all active:scale-90">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l6 6-6 6"/></svg>
+        </button>
+      </div>
+      
+      <div id="carrusel-dots" class="flex items-center justify-center gap-2 mt-5"></div>
+    </div>
+  </section>
+
+  <!-- 6. SECCIÓN PLAYLIST -->
+  <section class="px-4 py-6">
+    <div class="fade-in max-w-xl mx-auto bg-violetGlow/75 backdrop-blur-md rounded-2xl p-7 sm:p-9 shadow-xl border border-white/10 text-center relative overflow-hidden">
+      <div class="w-12 h-12 rounded-full bg-roseAccent/15 text-roseAccent flex items-center justify-center mx-auto mb-3 border border-roseAccent/30">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 .895-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 .895-2 3-2 3 .895 3 2zM9 10l12-3"/>
+        </svg>
+      </div>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-semibold tracking-wide text-partyGold mb-2">¿Qué canción no puede faltar? 🎧</h2>
+      <p class="text-xs text-champagneLight/80 mb-6 leading-relaxed max-w-md mx-auto font-normal">
+        Ayudame a armar la playlist perfecta para romper la pista. ¡Mandame tu hit infaltable!
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div class="w-full relative">
+          <input type="text" id="song-input" placeholder="Ej: Bad Bunny - Tití Me Preguntó" class="w-full py-3 px-4 rounded-full bg-nightDark/80 border border-white/15 text-white text-xs placeholder:text-white/40 focus:outline-none focus:border-partyGold transition-colors">
+        </div>
+        <button id="send-song-btn" type="button" class="w-full sm:w-auto shrink-0 px-6 py-3 rounded-full bg-roseAccent text-nightDark text-[11px] font-bold uppercase tracking-wider hover:bg-roseAccent/90 transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
+          <span>Recomendar</span>
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. MESA DE REGALOS -->
+  <section class="px-4 py-6">
+    <div class="fade-in max-w-xl mx-auto bg-violetGlow/75 backdrop-blur-md rounded-2xl p-7 sm:p-9 shadow-xl border border-white/10 text-center">
+      <div class="w-11 h-11 rounded-full bg-partyGold/10 text-partyGold flex items-center justify-center mx-auto mb-3 border border-partyGold/20">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="14" rx="2"/><path d="M12 5a3 3 0 1 0-3 3h6a3 3 0 1 0-3-3z"/><path d="M12 8v14"/></svg>
+      </div>
+      <h2 id="regalos-titulo" class="font-display text-2xl font-semibold tracking-wide text-partyGold mb-2"></h2>
+      <p id="regalos-mensaje" class="text-xs text-champagneLight/80 mb-6 leading-relaxed max-w-md mx-auto font-normal"></p>
+      <button id="open-regalos-modal" type="button" class="px-7 py-3 rounded-full bg-partyGold text-nightDark text-[11px] font-bold uppercase tracking-wider hover:bg-partyGoldHover transition-all shadow-md active:scale-95">
+        Ver datos bancarios
+      </button>
+    </div>
+  </section>
+
+  <!-- MODAL BANCARIO -->
+  <div id="modal-regalos" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-nightDark/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="bg-violetGlow border border-white/15 rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 id-modal-content">
+      <h3 class="font-display text-2xl font-semibold mb-1 text-partyGold">Datos Bancarios</h3>
+      <p class="text-xs text-champagneLight/70 mb-5">¡Cualquier aporte para el brindis es súper bienvenido!</p>
+      
+      <div class="bg-nightDark/70 p-4 rounded-xl flex flex-col gap-3 text-left text-xs mb-5 border border-white/10">
+        <div>
+          <span class="text-[9px] uppercase font-bold text-partyGold/80 block tracking-wider">Titular</span>
+          <span id="regalo-titular" class="font-medium text-white"></span>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t border-white/10 pt-2">
+          <div>
+            <span class="text-[9px] uppercase font-bold text-partyGold/80 block tracking-wider">Alias</span>
+            <span id="regalo-alias" class="font-bold text-roseAccent text-sm"></span>
+          </div>
+          <button type="button" id="copy-alias-btn" class="px-3 py-1 bg-partyGold text-nightDark text-[10px] font-bold rounded-lg hover:bg-partyGoldHover transition-colors">Copiar</button>
+        </div>
+        <div class="flex items-center justify-between gap-2 border-t border-white/10 pt-2">
+          <div class="overflow-hidden">
+            <span class="text-[9px] uppercase font-bold text-partyGold/80 block tracking-wider">CBU / CVU</span>
+            <span id="regalo-cbu" class="font-mono text-[11px] text-champagneLight break-all"></span>
+          </div>
+          <button type="button" id="copy-cbu-btn" class="px-3 py-1 bg-partyGold text-nightDark text-[10px] font-bold rounded-lg hover:bg-partyGoldHover transition-colors shrink-0">Copiar</button>
+        </div>
+      </div>
+      <button id="close-regalos-modal" type="button" class="w-full py-3 rounded-full font-bold text-[11px] uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 active:scale-95 transition-colors">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- 8. CONFIRMACIÓN RSVP -->
+  <section class="px-4 py-6">
+    <div class="fade-in max-w-md mx-auto bg-violetGlow/75 backdrop-blur-md rounded-2xl p-7 shadow-xl border border-white/10 text-center flex flex-col items-center">
+      <div class="w-28 h-28 rounded-full overflow-hidden mb-5 p-0.5 bg-gradient-to-tr from-partyGold via-roseAccent to-partyGold shadow-md">
+        <img id="rsvp-avatar" src="" alt="Foto de Agustina" class="w-full h-full object-cover rounded-full">
+      </div>
+      <h2 class="font-display text-2xl text-white font-semibold tracking-wide mb-1">¿Venís a darlo todo?</h2>
+      <p class="text-xs text-champagneLight/80 mb-5 font-normal">Confirmá tu asistencia por WhatsApp para guardarte tu copa 🥂</p>
+      
+      <a id="rsvp-btn" href="#" target="_blank" rel="noopener" class="w-full py-3.5 rounded-full font-bold text-[11px] uppercase tracking-wider bg-partyGold text-nightDark shadow-md hover:bg-partyGoldHover transition-all active:scale-95 flex items-center justify-center gap-2">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Confirmar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER CELEBRA -->
+  <footer class="bg-nightDark/90 backdrop-blur-md text-white/90 px-5 pt-16 pb-10 text-center border-t border-white/10 relative overflow-hidden mt-12">
+    <div class="max-w-4xl mx-auto relative z-10">
+      
+      <div class="fade-in mb-8">
+        <h4 class="font-display text-2xl sm:text-3xl text-partyGold tracking-wide mb-2 font-semibold">
+          ¿Querés tu propia tarjeta web?
+        </h4>
+        <p class="font-sans text-xs sm:text-sm text-white/70 font-light">
+          Diseños exclusivos e interactivos para tus eventos
+        </p>
+      </div>
+
+      <div class="fade-in mb-10">
+        <a 
+          href="https://celebrainvitaciones.com/" 
+          target="_blank" 
+          rel="noopener"
+          class="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-white/10 border border-white/20 text-white text-[11px] font-bold uppercase tracking-widest hover:bg-partyGold hover:text-nightDark hover:border-partyGold transition-all duration-300 shadow-sm active:scale-95"
+        >
+          <span>Ver plantillas de Celebra</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="w-16 h-px bg-white/10 mx-auto mb-8"></div>
+
+      <div class="fade-in flex items-center justify-center gap-6 mb-8 text-white/60">
+        <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-partyGold transition-colors">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.646-.069-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://wa.me/message/JOQHWJMOS5VAH1" target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:text-partyGold transition-colors">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.893 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        </a>
+      </div>
+
+      <div class="border-t border-white/10 pt-5 text-[11px] text-white/40">
+        <p class="font-display text-xs sm:text-sm text-partyGold mb-0.5 truncate">Agustina • My 25th 🍸</p>
+        <p class="opacity-70">Diseñado por Celebra Invitaciones</p>
+      </div>
+
+    </div>
+  </footer>
+
+</main>
+
+<!-- REPRODUCTOR DE MÚSICA FLOTANTE -->
+<button id="music-toggle" aria-label="Música" class="music-btn fixed bottom-5 right-5 z-50 w-11 h-11 rounded-full flex items-center justify-center text-nightDark bg-partyGold active:scale-90 transition-transform">
+  <svg id="icon-play" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5V19L19 12L8 5Z"/></svg>
+  <svg id="icon-pause" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" class="hidden"><path d="M7 5H10V19H7V5ZM14 5H17V19H14V5Z"/></svg>
+</button>
+
+<audio id="audio-player" loop preload="auto">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<script>
+(function () {
+  // Imagen de fondo fija
+  var mainBg = document.getElementById('main-background');
+  if (mainBg && CONFIG.fotoPortada) {
+    mainBg.style.backgroundImage = "url('" + CONFIG.fotoPortada + "')";
+  }
+
+  // Textos principales
+  document.getElementById('nombre-titulo').textContent = CONFIG.nombre || '';
+  document.getElementById('numero-gigante').textContent = CONFIG.numero || '25';
+  document.getElementById('numero-badge').textContent = CONFIG.numero || '25';
+  document.getElementById('frase-texto').textContent = CONFIG.frase || '';
+  document.getElementById('fecha-textual').textContent = CONFIG.fechaTextual || '';
+  document.getElementById('hora-recepcion').textContent = CONFIG.horaRecepcion || '';
+  document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo || '';
+  document.getElementById('dresscode-desc').textContent = CONFIG.dressCodeDescripcion || '';
+  document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel || '';
+  document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos || '';
+  document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos || '';
+  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl || '#';
+  document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP || '';
+
+  // Datos bancarios
+  document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular || '';
+  document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias || '';
+  document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu || '';
+
+  // BOTÓN PLAYLIST DE CANCIONES
+  var sendSongBtn = document.getElementById('send-song-btn');
+  var songInput = document.getElementById('song-input');
+  if (sendSongBtn && songInput) {
+    sendSongBtn.addEventListener('click', function() {
+      var cancion = songInput.value.trim();
+      if (!cancion) {
+        alert("¡Escribí el nombre de la canción o artista antes de enviar! 🎶");
+        return;
+      }
+      var mensajeFinal = CONFIG.whatsappPlaylistMsg + cancion;
+      var url = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(mensajeFinal);
+      window.open(url, '_blank');
+    });
+  }
+
+  // COUNTDOWN
+  var countdownEl = document.getElementById('countdown');
+  var targetDate = new Date(CONFIG.fechaISO).getTime();
+
+  function crearUnidadContador(valor, label) {
+    return `
+      <div class="flex flex-col items-center bg-violetGlow/60 rounded-xl p-2.5 border border-white/10 shadow-inner">
+        <span class="font-display text-2xl sm:text-3xl font-semibold text-partyGold">${String(valor).padStart(2, '0')}</span>
+        <span class="text-[8px] sm:text-[9px] uppercase font-bold text-champagneLight/70 tracking-wider mt-0.5">${label}</span>
+      </div>
+    `;
+  }
+
+  function renderCountdown() {
+    if (!countdownEl) return;
+    var now = new Date().getTime();
+    var diff = Math.max(0, targetDate - now);
+
+    var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = 
+      crearUnidadContador(dias, 'Días') +
+      crearUnidadContador(horas, 'Hs') +
+      crearUnidadContador(minutos, 'Min') +
+      crearUnidadContador(segundos, 'Seg');
+  }
+  renderCountdown();
+  setInterval(renderCountdown, 1000);
+
+  // CARRUSEL
+  var track = document.getElementById('carrusel-track');
+  var dotsWrap = document.getElementById('carrusel-dots');
+  var indice = 0;
+  var total = (CONFIG.fotosCarrusel && CONFIG.fotosCarrusel.length) || 0;
+
+  if (track && dotsWrap && total > 0) {
+    CONFIG.fotosCarrusel.forEach(function (src, i) {
+      var slide = document.createElement('div');
+      slide.className = 'carrusel-slide h-full';
+      slide.innerHTML = `<img src="${src}" class="w-full h-full object-cover" alt="Foto ${i+1}">`;
+      track.appendChild(slide);
+
+      var dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', function () { irASlide(i); });
+      dotsWrap.appendChild(dot);
+    });
+
+    function irASlide(i) {
+      indice = (i + total) % total;
+      track.style.transform = 'translateX(-' + (indice * 100) + '%)';
+      dotsWrap.querySelectorAll('.dot').forEach(function (d, idx) {
+        d.classList.toggle('active', idx === indice);
+      });
+    }
+
+    document.getElementById('carrusel-prev').addEventListener('click', function () { irASlide(indice - 1); });
+    document.getElementById('carrusel-next').addEventListener('click', function () { irASlide(indice + 1); });
+  }
+
+  // RSVP
+  var rsvpBtn = document.getElementById('rsvp-btn');
+  if (rsvpBtn) {
+    rsvpBtn.href = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(CONFIG.whatsappMensaje || '');
+  }
+
+  // SCROLL REVEAL
+  var faders = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    faders.forEach(function (el) { io.observe(el); });
+  } else {
+    faders.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // MODAL BANCARIO
+  var openModalBtn = document.getElementById('open-regalos-modal');
+  var closeModalBtn = document.getElementById('close-regalos-modal');
+  var modalRegalos = document.getElementById('modal-regalos');
+
+  if (openModalBtn && modalRegalos) {
+    openModalBtn.addEventListener('click', function () {
+      modalRegalos.classList.remove('opacity-0', 'pointer-events-none');
+      modalRegalos.querySelector('.id-modal-content').classList.remove('scale-95');
+    });
+
+    function cerrarModal() {
+      modalRegalos.classList.add('opacity-0', 'pointer-events-none');
+      modalRegalos.querySelector('.id-modal-content').classList.add('scale-95');
+    }
+
+    if (closeModalBtn) closeModalBtn.addEventListener('click', cerrarModal);
+    modalRegalos.addEventListener('click', function (e) {
+      if (e.target === modalRegalos) cerrarModal();
+    });
+  }
+
+  // COPIAR ALIAS / CBU
+  function copiarTexto(texto, btn) {
+    navigator.clipboard.writeText(texto).then(function() {
+      var original = btn.textContent;
+      btn.textContent = '¡Copiado!';
+      setTimeout(function() { btn.textContent = original; }, 2000);
+    });
+  }
+
+  var copyAliasBtn = document.getElementById('copy-alias-btn');
+  if (copyAliasBtn) {
+    copyAliasBtn.addEventListener('click', function() {
+      copiarTexto(CONFIG.regaloAlias, this);
+    });
+  }
+
+  var copyCbuBtn = document.getElementById('copy-cbu-btn');
+  if (copyCbuBtn) {
+    copyCbuBtn.addEventListener('click', function() {
+      copiarTexto(CONFIG.regaloCbu, this);
+    });
+  }
+
+  // MÚSICA
+  var musicBtn = document.getElementById('music-toggle');
+  var audio = document.getElementById('audio-player');
+  var iconPlay = document.getElementById('icon-play');
+  var iconPause = document.getElementById('icon-pause');
+
+  if (musicBtn && audio && CONFIG.audioUrl) {
+    audio.querySelector('source').src = CONFIG.audioUrl;
+    audio.load();
+
+    var isPlaying = false;
+
+    musicBtn.addEventListener('click', function() {
+      if (isPlaying) {
+        audio.pause();
+        iconPlay.classList.remove('hidden');
+        iconPause.classList.add('hidden');
+      } else {
+        audio.play();
+        iconPlay.classList.add('hidden');
+        iconPause.classList.remove('hidden');
+      }
+      isPlaying = !isPlaying;
+    });
+  }
+})();
+</script>
+</body>
+</html>

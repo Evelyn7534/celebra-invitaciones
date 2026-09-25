@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo de Diseños — Celebra</title>
+<title>Catálogo de Diseños — Celebra Invitaciones</title>
 
 <!-- Favicon / Ícono de pestaña -->
 <link rel="icon" type="image/png" href="favicon.png">
@@ -82,7 +82,7 @@
     transform: translateY(0);
   }
 
-  /* Efecto Shimmer al pasar el mouse por el botón "Ver Diseño" */
+  /* Efecto Shimmer al pasar el mouse */
   .btn-shimmer {
     position: relative;
     overflow: hidden;
@@ -125,9 +125,10 @@
 <body class="bg-bg text-ink font-sans antialiased overflow-x-hidden">
 
 <!-- BANNER SUPERIOR -->
-<div class="w-full bg-accent text-ink text-center text-sm font-semibold py-2.5 px-4">
+<div class="w-full bg-accent text-ink text-center text-xs md:text-sm font-semibold py-2.5 px-4">
   💡 ¡10% DE DESCUENTO abonando mediante Transferencia Bancaria! Podés señar con el 50% para congelar el precio.
 </div>
+
 <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur-md border-b border-line">
   <nav class="max-w-[1180px] mx-auto px-6 md:px-10 py-3 flex items-center justify-between">
     
@@ -135,14 +136,13 @@
       <img 
         src="images/logo/logoweb.svg" 
         alt="Celebra Invitaciones Web" 
-        class="h-16 w-auto object-contain transition-transform group-hover:scale-105"
+        class="h-14 md:h-16 w-auto object-contain transition-transform group-hover:scale-105"
       />
     </a>
 
     <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-inkSoft">
-      <a href="catalogo.html" class="hover:text-primary transition-colors">Diseños</a>
+      <a href="catalogo.html" class="text-primary font-bold transition-colors">Diseños</a>
       <a href="index.html#caracteristicas" class="hover:text-primary transition-colors">¿Qué incluye?</a>
-      <a href="index.html#sobre-nosotras" class="hover:text-primary transition-colors">Cómo funciona</a>
       <a href="index.html#precios" class="hover:text-primary transition-colors">Precios</a>
       <a href="index.html#faq" class="hover:text-primary transition-colors">Preguntas Frecuentes</a>
     </div>
@@ -155,253 +155,207 @@
 
   </nav>
 </header>
+
 <main>
 
   <!-- ENCABEZADO -->
-  <section class="pt-12 md:pt-20 pb-6 md:pb-10 text-center">
+  <section class="pt-10 md:pt-16 pb-4 md:pb-8 text-center">
     <div class="max-w-2xl mx-auto px-6">
       <div class="inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark">
         <span class="w-[22px] h-px bg-accent inline-block"></span>Catálogo Completo
       </div>
-      <h1 class="font-serif text-3xl md:text-5xl mt-3 md:mt-5 mb-3 md:mb-5">Nuestro Catálogo de Diseños de 15 Años</h1>
-      <p class="text-inkSoft text-base md:text-lg">Explorá cada estilo y encontrá la invitación ideal para tu fiesta. Todos nuestros diseños son 100% editables.</p>
+      <h1 class="font-serif text-3xl md:text-5xl mt-3 md:mt-5 mb-3 md:mb-5">Nuestros Diseños de Invitación</h1>
+      <p class="text-inkSoft text-sm md:text-lg">Explorá cada estilo y encontrá la invitación ideal para tu fiesta. Todos nuestros diseños son 100% editables y adaptables a tu evento.</p>
     </div>
   </section>
 
-  <!-- GRID DE DISEÑOS (SIN FILTROS) -->
-<section class="py-6 md:py-12">
-  <div class="max-w-[1180px] mx-auto px-3 sm:px-6 md:px-10">
-    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-8 sm:gap-6 lg:gap-8 justify-items-center items-stretch">
+ <!-- GRID DE DISEÑOS (Súper limpio, sin tarjetas ni espacios gigantes) -->
+  <section class="py-2 md:py-8">
+    <div class="max-w-[1000px] mx-auto px-2 sm:px-6">
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-6 justify-items-center items-center">
 
-      <!-- 1. DISEÑO LARA -->
-      <article class="reveal group flex flex-col items-center justify-between gap-3 w-full" style="transition-delay: 100ms;">
-        <a href="sofiplantillaquince.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño Lara" class="relative inline-block focus:outline-none">
-          <div class="animate-float-slow">
-            <img src="images/sofiquincemockup.png" alt="Tarjeta de invitación digital interactiva para 15 años - Modelo Lara" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </div>
+        <!-- 1. DISEÑO SOFÍA -->
+        <a href="sofiplantillaquince.html" target="_blank" rel="noopener" aria-label="Ver Modelo Sofía" class="reveal group w-full block py-1">
+          <img src="images/sofiquincemockup.png" alt="Invitación Digital - Modelo Sofía" loading="lazy" class="w-full h-auto max-h-[380px] object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300 mx-auto">
         </a>
-      </article>
 
-      <!-- 2. DISEÑO 2 -->
-      <article class="reveal group flex flex-col items-center justify-between gap-3 w-full" style="transition-delay: 200ms;">
-        <a href="plantilla_15_lara.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño 2" class="relative inline-block focus:outline-none">
-          <div class="animate-float-slow" style="animation-delay: 0.8s;">
-            <img src="images/mockup1.png" alt="Tarjeta de invitación digital interactiva para 15 años - Diseño 2" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </div>
+        <!-- 2. DISEÑO LARA -->
+        <a href="plantilla_15_lara.html" target="_blank" rel="noopener" aria-label="Ver Modelo Lara" class="reveal group w-full block py-1" style="transition-delay: 50ms;">
+          <img src="images/mockup1.png" alt="Invitación Digital - Modelo Lara" loading="lazy" class="w-full h-auto max-h-[380px] object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300 mx-auto">
         </a>
-      </article>
-       <!-- 3. DISEÑO 3 -->
-      <article class="reveal group flex flex-col items-center justify-between gap-3 w-full" style="transition-delay: 200ms;">
-        <a href="martiquince.html" target="_blank" rel="noopener" aria-label="Ver demo interactiva de Invitación 15 Años - Diseño 2" class="relative inline-block focus:outline-none">
-          <div class="animate-float-slow" style="animation-delay: 0.8s;">
-            <img src="images/martinaquince-mockup.png" alt="Tarjeta de invitación digital interactiva para 15 años - Diseño 2" loading="lazy" width="240" height="480" class="w-auto h-[280px] sm:h-[340px] max-w-full object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
-          </div>
+
+        <!-- 3. DISEÑO MARTINA -->
+        <a href="martiquince.html" target="_blank" rel="noopener" aria-label="Ver Modelo Martina" class="reveal group w-full block py-1" style="transition-delay: 100ms;">
+          <img src="images/martinaquince-mockup.png" alt="Invitación Digital - Modelo Martina" loading="lazy" class="w-full h-auto max-h-[380px] object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300 mx-auto">
         </a>
-      </article>
 
-
-      <!-- 3. TARJETA DISEÑO PERSONALIZADO (se mantiene igual) -->
-      <article class="reveal col-span-2 md:col-span-1 flex flex-col items-center justify-center text-center bg-cream2 border-2 border-dashed border-accent/60 rounded-3xl p-6 sm:p-8 w-full min-h-[360px] sm:min-h-[420px] transition-transform duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md" style="transition-delay: 300ms;">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-surface border border-line flex items-center justify-center shadow-inner mb-4 text-accent animate-float-slow" style="animation-delay: 1.5s;">
-          <svg class="w-8 h-8 sm:w-10 sm:h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-        </div>
-        <h2 class="font-serif text-xl sm:text-2xl font-bold text-ink mb-2">¿No encontraste tu diseño ideal?</h2>
-        <p class="text-xs sm:text-sm text-inkSoft leading-relaxed max-w-xs mb-6">Contanos cómo lo imaginás y lo creamos especialmente para vos.</p>
-        <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20una%20invitaci%C3%B3n%20personalizada%20que%20no%20encontr%C3%A9%20en%20el%20cat%C3%A1logo" target="_blank" rel="noopener" class="btn-shimmer inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wider px-6 py-3 shadow-md hover:bg-primaryDark active:scale-95 transition-all duration-200">
-          <span>Contanos tu idea</span>
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <!-- 4. DISEÑO AGUSTINA -->
+        <a href="agustinaveiniticinco.html" target="_blank" rel="noopener" aria-label="Ver Modelo Agustina" class="reveal group w-full block py-1" style="transition-delay: 150ms;">
+          <img src="images/mockupagustinaprint.webp" alt="Invitación Digital - Modelo Agustina" loading="lazy" class="w-full h-auto max-h-[380px] object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300 mx-auto">
         </a>
-      </article>
 
-    </div>
-  </div>
-</section>
+         <!-- 5. DISEÑO DELFINA -->
+        <a href="delfina.html" target="_blank" rel="noopener" aria-label="Ver Modelo Delfina" class="reveal group w-full block py-1" style="transition-delay: 150ms;">
+          <img src="images/delfimockup.png" alt="Invitación Digital - Modelo Delfina" loading="lazy" class="w-full h-auto max-h-[380px] object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300 mx-auto">
+        </a>
 
       </div>
+
+      <!-- BANNER DISEÑO PERSONALIZADO -->
+      <article class="reveal flex flex-col md:flex-row items-center justify-between text-center md:text-left bg-cream2 border-2 border-dashed border-accent/60 rounded-2xl p-5 sm:p-8 mt-8 w-full shadow-sm" style="transition-delay: 200ms;">
+        <div class="flex flex-col md:flex-row items-center gap-4 sm:gap-6">
+          <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-surface border border-line flex items-center justify-center shadow-inner text-accent shrink-0">
+            <svg class="w-6 h-6 sm:w-8 sm:h-8 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div>
+            <h2 class="font-serif text-lg sm:text-2xl font-bold text-ink mb-1">¿Querés un diseño 100% a tu medida?</h2>
+            <p class="text-xs sm:text-sm text-inkSoft leading-relaxed max-w-xl">Si tenés una idea o temática en mente que no encontrás en el catálogo, nos la contás por WhatsApp y la diseñamos especialmente para vos.</p>
+          </div>
+        </div>
+        <div class="mt-4 md:mt-0 shrink-0 w-full md:w-auto">
+          <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20consultar%20por%20un%20dise%C3%B1o%20100%25%20personalizado" target="_blank" rel="noopener" class="btn-shimmer inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 shadow-md hover:bg-primaryDark active:scale-95 transition-all w-full md:w-auto">
+            <span>Diseñar a medida</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
     </div>
   </section>
-
+    </div>
+  </section>
+ 
   <!-- PRECIOS -->
-  <section id="precios" class="py-20 md:py-28 bg-cream2">
-    <div class="max-w-[1180px] mx-auto px-6 md:px-10">
-      <div class="max-w-xl mx-auto text-center mb-16 reveal">
-        <div class="inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
-          <span class="w-[22px] h-px bg-accent inline-block"></span>Planes
+  <section id="precios" class="py-24 md:py-28 bg-cream2">
+    <div class="max-w-[840px] mx-auto px-6 md:px-10">
+      <div class="reveal text-center mb-16">
+        <div class="eyebrow inline-flex items-center gap-2.5 text-[0.72rem] font-bold tracking-[0.16em] uppercase text-primaryDark justify-center">
+          Planes simples
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl mt-4 mb-4">Un precio único, recuerdos para siempre.</h2>
-        <p class="text-inkSoft text-lg">Elegí el plan que mejor se adapte a tu celebración. Podés mejorar de plan en cualquier momento.</p>
+        <h2 class="font-serif text-3xl md:text-4xl mt-4">Elegí el plan perfecto para tu evento</h2>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
-
+      <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        
         <!-- PLAN 1: CLÁSICA -->
-        <div class="reveal h-full flex flex-col justify-between bg-white rounded-3xl shadow-md p-8 sm:p-10 border border-line" style="transition-delay: 100ms;">
-          <div class="space-y-6">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-full bg-accentSoft/40 flex items-center justify-center text-xl shrink-0">
-                🤍
-              </div>
-              <div>
-                <h3 class="font-serif text-2xl font-bold text-ink">Clásica</h3>
-                <p class="text-xs sm:text-sm text-inkSoft">Perfecto para eventos íntimos</p>
-              </div>
+        <div class="bg-surface rounded-3xl p-8 border border-line flex flex-col justify-between shadow-sm relative">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-accentSoft/40 flex items-center justify-center text-xl mb-4">
+              🤍
             </div>
+            <h3 class="font-serif text-2xl font-bold mb-1">Clásica</h3>
+            <p class="text-inkSoft text-xs mb-6">Perfecto para festejos íntimos o familiares</p>
+            <div class="text-3xl font-bold text-ink mb-6">$40.000</div>
 
-            <div class="flex items-baseline gap-1">
-              <span class="font-serif text-4xl sm:text-5xl font-bold text-ink">$45.000</span>
-              <span class="text-xs text-inkSoft font-semibold">/ pago único</span>
-            </div>
-
-            <ul class="flex flex-col gap-3 text-inkSoft text-sm pt-2 border-t border-line">
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">💬</span>
-                <span>Confirmación por WhatsApp</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">📸</span>
-                <span>Hasta 10 fotos</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">🎵</span>
-                <span>Música de fondo</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">📍</span>
-                <span>Mapa interactivo</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">🎁</span>
-                <span>Mesa de regalos</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">⚡</span>
-                <span>Entrega express en 24hs (+$12.000, opcional)</span>
-              </li>
+            <ul class="space-y-3.5 text-sm text-inkSoft mb-8">
+              <li class="flex items-start gap-2.5"><span>💬</span> <span>Confirmación por WhatsApp</span></li>
+              <li class="flex items-start gap-2.5"><span>📸</span> <span>Hasta 10 fotos</span></li>
+              <li class="flex items-start gap-2.5"><span>🎵</span> <span>Música de fondo</span></li>
+              <li class="flex items-start gap-2.5"><span>📍</span> <span>Mapa interactivo</span></li>
+              <li class="flex items-start gap-2.5"><span>🎁</span> <span>Mesa de regalos / Datos bancarios</span></li>
+              <li class="flex items-start gap-2.5"><span>⚡</span> <span>Entrega express en 12hs (+$12.000, opcional)</span></li>
             </ul>
           </div>
 
-          <div class="flex flex-col sm:flex-row gap-3 mt-8">
-            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20plan%20Cl%C3%A1sica" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-primary text-white font-bold text-sm py-3.5 hover:bg-primaryDark transition-colors shadow-sm">Elegir Clásica</a>
-            <a href="sofiplantillaquince.html" target="_blank" rel="noopener" class="text-center rounded-xl border border-line bg-surface text-ink font-bold text-sm px-5 py-3.5 hover:border-accent transition-colors">Ver ejemplo</a>
+          <div class="flex flex-col gap-3">
+            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20Plan%20Cl%C3%A1sica%20para%20mi%20cumplea%C3%B1os" target="_blank" rel="noopener" class="w-full text-center py-3.5 px-4 bg-primary text-white font-bold text-sm rounded-xl hover:bg-primaryDark transition-colors">
+              Elegir Clásica
+            </a>
+            <a href="martiquince.html" class="w-full text-center py-3.5 px-4 border border-primary text-primary font-bold text-sm rounded-xl hover:bg-primary/5 transition-colors">
+              Ver ejemplo
+            </a>
           </div>
         </div>
 
         <!-- PLAN 2: PREMIUM CELEBRA -->
-        <div class="reveal h-full flex flex-col justify-between bg-primary rounded-3xl shadow-2xl p-8 sm:p-10 relative border border-primaryDark" style="transition-delay: 200ms;">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-ink text-[0.68rem] font-bold uppercase tracking-widest px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+        <div class="bg-primary text-white rounded-3xl p-8 border border-primary flex flex-col justify-between shadow-xl relative lg:-translate-y-4">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink font-bold text-xs px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
             Más Elegido
           </div>
 
-          <div class="space-y-6">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-full bg-accent/30 flex items-center justify-center text-xl shrink-0">
-                ✨
-              </div>
-              <div>
-                <h3 class="font-serif text-2xl font-bold text-white">Premium Celebra</h3>
-                <p class="text-xs sm:text-sm text-accentSoft">Nuestro paquete más elegido</p>
-              </div>
+          <div>
+            <div class="w-12 h-12 rounded-full bg-accent/30 flex items-center justify-center text-xl mb-4">
+              ✨
             </div>
+            <h3 class="font-serif text-2xl font-bold mb-1">Premium Celebra</h3>
+            <p class="text-white/80 text-xs mb-6">La experiencia completa e interactiva</p>
+            <div class="text-3xl font-bold text-white mb-6">$65.000</div>
 
-            <div class="flex items-baseline gap-1">
-              <span class="font-serif text-4xl sm:text-5xl font-bold text-white">$65.000</span>
-              <span class="text-xs text-white/70 font-semibold">/ pago único</span>
-            </div>
+            <p class="text-xs font-semibold text-accent mb-3 uppercase tracking-wider">Todo lo de Clásica, más:</p>
 
-            <p class="text-xs font-bold uppercase tracking-wider text-accentSoft pt-2 border-t border-white/15">
-              Todo lo de Clásica, más:
-            </p>
-
-            <ul class="flex flex-col gap-3 text-white/90 text-sm">
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">📋</span>
-                <span>Sistema de confirmación propio con listado en vivo y recordatorio automático a quien no confirmó</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">🎯</span>
-                <span>Trivia interactiva para tus invitados</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">📱</span>
-                <span>Álbum de fotos por QR con tu diseño</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">🎶</span>
-                <span>Playlist personalizada</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <span class="shrink-0">🛍️</span>
-                <span>Wishlist (opcional)</span>
-              </li>
+            <ul class="space-y-3.5 text-sm text-white/90 mb-8">
+              <li class="flex items-start gap-2.5"><span>📋</span> <span><strong>Sistema de confirmación propio</strong> con listado en vivo y recordatorio automático</span></li>
+              <li class="flex items-start gap-2.5"><span>🎯</span> <span><strong>Trivia interactiva</strong> para tus invitados</span></li>
+              <li class="flex items-start gap-2.5"><span>📱</span> <span><strong>Álbum de fotos por QR</strong> con tu diseño</span></li>
+              <li class="flex items-start gap-2.5"><span>🎶</span> <span><strong>Playlist personalizada</strong> integrada</span></li>
+              <li class="flex items-start gap-2.5"><span>🛍️</span> <span><strong>Wishlist</strong> (opcional)</span></li>
             </ul>
           </div>
 
-          <div class="flex flex-col sm:flex-row gap-3 mt-8">
-            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20plan%20Premium%20Celebra" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-accent text-ink font-bold text-sm py-3.5 hover:bg-accentSoft transition-colors shadow-md">Elegir Premium Celebra</a>
-            <a href="sofiplantillaquince.html" target="_blank" rel="noopener" class="text-center rounded-xl border border-white/20 text-white font-bold text-sm px-5 py-3.5 hover:bg-white/10 transition-colors">Ver ejemplo</a>
+          <div class="flex flex-col gap-3">
+            <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20elegir%20el%20Plan%20Premium%20Celebra%20para%20mi%20cumplea%C3%B1os" target="_blank" rel="noopener" class="w-full text-center py-3.5 px-4 bg-accent text-ink font-bold text-sm rounded-xl hover:bg-accentSoft transition-colors shadow-md">
+              Elegir Premium Celebra
+            </a>
+            <a href="plantilla_15_lara.html" class="w-full text-center py-3.5 px-4 border border-white/40 text-white font-bold text-sm rounded-xl hover:bg-white/10 transition-colors">
+              Ver ejemplo
+            </a>
           </div>
         </div>
 
       </div>
-
-      <p class="reveal text-center text-inkSoft text-sm mt-12 max-w-xl mx-auto">
-        💡 Obtené un <strong class="text-ink font-bold">30% de descuento</strong> abonando mediante Transferencia Bancaria. Podés señar con el 50% para congelar el precio.
-      </p>
     </div>
   </section>
 
 </main>
-
-<!-- FOOTER -->
 <footer class="bg-ink text-white/80 pt-20 pb-8">
   <div class="max-w-[1180px] mx-auto px-6 md:px-10">
     <div class="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-14 border-b border-white/15">
+      
       <div>
-        <div class="flex items-center gap-2 font-serif text-xl font-semibold text-white">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 3L13.6 9.2L19.5 6.5L15.8 11.7L22 13L15.8 14.3L19.5 19.5L13.6 16.8L12 23L10.4 16.8L4.5 19.5L8.2 14.3L2 13L8.2 11.7L4.5 6.5L10.4 9.2L12 3Z" stroke="#C9A96E" stroke-width="1.2" stroke-linejoin="round"/>
-          </svg>
-          Celebra
-        </div>
-        <p class="mt-4 text-white/60 text-sm max-w-xs leading-relaxed">
+        <a href="index.html" class="inline-block mb-4">
+          <img src="images/logo/logoweb.svg" alt="Celebra Invitaciones Logo" class="h-12 w-auto filter brightness-0 invert">
+        </a>
+        <p class="mt-2 text-white/60 text-sm max-w-xs leading-relaxed">
           Invitaciones digitales e interactivas diseñadas especialmente para hacer inolvidable tu fiesta de 15 años.
         </p>
         <p class="mt-4 text-white/40 text-xs leading-relaxed">
           Nuestros canales están verificados. Ante cualquier duda, escribinos únicamente por los medios listados abajo.
         </p>
       </div>
+
       <div>
         <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Producto</h4>
         <a href="index.html#caracteristicas" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Qué incluye</a>
         <a href="catalogo.html" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Diseños</a>
-        <a href="index.html#precios" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Precios</a>
+        <a href="#precios" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Precios</a>
       </div>
+
       <div>
         <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Empresa</h4>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Nosotros</a>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Contacto</a>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Blog</a>
+        <a href="index.html#sobre-nosotras" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Nosotros</a>
+        <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Contacto</a>
+        <a href="index.html#faq" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Preguntas Frecuentes</a>
       </div>
+
       <div>
         <h4 class="text-[0.8rem] tracking-widest uppercase font-bold text-white/50 mb-4">Contacto</h4>
         <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" class="block text-sm mb-3 hover:text-accentSoft transition-colors">WhatsApp</a>
-        <a href="mailto:hola@celebra.com" class="block text-sm mb-3 hover:text-accentSoft transition-colors">hola@celebra.com</a>
-        <a href="#" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Instagram</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="block text-sm mb-3 hover:text-accentSoft transition-colors">Instagram</a>
       </div>
+
     </div>
+
     <div class="flex flex-wrap items-center justify-between gap-4 pt-8">
       <div class="text-sm text-white/40">© 2026 Celebra. Todos los derechos reservados.</div>
       <div class="flex gap-3.5">
-        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
         </a>
         <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
-        </a>
-        <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center hover:border-accentSoft hover:bg-accentSoft/10 transition-colors">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
         </a>
       </div>
     </div>
@@ -409,17 +363,17 @@
 </footer>
 
 <!-- BOTÓN FLOTANTE DE WHATSAPP -->
-<a href="https://wa.me/5491136218114" 
+<a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20consultar%20por%20las%20invitaciones%20del%20cat%C3%A1logo" 
    target="_blank" 
    rel="noopener noreferrer" 
-   class="btn-wsp-float bg-[#25D366] text-white p-3.5 md:p-4 rounded-full flex items-center justify-center cursor-pointer"
+   class="btn-wsp-float bg-[#25D366] text-white p-3.5 md:p-4 rounded-full flex items-center justify-center cursor-pointer shadow-lg"
    aria-label="Contactar por WhatsApp">
   <svg class="w-7 h-7 md:w-8 md:h-8 fill-current" viewBox="0 0 24 24">
     <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18c-1.6 0-3.09-.44-4.36-1.2l-.31-.18-3.03.8.81-2.95-.2-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8Zm4.32-5.67c-.24-.12-1.4-.69-1.62-.77-.22-.08-.38-.12-.53.12-.16.24-.61.77-.75.93-.14.16-.28.18-.51.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.28-.73-1.75-.19-.46-.39-.4-.53-.4h-.45c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z"/>
   </svg>
 </a>
 
-<!-- JAVASCRIPT: Scroll Reveal con IntersectionObserver -->
+<!-- JAVASCRIPT: Scroll Reveal -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var observerOptions = {
