@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<title>Estrategia Meta Ads — Interacción WhatsApp</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:'Lato',sans-serif;background:#F5F6F7;color:#2e3848;padding:32px;margin:0}
+h1{color:#2e3848;font-size:28px;font-weight:900;margin:0 0 4px}
+.subtitle{color:#666;margin-bottom:24px;font-size:14px;font-weight:300}
+.presupuesto-total{background:#2e3848;color:#74fbfb;padding:16px 24px;border-radius:12px;margin-bottom:12px;font-size:18px;font-weight:700;display:inline-block}
+.nota{font-size:13px;color:#555;margin:0 0 28px;max-width:760px;line-height:1.6}
+.tabs{display:flex;gap:8px;margin-bottom:0;flex-wrap:wrap}
+.tab{background:#e3e6ea;color:#2e3848;border:none;padding:12px 22px;border-radius:12px 12px 0 0;font:700 15px 'Lato',sans-serif;cursor:pointer}
+.tab.on{background:#2e3848;color:#74fbfb}
+.panel{display:none;background:white;border-radius:0 16px 16px 16px;padding:24px;box-shadow:0 2px 8px rgba(46,56,72,.08);margin-bottom:24px}
+.panel.on{display:block}
+.campaña-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.campaña-nombre{font-size:20px;font-weight:900}
+.campaña-presupuesto{background:rgba(116,251,251,.15);color:#376290;padding:8px 16px;border-radius:20px;font-weight:700;font-size:14px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:720px}
+th{background:#2e3848;color:#74fbfb;text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+th.grupo{background:#376290;color:#fff;font-size:12px}
+td{border-bottom:1px solid #e9ecef;padding:12px;vertical-align:top;line-height:1.5}
+td b{color:#376290}
+h3{font-size:15px;font-weight:900;color:#376290;margin:28px 0 10px}
+.ads{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.ad{background:#F5F6F7;border-radius:10px;padding:14px}
+.ad .l{font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:4px}
+.ad .v{font-size:14px;font-weight:700}
+.ad .d{font-size:12px;color:#555;margin-top:6px;line-height:1.5}
+.no-aplica{background:#f8d7da;color:#842029;padding:12px 16px;border-radius:8px;font-size:14px;margin-top:8px}
+.footer{margin-top:40px;background:#2e3848;padding:32px;text-align:center;color:#8dd0df;font-size:12px;border-radius:12px}
+.disclaimer-overlay{position:fixed;inset:0;background:rgba(46,56,72,.9);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px}
+.disclaimer-box{background:white;border-radius:16px;padding:40px;max-width:520px;text-align:center}
+.disclaimer-box h2{font-size:20px;font-weight:900;margin:0 0 16px}
+.disclaimer-box p{font-size:14px;color:#555;line-height:1.6;margin:0 0 24px}
+.disclaimer-box button{background:#2e3848;color:#74fbfb;border:none;padding:14px 32px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer}
+@media(max-width:600px){body{padding:16px}.disclaimer-box{padding:28px 20px}}
+</style>
+</head>
+<body>
+<div class="disclaimer-overlay" id="disclaimer">
+  <div class="disclaimer-box">
+    <h2>Antes de continuar</h2>
+    <p>Este reporte es una herramienta de apoyo basada en los datos que proporcionaste. Las estructuras de campañas, presupuestos y creativos son <strong>ideas y puntos de partida</strong>, no recomendaciones definitivas.<br><br>Cada negocio es diferente. Usa este reporte como complemento de lo que aprendes en la comunidad de Felipe Vergara, no como sustituto.</p>
+    <button onclick="document.getElementById('disclaimer').style.display='none'">Acepto y entiendo →</button>
+  </div>
+</div>
+
+<h1>📊 Estrategia Meta Ads</h1>
+<p class="subtitle">Celebra Invitaciones · Interacción → WhatsApp · Metodología Felipe Vergara — generado con Claude</p>
+<div class="presupuesto-total">💰 Presupuesto mensual: $240.000,00 ARS · $8.000,00 ARS/día</div>
+<p class="nota">Presupuesto ≤ USD 600 → regla de presupuesto bajo: <b>2 campañas</b> (Presentación 80% + Evaluación 20%). Producto sin recompra → sin Ascensión. Sin catálogo de productos → sin Conversión.</p>
+
+<div class="tabs">
+  <button class="tab on" data-t="p1">🎯 Presentación</button>
+  <button class="tab" data-t="p2">🔁 Evaluación</button>
+  <button class="tab" data-t="p3">🛒 Conversión</button>
+  <button class="tab" data-t="p4">⬆️ Ascensión</button>
+</div>
+
+<div class="panel on" id="p1">
+  <div class="campaña-header">
+    <div class="campaña-nombre">🎯 Presentación</div>
+    <div class="campaña-presupuesto">$192.000,00 ARS/mes · $6.400,00 ARS/día · $2.133,33 ARS/día por conjunto</div>
+  </div>
+  <div class="wrap"><table>
+    <tr><th class="grupo" colspan="4">Campaña</th></tr>
+    <tr><th>Objetivo</th><th>App de mensajería</th><th>Presupuesto campaña Advantage+</th><th>Presupuesto diario</th></tr>
+    <tr><td><b>Interacción</b></td><td>WhatsApp</td><td>ON</td><td>$6.400,00 ARS</td></tr>
+  </table></div>
+  <div class="wrap" style="margin-top:16px"><table>
+    <tr><th class="grupo" colspan="7">Conjuntos de anuncios</th></tr>
+    <tr><th>Conjunto</th><th>Evento de conversión</th><th>Objetivo de rendimiento</th><th>Calendario</th><th>Público</th><th>Exclusiones</th><th>Ubicaciones</th></tr>
+    <tr><td><b>1 · Abierto</b></td><td>— (no aplica)</td><td>Maximizar número de conversaciones</td><td>Indefinido</td><td>Argentina, H+M, 18-65+</td><td>FB 90d · IG 90d · Video +10s 90d · Web 90d · Compradores 180d · Lista clientes</td><td>Advantage+</td></tr>
+    <tr><td><b>2 · Intereses</b></td><td>— (no aplica)</td><td>Maximizar número de conversaciones</td><td>Indefinido</td><td>Argentina, H+M, 18-40 + Intereses: Quinceañera · Fiesta de quince años · Planificación de fiestas</td><td>Mismas</td><td>Advantage+</td></tr>
+    <tr><td><b>3 · Similares</b></td><td>— (no aplica)</td><td>Maximizar número de conversaciones</td><td>Indefinido</td><td>Argentina, H+M, 18-40, LAL 1% Compras 180d + LAL 1% Lista clientes</td><td>Mismas</td><td>Advantage+</td></tr>
+  </table></div>
+  <h3>Anuncios recomendados (3 a 6 · los mismos en los 3 conjuntos)</h3>
+  <div class="ads">
+    <div class="ad"><div class="l">Tipos</div><div class="v">Demostración · Aspiracional · Beneficios · Educativo · Pantalla dividida · Humano · Prensa</div></div>
+    <div class="ad"><div class="l">Nivel de consciencia</div><div class="v">Inconsciente · Problema · Solución</div></div>
+    <div class="ad"><div class="l">Tus creativos acá</div><div class="v">Reel sobre con lacre</div><div class="d">Demostración</div></div>
+    <div class="ad"><div class="l">Tus creativos acá</div><div class="v">Rosa "Mis XV"</div><div class="d">Beneficios</div></div>
+  </div>
+</div>
+
+<div class="panel" id="p2">
+  <div class="campaña-header">
+    <div class="campaña-nombre">🔁 Evaluación</div>
+    <div class="campaña-presupuesto">$48.000,00 ARS/mes · $1.600,00 ARS/día</div>
+  </div>
+  <div class="wrap"><table>
+    <tr><th class="grupo" colspan="4">Campaña</th></tr>
+    <tr><th>Objetivo</th><th>App de mensajería</th><th>Presupuesto campaña Advantage+</th><th>Presupuesto diario</th></tr>
+    <tr><td><b>Interacción</b></td><td>WhatsApp</td><td>ON</td><td>$1.600,00 ARS</td></tr>
+  </table></div>
+  <div class="wrap" style="margin-top:16px"><table>
+    <tr><th class="grupo" colspan="7">Conjunto de anuncios</th></tr>
+    <tr><th>Conjunto</th><th>Evento de conversión</th><th>Objetivo de rendimiento</th><th>Calendario</th><th>Público</th><th>Exclusiones</th><th>Ubicaciones</th></tr>
+    <tr><td><b>Retargeting 30d</b></td><td>— (no aplica)</td><td>Maximizar número de conversaciones</td><td>Indefinido</td><td>Argentina, H+M, 18-65 — FB 30d + IG 30d + Video medio 30d + Web 30d</td><td>Compradores 30d · Lista clientes</td><td>Advantage+</td></tr>
+  </table></div>
+  <h3>Anuncios recomendados (3 a 6)</h3>
+  <div class="ads">
+    <div class="ad"><div class="l">Tipos</div><div class="v">Testimonio · Prensa · Producto · Beneficios · Promociones</div></div>
+    <div class="ad"><div class="l">Nivel de consciencia</div><div class="v">Producto · Decisión</div></div>
+    <div class="ad"><div class="l">Tus creativos acá</div><div class="v">Violeta "10% OFF transferencia"</div><div class="d">Promociones</div></div>
+  </div>
+</div>
+
+<div class="panel" id="p3">
+  <div class="campaña-nombre">🛒 Conversión</div>
+  <div class="no-aplica">No aplica: requiere catálogo de productos en Meta y presupuesto mayor a USD 1.000.</div>
+</div>
+
+<div class="panel" id="p4">
+  <div class="campaña-nombre">⬆️ Ascensión</div>
+  <div class="no-aplica">No aplica: producto sin recompra y presupuesto ≤ USD 600.</div>
+</div>
+
+<div class="footer">Estrategia Meta Ads · Celebra Invitaciones · Metodología Felipe Vergara</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');
+});});
+</script>
+</body>
+</html>

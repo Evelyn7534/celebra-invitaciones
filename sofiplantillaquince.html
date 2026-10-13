@@ -3,155 +3,285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="Te invito a celebrar mis 15 años. ¡Consulta toda la información de mi fiesta aquí!">
-<meta property="og:title" content="Mis 15 Años - Sofía">
-<meta property="og:description" content="Acompáñame a celebrar una noche inolvidable. Confirma tu asistencia y conoce todos los detalles.">
+<title>Sofía · Mis 15 años</title>
+<meta name="description" content="Te invito a celebrar mis 15 años. Abrí la invitación.">
+<meta property="og:title" content="Sofía · Mis 15 años">
+<meta property="og:description" content="Tenés una invitación. Abrila para ver todos los detalles.">
 <meta property="og:type" content="website">
-<title>Mis 15 Años - Sofía</title>
 
-<!-- PRECONNECT Y FUENTES -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          creamBg: '#FAF6F0',
-          blush: '#F4EAE6',
-          rose: '#E8C2CA',
-          roseDeep: '#D8A7B1',
-          lavender: '#E2D4F0',
-          ink: '#2D1B2D',
-          goldAccent: '#D4AF37',
-          violetAccent: '#7B5294'
-        },
-        fontFamily: {
-          breathing: ['"Breathing"', '"Alex Brush"', 'cursive'],
-          serif: ['"Playfair Display"', 'serif'],
-          sans: ['"Plus Jakarta Sans"', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-  @font-face {
-    font-family: 'Breathing';
-    src: url('https://fonts.cdnfonts.com/s/93121/Breathing.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  /* ============ PALETA ============ */
+  :root{
+    --lino:#E9DEE7;       /* fondo: lino lila */
+    --papel:#FBF7F2;      /* tarjetas */
+    --sobre:#EAD6DF;      /* sobre */
+    --sobre2:#E1C8D5;     /* solapa */
+    --tinta:#3B2B41;
+    --tinta2:#7B6B80;
+    --lila:#6E4F86;
+    --lacre:#6A3F7E;
+    --rosa:#D3A2AE;
+    --hoja:#9FA88F;
+    --filete:rgba(110,79,134,.28);
+    --display:"Cormorant Garamond", Garamond, "Times New Roman", serif;
+    --script:"Pinyon Script", "Snell Roundhand", cursive;
+    --sans:"Plus Jakarta Sans", system-ui, sans-serif;
   }
-  html { scroll-behavior: smooth; }
-  body { background: #FAF6F0; color: #2D1B2D; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--tinta);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background-color:var(--lino);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .38 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body.locked{overflow:hidden;height:100svh;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  ::selection{background:var(--lila);color:var(--papel);}
+  :focus-visible{outline:2px solid var(--lila);outline-offset:3px;}
 
-  /* ANIMACIONES DE SCROLL (AOS) */
-  .reveal {
-    opacity: 0;
-    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-  }
-  .reveal-up { transform: translateY(40px); }
-  .reveal-down { transform: translateY(-40px); }
-  .reveal-left { transform: translateX(-40px); }
-  .reveal-right { transform: translateX(40px); }
-  .reveal-zoom { transform: scale(0.92); }
+  /* ============ SOBRE DE APERTURA ============ */
+  .intro{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;padding:24px;background:inherit;background-color:var(--lino);transition:opacity .8s ease, visibility .8s;}
+  .intro.gone{opacity:0;visibility:hidden;}
+  .intro-to{font-family:var(--display);font-style:italic;font-size:1.25rem;color:var(--tinta2);text-align:center;}
+  .env{position:relative;width:min(84vw,380px);aspect-ratio:1.42;perspective:1400px;border:0;background:none;cursor:pointer;padding:0;}
+  .env-back{position:absolute;inset:0;background:var(--sobre2);border-radius:6px;box-shadow:0 30px 50px -28px rgba(70,40,80,.55);}
+  .env-card{position:absolute;left:7%;right:7%;top:7%;height:86%;background:var(--papel);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 1s cubic-bezier(.2,.8,.2,1) .75s;z-index:2;}
+  .env-card .n{font-family:var(--script);font-size:3.2rem;line-height:1;color:var(--lila);}
+  .env-card .x{font-family:var(--display);letter-spacing:.35em;font-size:.85rem;color:var(--tinta2);margin-top:6px;}
+  .env-pocket{position:absolute;inset:0;z-index:3;border-radius:6px;background:linear-gradient(160deg,#EFDDE5,var(--sobre));clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);}
+  .env-pocket::after{content:"";position:absolute;inset:0;background:linear-gradient(20deg,rgba(0,0,0,.05),transparent 40%),linear-gradient(-20deg,rgba(0,0,0,.05),transparent 40%);}
+  .env-flap{position:absolute;left:0;right:0;top:0;height:62%;z-index:4;transform-origin:top center;transition:transform .7s cubic-bezier(.4,0,.2,1) .25s;background:linear-gradient(180deg,var(--sobre2),#D9BDCB);clip-path:polygon(0 0,100% 0,50% 100%);border-radius:6px 6px 0 0;}
+  .seal{position:absolute;left:50%;top:62%;width:74px;height:74px;margin:-37px 0 0 -37px;z-index:5;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 34% 30%,#9A6DB0 0%,var(--lacre) 48%,#4A2A5B 100%);
+    box-shadow:0 0 0 4px rgba(106,63,126,.9),0 0 0 7px rgba(106,63,126,.35),0 8px 16px -4px rgba(40,15,50,.6);
+    transition:transform .35s ease, opacity .35s ease;}
+  .seal span{font-family:var(--script);font-size:2.6rem;line-height:1;color:rgba(255,235,250,.55);text-shadow:0 -1px 0 rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.25);transform:translateY(4px);}
+  .env:hover .seal{transform:scale(1.04);}
+  .tap{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--tinta2);animation:blink 2.4s ease-in-out infinite;}
+  @keyframes blink{50%{opacity:.35}}
+  /* secuencia de apertura */
+  .intro.opening .seal{transform:scale(.6);opacity:0;}
+  .intro.opening .env-flap{transform:rotateX(180deg);z-index:1;transition-property:transform,z-index;transition-delay:.25s,.6s;}
+  .intro.opening .env-card{transform:translateY(-58%);}
+  .intro.opening .tap{opacity:0;animation:none;}
 
-  .reveal.active {
-    opacity: 1;
-    transform: translate(0) scale(1);
-  }
+  /* ============ JUEGO DE TARJETAS ============ */
+  html{overflow-x:hidden;}
+  main{padding:calc(40px + env(safe-area-inset-top,0px)) 18px 30px;overflow-x:clip;}
+  .card{position:relative;max-width:430px;margin:0 auto 34px;background:var(--papel);border-radius:4px;padding:46px 30px;text-align:center;
+    box-shadow:0 22px 40px -26px rgba(70,40,80,.5),0 2px 5px rgba(70,40,80,.07);}
+  .card::before{content:"";position:absolute;inset:11px;border:1px solid var(--filete);border-radius:2px;pointer-events:none;}
+  .tilt-l{transform:rotate(-1.1deg);}
+  .tilt-r{transform:rotate(.9deg);}
+  .flor{position:absolute;width:128px;height:128px;pointer-events:none;}
+  .flor.tl{top:-26px;left:-16px;}
+  .flor.br{bottom:-26px;right:-16px;transform:rotate(180deg);}
+  .flor.tr{top:-24px;right:-16px;transform:scaleX(-1);}
 
-  /* EFECTOS Y GLOW */
-  .btn-glow {
-    position: relative;
-    box-shadow: 0 0 20px rgba(123, 82, 148, 0.35);
-    transition: all 0.4s ease;
-  }
-  .btn-glow:hover {
-    box-shadow: 0 0 30px rgba(123, 82, 148, 0.6);
-    transform: translateY(-3px) scale(1.02);
-  }
+  .caps{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta2);}
+  .script{font-family:var(--script);font-weight:400;color:var(--lila);line-height:1;}
+  .disp{font-family:var(--display);font-weight:400;}
+  .it{font-family:var(--display);font-style:italic;color:var(--tinta2);}
+  .rule{width:46px;height:1px;background:var(--rosa);margin:20px auto;}
 
-  /* CARRUSEL ANCHO COMPLETO */
-  .carrusel-track { display: flex; transition: transform .6s cubic-bezier(.65,0,.35,1); touch-action: pan-y; }
-  .carrusel-slide { flex: 0 0 100%; min-width: 100%; }
-  .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.4); transition: all .3s ease; }
-  .dot.active { width: 28px; background: #FAF6F0; }
+  /* 1. Tarjeta principal */
+  .photo{position:relative;margin:-14px -8px 30px;aspect-ratio:4/5;overflow:hidden;border-radius:2px;}
+  .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;}
+  .main-name{font-size:clamp(4.4rem,21vw,6rem);}
+  .main-xv{font-family:var(--display);font-weight:300;font-size:clamp(4.5rem,24vw,6.5rem);line-height:.8;color:var(--tinta);letter-spacing:.04em;margin-top:6px;}
+  .main-xv small{display:block;font-size:.8rem;letter-spacing:.34em;font-weight:500;margin-top:14px;color:var(--tinta2);font-family:var(--sans);}
+  .phrase{font-family:var(--display);font-style:italic;font-size:1.28rem;line-height:1.5;color:var(--tinta);text-wrap:balance;}
 
-  @keyframes floatSlow {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(3deg); }
-  }
-  .animate-float { animation: floatSlow 4s infinite ease-in-out; }
+  /* 2. Cinta con cuenta regresiva */
+  .ribbon{max-width:470px;margin:0 auto 34px;background:var(--lila);color:var(--papel);padding:22px 18px;position:relative;text-align:center;
+    clip-path:polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%);}
+  .ribbon .caps{color:rgba(251,247,242,.75);}
+  .count{display:flex;justify-content:center;gap:0;margin-top:8px;}
+  .count div{padding:0 14px;}
+  .count div + div{border-left:1px solid rgba(251,247,242,.3);}
+  .count strong{display:block;font-family:var(--display);font-weight:500;font-size:2.3rem;line-height:1;font-variant-numeric:lining-nums tabular-nums;}
+  .count small{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;opacity:.8;}
 
-  @keyframes pulseLight {
-    0%, 100% { opacity: 0.9; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
+  /* 3. Tarjeta de detalles */
+  .when{display:flex;align-items:stretch;justify-content:center;margin:20px 0 6px;}
+  .when > div{padding:4px 16px;display:flex;flex-direction:column;justify-content:center;}
+  .when .mid{border-left:1px solid var(--filete);border-right:1px solid var(--filete);}
+  .when .mid strong{font-family:var(--display);font-weight:400;font-size:3.8rem;line-height:.9;color:var(--lila);font-variant-numeric:lining-nums;}
+  .when .side{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px 18px;margin-top:30px;}
+  .grid2 .full{grid-column:1 / -1;}
+  .grid2 .v{font-family:var(--display);font-size:1.35rem;line-height:1.2;margin-top:4px;}
+  .grid2 .s{font-size:.88rem;color:var(--tinta2);margin-top:2px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:.92rem;border-radius:999px;padding:13px 24px;text-decoration:none;transition:transform .15s, background-color .2s, color .2s;}
+  .btn:active{transform:scale(.97);}
+  .btn-lila{background:var(--lila);color:var(--papel);}
+  .btn-lila:hover{background:#5B4071;}
+  .btn-line{background:transparent;color:var(--lila);border:1px solid var(--lila);}
+  .btn-line:hover{background:var(--lila);color:var(--papel);}
+
+  /* 4. Fotos con esquineros */
+  .photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+  .photos button{position:relative;border:0;padding:6px;background:#fff;cursor:zoom-in;box-shadow:0 8px 16px -10px rgba(70,40,80,.5);}
+  .photos button:nth-child(4n+1){transform:rotate(-2deg);}
+  .photos button:nth-child(4n+2){transform:rotate(1.5deg);margin-top:18px;}
+  .photos button:nth-child(4n+3){transform:rotate(1deg);margin-top:-8px;}
+  .photos button:nth-child(4n){transform:rotate(-1.5deg);margin-top:10px;}
+  .photos img{width:100%;aspect-ratio:3/4;object-fit:cover;}
+  .photos button::before,.photos button::after{content:"";position:absolute;width:22px;height:22px;background:var(--sobre2);opacity:.9;}
+  .photos button::before{top:-4px;left:-4px;clip-path:polygon(0 0,100% 0,0 100%);}
+  .photos button::after{bottom:-4px;right:-4px;clip-path:polygon(100% 0,100% 100%,0 100%);}
+  .lightbox{position:fixed;inset:0;z-index:90;background:rgba(40,25,45,.9);display:flex;align-items:center;justify-content:center;padding:24px;}
+  .lightbox[hidden]{display:none;}
+  .lightbox img{max-height:86svh;width:auto;border:8px solid #fff;}
+  .lightbox button{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:1.4rem;cursor:pointer;}
+
+  /* 5. Trivia */
+  .dots{display:flex;justify-content:center;gap:8px;margin:18px 0 6px;}
+  .dots i{width:8px;height:8px;border-radius:50%;border:1px solid var(--lila);}
+  .dots i.on{background:var(--lila);}
+  .q{font-family:var(--display);font-size:1.6rem;line-height:1.2;margin:14px 0 20px;}
+  .opts{display:grid;gap:10px;text-align:left;}
+  .opt{display:flex;align-items:center;gap:14px;width:100%;background:transparent;border:1px solid var(--filete);border-radius:10px;padding:11px 14px;font:inherit;font-size:.97rem;color:var(--tinta);cursor:pointer;transition:border-color .2s, background-color .2s;}
+  .opt b{flex:0 0 28px;height:28px;border-radius:50%;border:1px solid var(--lila);color:var(--lila);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.05rem;font-weight:500;}
+  .opt:hover:not(:disabled){border-color:var(--lila);}
+  .opt.ok{background:#EFE6F4;border-color:var(--lila);}
+  .opt.ok b{background:var(--lila);color:var(--papel);}
+  .opt.bad{opacity:.55;}
+  .opt:disabled{cursor:default;}
+  .fb{min-height:1.7em;margin-top:14px;font-family:var(--display);font-style:italic;font-size:1.2rem;color:var(--lila);}
+  .btn[hidden]{display:none;}
+
+  /* 6. Participá: dos tarjetitas */
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:430px;margin:0 auto 34px;}
+  .mini{background:var(--papel);border-radius:4px;padding:24px 14px;text-align:center;text-decoration:none;box-shadow:0 16px 30px -22px rgba(70,40,80,.5);position:relative;}
+  .mini::before{content:"";position:absolute;inset:8px;border:1px solid var(--filete);border-radius:2px;}
+  .mini svg{color:var(--lila);margin:0 auto 10px;}
+  .mini .v{font-family:var(--display);font-size:1.2rem;line-height:1.2;}
+  .mini .go{display:block;margin-top:8px;font-size:.78rem;font-weight:600;color:var(--lila);}
+
+  /* 7. Sobrecito de regalos */
+  .gift-env{position:relative;width:min(100%,300px);aspect-ratio:1.5;margin:26px auto 0;border:0;background:none;cursor:pointer;perspective:900px;display:block;}
+  .gift-env .b{position:absolute;inset:0;background:var(--sobre2);border-radius:4px;}
+  .gift-env .p{position:absolute;inset:0;background:linear-gradient(160deg,#EFDDE5,var(--sobre));clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);border-radius:4px;}
+  .gift-env .f{position:absolute;left:0;right:0;top:0;height:58%;background:#D9BDCB;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .5s ease;}
+  .gift-env .l{position:absolute;left:50%;top:58%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#9A6DB0,var(--lacre) 50%,#4A2A5B);box-shadow:0 0 0 3px rgba(106,63,126,.8);display:flex;align-items:center;justify-content:center;font-family:var(--script);color:rgba(255,235,250,.6);font-size:1.5rem;transition:opacity .3s;}
+  .gift-env .hint{position:absolute;left:0;right:0;bottom:12px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta2);}
+  .gift-env{transition:opacity .35s ease .35s;}
+  .gift-env.opening .f{transform:rotateX(180deg);opacity:0;transition:transform .45s ease, opacity .2s ease .3s;}
+  .gift-env.opening .l,.gift-env.opening .hint{opacity:0;}
+  .gift-env.opening{opacity:0;}
+  .gift-env[hidden]{display:none;}
+  .bank:not([hidden]){animation:rise .5s cubic-bezier(.16,1,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .bank{text-align:left;margin-top:22px;display:grid;gap:12px;}
+  .bank[hidden]{display:none;}
+  .bank-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#F4EDF3;border-radius:8px;padding:12px 14px;}
+  .bank-row small{display:block;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta2);}
+  .bank-row .v{font-family:var(--display);font-size:1.25rem;line-height:1.2;word-break:break-all;}
+  .bank-row .v.m{font-family:var(--sans);font-size:.9rem;font-variant-numeric:tabular-nums;}
+  .copy{flex:0 0 auto;border:1px solid var(--lila);background:#fff;color:var(--lila);font:inherit;font-weight:600;font-size:.78rem;border-radius:999px;padding:8px 14px;cursor:pointer;}
+  .copy.done{background:var(--lila);color:#fff;}
+
+  /* 8. Tarjeta R.S.V.P. */
+  .rsvp-mark{font-family:var(--display);font-size:2.6rem;letter-spacing:.2em;color:var(--lila);line-height:1;}
+  .rsvp-form{margin:22px auto 0;max-width:300px;text-align:left;}
+  .rsvp-line{display:flex;align-items:flex-end;gap:10px;margin-top:14px;font-family:var(--display);font-size:1.15rem;color:var(--tinta2);}
+  .rsvp-line input{flex:1;min-width:0;border:0;border-bottom:1px solid var(--filete);background:transparent;font-family:var(--display);font-size:1.3rem;color:var(--tinta);padding:2px 2px 4px;outline:none;transition:border-color .2s;}
+  .rsvp-line input:focus{border-bottom-color:var(--lila);}
+  .rsvp-line input::placeholder{color:rgba(123,107,128,.55);font-style:italic;}
+  .choice{display:flex;gap:8px;margin-top:16px;}
+  .choice label{flex:1;cursor:pointer;}
+  .choice input{position:absolute;opacity:0;pointer-events:none;}
+  .choice span{display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--filete);border-radius:999px;padding:10px 8px;font-size:.9rem;font-weight:600;color:var(--tinta2);transition:all .2s;}
+  .choice span::before{content:"";width:14px;height:14px;border-radius:50%;border:1px solid var(--lila);flex:0 0 auto;}
+  .choice input:checked + span{border-color:var(--lila);color:var(--lila);background:#F4EDF3;}
+  .choice input:checked + span::before{background:var(--lila);box-shadow:inset 0 0 0 3px #F4EDF3;}
+  .choice input:focus-visible + span{outline:2px solid var(--lila);outline-offset:2px;}
+  .form-err{min-height:1.4em;margin-top:10px;font-size:.85rem;color:#A0455C;text-align:center;}
+  .rsvp-photo{width:112px;height:112px;border-radius:50%;overflow:hidden;margin:0 auto 18px;border:4px solid #fff;box-shadow:0 0 0 1px var(--filete);}
+  .rsvp-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;}
+
+  footer{text-align:center;padding:10px 24px calc(30px + env(safe-area-inset-bottom,0px));font-size:.85rem;color:var(--tinta2);}
+  footer a{color:var(--lila);text-decoration:none;border-bottom:1px solid var(--rosa);}
+
+  /* Música */
+  .music{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:80;width:50px;height:50px;border-radius:50%;border:2px solid rgba(251,247,242,.9);background:var(--lila);color:var(--papel);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 20px -8px rgba(70,40,80,.6);}
+  .music .bars{display:none;align-items:center;gap:3px;height:20px;}
+  .music.playing .bars{display:flex;}
+  .music.playing .note{display:none;}
+  .music i{display:block;width:3px;height:5px;background:currentColor;border-radius:2px;}
+  .music-tip{position:fixed;top:calc(26px + env(safe-area-inset-top,0px));right:74px;z-index:80;background:var(--papel);color:var(--tinta);font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;box-shadow:0 6px 14px -8px rgba(70,40,80,.5);transition:opacity .5s;}
+  .music-tip[hidden]{display:none;}
+  .music.playing i{animation:eq 1s ease-in-out infinite;}
+  .music.playing i:nth-child(2){animation-delay:-.4s}.music.playing i:nth-child(3){animation-delay:-.7s}.music.playing i:nth-child(4){animation-delay:-.2s}
+  @keyframes eq{0%,100%{height:5px}50%{height:18px}}
+  .music[hidden]{display:none;}
+
+  /* Aparición de tarjetas */
+  .js .reveal{opacity:0;translate:0 22px;transition:opacity .9s cubic-bezier(.16,1,.3,1),translate .9s cubic-bezier(.16,1,.3,1);}
+  .js .reveal.in{opacity:1;translate:0 0;}
+
+  @media (prefers-reduced-motion: reduce){
+    .js .reveal{opacity:1;translate:none;transition:none;}
+    .tap,.music.playing i{animation:none;}
+    .env-card,.env-flap,.seal,.intro,.gift-env .f{transition-duration:.01s !important;transition-delay:0s !important;}
   }
-  .animate-pulse-btn { animation: pulseLight 2s infinite ease-in-out; }
 </style>
 </head>
-<body class="font-sans antialiased overflow-x-hidden">
+<body class="locked">
 
-<!-- BOTÓN DE MÚSICA MP3 (DERECHA Y FIX) -->
-<div class="fixed top-5 right-5 z-50">
-  <button id="music-toggle-btn" aria-label="Reproducir / Pausar Música" class="w-12 h-12 rounded-full bg-violetAccent text-white flex items-center justify-center shadow-xl border border-rose/30 hover:scale-110 transition-transform cursor-pointer">
-    <!-- Icono Play -->
-    <svg id="music-play-icon" class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    <!-- Icono Pause (oculto inicialmente) -->
-    <svg id="music-pause-icon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  </button>
-  <audio id="bg-audio" loop></audio>
-</div>
-
-<!-- ======================================================= -->
-<!-- PANEL DE CONFIGURACIÓN — Edita los datos de Sofía aquí  -->
-<!-- ======================================================= -->
+<!-- ======================================================
+     CONFIGURACIÓN — Editá los datos de Sofía acá
+     ====================================================== -->
 <script>
 const CONFIG = {
   nombre: "Sofía",
+  inicialLacre: "S",                       // NUEVO: letra del sello de lacre
   presentacionTitulo: "Mis 15 años",
-  subtitulo: "Mis XV Años",
-  frase: "Hay momentos en la vida que son irrepetibles, pero compartirlos con las personas que más querés los hace inolvidables. ¡Acompáñame a celebrar mi noche soñada!",
+  subtitulo: "Mis XV años",
+  frase: "Hay momentos que son irrepetibles, pero compartirlos con las personas que más quiero los hace inolvidables. Te espero para celebrar mi noche soñada.",
 
   // Fecha y hora del evento
   fechaISO: "2026-11-21T21:00:00",
-  fechaTextual: "Sábado, 21 de Noviembre de 2026",
-  horaRecepcion: "21:00 hs",
+  fechaTextual: "Sábado 21 de noviembre de 2026",
+  horaRecepcion: "21:00 h",
 
   // Ubicación
+  lugarNombre: "Salón del evento",          // NUEVO
+  lugarDireccion: "Dirección, localidad",   // NUEVO
   mapsUrl: "https://maps.google.com",
-  
+
   // Dress code
   dressCodeTitulo: "Elegante",
-  dressCodeDescripcion: "Reservado el color blanco y rosa dorado.",
+  dressCodeDescripcion: "Reservado el blanco y el rosa dorado.",
 
   // Confirmación por WhatsApp
   whatsappNumero: "5491100000000",
-  whatsappMensaje: "¡Hola Sofi! Quiero confirmar mi asistencia a tus 15 años 🎉",
+  // {nombre} y {mensaje} se completan solos con lo que escribe el invitado
+  rsvpMensajeSi: "¡Hola Sofi! Soy {nombre} y confirmo que voy a tus 15 🎉 {mensaje}",
+  rsvpMensajeNo: "¡Hola Sofi! Soy {nombre}. Lamentablemente no voy a poder ir a tus 15 😢 {mensaje}",
 
-  // Datos Bancarios
+  // Datos bancarios
   regaloTitular: "Sofía Nombres Apellido",
   regaloAlias: "SOFIA.MIS.15",
   regaloCbu: "0000003100084729104812",
 
-  // Música de fondo / Links
+  // Música (arranca sola al abrir el sobre) y links
   audioUrl: "mis iconos/chopin.mp3",
   playlistUrl: "#",
   albumFotosUrl: "#",
 
   // Textos
-  tituloCarrusel: "Mis Momentos",
-  tituloRegalos: "Mesa de Regalos",
-  mensajeRegalos: "El mejor regalo es tu presencia en esta noche tan especial, pero si deseas hacerme un detalle:",
+  tituloCarrusel: "Mis momentos",
+  tituloRegalos: "Mesa de regalos",
+  mensajeRegalos: "El mejor regalo es tu presencia. Si además querés hacerme un detalle, abrí el sobre.",
 
-  // Fotos de Sofía
+  // Fotos
   fotoPortada: "images/sofiaquince/sofiadespalda.png",
   fotoSecundaria: "images/sofiaquince/sofia.png",
   fotoRSVP: "images/sofiaquince/rsvpsofiaquince.png",
@@ -162,617 +292,337 @@ const CONFIG = {
     "images/sofiaquince/sofiadespalda.png"
   ],
 
-  // PREGUNTAS DE LA TRIVIA
+  // Trivia
   trivia: [
-    {
-      pregunta: "¿Cuál es el color favorito de Sofía?",
-      opciones: ["Rosa Gold", "Lila", "Verde Agua", "Negro"],
-      correcta: 1
-    },
-    {
-      pregunta: "¿Qué comida le gusta más?",
-      opciones: ["Sushi", "Hamburguesas", "Pastas", "Pizza"],
-      correcta: 2
-    },
-    {
-      pregunta: "¿Cuál es su pasatiempo preferido?",
-      opciones: ["Bailar", "Escuchar Música", "Ver Series", "Entrenar"],
-      correcta: 0
-    }
+    { pregunta: "¿Cuál es el color favorito de Sofía?", opciones: ["Rosa gold", "Lila", "Verde agua", "Negro"], correcta: 1 },
+    { pregunta: "¿Qué comida le gusta más?", opciones: ["Sushi", "Hamburguesas", "Pastas", "Pizza"], correcta: 2 },
+    { pregunta: "¿Cuál es su pasatiempo preferido?", opciones: ["Bailar", "Escuchar música", "Ver series", "Entrenar"], correcta: 0 }
   ]
 };
 </script>
 
-<main>
+<!-- Ilustraciones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ramo" viewBox="0 0 130 130">
+    <g fill="none" stroke="#9FA88F" stroke-width="1.3" stroke-linecap="round"><path d="M8 122C30 96 52 74 86 40"/><path d="M40 88C38 70 44 58 54 50"/><path d="M60 66C74 64 86 70 94 80"/></g>
+    <g fill="#B7BFA6" opacity=".85">
+      <path d="M22 106c-8-6-10-16-6-22 8 4 10 14 6 22Z"/><path d="M30 98c10-2 18 2 22 8-8 4-18 2-22-8Z"/>
+      <path d="M48 78c-6-8-6-18 0-24 6 6 6 16 0 24Z"/><path d="M64 60c10-4 20-2 24 4-8 6-18 4-24-4Z"/>
+      <path d="M44 62c-4-6-2-14 4-18 3 6 2 14-4 18Z"/><path d="M78 48c2-8 8-14 16-14-1 8-8 14-16 14Z"/>
+      <path d="M80 76c8 0 14 4 16 10-8 2-14-2-16-10Z"/>
+    </g>
+    <g><g transform="translate(90 34)"><circle r="7" cx="0" cy="-8" fill="#E3B7C2"/><circle r="7" cx="7.6" cy="-2.5" fill="#DBA9B6"/><circle r="7" cx="4.7" cy="6.5" fill="#E3B7C2"/><circle r="7" cx="-4.7" cy="6.5" fill="#DBA9B6"/><circle r="7" cx="-7.6" cy="-2.5" fill="#E3B7C2"/><circle r="3.4" fill="#C9A15F"/></g>
+      <g transform="translate(56 48) scale(.7)"><circle r="7" cx="0" cy="-8" fill="#CDB6DD"/><circle r="7" cx="7.6" cy="-2.5" fill="#C1A7D6"/><circle r="7" cx="4.7" cy="6.5" fill="#CDB6DD"/><circle r="7" cx="-4.7" cy="6.5" fill="#C1A7D6"/><circle r="7" cx="-7.6" cy="-2.5" fill="#CDB6DD"/><circle r="3.4" fill="#C9A15F"/></g>
+      <g transform="translate(98 82) scale(.55)"><circle r="7" cx="0" cy="-8" fill="#E3B7C2"/><circle r="7" cx="7.6" cy="-2.5" fill="#DBA9B6"/><circle r="7" cx="4.7" cy="6.5" fill="#E3B7C2"/><circle r="7" cx="-4.7" cy="6.5" fill="#DBA9B6"/><circle r="7" cx="-7.6" cy="-2.5" fill="#E3B7C2"/><circle r="3.4" fill="#C9A15F"/></g>
+      <circle cx="70" cy="30" r="2.4" fill="#E3B7C2"/><circle cx="104" cy="58" r="2" fill="#CDB6DD"/><circle cx="34" cy="80" r="2.2" fill="#E3B7C2"/></g>
+  </symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V6l11-2v12M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3Zm11-2a3 3 0 1 1-3-3 3 3 0 0 1 3 3Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+</svg>
 
-  <!-- HERO PRESENTACIÓN -->
-  <section class="relative min-h-[100svh] flex flex-col justify-between items-center overflow-hidden px-6 py-12 text-center bg-ink">
-    <img id="portada-img" src="" alt="Portada Sofía" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 opacity-60">
-    <div class="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/90"></div>
+<!-- ============ SOBRE DE APERTURA ============ -->
+<div class="intro" id="intro">
+  <p class="intro-to">Tenés una invitación</p>
+  <button type="button" class="env" id="env" aria-label="Abrir la invitación">
+    <span class="env-back"></span>
+    <span class="env-card"><span class="n" id="env-nombre"></span><span class="x">MIS XV</span></span>
+    <span class="env-pocket"></span>
+    <span class="env-flap"></span>
+    <span class="seal"><span id="seal-letra"></span></span>
+  </button>
+  <p class="tap">Tocá el sello para abrir</p>
+</div>
 
-    <div class="relative z-10 pt-8 reveal reveal-down">
-      <span class="text-xs uppercase tracking-[0.3em] text-rose font-semibold bg-ink/40 px-4 py-1.5 rounded-full border border-rose/30 backdrop-blur-sm">
-        Te invito a celebrar
-      </span>
-    </div>
+<main id="invitacion">
 
-    <div class="relative z-10 my-auto flex flex-col items-center justify-center space-y-2">
-      <h2 id="presentacion-texto" class="font-breathing text-6xl sm:text-8xl md:text-9xl text-rose font-normal tracking-wide drop-shadow-lg leading-tight select-none">
-        Mis 15 años
-      </h2>
-      <h1 id="nombre-titulo" class="font-serif italic text-4xl sm:text-6xl text-white font-light tracking-wider uppercase mt-2">
-        Sofía
-      </h1>
-      <div class="w-16 h-[1px] bg-rose/60 my-4"></div>
-    </div>
+  <!-- 1. TARJETA PRINCIPAL -->
+  <article class="card tilt-l reveal">
+    <svg class="flor tl"><use href="#ramo"/></svg>
+    <svg class="flor br"><use href="#ramo"/></svg>
+    <div class="photo"><img id="portada-img" src="" alt=""></div>
+    <p class="caps">Te invito a celebrar</p>
+    <h1 class="script main-name" id="nombre-titulo"></h1>
+    <p class="main-xv">XV<small>AÑOS</small></p>
+    <div class="rule"></div>
+    <p class="phrase" id="frase-texto"></p>
+  </article>
 
-    <div class="relative z-10 pb-6 reveal reveal-up">
-      <a 
-        href="#bienvenida" 
-        class="btn-glow animate-pulse-btn inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-[0.2em] bg-violetAccent text-white hover:bg-violetAccent/90 transition-all cursor-pointer border border-lavender/30"
-      >
-        <span>Ver Invitación</span>
-        <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- FRASE -->
-  <section id="bienvenida" class="bg-blush/60 px-6 py-24 relative overflow-hidden">
-    <div class="max-w-2xl mx-auto text-center reveal reveal-zoom">
-      <span class="font-breathing text-5xl text-violetAccent block mb-2">Sofía</span>
-      <p id="frase-texto" class="font-serif italic text-xl sm:text-2xl text-ink/90 leading-relaxed font-light"></p>
-    </div>
-  </section>
-
-  <!-- FOTO + CUENTA REGRESIVA -->
-  <section class="grid md:grid-cols-2 overflow-hidden">
-    <div id="secundaria-bg" class="aspect-[4/5] md:aspect-auto bg-cover bg-center reveal reveal-left min-h-[300px]"></div>
-    
-    <div class="bg-lavender/40 flex items-center justify-center px-8 py-20 relative">
-      <div class="reveal reveal-right text-center relative w-full max-w-md">
-        <h3 class="font-serif italic text-2xl sm:text-3xl text-ink mb-2">¡Cada vez falta menos!</h3>
-        <p class="text-xs uppercase tracking-widest text-ink/60 mb-8 font-semibold">Cuenta Regresiva</p>
-        
-        <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 p-4 rounded-3xl bg-white/60 backdrop-blur-md border border-white/80 shadow-sm"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DETALLES DEL EVENTO -->
-  <section class="bg-creamBg px-6 py-24">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center flex-wrap justify-center">
-      
-      <!-- Tarjeta de "Cuándo" (Fecha) -->
-      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow">
-        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-        </div>
-        <h3 class="font-serif text-xl font-semibold text-ink">Cuándo</h3>
-        <p id="fecha-textual" class="text-sm font-medium text-ink/80 mt-2 leading-relaxed"></p>
-      </div>
-
-      <!-- RECEPCIÓN Y HORA -->
-      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow" style="transition-delay: 100ms;">
-        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <h3 class="font-serif text-xl font-semibold text-ink">Recepción</h3>
-        <p id="hora-recepcion" class="text-sm font-medium text-ink/80 mt-2"></p>
-      </div>
-
-      <!-- FIESTA Y MAPA -->
-      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow" style="transition-delay: 200ms;">
-        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        </div>
-        <h3 class="font-serif text-xl font-semibold text-ink">Fiesta</h3>
-        <a id="ubicacion-btn" href="#" target="_blank" rel="noopener" class="btn-glow inline-block text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3.5 mt-4 bg-violetAccent text-white transition-transform">
-          Cómo llegar
-        </a>
-      </div>
-
-      <!-- DRESS CODE -->
-      <div class="reveal reveal-up bg-white/70 p-8 rounded-3xl shadow-sm border border-rose/20 flex flex-col items-center justify-between hover:shadow-md transition-shadow" style="transition-delay: 300ms;">
-        <div class="p-4 rounded-full bg-blush mb-4 text-violetAccent">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-        </div>
-        <h3 id="dresscode-titulo" class="font-serif text-xl font-semibold text-ink"></h3>
-        <p id="dresscode-desc" class="text-xs text-ink/70 mt-2 max-w-[180px]"></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CARRUSEL AUTOMÁTICO DE ANCHO COMPLETO -->
-  <section class="bg-ink py-16 text-white overflow-hidden relative">
-    <div class="reveal reveal-up text-center mb-8 px-6">
-      <h2 id="carrusel-titulo" class="font-breathing text-5xl sm:text-6xl text-rose"></h2>
-      <p class="text-xs uppercase tracking-[0.2em] text-white/60">Recuerdos Inolvidables</p>
-    </div>
-
-    <div id="carrusel-container" class="relative w-full overflow-hidden shadow-2xl">
-      <div id="carrusel-track" class="carrusel-track h-[60vh] sm:h-[75vh]"></div>
-
-      <button id="carrusel-prev" aria-label="Anterior" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ink/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-violetAccent transition-colors border border-white/20 z-10">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button id="carrusel-next" aria-label="Siguiente" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ink/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-violetAccent transition-colors border border-white/20 z-10">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-
-      <div id="carrusel-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2.5 z-10 bg-ink/40 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"></div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN TRIVIA -->
-  <section class="bg-lavender/30 px-6 py-24 border-y border-rose/20">
-    <div class="reveal reveal-up max-w-xl mx-auto text-center">
-      <span class="text-xs font-bold uppercase tracking-[0.2em] text-violetAccent bg-white/80 px-4 py-1.5 rounded-full border border-violetAccent/20">Juego Interactivo</span>
-      <h2 class="font-breathing text-5xl sm:text-6xl text-ink mt-3 mb-2">¿Cuánto conocés a Sofía?</h2>
-      <p class="text-xs text-ink/70 mb-8">Demuestra qué tan bien conoces a la cumpleañera respondiendo estas preguntas.</p>
-
-      <div id="trivia-card" class="bg-white p-6 sm:p-8 rounded-3xl shadow-lg border border-rose/30 text-left transition-all">
-        <div class="flex justify-between items-center mb-6 border-b border-creamBg pb-3">
-          <span id="trivia-paso" class="text-xs font-bold text-violetAccent uppercase tracking-wider">Pregunta 1 de 3</span>
-          <span id="trivia-score" class="text-xs font-semibold bg-blush px-3 py-1 rounded-full text-ink">Puntos: 0</span>
-        </div>
-
-        <h3 id="trivia-pregunta" class="font-serif text-xl sm:text-2xl text-ink font-semibold mb-6"></h3>
-
-        <div id="trivia-opciones" class="flex flex-col gap-3"></div>
-
-        <div id="trivia-feedback" class="hidden mt-6 p-4 rounded-2xl text-center text-sm font-semibold"></div>
-
-        <button id="trivia-next-btn" class="hidden w-full mt-6 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest bg-violetAccent text-white shadow-md hover:bg-violetAccent/90 transition-all">
-          Siguiente Pregunta
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- MÚSICA Y FOTOS -->
-  <section class="bg-creamBg px-6 py-20">
-    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-      
-      <!-- SUGERIR MÚSICA -->
-      <div class="reveal reveal-left bg-white/80 p-8 rounded-3xl border border-rose/30 shadow-sm flex flex-col items-center justify-between">
-        <div class="p-4 rounded-full bg-blush mb-3 text-violetAccent">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 .895-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 .895-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <h3 class="font-serif text-2xl text-ink font-semibold">¿Qué tema no puede faltar?</h3>
-          <p class="text-xs text-ink/70">Ayúdame a armar la playlist perfecta para la fiesta.</p>
-        </div>
-        <a id="musica-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3.5 mt-6 bg-ink text-white hover:bg-violetAccent transition-colors">Sugerir Canción</a>
-      </div>
-
-      <!-- SUBIR FOTOS -->
-      <div class="reveal reveal-right bg-white/80 p-8 rounded-3xl border border-rose/30 shadow-sm flex flex-col items-center justify-between">
-        <div class="p-4 rounded-full bg-blush mb-3 text-violetAccent">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <h3 class="font-serif text-2xl text-ink font-semibold">Compartí tus fotos</h3>
-          <p class="text-xs text-ink/70">Subí las fotos que saques durante la noche.</p>
-        </div>
-        <a id="album-btn" href="#" target="_blank" rel="noopener" class="text-xs font-bold uppercase tracking-widest rounded-full px-6 py-3.5 mt-6 bg-roseDeep text-white hover:bg-violetAccent transition-colors">Subir Fotos</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MESA DE REGALOS -->
-  <section class="bg-blush/40 px-6 py-24">
-    <div class="reveal reveal-up max-w-sm mx-auto text-center">
-      <h2 id="regalos-titulo" class="font-serif italic text-3xl text-ink mb-3"></h2>
-      <p id="regalos-mensaje" class="text-xs text-ink/70 leading-relaxed mb-8"></p>
-      
-      <button 
-        id="open-regalos-modal" 
-        type="button"
-        class="group inline-flex flex-col items-center gap-3 focus:outline-none cursor-pointer" 
-      >
-        <div class="p-6 rounded-full bg-white shadow-md border border-rose/30 group-hover:scale-105 transition-transform">
-          <span class="text-3xl">🎁</span>
-        </div>
-        <span class="text-xs font-bold uppercase tracking-widest text-violetAccent group-hover:underline">Tocar para ver datos bancarios</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- MODAL DE REGALOS -->
-  <div 
-    id="modal-regalos" 
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
-  >
-    <div class="bg-creamBg border border-rose/40 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 id-modal-content">
-      <h3 class="font-serif text-2xl text-ink mb-2">Datos Bancarios</h3>
-      <p class="text-xs text-ink/70 mb-6">Muchas gracias por acompañarme en este momento.</p>
-      
-      <div class="bg-white p-4 rounded-2xl flex flex-col gap-3 text-left text-sm mb-6 border border-rose/20 shadow-sm">
-        <div>
-          <span class="text-[10px] uppercase font-bold text-ink/50 block">Titular</span>
-          <span id="regalo-titular" class="font-semibold text-ink"></span>
-        </div>
-        
-        <div class="flex items-center justify-between gap-2 border-t border-creamBg pt-2">
-          <div>
-            <span class="text-[10px] uppercase font-bold text-ink/50 block">Alias</span>
-            <span id="regalo-alias" class="font-bold text-violetAccent text-base"></span>
-          </div>
-          <button type="button" id="copy-alias-btn" class="px-3 py-1.5 bg-lavender text-ink text-xs font-bold rounded-lg hover:bg-violetAccent hover:text-white transition-colors">
-            Copiar
-          </button>
-        </div>
-
-        <div class="flex items-center justify-between gap-2 border-t border-creamBg pt-2">
-          <div class="overflow-hidden">
-            <span class="text-[10px] uppercase font-bold text-ink/50 block">CBU</span>
-            <span id="regalo-cbu" class="font-mono text-xs text-ink break-all"></span>
-          </div>
-          <button type="button" id="copy-cbu-btn" class="px-3 py-1.5 bg-lavender text-ink text-xs font-bold rounded-lg hover:bg-violetAccent hover:text-white transition-colors shrink-0">
-            Copiar
-          </button>
-        </div>
-      </div>
-
-      <button 
-        id="close-regalos-modal" 
-        type="button"
-        class="w-full py-3.5 rounded-full font-bold text-xs uppercase tracking-widest bg-violetAccent text-white shadow-md active:scale-95 transition-transform"
-      >
-        Cerrar
-      </button>
+  <!-- 2. CINTA: CUENTA REGRESIVA -->
+  <div class="ribbon reveal" id="ribbon">
+    <p class="caps">Faltan</p>
+    <div class="count" id="countdown">
+      <div><strong data-u="d">0</strong><small>días</small></div>
+      <div><strong data-u="h">00</strong><small>hs</small></div>
+      <div><strong data-u="m">00</strong><small>min</small></div>
+      <div><strong data-u="s">00</strong><small>seg</small></div>
     </div>
   </div>
 
- <!-- RSVP / CONFIRMACIÓN DE ASISTENCIA -->
-  <section class="bg-creamBg px-6 py-20 flex justify-center items-center">
-    <div class="reveal reveal-up max-w-md w-full text-center flex flex-col items-center">
-      
-      <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-blush mb-8">
-        <img 
-          id="rsvp-avatar" 
-          src="" 
-          alt="Sofía" 
-          loading="lazy" 
-          class="w-full h-full object-cover object-center scale-[1.85] transition-transform duration-500"
-        >
-      </div>
-
-      <h3 class="font-breathing text-5xl sm:text-6xl text-violetAccent mb-2 tracking-wide">
-        Confirmación
-      </h3>
-      
-      <p class="font-serif italic text-xl sm:text-2xl text-ink/80 mb-8 font-light">
-        ¿Me acompañás esa noche?
-      </p>
-
-      <a 
-        id="rsvp-btn" 
-        href="#" 
-        target="_blank" 
-        rel="noopener" 
-        class="btn-glow inline-flex items-center justify-center gap-3 rounded-full font-bold text-xs uppercase tracking-[0.18em] px-8 py-4 bg-[#059669] hover:bg-[#047857] text-white transition-all shadow-lg active:scale-95"
-      >
-        <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
-          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        <span>Confirmar Asistencia</span>
-      </a>
+  <!-- 3. TARJETA DE DETALLES -->
+  <article class="card tilt-r reveal">
+    <svg class="flor tr"><use href="#ramo"/></svg>
+    <p class="caps">La celebración</p>
+    <div class="when">
+      <div class="side" id="dia-semana"></div>
+      <div class="mid"><strong id="dia-numero"></strong></div>
+      <div class="side" id="mes"></div>
     </div>
-  </section>
-
-  <!-- ==========================================
-       FOOTER CON PROMO DE NEGOCIO Y REDES
-  =========================================== -->
-  <footer class="bg-ink text-creamBg px-6 pt-20 pb-12 text-center border-t border-white/10 relative overflow-hidden">
-    
-    <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
-      <svg width="100%" height="100%"><defs><pattern id="polka" width="20" height="20" patternUnits="userSpaceOnWrite"><circle cx="10" cy="10" r="1" fill="#fff"/></pattern></defs><rect width="100%" height="100%" fill="url(#polka)"/></svg>
+    <p class="it" id="anio"></p>
+    <div class="grid2">
+      <div><p class="caps">Recepción</p><p class="v" id="hora-recepcion"></p></div>
+      <div><p class="caps">Dress code</p><p class="v" id="dresscode-titulo"></p><p class="s" id="dresscode-desc"></p></div>
+      <div class="full"><p class="caps">Lugar</p><p class="v" id="lugar-nombre"></p><p class="s" id="lugar-direccion"></p></div>
     </div>
+    <a class="btn btn-line" id="ubicacion-btn" href="#" target="_blank" rel="noopener" style="margin-top:22px">Cómo llegar</a>
+  </article>
 
-    <div class="max-w-4xl mx-auto relative z-10">
-      
-      <!-- 1. TÍTULO PROMOCIONAL -->
-      <div class="reveal reveal-up mb-12">
-        <h4 class="font-breathing text-5xl sm:text-6xl text-rose tracking-wide mb-2 leading-tight">
-          ¿Te gustó esta página?
-        </h4>
-        <p class="font-serif italic text-xl text-creamBg/80 font-light">
-          Creá la tuya en minutos y sorprendé a todos
-        </p>
-      </div>
+  <!-- 4. FOTOS -->
+  <article class="card tilt-l reveal">
+    <p class="script" style="font-size:3.2rem" id="carrusel-titulo"></p>
+    <p class="it" style="margin-top:6px">Tocá una foto para verla grande</p>
+    <div class="photos" id="galeria"></div>
+  </article>
 
-      <!-- 2. LLAMADO A LA ACCIÓN (CTA) -->
-      <div class="reveal reveal-up mb-16" style="transition-delay: 150ms;">
-        <a 
-          href="TU_TIENDA_O_LINK_AQUÍ" 
-          target="_blank" 
-          rel="noopener"
-          class="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-rose/50 text-rose text-xs font-bold uppercase tracking-[0.2em] hover:bg-rose hover:text-ink transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
-        >
-          <span>Ver todas las plantillas</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
-        </a>
-        <p class="text-[11px] text-creamBg/50 mt-4 uppercase tracking-widest">
-          Diseños editables para Cumpleaños, Bodas y Baby Showers
-        </p>
-      </div>
-
-      <!-- Separador -->
-      <div class="w-20 h-px bg-white/10 mx-auto mb-16"></div>
-
-      <!-- 3. REDES SOCIALES (Instagram, Facebook, WhatsApp) -->
-      <div class="reveal reveal-up flex items-center justify-center gap-8 mb-16 text-creamBg/60" style="transition-delay: 300ms;">
-        
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Síguenos en Instagram" class="hover:text-rose transition-colors transform hover:scale-110">
-          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.646-.069-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-
-        <!-- Facebook (reemplazado) -->
-        <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Síguenos en Facebook" class="hover:text-rose transition-colors transform hover:scale-110">
-          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-
-        <!-- WhatsApp (añadido) -->
-        <a href="https://wa.me/message/JOQHWJMOS5VAH1" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" class="hover:text-rose transition-colors transform hover:scale-110">
-          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        </a>
-      </div>
-
-      <!-- 4. CRÉDITOS FINALES -->
-      <div class="border-t border-white/5 pt-8 text-xs text-creamBg/40">
-        <p class="font-serif text-sm text-rose/60 mb-2">Sofía • Mis 15 Años</p>
-        <p class="opacity-60 mb-1">Diseñado con ♡ para una noche inolvidable</p>
-        <p class="opacity-40 text-[10px]">© <span id="current-year"></span> - Invitación Digital Interactiva</p>
-      </div>
-
+  <!-- 5. TRIVIA -->
+  <article class="card tilt-r reveal" id="trivia-wrap">
+    <p class="caps">Un juego antes de la fiesta</p>
+    <h2 class="disp" style="font-size:2rem;line-height:1.1;margin-top:8px">¿Cuánto conocés a <span class="script" style="font-size:2.6rem" id="trivia-nombre"></span>?</h2>
+    <div id="trivia-card">
+      <div class="dots" id="trivia-dots"></div>
+      <p class="q" id="trivia-pregunta"></p>
+      <div class="opts" id="trivia-opciones"></div>
+      <p class="fb" id="trivia-fb" role="status"></p>
+      <button type="button" class="btn btn-lila" id="trivia-next" hidden style="width:100%;margin-top:10px">Siguiente</button>
     </div>
+  </article>
+
+  <!-- 6. PARTICIPÁ -->
+  <div class="pair reveal">
+    <a class="mini" id="musica-btn" href="#" target="_blank" rel="noopener"><svg width="26" height="26"><use href="#i-music"/></svg><span class="v">¿Qué tema no puede faltar?</span><span class="go">Sugerir canción</span></a>
+    <a class="mini" id="album-btn" href="#" target="_blank" rel="noopener"><svg width="26" height="26"><use href="#i-cam"/></svg><span class="v">Compartí tus fotos</span><span class="go">Subir fotos</span></a>
+  </div>
+
+  <!-- 7. REGALOS: SOBRECITO -->
+  <article class="card tilt-l reveal">
+    <p class="caps">Regalos</p>
+    <h2 class="disp" style="font-size:2rem;line-height:1.1;margin-top:8px" id="regalos-titulo"></h2>
+    <p class="it" style="margin-top:10px" id="regalos-mensaje"></p>
+    <button type="button" class="gift-env" id="gift-env" aria-expanded="false" aria-controls="bank">
+      <span class="b"></span><span class="p"></span><span class="f"></span>
+      <span class="l" id="gift-letra"></span><span class="hint">Tocá para abrir</span>
+    </button>
+    <div class="bank" id="bank" hidden>
+      <div class="bank-row"><div><small>Alias</small><div class="v" id="regalo-alias"></div></div><button type="button" class="copy" data-copy="alias">Copiar</button></div>
+      <div class="bank-row"><div style="min-width:0"><small>CBU</small><div class="v m" id="regalo-cbu"></div></div><button type="button" class="copy" data-copy="cbu">Copiar</button></div>
+      <div class="bank-row"><div><small>Titular</small><div class="v m" id="regalo-titular"></div></div></div>
+    </div>
+  </article>
+
+  <!-- 8. TARJETA R.S.V.P. -->
+  <article class="card tilt-r reveal">
+    <svg class="flor tl"><use href="#ramo"/></svg>
+    <div class="rsvp-photo"><img id="rsvp-avatar" src="" alt="" loading="lazy"></div>
+    <p class="rsvp-mark">R.S.V.P.</p>
+    <p class="it" style="margin-top:6px">¿Me acompañás esa noche?</p>
+    <form class="rsvp-form" id="rsvp-form" novalidate>
+      <label class="rsvp-line" for="rsvp-nombre">Nombre <input type="text" id="rsvp-nombre" name="nombre" placeholder="Tu nombre y apellido" autocomplete="name"></label>
+      <div class="choice" role="radiogroup" aria-label="Asistencia">
+        <label><input type="radio" name="asiste" value="si" checked><span>Asistiré</span></label>
+        <label><input type="radio" name="asiste" value="no"><span>No podré</span></label>
+      </div>
+      <label class="rsvp-line" for="rsvp-msg">Mensaje <input type="text" id="rsvp-msg" name="mensaje" placeholder="opcional"></label>
+      <p class="form-err" id="rsvp-err" role="alert"></p>
+      <button type="submit" class="btn btn-lila" style="width:100%;margin-top:6px;padding:16px">Enviar confirmación por WhatsApp</button>
+    </form>
+  </article>
+
+  <footer>
+    <p class="script" style="font-size:2rem" id="footer-firma"></p>
+    <p style="margin-top:12px">Invitación diseñada por <a href="https://celebrainvitaciones.com/" target="_blank" rel="noopener">Celebra Invitaciones</a></p>
+    <p style="margin-top:4px">¿Querés la tuya? <a href="https://celebrainvitaciones.com/catalogo.html" target="_blank" rel="noopener">Mirá los diseños</a></p>
   </footer>
-
-  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
 </main>
+
+<div class="lightbox" id="lightbox" hidden><img id="lightbox-img" src="" alt=""><button type="button" id="lightbox-close" aria-label="Cerrar">×</button></div>
+
+<button type="button" class="music" id="music-btn" aria-label="Reproducir música" aria-pressed="false" hidden>
+  <svg class="note" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" fill="currentColor"/><circle cx="17" cy="16" r="3" fill="currentColor"/></svg>
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+<p class="music-tip" id="music-tip" hidden>Tocá para escuchar la música</p>
+<audio id="bg-audio" loop preload="auto"></audio>
 
 <script>
 (function () {
-  // Carga de Configuración
-  document.getElementById('nombre-titulo').textContent = CONFIG.nombre;
-  document.getElementById('frase-texto').textContent = CONFIG.frase;
-  document.getElementById('fecha-textual').textContent = CONFIG.fechaTextual; 
-  document.getElementById('hora-recepcion').textContent = CONFIG.horaRecepcion;
-  document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo;
-  document.getElementById('dresscode-desc').textContent = CONFIG.dressCodeDescripcion;
-  document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel;
-  document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos;
-  document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos;
+  var C = CONFIG;
+  var $ = function (id) { return document.getElementById(id); };
+  var set = function (id, v) { var el = $(id); if (el) el.textContent = v || ''; };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
 
-  // Asignar imágenes
-  document.getElementById('portada-img').src = CONFIG.fotoPortada;
-  document.getElementById('secundaria-bg').style.backgroundImage = `url('${CONFIG.fotoSecundaria}')`;
-  document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP;
+  /* ---------- Textos ---------- */
+  var inicial = C.inicialLacre || (C.nombre || 'S').charAt(0);
+  set('env-nombre', C.nombre); set('seal-letra', inicial); set('gift-letra', inicial);
+  set('nombre-titulo', C.nombre);
+  set('frase-texto', C.frase);
+  set('hora-recepcion', C.horaRecepcion);
+  set('lugar-nombre', C.lugarNombre || 'Salón del evento');
+  set('lugar-direccion', C.lugarDireccion);
+  set('dresscode-titulo', C.dressCodeTitulo);
+  set('dresscode-desc', C.dressCodeDescripcion);
+  set('carrusel-titulo', C.tituloCarrusel);
+  set('regalos-titulo', C.tituloRegalos);
+  set('regalos-mensaje', C.mensajeRegalos);
+  set('regalo-alias', C.regaloAlias); set('regalo-cbu', C.regaloCbu); set('regalo-titular', C.regaloTitular);
+  set('trivia-nombre', C.nombre);
+  set('footer-firma', C.nombre);
+  document.title = C.nombre + ' · ' + (C.presentacionTitulo || 'Mis 15 años');
 
-  // Asignar links
-  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl;
-  document.getElementById('musica-btn').href = CONFIG.playlistUrl;
-  document.getElementById('album-btn').href = CONFIG.albumFotosUrl;
-  document.getElementById('rsvp-btn').href = `https://wa.me/${CONFIG.whatsappNumero}?text=${encodeURIComponent(CONFIG.whatsappMensaje)}`;
+  var f = new Date(C.fechaISO);
+  var dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  set('dia-semana', dias[f.getDay()]); set('dia-numero', f.getDate()); set('mes', meses[f.getMonth()]); set('anio', f.getFullYear());
 
-  // Datos regalos
-  document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular;
-  document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias;
-  document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu;
+  var portada = $('portada-img'); portada.src = C.fotoPortada; portada.alt = 'Foto de ' + C.nombre;
+  var av = $('rsvp-avatar'); av.src = C.fotoRSVP || C.fotoSecundaria; av.alt = 'Foto de ' + C.nombre;
+  $('ubicacion-btn').href = C.mapsUrl || '#';
+  $('musica-btn').href = C.playlistUrl || '#';
+  $('album-btn').href = C.albumFotosUrl || '#';
 
-  // Lógica Botón Música MP3
-  const audioEl = document.getElementById('bg-audio');
-  document.getElementById('bg-audio').src = CONFIG.audioUrl;
-  const musicBtn = document.getElementById('music-toggle-btn');
-  const playIcon = document.getElementById('music-play-icon');
-  const pauseIcon = document.getElementById('music-pause-icon');
-
-  musicBtn.addEventListener('click', () => {
-    if (audioEl.paused) {
-      audioEl.play();
-      playIcon.classList.add('hidden');
-      pauseIcon.classList.remove('hidden');
-    } else {
-      audioEl.pause();
-      playIcon.classList.remove('hidden');
-      pauseIcon.classList.add('hidden');
-    }
-  });
-
-  // Lógica Modal Regalos
-  const modal = document.getElementById('modal-regalos');
-  const openModalBtn = document.getElementById('open-regalos-modal');
-  const closeModalBtn = document.getElementById('close-regalos-modal');
-
-  openModalBtn.addEventListener('click', () => {
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-  });
-
-  closeModalBtn.addEventListener('click', () => {
-    modal.classList.add('opacity-0', 'pointer-events-none');
-  });
-
-  // Copiar Alias y CBU
-  document.getElementById('copy-alias-btn').addEventListener('click', function() {
-    navigator.clipboard.writeText(CONFIG.regaloAlias);
-    this.textContent = '¡Copiado!';
-    setTimeout(() => this.textContent = 'Copiar', 2000);
-  });
-
-  document.getElementById('copy-cbu-btn').addEventListener('click', function() {
-    navigator.clipboard.writeText(CONFIG.regaloCbu);
-    this.textContent = '¡Copiado!';
-    setTimeout(() => this.textContent = 'Copiar', 2000);
-  });
-
-  // Cuenta Regresiva
-  const eventDate = new Date(CONFIG.fechaISO).getTime();
-  const countdownContainer = document.getElementById('countdown');
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const diff = eventDate - now;
-
-    if (diff <= 0) {
-      countdownContainer.innerHTML = "<div class='col-span-4 text-center font-serif text-lg font-bold text-violetAccent'>¡Es hoy! 🎉</div>";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    countdownContainer.innerHTML = `
-      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
-        <span class="font-serif text-2xl font-bold text-violetAccent">${days}</span>
-        <span class="text-[10px] uppercase font-bold text-ink/50">Días</span>
-      </div>
-      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
-        <span class="font-serif text-2xl font-bold text-violetAccent">${hours}</span>
-        <span class="text-[10px] uppercase font-bold text-ink/50">Hs</span>
-      </div>
-      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
-        <span class="font-serif text-2xl font-bold text-violetAccent">${minutes}</span>
-        <span class="text-[10px] uppercase font-bold text-ink/50">Min</span>
-      </div>
-      <div class="flex flex-col items-center p-2 rounded-2xl bg-white/80">
-        <span class="font-serif text-2xl font-bold text-violetAccent">${seconds}</span>
-        <span class="text-[10px] uppercase font-bold text-ink/50">Seg</span>
-      </div>
-    `;
+  /* ---------- Sobre de apertura (y la música arranca al abrir) ---------- */
+  var intro = $('intro'), audio = $('bg-audio'), mBtn = $('music-btn');
+  if (C.audioUrl) audio.src = C.audioUrl;
+  function setPlaying(on) {
+    mBtn.classList.toggle('playing', on);
+    mBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    mBtn.setAttribute('aria-label', on ? 'Pausar música' : 'Reproducir música');
   }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-
-  // Carrusel
-  const track = document.getElementById('carrusel-track');
-  const dotsContainer = document.getElementById('carrusel-dots');
-  let currentIndex = 0;
-
-  CONFIG.fotosCarrusel.forEach((src, idx) => {
-    const slide = document.createElement('div');
-    slide.className = 'carrusel-slide h-full';
-    slide.innerHTML = `<img src="${src}" class="w-full h-full object-cover object-center" alt="Foto ${idx + 1}">`;
-    track.appendChild(slide);
-
-    const dot = document.createElement('button');
-    dot.className = `dot ${idx === 0 ? 'active' : ''}`;
-    dot.addEventListener('click', () => goToSlide(idx));
-    dotsContainer.appendChild(dot);
+  $('env').addEventListener('click', function () {
+    if (intro.classList.contains('opening')) return;
+    intro.classList.add('opening');
+    if (C.audioUrl) {
+      mBtn.hidden = false;
+      audio.play().then(function () { setPlaying(true); }).catch(function () {
+        setPlaying(false);
+        var tip = $('music-tip'); tip.hidden = false;
+        setTimeout(function () { tip.style.opacity = '0'; setTimeout(function () { tip.hidden = true; }, 500); }, 4000);
+      });
+    }
+    setTimeout(function () {
+      intro.classList.add('gone');
+      document.body.classList.remove('locked');
+      startReveal();
+    }, reduce ? 50 : 1900);
+    setTimeout(function () { intro.remove(); }, reduce ? 300 : 2800);
+  });
+  mBtn.addEventListener('click', function () {
+    if (audio.paused) audio.play().then(function () { setPlaying(true); }).catch(function () {});
+    else { audio.pause(); setPlaying(false); }
   });
 
-  function goToSlide(index) {
-    currentIndex = index;
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    Array.from(dotsContainer.children).forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
+  /* ---------- Cuenta regresiva ---------- */
+  var target = f.getTime(), cells = {}, timer;
+  document.querySelectorAll('#countdown [data-u]').forEach(function (el) { cells[el.getAttribute('data-u')] = el; });
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) { $('ribbon').innerHTML = '<p class="disp" style="font-size:1.8rem;font-style:italic">¡Hoy es el gran día!</p>'; clearInterval(timer); return; }
+    cells.d.textContent = Math.floor(diff / 864e5);
+    cells.h.textContent = pad(Math.floor(diff / 36e5) % 24);
+    cells.m.textContent = pad(Math.floor(diff / 6e4) % 60);
+    cells.s.textContent = pad(Math.floor(diff / 1e3) % 60);
+  }
+  tick(); timer = setInterval(tick, 1000);
+
+  /* ---------- Fotos + visor ---------- */
+  var gal = $('galeria'), lb = $('lightbox'), lbImg = $('lightbox-img');
+  (C.fotosCarrusel || []).forEach(function (src, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', 'Ver foto ' + (i + 1));
+    b.innerHTML = '<img src="' + src + '" alt="Foto ' + (i + 1) + ' de ' + C.nombre + '" loading="lazy">';
+    b.addEventListener('click', function () { lbImg.src = src; lbImg.alt = 'Foto ' + (i + 1); lb.hidden = false; });
+    gal.appendChild(b);
+  });
+  function closeLb() { lb.hidden = true; }
+  $('lightbox-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+
+  /* ---------- Trivia ---------- */
+  var paso = 0, puntos = 0, total = (C.trivia || []).length, letras = 'ABCDEF';
+  var card = $('trivia-card'), base = card.innerHTML;
+  function bind() { $('trivia-next').addEventListener('click', function () { paso++; if (paso < total) load(); else end(); }); }
+  function dots() {
+    var d = $('trivia-dots'); d.innerHTML = '';
+    for (var i = 0; i < total; i++) { var el = document.createElement('i'); if (i <= paso) el.className = 'on'; d.appendChild(el); }
+  }
+  function load() {
+    var q = C.trivia[paso]; dots();
+    set('trivia-pregunta', q.pregunta); set('trivia-fb', ''); $('trivia-next').hidden = true;
+    var box = $('trivia-opciones'); box.innerHTML = '';
+    q.opciones.forEach(function (t, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'opt';
+      b.innerHTML = '<b>' + letras[i] + '</b><span></span>'; b.querySelector('span').textContent = t;
+      b.addEventListener('click', function () { answer(i); }); box.appendChild(b);
     });
   }
-
-  document.getElementById('carrusel-prev').addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? CONFIG.fotosCarrusel.length - 1 : currentIndex - 1;
-    goToSlide(currentIndex);
-  });
-
-  document.getElementById('carrusel-next').addEventListener('click', () => {
-    currentIndex = (currentIndex === CONFIG.fotosCarrusel.length - 1) ? 0 : currentIndex + 1;
-    goToSlide(currentIndex);
-  });
-
-  setInterval(() => {
-    currentIndex = (currentIndex === CONFIG.fotosCarrusel.length - 1) ? 0 : currentIndex + 1;
-    goToSlide(currentIndex);
-  }, 4000);
-
-  // Trivia
-  let triviaPaso = 0;
-  let score = 0;
-
-  function loadTrivia() {
-    const q = CONFIG.trivia[triviaPaso];
-    document.getElementById('trivia-paso').textContent = `Pregunta ${triviaPaso + 1} de ${CONFIG.trivia.length}`;
-    document.getElementById('trivia-pregunta').textContent = q.pregunta;
-    
-    const opcionesDiv = document.getElementById('trivia-opciones');
-    opcionesDiv.innerHTML = '';
-    
-    document.getElementById('trivia-feedback').classList.add('hidden');
-    document.getElementById('trivia-next-btn').classList.add('hidden');
-
-    q.opciones.forEach((opc, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'w-full py-3 px-4 rounded-xl text-left border border-rose/30 hover:bg-blush font-medium text-sm transition-colors';
-      btn.textContent = opc;
-      btn.addEventListener('click', () => selectTriviaOption(idx));
-      opcionesDiv.appendChild(btn);
+  function answer(i) {
+    var q = C.trivia[paso];
+    Array.prototype.forEach.call($('trivia-opciones').children, function (b, j) {
+      b.disabled = true; if (j === q.correcta) b.classList.add('ok'); else if (j === i) b.classList.add('bad');
     });
+    if (i === q.correcta) { puntos++; set('trivia-fb', '¡Correcto!'); } else set('trivia-fb', 'Casi… era ' + q.opciones[q.correcta] + '.');
+    var n = $('trivia-next'); n.textContent = paso < total - 1 ? 'Siguiente' : 'Ver resultado'; n.hidden = false;
   }
-
-  function selectTriviaOption(selected) {
-    const q = CONFIG.trivia[triviaPaso];
-    const feedback = document.getElementById('trivia-feedback');
-    const optionsBtns = document.getElementById('trivia-opciones').children;
-
-    Array.from(optionsBtns).forEach(b => b.disabled = true);
-
-    if (selected === q.correcta) {
-      score += 10;
-      document.getElementById('trivia-score').textContent = `Puntos: ${score}`;
-      feedback.textContent = "¡Correcto! 🎉";
-      feedback.className = "mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-emerald-100 text-emerald-800";
-    } else {
-      feedback.textContent = `¡Incorrecto! La respuesta correcta era: ${q.opciones[q.correcta]}`;
-      feedback.className = "mt-6 p-4 rounded-2xl text-center text-sm font-semibold bg-rose-100 text-rose-800";
-    }
-
-    feedback.classList.remove('hidden');
-
-    const nextBtn = document.getElementById('trivia-next-btn');
-    if (triviaPaso < CONFIG.trivia.length - 1) {
-      nextBtn.textContent = 'Siguiente Pregunta';
-      nextBtn.classList.remove('hidden');
-    } else {
-      nextBtn.textContent = 'Finalizar Juego';
-      nextBtn.classList.remove('hidden');
-    }
+  function end() {
+    var msg = puntos === total ? '¡Me conocés de memoria!' : puntos >= total / 2 ? 'Me conocés bastante bien.' : 'Tenemos que vernos más seguido.';
+    card.innerHTML = '<p class="disp" style="font-size:4rem;line-height:1;color:var(--lila);margin-top:22px">' + puntos + '<span style="font-size:1.6rem;color:var(--tinta2)">/' + total + '</span></p>' +
+      '<p class="it" style="font-size:1.3rem;margin:10px 0 20px">' + msg + '</p><button type="button" class="btn btn-line" id="trivia-again">Volver a jugar</button>';
+    $('trivia-again').addEventListener('click', function () { paso = 0; puntos = 0; card.innerHTML = base; bind(); load(); });
   }
+  if (total) { bind(); load(); } else $('trivia-wrap').hidden = true;
 
-  document.getElementById('trivia-next-btn').addEventListener('click', () => {
-    triviaPaso++;
-    if (triviaPaso < CONFIG.trivia.length) {
-      loadTrivia();
-    } else {
-      document.getElementById('trivia-card').innerHTML = `
-        <div class="text-center py-6">
-          <h3 class="font-serif text-2xl font-bold text-ink mb-2">¡Juego Completado!</h3>
-          <p class="text-sm text-ink/70 mb-4">Puntaje final: <span class="font-bold text-violetAccent">${score} puntos</span></p>
-          <button onclick="location.reload()" class="py-3 px-8 rounded-full font-bold text-xs uppercase tracking-widest bg-violetAccent text-white shadow-md">Volver a jugar</button>
-        </div>
-      `;
-    }
+  /* ---------- Sobrecito de regalos ---------- */
+  var gift = $('gift-env'), bank = $('bank');
+  gift.addEventListener('click', function () {
+    gift.setAttribute('aria-expanded', 'true');
+    gift.classList.add('opening');
+    setTimeout(function () { gift.hidden = true; bank.hidden = false; }, reduce ? 0 : 700);
+  });
+  function fallbackCopy(t) { var x = document.createElement('textarea'); x.value = t; x.style.position = 'fixed'; x.style.opacity = '0'; document.body.appendChild(x); x.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(x); }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var t = btn.getAttribute('data-copy') === 'alias' ? C.regaloAlias : C.regaloCbu;
+      var done = function () { btn.textContent = 'Copiado'; btn.classList.add('done'); setTimeout(function () { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, function () { fallbackCopy(t); done(); });
+      else { fallbackCopy(t); done(); }
+    });
   });
 
-  loadTrivia();
+  /* ---------- Confirmación: arma el mensaje de WhatsApp ---------- */
+  $('rsvp-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nombre = $('rsvp-nombre').value.trim();
+    var err = $('rsvp-err');
+    if (!nombre) { err.textContent = 'Escribí tu nombre para confirmar.'; $('rsvp-nombre').focus(); return; }
+    err.textContent = '';
+    var va = this.querySelector('input[name="asiste"]:checked').value === 'si';
+    var extra = $('rsvp-msg').value.trim();
+    var plantilla = va ? (C.rsvpMensajeSi || '¡Hola! Soy {nombre} y confirmo mi asistencia. {mensaje}')
+                       : (C.rsvpMensajeNo || '¡Hola! Soy {nombre}, no voy a poder ir. {mensaje}');
+    var texto = plantilla.replace('{nombre}', nombre).replace('{mensaje}', extra).trim();
+    window.location.href = 'https://wa.me/' + C.whatsappNumero + '?text=' + encodeURIComponent(texto);
+  });
 
-  // Scroll Reveal (AOS)
-  const reveals = document.querySelectorAll('.reveal');
-  function checkReveal() {
-    const triggerBottom = window.innerHeight * 0.88;
-    reveals.forEach(el => {
-      const top = el.getBoundingClientRect().top;
-      if (top < triggerBottom) el.classList.add('active');
-    });
+  /* ---------- Aparición de tarjetas ---------- */
+  function startReveal() {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { io.observe(el); });
   }
-  window.addEventListener('scroll', checkReveal);
-  checkReveal();
 })();
 </script>
 </body>

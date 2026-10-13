@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Delfina · 18</title>
+<meta name="description" content="Delfina presenta: 18. Sábado 17 de octubre, 22:30 h.">
+<meta property="og:title" content="Delfina · 18">
+<meta property="og:description" content="Nuevo lanzamiento: mis 18. Confirmá tu lugar en la lista.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --negro:#0B0A0D;
+    --carbon:#151318;
+    --linea:rgba(255,255,255,.12);
+    --blanco:#F4F1F6;
+    --gris:#9C96A3;
+    --magenta:#B043B4;      /* color de Delfina */
+    --rosa:#F0A3F3;
+    --holo:linear-gradient(115deg,#F0A3F3 0%,#C7B4FF 30%,#A6E8FF 55%,#F7D9FF 78%,#F0A3F3 100%);
+    --wide:"Unbounded", "Arial Black", sans-serif;
+    --serif:"Instrument Serif", Georgia, serif;
+    --sans:"Manrope", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden;}
+  body{background:var(--negro);color:var(--blanco);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  /* grano de película sobre todo */
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.09;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  ::selection{background:var(--rosa);color:var(--negro);}
+  :focus-visible{outline:2px solid var(--rosa);outline-offset:3px;}
+  .wrap{max-width:480px;margin:0 auto;padding-inline:20px;}
+  section{padding:72px 0;border-top:1px solid var(--linea);}
+  .side{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--wide);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);}
+  .h2{font-family:var(--wide);font-weight:800;font-size:clamp(1.9rem,9vw,2.6rem);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin-top:14px;}
+  .h2 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;color:var(--rosa);}
+  .holo-text{background:var(--holo);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:holo 6s linear infinite;}
+  @keyframes holo{to{background-position:200% 0}}
+
+  /* ============ 1. PORTADA: FOTO A PANTALLA COMPLETA ============ */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+  .hero-photo{position:absolute;inset:0;background-size:cover;background-position:50% 22%;filter:grayscale(1) contrast(1.1);transform:scale(1.06);animation:slowzoom 14s ease-out forwards;}
+  @keyframes slowzoom{to{transform:scale(1)}}
+  .hero-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(176,67,180,.28) 0%,rgba(59,11,62,.35) 45%,rgba(11,10,13,.92) 82%,var(--negro) 100%);mix-blend-mode:normal;}
+  .hero-tint::before{content:"";position:absolute;inset:0;background:rgba(176,67,180,.22);mix-blend-mode:color;}
+  .hero-top{position:absolute;z-index:2;top:calc(22px + env(safe-area-inset-top,0px));left:22px;right:90px;font-family:var(--wide);font-size:.62rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.8);}
+  .hero-body{position:relative;z-index:2;padding:0 22px calc(44px + env(safe-area-inset-bottom,0px));max-width:560px;width:100%;margin:0 auto;}
+  .hero-name{font-family:var(--serif);font-weight:400;font-size:clamp(5rem,27vw,9rem);line-height:.85;letter-spacing:-.02em;color:#fff;white-space:nowrap;}
+  .hero-age{font-family:var(--serif);font-style:italic;font-size:clamp(1.9rem,9vw,2.8rem);line-height:1;color:var(--rosa);margin-top:6px;}
+  .hero-line{display:flex;align-items:center;gap:14px;margin-top:22px;font-family:var(--wide);font-size:.72rem;font-weight:600;letter-spacing:.18em;color:#fff;}
+  .hero-line i{flex:1;height:1px;background:rgba(255,255,255,.35);}
+  .hero-cue{margin-top:26px;font-size:.78rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:10px;}
+  .hero-cue::before{content:"";width:28px;height:1px;background:var(--rosa);}
+
+  /* ============ 2. VINILO ============ */
+  .vinyl-wrap{position:relative;width:min(66vw,290px);aspect-ratio:1;margin:30px auto 0;}
+  .vinyl{position:absolute;inset:0;border-radius:50%;cursor:pointer;border:0;padding:0;
+    background:repeating-radial-gradient(circle at 50% 50%,#0E0D10 0 1.5px,#1B191E 1.5px 3px);
+    box-shadow:0 0 0 2px #000,0 30px 60px -20px rgba(0,0,0,.9);animation:spin 3.2s linear infinite;animation-play-state:paused;}
+  .vinyl::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 30deg,transparent 0 40deg,rgba(255,255,255,.12) 60deg,transparent 80deg 200deg,rgba(255,255,255,.08) 230deg,transparent 260deg);}
+  .vinyl .label{position:absolute;inset:31%;border-radius:50%;overflow:hidden;background:var(--magenta);box-shadow:0 0 0 3px #0B0A0D;}
+  .vinyl .label img{width:100%;height:100%;object-fit:cover;}
+  .vinyl .label::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--negro);}
+  .playing .vinyl{animation-play-state:running;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .arm{position:absolute;right:-1%;top:-4%;width:38%;height:62%;transform-origin:85% 10%;transform:rotate(-26deg);transition:transform .6s cubic-bezier(.4,0,.2,1);pointer-events:none;}
+  .playing .arm{transform:rotate(0deg);}
+  .now{text-align:center;margin-top:22px;}
+  .now p{font-family:var(--serif);font-style:italic;font-size:1.3rem;}
+  .now small{display:block;font-size:.78rem;color:var(--gris);margin-top:2px;}
+
+  /* ============ 3. NOTAS DEL DISCO ============ */
+  .notes p{font-family:var(--serif);font-size:clamp(1.65rem,7.4vw,2.15rem);line-height:1.2;margin-top:18px;text-wrap:balance;}
+  .notes .sig{font-family:var(--serif);font-style:italic;color:var(--rosa);font-size:1.4rem;margin-top:16px;}
+
+  /* ============ 4. LANZAMIENTO ============ */
+  .count{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:24px;}
+  .count div{border:1px solid var(--linea);padding:14px 0 10px;text-align:center;}
+  .count strong{display:block;font-family:var(--wide);font-weight:800;font-size:clamp(1.6rem,8vw,2.3rem);line-height:1;font-variant-numeric:tabular-nums;}
+  .count small{display:block;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gris);margin-top:8px;}
+
+  /* ============ 5. LISTA DE TEMAS (cronograma) ============ */
+  .tracks{list-style:none;margin-top:22px;counter-reset:t;}
+  .tracks li{display:grid;grid-template-columns:40px 1fr auto;align-items:baseline;gap:8px;padding:16px 0;border-bottom:1px solid var(--linea);counter-increment:t;}
+  .tracks li::before{content:counter(t,decimal-leading-zero);font-family:var(--wide);font-size:.8rem;color:var(--gris);}
+  .tracks .t{font-weight:700;font-size:1.05rem;line-height:1.3;}
+  .tracks .t small{display:block;font-weight:400;font-size:.85rem;color:var(--gris);}
+  .tracks .h{font-family:var(--wide);font-size:.85rem;font-variant-numeric:tabular-nums;}
+  .tracks li.hit .t::after{content:"HIT";margin-left:8px;font-family:var(--wide);font-size:.55rem;font-weight:800;letter-spacing:.1em;padding:2px 6px;border-radius:3px;background:var(--rosa);color:var(--negro);vertical-align:middle;}
+
+  /* ============ 6. CRÉDITOS (detalles) ============ */
+  .credits{margin-top:24px;}
+  .credit{padding:16px 0;border-bottom:1px solid var(--linea);}
+  .credit .k{font-family:var(--wide);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--rosa);}
+  .credit .v{font-size:1.25rem;font-weight:700;line-height:1.3;margin-top:4px;}
+  .credit .s{font-size:.92rem;color:var(--gris);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:14px 22px;text-decoration:none;transition:transform .15s;}
+  .btn:active{transform:scale(.97);}
+  .btn-w{background:var(--blanco);color:var(--negro);}
+  .btn-m{background:var(--magenta);color:#fff;}
+  .btn-o{background:transparent;color:var(--blanco);border:1px solid rgba(255,255,255,.4);}
+
+  /* ============ 7. MIS MOMENTOS FAVS CON USTEDES ============ */
+  .moments{display:grid;gap:34px;margin-top:30px;}
+  .moment{position:relative;width:82%;}
+  .moment:nth-child(even){margin-left:auto;}
+  .moment .ph{position:relative;background:#fff;padding:8px 8px 10px;box-shadow:0 24px 40px -22px rgba(0,0,0,.9);transform:rotate(-2deg);}
+  .moment:nth-child(even) .ph{transform:rotate(2deg);}
+  .moment img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.9);}
+  .moment .tape{position:absolute;top:-12px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(240,163,243,.55);transform:rotate(-4deg);backdrop-filter:blur(2px);}
+  .moment p{font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.25;margin-top:14px;padding-inline:4px;}
+  .moment small{display:block;font-family:var(--wide);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);margin-top:4px;padding-inline:4px;}
+
+  /* ============ 8. FEATURING ============ */
+  .field{display:flex;gap:8px;margin-top:22px;}
+  .field input{flex:1;min-width:0;background:var(--carbon);border:1px solid var(--linea);border-radius:999px;color:var(--blanco);font:inherit;padding:13px 18px;outline:none;}
+  .field input::placeholder{color:#6F6976;}
+  .field input:focus{border-color:var(--rosa);}
+  .msg{min-height:1.3em;margin-top:8px;font-size:.88rem;color:var(--rosa);}
+
+  /* ============ 9. MERCH (regalos) ============ */
+  .merch{display:grid;gap:10px;margin-top:22px;}
+  .tag{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--carbon);border:1px solid var(--linea);border-radius:14px;padding:14px 16px;position:relative;}
+  .tag::before{content:"";position:absolute;left:-1px;top:50%;width:10px;height:20px;margin-top:-10px;background:var(--negro);border:1px solid var(--linea);border-left:0;border-radius:0 10px 10px 0;}
+  .tag .k{font-family:var(--wide);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gris);}
+  .tag .v{font-weight:800;font-size:1.05rem;word-break:break-all;}
+  .tag .v.m{font-weight:600;font-size:.92rem;font-variant-numeric:tabular-nums;}
+  .copy{flex:0 0 auto;border:0;background:var(--blanco);color:var(--negro);font:inherit;font-weight:800;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:9px 14px;cursor:pointer;}
+  .copy.done{background:var(--rosa);}
+
+  /* ============ 10. LISTA / PASE BACKSTAGE ============ */
+  .form{display:grid;gap:12px;margin-top:22px;}
+  .form input[type=text]{width:100%;background:var(--carbon);border:1px solid var(--linea);border-radius:14px;color:var(--blanco);font:inherit;padding:14px 16px;outline:none;}
+  .form input[type=text]:focus{border-color:var(--rosa);}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .seg label{cursor:pointer;}
+  .seg input{position:absolute;opacity:0;pointer-events:none;}
+  .seg span{display:block;text-align:center;padding:12px 6px;border-radius:14px;border:1px solid var(--linea);font-weight:800;font-size:.9rem;transition:all .2s;}
+  .seg input:checked + span{background:var(--blanco);color:var(--negro);border-color:var(--blanco);}
+  .seg input:focus-visible + span{outline:2px solid var(--rosa);outline-offset:2px;}
+  .err{min-height:1.3em;font-size:.88rem;color:var(--rosa);}
+  .form[hidden],.pass[hidden]{display:none;}
+  .lanyard{width:26px;height:56px;margin:26px auto -6px;background:repeating-linear-gradient(180deg,var(--magenta) 0 8px,#8E2F92 8px 16px);border-radius:3px;position:relative;}
+  .lanyard::after{content:"";position:absolute;left:50%;bottom:-8px;width:16px;height:16px;margin-left:-8px;border:3px solid #C9C9C9;border-radius:50%;}
+  .pass{max-width:300px;margin:0 auto;border-radius:18px;padding:22px 20px 18px;background:var(--holo);background-size:200% 200%;animation:holo 8s linear infinite;color:var(--negro);text-align:center;box-shadow:0 30px 60px -24px rgba(240,163,243,.45);transform:rotate(-2deg);}
+  .pass .top{font-family:var(--wide);font-weight:900;font-size:1.35rem;letter-spacing:-.02em;line-height:1;}
+  .pass .sub{font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;}
+  .pass .guest{font-family:var(--serif);font-style:italic;font-size:1.9rem;line-height:1.05;margin-top:16px;}
+  .pass .qr{width:150px;height:150px;margin:14px auto 8px;background:#fff;border-radius:10px;padding:10px;}
+  .pass .qr svg{width:100%;height:100%;display:block;}
+  .pass .code{font-family:var(--wide);font-size:.7rem;letter-spacing:.2em;font-weight:600;}
+  .pass .when{font-size:.78rem;font-weight:700;margin-top:6px;}
+  .after{text-align:center;margin-top:24px;}
+  .after p{font-size:.85rem;color:var(--gris);}
+  .linkbtn{background:none;border:0;color:var(--gris);font:inherit;font-size:.8rem;text-decoration:underline;cursor:pointer;margin-top:10px;}
+
+  footer{border-top:1px solid var(--linea);padding:34px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:center;font-size:.85rem;color:var(--gris);}
+  footer a{color:var(--blanco);text-decoration:none;border-bottom:1px solid var(--magenta);}
+  footer .fine{font-family:var(--wide);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;margin-top:16px;opacity:.6;}
+
+  /* ============ MINI VINILO FLOTANTE ============ */
+  .mini{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;padding:0;
+    background:repeating-radial-gradient(circle,#0E0D10 0 1.2px,#222 1.2px 2.4px);box-shadow:0 0 0 2px rgba(255,255,255,.15),0 10px 24px -8px rgba(0,0,0,.9);animation:spin 3.2s linear infinite;animation-play-state:paused;}
+  .mini::after{content:"";position:absolute;inset:32%;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 2px #0B0A0D;}
+  .mini .pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;color:#fff;font-size:.7rem;}
+  .playing .mini{animation-play-state:running;}
+  .playing .mini .pl{display:none;}
+  .mini[hidden]{display:none;}
+
+  .js .reveal{opacity:0;translate:0 18px;transition:opacity .8s cubic-bezier(.16,1,.3,1),translate .8s cubic-bezier(.16,1,.3,1);}
+  .js .reveal.in{opacity:1;translate:0 0;}
+  @media (prefers-reduced-motion: reduce){
+    .js .reveal{opacity:1;translate:none;transition:none;}
+    .holo-text,.pass,.hero-photo{animation:none;}
+    .vinyl,.mini{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     CONFIGURACIÓN — Editá los datos de Delfina acá
+     ====================================================== -->
+<script>
+const CONFIG = {
+  nombre: "Delfina",
+  numero: "18",
+  frase: "Sin protocolo, muchas fotos, copas llenas y la mejor música. Te espero para celebrar juntos una noche inolvidable.",
+
+  fechaISO: "2026-10-17T22:30:00",
+  fechaTextual: "Sábado 17 de octubre",
+  horaRecepcion: "22:30 h",
+
+  lugarNombre: "Salón o bar del festejo",        // NUEVO
+  lugarDireccion: "Dirección, localidad",         // NUEVO
+  mapsUrl: "https://maps.google.com/?q=Salon+o+Bar+Festejo",
+
+  dressCodeTitulo: "Elegante & noche",
+  dressCodeDescripcion: "Brillos, elegancia y la mejor actitud para disfrutar toda la noche.",
+
+  // NUEVO: la "lista de temas" es el cronograma. hit: true le pone la etiqueta HIT
+  tracklist: [
+    { hora: "22:30", titulo: "Recepción & cocktail", detalle: "Llegada, fotos y primer brindis" },
+    { hora: "23:30", titulo: "Cena", detalle: "" },
+    { hora: "00:00", titulo: "Fiesta & pista", detalle: "Se abre la pista", hit: true },
+    { hora: "04:00", titulo: "Bonus track", detalle: "Fin de fiesta" }
+  ],
+
+  whatsappNumero: "5491100000000",
+  // {nombre} y {codigo} se completan solos
+  rsvpMensajeSi: "¡Hola Delfi! Soy {nombre} y obvio que voy, no me lo pierdo ✨🍸 Mi pase: {codigo}",
+  rsvpMensajeNo: "¡Hola Delfi! Soy {nombre}. No voy a poder ir 😢 ¡Que sea una noche increíble!",
+  codigoPrefijo: "DELFI18",
+  playlistMensaje: "¡Hola Delfi! 🎵 Para la fiesta no puede faltar: ",
+
+  wishlistUrl: "https://www.google.com",
+  regaloTitular: "Delfina Pérez",
+  regaloAlias: "DELFI.18.FIESTA",
+  regaloCbu: "0000003100098234105611",
+
+  audioUrl: "images/delfina/musica.mp3",
+  cancionNombre: "Tema de la noche",            // NUEVO: lo que se ve en "Ahora sonando"
+  cancionArtista: "Elegido por Delfina",
+
+  tituloRegalos: "Merch oficial",
+  mensajeRegalos: "Tu presencia es mi mejor regalo. Si querés hacerme un obsequio, podés ver mi lista de deseos o hacer una transferencia.",
+
+  fotoPortada: "images/delfina/fondodecielo.png",       // fondo de la portada
+  fotoHeroFrame: "images/delfina/delfinacumple.jpg",    // tapa del álbum
+  fotoRSVP: "images/delfina/planeta.png",               // etiqueta del vinilo
+  // NUEVO: "Mis momentos favs con ustedes" — foto + lo que dice abajo
+  momentosIntro: "Algunos de los momentos que más quiero, y en todos están ustedes.",
+  momentos: [
+    { foto: "images/delfina/delfi.jpg", texto: "Las noches que terminaron en desayuno", etiqueta: "Verano 2025" },
+    { foto: "images/delfina/carruseldelfi.jpg", texto: "Mi gente de siempre", etiqueta: "Para siempre" }
+  ]
+};
+</script>
+
+<main>
+
+  <!-- 1. PORTADA: FOTO A PANTALLA COMPLETA -->
+  <header class="hero">
+    <div class="hero-photo" id="hero-photo" role="img" aria-label="Foto de portada"></div>
+    <div class="hero-tint"></div>
+    <p class="hero-top">Te invito a celebrar</p>
+    <div class="hero-body">
+      <h1 class="hero-name" id="nombre-titulo"></h1>
+      <p class="hero-age" id="hero-age"></p>
+      <div class="hero-line"><span id="hero-fecha"></span><i></i><span id="hero-hora"></span></div>
+      <p class="hero-cue">Deslizá y dale play</p>
+    </div>
+  </header>
+
+  <!-- 2. VINILO -->
+  <section id="player-sec" style="padding-top:56px">
+    <div class="wrap reveal">
+      <div class="side"><span>Lado A</span><span>33⅓ RPM</span></div>
+      <div class="vinyl-wrap">
+        <button type="button" class="vinyl" id="vinyl" aria-label="Reproducir música"><span class="label"><img id="vinyl-img" src="" alt=""></span></button>
+        <svg class="arm" viewBox="0 0 60 120" aria-hidden="true"><circle cx="50" cy="10" r="8" fill="#2A2730" stroke="#555" stroke-width="2"/><path d="M50 10 L50 70 Q50 88 36 100" fill="none" stroke="#C9C9C9" stroke-width="4" stroke-linecap="round"/><rect x="26" y="96" width="16" height="10" rx="2" fill="#C9C9C9" transform="rotate(35 34 101)"/></svg>
+      </div>
+      <div class="now"><p id="now-title"></p><small id="now-artist"></small></div>
+    </div>
+  </section>
+
+  <!-- 3. NOTAS DEL DISCO -->
+  <section class="notes">
+    <div class="wrap reveal">
+      <div class="side"><span>Notas del disco</span><span>✦</span></div>
+      <p id="frase-texto"></p>
+      <p class="sig" id="firma"></p>
+    </div>
+  </section>
+
+  <!-- 4. LANZAMIENTO -->
+  <section>
+    <div class="wrap reveal">
+      <div class="side"><span>Cuenta regresiva</span><span id="side-fecha"></span></div>
+      <h2 class="h2">Sale en</h2>
+      <div class="count" id="countdown">
+        <div><strong data-u="d">0</strong><small>días</small></div>
+        <div><strong data-u="h">00</strong><small>horas</small></div>
+        <div><strong data-u="m">00</strong><small>min</small></div>
+        <div><strong data-u="s">00</strong><small>seg</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. LISTA DE TEMAS (cronograma) -->
+  <section id="sec-tracks">
+    <div class="wrap reveal">
+      <div class="side"><span>Lista de temas</span><span>La noche</span></div>
+      <h2 class="h2">Tracklist</h2>
+      <ol class="tracks" id="tracks"></ol>
+    </div>
+  </section>
+
+  <!-- 6. CRÉDITOS (detalles) -->
+  <section>
+    <div class="wrap reveal">
+      <div class="side"><span>Créditos</span><span>Info</span></div>
+      <h2 class="h2">Dónde <em>y cómo</em></h2>
+      <div class="credits">
+        <div class="credit"><p class="k">Fecha</p><p class="v" id="fecha-textual"></p><p class="s" id="hora-recepcion"></p></div>
+        <div class="credit"><p class="k">Lugar</p><p class="v" id="lugar-nombre"></p><p class="s" id="lugar-direccion"></p></div>
+        <div class="credit"><p class="k">Vestuario</p><p class="v" id="dresscode-titulo"></p><p class="s" id="dresscode-desc"></p></div>
+      </div>
+      <a class="btn btn-w" id="ubicacion-btn" href="#" target="_blank" rel="noopener" style="margin-top:22px;width:100%">Cómo llegar</a>
+    </div>
+  </section>
+
+  <!-- 7. MIS MOMENTOS FAVS CON USTEDES -->
+  <section>
+    <div class="wrap reveal">
+      <div class="side"><span>Mis momentos favs</span><span>♡</span></div>
+      <h2 class="h2">Con <em>ustedes</em></h2>
+      <p style="color:var(--gris);margin-top:10px" id="momentos-intro"></p>
+      <div class="moments" id="moments"></div>
+    </div>
+  </section>
+
+  <!-- 8. FEATURING -->
+  <section>
+    <div class="wrap reveal">
+      <div class="side"><span>Featuring</span><span>Vos</span></div>
+      <h2 class="h2">Sumá <em>un tema</em></h2>
+      <p style="color:var(--gris);margin-top:10px">Esa canción que sí o sí tiene que sonar.</p>
+      <form class="field" id="song-form" novalidate>
+        <label for="song-input" style="position:absolute;left:-9999px">Canción o artista</label>
+        <input type="text" id="song-input" placeholder="Tema o artista" autocomplete="off">
+        <button type="submit" class="btn btn-m">Enviar</button>
+      </form>
+      <p class="msg" id="song-msg" role="status"></p>
+    </div>
+  </section>
+
+  <!-- 9. MERCH (regalos) -->
+  <section>
+    <div class="wrap reveal">
+      <div class="side"><span>Regalos</span><span>✦</span></div>
+      <h2 class="h2" id="regalos-titulo"></h2>
+      <p style="color:var(--gris);margin-top:10px" id="regalos-mensaje"></p>
+      <a class="btn btn-o" id="wishlist-btn" href="#" target="_blank" rel="noopener" style="margin-top:20px;width:100%">Ver lista de deseos</a>
+      <div class="merch">
+        <div class="tag"><div><p class="k">Alias</p><p class="v" id="regalo-alias"></p></div><button type="button" class="copy" data-copy="alias">Copiar</button></div>
+        <div class="tag"><div style="min-width:0"><p class="k">CBU / CVU</p><p class="v m" id="regalo-cbu"></p></div><button type="button" class="copy" data-copy="cbu">Copiar</button></div>
+        <div class="tag"><div><p class="k">Titular</p><p class="v m" id="regalo-titular"></p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. LA LISTA + PASE BACKSTAGE -->
+  <section>
+    <div class="wrap reveal">
+      <div class="side"><span>Confirmación</span><span>RSVP</span></div>
+      <h2 class="h2">¿Estás <em>en la lista?</em></h2>
+      <form class="form" id="rsvp-form" novalidate>
+        <input type="text" id="rsvp-nombre" placeholder="Tu nombre y apellido" autocomplete="name" aria-label="Tu nombre">
+        <div class="seg" role="radiogroup" aria-label="Asistencia">
+          <label><input type="radio" name="asiste" value="si" checked><span>Voy</span></label>
+          <label><input type="radio" name="asiste" value="no"><span>No puedo</span></label>
+        </div>
+        <p class="err" id="rsvp-err" role="alert"></p>
+        <button type="submit" class="btn btn-w" style="width:100%" id="rsvp-submit">Sacar mi pase</button>
+      </form>
+
+      <div id="pase" hidden>
+        <div class="lanyard" aria-hidden="true"></div>
+        <div class="pass">
+          <p class="top" id="pase-top"></p>
+          <p class="sub">Pase backstage · All access</p>
+          <p class="guest" id="pase-nombre"></p>
+          <div class="qr" id="pase-qr" role="img" aria-label="Código QR de ingreso"></div>
+          <p class="code" id="pase-codigo"></p>
+          <p class="when" id="pase-when"></p>
+        </div>
+        <div class="after">
+          <p>Hacé captura y mostrala en la puerta.</p>
+          <a class="btn btn-m" id="rsvp-wa" href="#" style="width:100%;margin-top:14px">Confirmar por WhatsApp</a>
+          <button type="button" class="linkbtn" id="pase-editar">Cambiar nombre</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Invitación diseñada por <a href="https://celebrainvitaciones.com/" target="_blank" rel="noopener">Celebra Invitaciones</a></p>
+    <p style="margin-top:4px">¿Querés la tuya? <a href="https://celebrainvitaciones.com/catalogo.html" target="_blank" rel="noopener">Mirá los diseños</a></p>
+    <p class="fine" id="fine"></p>
+  </footer>
+</main>
+
+<button type="button" class="mini" id="mini" aria-label="Reproducir música" hidden><span class="pl">▶</span></button>
+<audio id="audio" loop preload="none"></audio>
+
+<script>
+(function () {
+  var C = CONFIG;
+  var $ = function (id) { return document.getElementById(id); };
+  var set = function (id, v) { var el = $(id); if (el) el.textContent = v || ''; };
+  document.documentElement.classList.add('js');
+
+  /* ---------- Textos ---------- */
+  var f = new Date(C.fechaISO), pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var corta = pad(f.getDate()) + '.' + pad(f.getMonth() + 1) + '.' + String(f.getFullYear()).slice(-2);
+  var numeros = { '15': 'quince', '16': 'dieciséis', '17': 'diecisiete', '18': 'dieciocho', '19': 'diecinueve', '20': 'veinte', '21': 'veintiuno', '25': 'veinticinco', '30': 'treinta' };
+  set('nombre-titulo', C.nombre); set('hero-age', 'mis ' + (numeros[C.numero] || C.numero));
+  set('hero-fecha', corta); set('hero-hora', C.horaRecepcion);
+  set('now-title', C.cancionNombre || 'Ahora sonando'); set('now-artist', C.cancionArtista || '');
+  set('frase-texto', C.frase); set('firma', '— ' + C.nombre);
+  set('side-fecha', corta);
+  set('fecha-textual', C.fechaTextual); set('hora-recepcion', C.horaRecepcion);
+  set('lugar-nombre', C.lugarNombre); set('lugar-direccion', C.lugarDireccion);
+  set('dresscode-titulo', C.dressCodeTitulo); set('dresscode-desc', C.dressCodeDescripcion);
+  set('regalos-titulo', C.tituloRegalos); set('regalos-mensaje', C.mensajeRegalos);
+  set('regalo-alias', C.regaloAlias); set('regalo-cbu', C.regaloCbu); set('regalo-titular', C.regaloTitular);
+  set('fine', '℗ ' + f.getFullYear() + ' ' + C.nombre + ' · Mis ' + C.numero);
+  document.title = C.nombre + ' · ' + C.numero;
+
+  /* ---------- Imágenes y links ---------- */
+  $('hero-photo').style.backgroundImage = "url('" + (C.fotoHeroFrame || C.fotoPortada) + "')";
+  var lab = $('vinyl-img'); if (C.fotoRSVP) { lab.src = C.fotoRSVP; } else lab.remove();
+  $('ubicacion-btn').href = C.mapsUrl || '#';
+  if (C.wishlistUrl) $('wishlist-btn').href = C.wishlistUrl; else $('wishlist-btn').style.display = 'none';
+
+  /* Nombre de la portada: que entre siempre en una línea */
+  function fit() {
+    var el = $('nombre-titulo'), box = el.parentElement.clientWidth;
+    el.style.fontSize = '100px';
+    el.style.fontSize = Math.min(150, Math.floor(100 * box / el.scrollWidth)) + 'px';
+  }
+  fit(); addEventListener('resize', fit); if (document.fonts) document.fonts.ready.then(fit);
+
+  /* ---------- Tracklist ---------- */
+  var tl = C.tracklist || [];
+  if (!tl.length) $('sec-tracks').hidden = true;
+  tl.forEach(function (t) {
+    var li = document.createElement('li'); if (t.hit) li.className = 'hit';
+    li.innerHTML = '<span class="t"></span><span class="h"></span>';
+    var tt = li.querySelector('.t'); tt.textContent = t.titulo;
+    if (t.detalle) { var s = document.createElement('small'); s.textContent = t.detalle; tt.appendChild(s); }
+    li.querySelector('.h').textContent = t.hora; $('tracks').appendChild(li);
+  });
+
+  /* ---------- Mis momentos favs con ustedes ---------- */
+  set('momentos-intro', C.momentosIntro);
+  (C.momentos || []).forEach(function (m, i) {
+    var d = document.createElement('figure'); d.className = 'moment';
+    d.innerHTML = '<div class="ph"><span class="tape"></span><img loading="lazy" alt=""></div><p></p><small></small>';
+    var img = d.querySelector('img'); img.src = m.foto; img.alt = m.texto || ('Momento ' + (i + 1));
+    d.querySelector('p').textContent = m.texto || ''; d.querySelector('small').textContent = m.etiqueta || '';
+    $('moments').appendChild(d);
+  });
+
+  /* ---------- Cuenta regresiva ---------- */
+  var cells = {}; document.querySelectorAll('#countdown [data-u]').forEach(function (el) { cells[el.getAttribute('data-u')] = el; });
+  function tick() {
+    var diff = Math.max(0, f.getTime() - Date.now());
+    cells.d.textContent = Math.floor(diff / 864e5); cells.h.textContent = pad(Math.floor(diff / 36e5) % 24);
+    cells.m.textContent = pad(Math.floor(diff / 6e4) % 60); cells.s.textContent = pad(Math.floor(diff / 1e3) % 60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- Música: vinilo, botón de la tapa y mini vinilo ---------- */
+  var audio = $('audio'), root = document.documentElement;
+  function setPlaying(on) {
+    root.classList.toggle('playing', on);
+    ['vinyl', 'mini'].forEach(function (id) { $(id).setAttribute('aria-label', on ? 'Pausar música' : 'Reproducir música'); });
+  }
+  function toggle() {
+    if (!C.audioUrl) return;
+    if (audio.paused) audio.play().then(function () { setPlaying(true); }).catch(function () {});
+    else { audio.pause(); setPlaying(false); }
+  }
+  if (C.audioUrl) { audio.src = C.audioUrl; $('mini').hidden = false; } else { $('player-sec').hidden = true; }
+  ['vinyl', 'mini'].forEach(function (id) { $(id).addEventListener('click', toggle); });
+
+  /* ---------- Featuring ---------- */
+  $('song-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = $('song-input').value.trim();
+    if (!v) { set('song-msg', 'Escribí un tema o artista.'); $('song-input').focus(); return; }
+    set('song-msg', '');
+    window.location.href = 'https://wa.me/' + C.whatsappNumero + '?text=' + encodeURIComponent((C.playlistMensaje || '') + v);
+  });
+
+  /* ---------- Copiar ---------- */
+  function fallbackCopy(t) { var x = document.createElement('textarea'); x.value = t; x.style.position = 'fixed'; x.style.opacity = '0'; document.body.appendChild(x); x.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(x); }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var t = btn.getAttribute('data-copy') === 'alias' ? C.regaloAlias : C.regaloCbu;
+      var done = function () { btn.textContent = 'Copiado'; btn.classList.add('done'); setTimeout(function () { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, function () { fallbackCopy(t); done(); });
+      else { fallbackCopy(t); done(); }
+    });
+  });
+
+  /* ---------- Pase backstage con QR ficticio ---------- */
+  function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function qr(seed) {
+    var N = 25, r = rng(hash(seed)), out = [], x, y;
+    var fnd = function (x, y) { return (x < 8 && y < 8) || (x > N - 9 && y < 8) || (x < 8 && y > N - 9); };
+    for (y = 0; y < N; y++) for (x = 0; x < N; x++) {
+      if (fnd(x, y)) continue;
+      if ((y === 6 || x === 6) ? (x + y) % 2 === 0 : r() > .5) out.push('<rect x="' + x + '" y="' + y + '" width="1" height="1"/>');
+    }
+    var F = function (a, b) { return '<rect x="' + a + '" y="' + b + '" width="7" height="7"/><rect x="' + (a + 1) + '" y="' + (b + 1) + '" width="5" height="5" fill="#fff"/><rect x="' + (a + 2) + '" y="' + (b + 2) + '" width="3" height="3"/>'; };
+    return '<svg viewBox="0 0 25 25" shape-rendering="crispEdges"><g fill="#0B0A0D">' + out.join('') + F(0, 0) + F(18, 0) + F(0, 18) + '</g></svg>';
+  }
+  var form = $('rsvp-form'), KEY = 'pase-' + C.nombre + '-' + C.fechaISO;
+  form.addEventListener('change', function () {
+    var va = form.querySelector('input[name="asiste"]:checked').value === 'si';
+    set('rsvp-submit', va ? 'Sacar mi pase' : 'Avisar por WhatsApp');
+  });
+  function showPass(nombre) {
+    var code = (C.codigoPrefijo || 'PASE') + '-' + (hash(nombre.toLowerCase() + C.fechaISO) % 9000 + 1000);
+    set('pase-top', C.nombre.toUpperCase() + ' ' + C.numero); set('pase-nombre', nombre); set('pase-codigo', code);
+    set('pase-when', C.fechaTextual + ' · ' + C.horaRecepcion);
+    $('pase-qr').innerHTML = qr(nombre.toLowerCase() + '|' + code);
+    $('rsvp-wa').href = 'https://wa.me/' + C.whatsappNumero + '?text=' + encodeURIComponent((C.rsvpMensajeSi || '').replace('{nombre}', nombre).replace('{codigo}', code));
+    form.hidden = true; $('pase').hidden = false;
+    try { localStorage.setItem(KEY, nombre); } catch (e) {}
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nombre = $('rsvp-nombre').value.trim();
+    if (!nombre) { set('rsvp-err', 'Escribí tu nombre.'); $('rsvp-nombre').focus(); return; }
+    set('rsvp-err', '');
+    var va = form.querySelector('input[name="asiste"]:checked').value === 'si';
+    if (va) showPass(nombre);
+    else window.location.href = 'https://wa.me/' + C.whatsappNumero + '?text=' + encodeURIComponent((C.rsvpMensajeNo || '').replace('{nombre}', nombre));
+  });
+  $('pase-editar').addEventListener('click', function () {
+    $('pase').hidden = true; form.hidden = false;
+    try { localStorage.removeItem(KEY); } catch (e) {}
+  });
+  try { var g = localStorage.getItem(KEY); if (g) { $('rsvp-nombre').value = g; showPass(g); } } catch (e) {}
+
+  /* ---------- Aparición ---------- */
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 });
+    els.forEach(function (el) { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); else io.observe(el); });
+  } else els.forEach(function (el) { el.classList.add('in'); });
+})();
+</script>
+</body>
+</html>
