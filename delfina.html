@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Te invito a celebrar mis 18 años - Delfina">
-<title>Delfina — Mis 18 Años 🍸✨</title>
+<title>Delfina — Mis 18 Años</title>
 
-<!-- Tipografías: Cormorant Garamond (Moda/Editorial) + Plus Jakarta Sans (UI moderna) -->
+<!-- Tipografías: Cormorant Garamond (editorial) + Plus Jakarta Sans (texto) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -36,84 +36,128 @@
 
 <style>
   html { scroll-behavior: smooth; }
+  body { -webkit-tap-highlight-color: transparent; background: #0d050e; color: #FBF8F5; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-  /* Fondo dinámico */
-  .bg-fixed-full {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100svh;
-    z-index: -10;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: brightness(0.85) contrast(1.05);
-  }
+  /* Fondo fijo */
+  .bg-fixed-full { position: fixed; inset: 0; height: 100vh; height: 100svh; z-index: -10; background-size: cover; background-position: center; filter: brightness(0.8) contrast(1.05) saturate(1.1); }
+  .bg-overlay { position: fixed; inset: 0; height: 100vh; height: 100svh; z-index: -9; pointer-events: none;
+    background: radial-gradient(120% 80% at 50% 0%, rgba(59,11,62,.55) 0%, rgba(13,5,14,.92) 60%, #0d050e 100%); }
+  /* Grano sutil, le da textura de foto analógica */
+  .grain { position: fixed; inset: 0; z-index: -8; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
-  .bg-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh; height: 100svh;
-    z-index: -9;
-    background: radial-gradient(circle at center, rgba(23, 10, 24, 0.65) 0%, rgba(13, 5, 14, 0.92) 100%);
-    pointer-events: none;
-  }
+  /* Animación de entrada */
+  .js .reveal-section { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+  .js .reveal-section.visible { opacity: 1; transform: none; }
 
-  /* Animación de entrada fluida para secciones */
-  .reveal-section { 
-    opacity: 0; 
-    transform: translateY(32px) scale(0.98); 
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
-    will-change: opacity, transform;
-  }
-  .reveal-section.visible { 
-    opacity: 1; 
-    transform: translateY(0) scale(1); 
-  }
+  .kicker { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; font-weight: 600; color: #f0a3f3; }
 
-  /* Carrusel sin bordes estilizado */
-  .carrusel-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); touch-action: pan-y; }
+  /* Carrusel */
+  .carrusel-track { display: flex; transition: transform .6s cubic-bezier(.25,1,.5,1); touch-action: pan-y; }
   .carrusel-slide { flex: 0 0 100%; }
-  .dot { width: 6px; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.25); transition: all 0.4s ease; }
+  .dot { width: 6px; height: 6px; border-radius: 999px; background: rgba(255,255,255,.25); transition: all .4s ease; }
   .dot.active { width: 24px; background: #b043b4; }
 
-  .music-btn { 
-    box-shadow: 0 10px 30px rgba(176, 67, 180, 0.4); 
-    backdrop-filter: blur(8px);
-  }
+  /* ===== VINILO ===== */
+  .turntable { position: relative; width: min(78vw, 320px); aspect-ratio: 1; margin: 0 auto; cursor: pointer; }
+  /* Color del disco: cambiá estas dos variables si querés otro tono */
+  .turntable { --v1: #f3c9d6; --v2: #e7aec3; }
+  .vinyl { position: absolute; inset: 0; border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, transparent 0 31%, rgba(255,255,255,.35) 31.5% 32%, transparent 32.5%),
+      repeating-radial-gradient(circle at 50% 50%, var(--v1) 0 1.6px, var(--v2) 1.6px 3.2px),
+      var(--v1);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.85), 0 0 50px -10px rgba(240,163,243,.35), inset 0 0 0 6px rgba(255,255,255,.25);
+    animation: spin 2.4s linear infinite; animation-play-state: paused; }
+  .vinyl::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
+    background: conic-gradient(from 20deg, transparent 0 12%, rgba(255,255,255,.45) 16%, transparent 22% 60%, rgba(255,255,255,.3) 64%, transparent 70%); }
+  .vinyl-label { position: absolute; inset: 31%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fffaf5, #f6e7dc); box-shadow: inset 0 0 0 2px rgba(176,67,180,.25); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; color: #3b0b3e; text-align: center; }
+  .vinyl-label b { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(1.6rem, 9vw, 2.3rem); line-height: 1; font-style: italic; }
+  .vinyl-label small { font-size: 9px; letter-spacing: .32em; text-transform: uppercase; color: #7d2481; }
+  .vinyl-hole { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: #0d050e; box-shadow: 0 0 0 2px rgba(59,11,62,.25); z-index: 2; }
+  .tonearm { position: absolute; top: -4%; right: -3%; width: 34%; height: 78%; transform-origin: 78% 9%; transform: rotate(-14deg); transition: transform .9s cubic-bezier(.4,1.4,.5,1); z-index: 3; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0,0,0,.6)); }
+  .turntable.playing .vinyl { animation-play-state: running; }
+  .turntable.playing .tonearm { transform: rotate(9deg); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .tap-hint.hidden { display: none; }
+  .tap-hint { display: inline-flex; align-items: center; gap: 10px; animation: breathe 2.2s ease-in-out infinite; }
+  @keyframes breathe { 50% { opacity: .55; } }
+  .eq { display: inline-flex; gap: 3px; align-items: flex-end; height: 14px; }
+  .eq i { width: 3px; background: #f0a3f3; border-radius: 2px; animation: eq 1s ease-in-out infinite; }
+  .eq i:nth-child(2) { animation-delay: -.3s; } .eq i:nth-child(3) { animation-delay: -.6s; } .eq i:nth-child(4) { animation-delay: -.15s; }
+  @keyframes eq { 0%,100% { height: 4px; } 50% { height: 14px; } }
+  .eq.paused i { animation-play-state: paused; height: 4px; }
+
+  /* ===== PASE DE ACCESO ===== */
+  .pass { position: relative; border-radius: 22px; overflow: hidden; color: #1a0b1b;
+    background: linear-gradient(160deg, #fbf3fb 0%, #f3dff4 100%); box-shadow: 0 30px 60px -25px rgba(176,67,180,.6); }
+  .pass-top { background: linear-gradient(135deg, #3b0b3e, #7d2481 60%, #b043b4); color: #fff; padding: 22px 24px 26px; position: relative; }
+  .pass-cut { position: relative; height: 0; border-top: 2px dashed rgba(59,11,62,.25); margin: 0 18px; }
+  .pass-cut::before, .pass-cut::after { content: ""; position: absolute; top: -13px; width: 24px; height: 24px; border-radius: 50%; background: #0d050e; }
+  .pass-cut::before { left: -31px; } .pass-cut::after { right: -31px; }
+  .pass-qr { background: #fff; padding: 12px; border-radius: 14px; width: 172px; margin: 0 auto; box-shadow: 0 6px 18px -8px rgba(59,11,62,.4); }
+  .pass-qr svg { display: block; width: 100%; height: auto; }
+  .pass[hidden], .rsvp-form[hidden] { display: none; }
+
+  .field { width: 100%; padding: 14px 20px; border-radius: 999px; background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.15); color: #fff; font-size: 14px; }
+  .field::placeholder { color: rgba(255,255,255,.35); }
+  .field:focus { outline: none; border-color: #b043b4; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transition: all .25s; }
+  .btn:active { transform: scale(.97); }
+  .btn-main { background: #b043b4; color: #fff; box-shadow: 0 12px 26px -12px rgba(176,67,180,.9); }
+  .btn-main:hover { background: #c853cc; }
+  .btn-ghost { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.16); }
+
+  .toast { position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 20px); opacity: 0; transition: all .35s; z-index: 60; background: rgba(23,10,24,.95); border: 1px solid rgba(240,163,243,.35); color: #fbf8f5; font-size: 13px; padding: 10px 18px; border-radius: 999px; pointer-events: none; white-space: nowrap; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal-section { opacity: 1; transform: none; transition: none; }
+    .js .reveal-section { opacity: 1; transform: none; transition: none; }
+    .vinyl, .tap-hint, .eq i { animation: none !important; }
     html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body class="font-sans antialiased text-champagneLight selection:bg-partyGold selection:text-white bg-nightDark">
+<script>document.documentElement.classList.add('js');</script>
 
-<!-- FONDO FIJO CON OVERLAY ELEGANTE -->
 <div id="main-background" class="bg-fixed-full"></div>
 <div class="bg-overlay"></div>
+<div class="grain"></div>
 
-<!-- CONFIGURACIÓN DE DATOS -->
+<!-- =========================================================
+     CONFIGURACIÓN — lo único que tenés que editar
+     ========================================================= -->
 <script>
 const CONFIG = {
   nombre: "DELFINA",
   numero: "18",
   frase: "Sin protocolo, muchas fotos, copas llenas y la mejor música. Te espero para celebrar juntos una noche inolvidable.",
 
-  fechaISO: "2026-10-17T22:30:00",
-  fechaTextual: "Sábado, 17 de Octubre de 2026",
-  horaRecepcion: "22:30 hs — Recepción & Brindis",
+  fechaISO: "2026-12-19T22:30:00", // formato AAAA-MM-DDTHH:MM:00 — define la cuenta regresiva
+  fechaTextual: "Sábado 19 de diciembre de 2026",
+  fechaCorta: "19 · 12 · 26",
+  horaRecepcion: "22:30 hs — Recepción & brindis",
 
+  lugarNombre: "Salón o bar del festejo",
+  lugarDireccion: "Dirección, localidad",
   mapsUrl: "https://maps.google.com/?q=Salon+o+Bar+Festejo",
 
-  dressCodeTitulo: "Elegante & Noche",
+  dressCodeTitulo: "Elegante & noche",
   dressCodeDescripcion: "Brillos, elegancia y la mejor actitud para disfrutar toda la noche.",
+
+  itinerario: [
+    { hora: "22:30", titulo: "Recepción & cocktail", detalle: "Llegada de invitados, fotos e inicio de la noche" },
+    { hora: "00:00", titulo: "Fiesta & pista", detalle: "Apertura oficial de la pista de baile" }
+  ],
 
   whatsappNumero: "5491100000000",
   whatsappMensaje: "¡Hola Delfi! Obvio que voy, no me lo pierdo por nada ✨🍸",
+  // Mensaje que se envía al confirmar con el pase. {nombre} y {codigo} se completan solos.
+  rsvpMensaje: "¡Hola Delfi! 🎉 Confirmo mi asistencia a tus 18. Soy {nombre} y mi pase es {codigo}.",
+  codigoPrefijo: "DELFI18",
 
   wishlistUrl: "https://www.google.com",
 
@@ -121,13 +165,18 @@ const CONFIG = {
   regaloAlias: "DELFI.18.FIESTA",
   regaloCbu: "0000003100098234105611",
 
-  audioUrl: "images/delfina/musica.mp3",
+  // ⚠️ MÚSICA: subí tu archivo .mp3 a la carpeta images/delfina/ y poné acá su nombre exacto.
+  //    Ejemplo: "images/delfina/musica.mp3". Si el archivo no existe, la música no va a sonar.
+  audioUrl: "images/delfina/iconos/madonna.mp3",
+  // Opcional: nombre de la canción y artista que aparecen al reproducir (dejalos vacíos "" si no querés mostrarlos)
+  cancionNombre: "",
+  cancionArtista: "",
 
-  tituloCarrusel: "Mis Momentos",
-  tituloRegalos: "Regalos & Detalle 🥂",
-  mensajeRegalos: "Tu presencia es mi mejor regalo. Si querés hacerme un obsequio, podés consultar mi lista de deseos o realizar una transferencia bancaria.",
+  tituloCarrusel: "Mis momentos",
+  tituloRegalos: "Regalos & detalles",
+  mensajeRegalos: "Tu presencia es mi mejor regalo. Si querés hacerme un obsequio, podés ver mi lista de deseos o hacer una transferencia.",
 
-  fotoPortada: "images/delfina/fondodecielo.png", 
+  fotoPortada: "images/delfina/fondodecielo.png",
   fotoHeroFrame: "images/delfina/delfinacumple.jpg",
   fotoRSVP: "images/delfina/planeta.png",
   fotosCarrusel: [
@@ -139,466 +188,394 @@ const CONFIG = {
 
 <main class="relative z-10">
 
-  <!-- 1. INICIO / PRESENTACIÓN -->
-  <section class="min-h-[100svh] flex flex-col justify-between px-6 py-12 text-center relative overflow-hidden max-w-4xl mx-auto">
-    <div class="reveal-section pt-4">
-      <span class="text-[10px] uppercase tracking-[0.35em] text-roseAccent/90 font-medium">Invitación Especial</span>
+  <!-- 1. PORTADA -->
+  <section class="min-h-[100svh] flex flex-col justify-between px-6 pt-10 pb-8 text-center relative overflow-hidden max-w-4xl mx-auto">
+    <div class="reveal-section">
+      <span class="kicker">Te invito a celebrar</span>
     </div>
 
-    <div class="my-auto py-6 flex flex-col items-center justify-center w-full relative z-10">
-      <div class="relative w-full max-w-[260px] sm:max-w-[300px] aspect-[3/4] p-2 bg-white/5 border border-white/10 backdrop-blur-md rounded-sm shadow-2xl overflow-hidden group">
-        <div class="w-full h-full overflow-hidden relative">
-          <img id="hero-foto-principal" src="" alt="Delfina 18" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
-        </div>
+    <div class="my-auto py-6 flex flex-col items-center w-full">
+      <div class="relative w-full max-w-[270px] sm:max-w-[310px] aspect-[3/4] p-2 bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl overflow-hidden rotate-[-2deg]">
+        <img id="hero-foto-principal" src="" alt="Foto de la cumpleañera" class="w-full h-full object-cover grayscale-[60%] contrast-105">
+        <span class="absolute -bottom-px left-1/2 -translate-x-1/2 translate-y-1/2 w-20 h-7 bg-roseAccent/70 rotate-3"></span>
       </div>
 
-      <div class="mt-8 flex flex-col items-center">
-        <h1 class="font-display font-light text-6xl sm:text-8xl text-champagneLight tracking-tight leading-none">
-          <span id="nombre-titulo-sub">DELFINA</span>
-        </h1>
-        <div class="flex items-center gap-3 mt-3">
-          <span class="w-8 h-px bg-roseAccent/40"></span>
-          <span class="font-display italic text-2xl sm:text-3xl text-roseAccent tracking-wider font-normal">mis 18 años</span>
-          <span class="w-8 h-px bg-roseAccent/40"></span>
-        </div>
+      <h1 class="mt-10 font-display font-light text-[clamp(3.6rem,17vw,7rem)] text-champagneLight tracking-[0.02em] leading-[.9]">
+        <span id="nombre-titulo-sub">DELFINA</span>
+      </h1>
+      <div class="flex items-center gap-3 mt-4">
+        <span class="w-10 h-px bg-roseAccent/40"></span>
+        <span class="font-display italic text-3xl text-roseAccent">mis <span id="hero-numero">18</span> años</span>
+        <span class="w-10 h-px bg-roseAccent/40"></span>
       </div>
+      <p id="hero-fecha" class="mt-5 text-xs tracking-[0.35em] text-champagneLight/70"></p>
     </div>
 
-    <div class="animate-pulse flex flex-col items-center gap-2 opacity-60 z-10">
-      <span class="text-[9px] uppercase tracking-[0.3em] font-light text-champagneLight/80">Deslizá para ver más</span>
-      <div class="w-px h-6 bg-gradient-to-b from-roseAccent to-transparent"></div>
+    <a href="#tema" class="flex flex-col items-center gap-2 opacity-70">
+      <span class="text-[11px] uppercase tracking-[0.3em] text-champagneLight/80">Deslizá y dale play</span>
+      <span class="w-px h-7 bg-gradient-to-b from-roseAccent to-transparent"></span>
+    </a>
+  </section>
+
+  <!-- 2. TEMA DE LA NOCHE (VINILO) -->
+  <section id="tema" class="px-6 py-14">
+    <div class="reveal-section max-w-md mx-auto text-center">
+      <span class="kicker">Dale play</span>
+      <h2 class="font-display text-4xl text-white mt-2 mb-10">El tema <i class="text-roseAccent">de la noche</i></h2>
+
+      <div id="turntable" class="turntable" role="button" tabindex="0" aria-label="Reproducir música" aria-pressed="false">
+        <div class="vinyl">
+          <div class="vinyl-label" aria-hidden="true"><b id="vinilo-inicial">D</b><small id="vinilo-num">18 años</small></div>
+        </div>
+        <span class="vinyl-hole"></span>
+        <svg class="tonearm" viewBox="0 0 100 230" aria-hidden="true">
+          <circle cx="78" cy="20" r="17" fill="#2a222a" stroke="#4a404a" stroke-width="2"/>
+          <circle cx="78" cy="20" r="7" fill="#b043b4"/>
+          <path d="M78 20 L70 175 L52 205" fill="none" stroke="#d9d2d9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="38" y="198" width="24" height="18" rx="3" transform="rotate(28 50 207)" fill="#efe9ef"/>
+        </svg>
+      </div>
+
+      <div class="mt-9 min-h-[48px]">
+        <p id="vinilo-hint" class="tap-hint text-sm text-champagneLight/85">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#f0a3f3" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Tocá el disco para reproducir la música
+        </p>
+        <div id="vinilo-now" class="hidden">
+          <p class="flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.25em] text-roseAccent"><span id="eq" class="eq"><i></i><i></i><i></i><i></i></span>Ahora sonando</p>
+          <p id="cancion-linea" class="font-display italic text-2xl text-white mt-1"><span id="cancion-nombre"></span> <span id="cancion-artista-wrap" class="text-champagneLight/50 not-italic text-base font-sans">— <span id="cancion-artista"></span></span></p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 2. FRASE DE BIENVENIDA -->
+  <!-- 3. FRASE -->
   <section class="px-6 py-10">
-    <div class="reveal-section max-w-2xl mx-auto border-y border-white/10 py-10 text-center relative">
-      <span class="font-display text-4xl text-partyGold/60 block mb-2 font-serif">“</span>
-      <p id="frase-texto" class="font-display text-2xl sm:text-3xl text-champagneLight leading-relaxed italic font-normal max-w-xl mx-auto px-4"></p>
-      <span class="font-display text-4xl text-partyGold/60 block mt-2 font-serif">”</span>
+    <div class="reveal-section max-w-xl mx-auto text-center">
+      <p id="frase-texto" class="font-display text-[1.75rem] sm:text-3xl text-champagneLight leading-snug italic"></p>
+      <p class="mt-5 font-display text-xl text-roseAccent">— <span id="frase-firma">Delfina</span></p>
     </div>
   </section>
 
-  <!-- 3. CUENTA REGRESIVA -->
-  <section class="px-6 py-8">
-    <div class="reveal-section max-w-xl mx-auto bg-violetGlow/60 backdrop-blur-md rounded-xl p-8 border border-white/10 text-center">
-      <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-roseAccent block mb-6">Faltan Muy Poco</span>
-      <div id="countdown" class="grid grid-cols-4 gap-3 max-w-md mx-auto"></div>
-    </div>
-  </section>
-
-  <!-- 4. ITINERARIO -->
-  <section class="px-6 py-10 max-w-2xl mx-auto">
-    <div class="reveal-section text-center mb-10">
-      <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-roseAccent block mb-1">Cronograma</span>
-      <h2 class="font-display text-3xl sm:text-4xl font-normal text-white">Línea del Tiempo</h2>
-    </div>
-
-    <div class="reveal-section space-y-6 relative before:absolute before:inset-0 before:left-1/2 before:-translate-x-1/2 before:w-px before:bg-white/10">
-      <div class="relative flex items-center justify-between gap-4 bg-violetGlow/80 backdrop-blur-md border border-white/10 p-4 rounded-lg">
-        <span class="font-display text-xl text-roseAccent w-24 text-right">22:30 HS</span>
-        <div class="w-2 h-2 rounded-full bg-partyGold shrink-0 z-10 shadow-[0_0_8px_#b043b4]"></div>
-        <div class="w-full text-left pl-2">
-          <h3 class="text-xs uppercase font-semibold text-white tracking-wider">Recepción & Cocktail</h3>
-          <p class="text-[11px] text-champagneLight/70">Llegada de invitados, fotos e inicio de la noche</p>
-        </div>
-      </div>
-
-      <div class="relative flex items-center justify-between gap-4 bg-violetGlow/80 backdrop-blur-md border border-white/10 p-4 rounded-lg">
-        <span class="font-display text-xl text-roseAccent w-24 text-right">00:00 HS</span>
-        <div class="w-2 h-2 rounded-full bg-partyGold shrink-0 z-10 shadow-[0_0_8px_#b043b4]"></div>
-        <div class="w-full text-left pl-2">
-          <h3 class="text-xs uppercase font-semibold text-white tracking-wider">Fiesta & Pista</h3>
-          <p class="text-[11px] text-champagneLight/70">Apertura oficial de la pista de baile</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. DETALLES DEL EVENTO -->
-  <section class="px-6 py-8">
-    <div class="reveal-section max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <!-- Cuándo -->
-      <div class="bg-violetGlow/50 backdrop-blur-md p-8 rounded-xl border border-white/10 text-center flex flex-col items-center justify-between hover:border-partyGold/40 transition-colors">
-        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-roseAccent mb-5 border border-white/10">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <div>
-          <span class="text-[9px] uppercase tracking-[0.2em] text-roseAccent font-semibold block mb-1">Fecha</span>
-          <p id="fecha-textual" class="text-sm font-medium text-white mb-1"></p>
-          <p id="hora-recepcion" class="text-xs text-champagneLight/60 font-light"></p>
-        </div>
-      </div>
-
-      <!-- Dónde -->
-      <div class="bg-violetGlow/50 backdrop-blur-md p-8 rounded-xl border border-white/10 text-center flex flex-col items-center justify-between hover:border-partyGold/40 transition-colors">
-        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-roseAccent mb-5 border border-white/10">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="w-full">
-          <span class="text-[9px] uppercase tracking-[0.2em] text-roseAccent font-semibold block mb-2">Ubicación</span>
-          <a id="ubicacion-btn" href="#" target="_blank" rel="noopener" class="inline-block w-full py-2.5 px-4 rounded-full bg-white/10 text-white text-[10px] font-semibold uppercase tracking-widest hover:bg-partyGold transition-all duration-300">Cómo Llegar</a>
-        </div>
-      </div>
-
-      <!-- Dress Code -->
-      <div class="bg-violetGlow/50 backdrop-blur-md p-8 rounded-xl border border-white/10 text-center flex flex-col items-center justify-between hover:border-partyGold/40 transition-colors">
-        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-roseAccent mb-5 border border-white/10">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M8 22h8M12 11v11M19 3l-7 8-7-8h14z"/></svg>
-        </div>
-        <div>
-          <span class="text-[9px] uppercase tracking-[0.2em] text-roseAccent font-semibold block mb-1">Vestimenta</span>
-          <h3 id="dresscode-titulo" class="font-display text-lg text-white mb-1"></h3>
-          <p id="dresscode-desc" class="text-[11px] text-champagneLight/60 leading-relaxed font-light"></p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 6. ÁLBUM / GALERÍA FOTOGRÁFICA (SIN BORDES) -->
+  <!-- 4. CUENTA REGRESIVA -->
   <section class="px-6 py-10">
+    <div class="reveal-section max-w-md mx-auto text-center">
+      <span class="kicker">Cuenta regresiva</span>
+      <div id="countdown" class="grid grid-cols-4 mt-6 border-y border-white/10 divide-x divide-white/10"></div>
+    </div>
+  </section>
+
+  <!-- 5. LA NOCHE: fecha, lugar, vestimenta + itinerario -->
+  <section class="px-6 py-12">
+    <div class="reveal-section max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <span class="kicker">Los detalles</span>
+        <h2 class="font-display text-4xl text-white mt-2">La <i class="text-roseAccent">noche</i></h2>
+      </div>
+
+      <dl class="divide-y divide-white/10 border-y border-white/10">
+        <div class="py-5 grid grid-cols-[92px_1fr] gap-4">
+          <dt class="font-display italic text-lg text-roseAccent">Cuándo</dt>
+          <dd><p id="fecha-textual" class="text-base font-medium text-white"></p><p id="hora-recepcion" class="text-sm text-champagneLight/60 mt-1"></p></dd>
+        </div>
+        <div class="py-5 grid grid-cols-[92px_1fr] gap-4">
+          <dt class="font-display italic text-lg text-roseAccent">Dónde</dt>
+          <dd><p id="lugar-nombre" class="text-base font-medium text-white"></p><p id="lugar-direccion" class="text-sm text-champagneLight/60 mt-1"></p>
+            <a id="ubicacion-btn" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-white border-b border-roseAccent/60 pb-1 hover:text-roseAccent">Cómo llegar <span aria-hidden="true">→</span></a></dd>
+        </div>
+        <div class="py-5 grid grid-cols-[92px_1fr] gap-4">
+          <dt class="font-display italic text-lg text-roseAccent">Vestimenta</dt>
+          <dd><p id="dresscode-titulo" class="text-base font-medium text-white"></p><p id="dresscode-desc" class="text-sm text-champagneLight/60 mt-1 leading-relaxed"></p></dd>
+        </div>
+      </dl>
+
+      <ol id="itinerario" class="mt-10 relative border-l border-white/15 ml-3 space-y-7"></ol>
+    </div>
+  </section>
+
+  <!-- 6. GALERÍA -->
+  <section class="px-6 py-12">
     <div class="reveal-section max-w-3xl mx-auto">
       <div class="text-center mb-6">
-        <span class="text-[9px] uppercase tracking-[0.25em] font-semibold text-roseAccent block mb-1">Galería</span>
-        <h2 id="carrusel-titulo" class="font-display text-3xl font-normal text-white"></h2>
+        <span class="kicker">Galería</span>
+        <h2 id="carrusel-titulo" class="font-display text-4xl text-white mt-2"></h2>
       </div>
-
-      <div class="relative w-full h-[55vh] sm:h-[65vh] rounded-2xl overflow-hidden shadow-2xl">
+      <div class="relative w-full h-[58vh] sm:h-[65vh] rounded-[28px] overflow-hidden shadow-2xl border border-white/10">
         <div id="carrusel-track" class="carrusel-track h-full w-full"></div>
-        
-        <button id="carrusel-prev" aria-label="Anterior" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-partyGold transition-all">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        <button id="carrusel-prev" aria-label="Foto anterior" class="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-partyGold transition-all">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
-        <button id="carrusel-next" aria-label="Siguiente" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-partyGold transition-all">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 5l6 6-6 6"/></svg>
+        <button id="carrusel-next" aria-label="Foto siguiente" class="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-partyGold transition-all">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M9 5l6 6-6 6"/></svg>
         </button>
       </div>
-      
       <div id="carrusel-dots" class="flex items-center justify-center gap-2 mt-6"></div>
     </div>
   </section>
 
-  <!-- 7. RECOMENDACIÓN DE MÚSICA -->
-  <section class="px-6 py-8">
-    <div class="reveal-section max-w-xl mx-auto bg-violetGlow/60 backdrop-blur-md rounded-2xl p-8 border border-white/10 text-center">
-      <span class="text-[9px] uppercase tracking-[0.25em] font-semibold text-roseAccent block mb-2">Música & Pista</span>
-      <h2 class="font-display text-2xl sm:text-3xl text-white font-normal mb-2">¿Qué tema no puede faltar? 🎧</h2>
-      <p class="text-xs text-champagneLight/60 mb-6 font-light max-w-sm mx-auto">Recomendame esa canción que sí o sí tiene que sonar en la fiesta.</p>
-
-      <div class="flex flex-col sm:flex-row items-center gap-3">
-        <input type="text" id="song-input" placeholder="Nombre de tema / Artista" class="w-full py-3 px-5 rounded-full bg-black/40 border border-white/15 text-white text-xs placeholder:text-white/30 focus:outline-none focus:border-partyGold transition-colors">
-        <button id="send-song-btn" type="button" class="w-full sm:w-auto shrink-0 px-6 py-3 rounded-full bg-partyGold text-white text-[10px] font-semibold uppercase tracking-widest hover:bg-partyGoldHover transition-all shadow-lg active:scale-95">
-          Enviar
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. MESA DE REGALOS / REGALOS Y WISHLIST -->
-  <section class="px-6 py-8">
-    <div class="reveal-section max-w-xl mx-auto bg-violetGlow/60 backdrop-blur-md rounded-2xl p-8 border border-white/10 text-center">
-      <span class="text-[9px] uppercase tracking-[0.25em] font-semibold text-roseAccent block mb-2">Muestra de Cariño</span>
-      <h2 id="regalos-titulo" class="font-display text-2xl font-normal text-white mb-2"></h2>
-      <p id="regalos-mensaje" class="text-xs text-champagneLight/60 mb-6 font-light max-w-md mx-auto leading-relaxed"></p>
-      
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <button id="open-regalos-modal" type="button" class="w-full sm:w-auto px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white text-[10px] font-semibold uppercase tracking-widest hover:bg-partyGold hover:border-partyGold transition-all active:scale-95">
-          Ver Datos Bancarios
-        </button>
-        <a id="wishlist-btn" href="#" target="_blank" rel="noopener" class="w-full sm:w-auto px-6 py-3 rounded-full bg-partyGold text-white text-[10px] font-semibold uppercase tracking-widest hover:bg-partyGoldHover transition-all shadow-lg active:scale-95">
-          Ver Lista de Deseos
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODAL BANCARIO -->
-  <div id="modal-regalos" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="bg-violetGlow border border-white/15 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
-      <span class="text-[9px] uppercase tracking-[0.25em] font-semibold text-roseAccent block mb-1">Transferencia</span>
-      <h3 class="font-display text-2xl font-normal mb-1 text-white">Datos Bancarios</h3>
-      <p class="text-xs text-champagneLight/60 mb-6 font-light">Cualquier detalle es súper agradecido</p>
-      
-      <div class="bg-black/50 p-4 rounded-xl flex flex-col gap-3 text-left text-xs mb-6 border border-white/10">
-        <div>
-          <span class="text-[9px] uppercase font-semibold text-roseAccent block tracking-wider mb-0.5">Titular</span>
-          <span id="regalo-titular" class="font-medium text-white"></span>
-        </div>
-        <div class="flex items-center justify-between border-t border-white/10 pt-2.5">
-          <div>
-            <span class="text-[9px] uppercase font-semibold text-roseAccent block tracking-wider mb-0.5">Alias</span>
-            <span id="regalo-alias" class="font-mono text-xs text-partyGold font-semibold"></span>
-          </div>
-          <button type="button" id="copy-alias-btn" class="px-3 py-1 bg-white/10 text-white text-[9px] uppercase font-semibold rounded hover:bg-partyGold transition-colors">Copiar</button>
-        </div>
-        <div class="flex items-center justify-between border-t border-white/10 pt-2.5">
-          <div class="overflow-hidden">
-            <span class="text-[9px] uppercase font-semibold text-roseAccent block tracking-wider mb-0.5">CBU / CVU</span>
-            <span id="regalo-cbu" class="font-mono text-[10px] text-champagneLight break-all"></span>
-          </div>
-          <button type="button" id="copy-cbu-btn" class="px-3 py-1 bg-white/10 text-white text-[9px] uppercase font-semibold rounded hover:bg-partyGold transition-colors shrink-0">Copiar</button>
-        </div>
-      </div>
-      <button id="close-regalos-modal" type="button" class="w-full py-3 rounded-full text-[10px] font-semibold uppercase tracking-widest bg-white/10 text-white hover:bg-white/20 transition-colors">Cerrar</button>
-    </div>
-  </div>
-
-  <!-- 9. CONFIRMACIÓN RSVP -->
+  <!-- 7. MÚSICA -->
   <section class="px-6 py-10">
-    <div class="reveal-section max-w-md mx-auto bg-violetGlow/60 backdrop-blur-md rounded-2xl p-8 border border-white/10 text-center flex flex-col items-center">
-      <div class="w-20 h-20 rounded-full overflow-hidden mb-5 border border-white/20 shadow-lg">
-        <img id="rsvp-avatar" src="" alt="Foto RSVP" class="w-full h-full object-cover">
+    <div class="reveal-section max-w-md mx-auto text-center">
+      <span class="kicker">Música & pista</span>
+      <h2 class="font-display text-3xl text-white mt-2 mb-2">¿Qué tema <i class="text-roseAccent">no puede faltar?</i></h2>
+      <p class="text-sm text-champagneLight/60 mb-6">Recomendame esa canción que sí o sí tiene que sonar.</p>
+      <div class="flex flex-col gap-3">
+        <input type="text" id="song-input" placeholder="Tema o artista" class="field" autocomplete="off">
+        <button id="send-song-btn" type="button" class="btn btn-main w-full">Enviar canción</button>
       </div>
-      <h2 class="font-display text-3xl text-white font-normal mb-2">Asistencia</h2>
-      <p class="text-xs text-champagneLight/60 mb-6 font-light max-w-xs">Por favor confirmá tu presencia antes del evento para coordinar todos los detalles.</p>
-      
-      <a id="rsvp-btn" href="#" target="_blank" rel="noopener" class="w-full py-3.5 rounded-full font-semibold text-[10px] uppercase tracking-widest bg-partyGold text-white shadow-lg hover:bg-partyGoldHover transition-all active:scale-95 flex items-center justify-center gap-2">
-        Confirmar por WhatsApp
-      </a>
     </div>
   </section>
 
-  <!-- 10. FOOTER CELEBRA (ADAPTADO) -->
-  <footer class="bg-nightDark/90 backdrop-blur-md text-white/90 px-5 pt-16 pb-10 text-center border-t border-white/10 relative overflow-hidden mt-12">
-    <div class="max-w-4xl mx-auto relative z-10">
-      
-      <div class="reveal-section mb-8">
-        <h4 class="font-display text-2xl sm:text-3xl text-partyGold tracking-wide mb-2 font-semibold">
-          ¿Querés tu propia tarjeta web?
-        </h4>
-        <p class="font-sans text-xs sm:text-sm text-white/70 font-light">
-          Diseños exclusivos e interactivos para tus eventos
-        </p>
+  <!-- 8. REGALOS (datos visibles, sin ventana emergente) -->
+  <section class="px-6 py-10">
+    <div class="reveal-section max-w-md mx-auto text-center">
+      <span class="kicker">Regalos</span>
+      <h2 id="regalos-titulo" class="font-display text-3xl text-white mt-2 mb-2"></h2>
+      <p id="regalos-mensaje" class="text-sm text-champagneLight/60 mb-6 leading-relaxed"></p>
+      <div class="flex flex-col gap-3">
+        <a id="wishlist-btn" href="#" target="_blank" rel="noopener" class="btn btn-main w-full">Ver lista de deseos</a>
+        <button id="toggle-banco" type="button" class="btn btn-ghost w-full" aria-expanded="false">Ver datos para transferir</button>
+      </div>
+      <div id="banco" class="hidden mt-4 text-left rounded-2xl border border-white/10 bg-black/40 divide-y divide-white/10">
+        <div class="p-4"><span class="text-[11px] uppercase tracking-[0.2em] text-roseAccent">Titular</span><p id="regalo-titular" class="text-white font-medium mt-1"></p></div>
+        <div class="p-4 flex items-center justify-between gap-3"><div><span class="text-[11px] uppercase tracking-[0.2em] text-roseAccent">Alias</span><p id="regalo-alias" class="font-mono text-white mt-1"></p></div><button type="button" data-copy="alias" class="btn btn-ghost !py-2 !px-4 !text-[11px]">Copiar</button></div>
+        <div class="p-4 flex items-center justify-between gap-3"><div class="min-w-0"><span class="text-[11px] uppercase tracking-[0.2em] text-roseAccent">CBU / CVU</span><p id="regalo-cbu" class="font-mono text-sm text-white mt-1 break-all"></p></div><button type="button" data-copy="cbu" class="btn btn-ghost !py-2 !px-4 !text-[11px] shrink-0">Copiar</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CONFIRMACIÓN + PASE DE ACCESO CON QR -->
+  <section id="rsvp" class="px-6 py-12">
+    <div class="reveal-section max-w-sm mx-auto text-center">
+      <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-5 border border-white/20 shadow-lg">
+        <img id="rsvp-avatar" src="" alt="" class="w-full h-full object-cover">
+      </div>
+      <span class="kicker">Confirmación</span>
+      <h2 class="font-display text-4xl text-white mt-2 mb-2">¿Venís a la <i class="text-roseAccent">fiesta?</i></h2>
+      <p class="text-sm text-champagneLight/60 mb-6">Escribí tu nombre, sacá tu pase de acceso y confirmame por WhatsApp.</p>
+
+      <form id="rsvp-form" class="rsvp-form flex flex-col gap-3" novalidate>
+        <input id="rsvp-nombre" class="field text-center" type="text" placeholder="Tu nombre y apellido" autocomplete="name" required>
+        <button id="rsvp-btn" type="submit" class="btn btn-main w-full">Sacar mi pase</button>
+      </form>
+
+      <div id="pase" class="pass text-left" hidden>
+        <div class="pass-top">
+          <p class="text-[11px] uppercase tracking-[0.3em] text-white/70">Pase de acceso</p>
+          <p class="font-display text-[2.6rem] leading-none mt-2"><span class="pass-nombre-evento"></span> <i class="text-roseAccent">18</i></p>
+          <div class="flex justify-between mt-4 text-xs text-white/80"><span id="pase-fecha"></span><span id="pase-hora"></span></div>
+        </div>
+        <div class="pass-cut"></div>
+        <div class="p-6 text-center">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-[#7d2481]">Invitado/a</p>
+          <p id="pase-invitado" class="font-display text-3xl font-semibold mt-1 mb-5"></p>
+          <div id="pase-qr" class="pass-qr" aria-label="Código QR de acceso"></div>
+          <p id="pase-codigo" class="font-mono text-sm tracking-[0.2em] mt-4 text-[#3b0b3e]"></p>
+          <p class="text-xs text-[#3b0b3e]/60 mt-1">Mostralo en la entrada · Hacé captura de pantalla</p>
+        </div>
       </div>
 
-      <div class="reveal-section mb-10">
-        <a 
-          href="https://celebrainvitaciones.com/" 
-          target="_blank" 
-          rel="noopener"
-          class="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-white/10 border border-white/20 text-white text-[11px] font-bold uppercase tracking-widest hover:bg-partyGold hover:text-nightDark hover:border-partyGold transition-all duration-300 shadow-sm active:scale-95"
-        >
-          <span>Ver plantillas de Celebra</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
+      <div id="pase-acciones" class="hidden flex-col gap-3 mt-5">
+        <a id="pase-wa" href="#" class="btn btn-main w-full">Confirmar por WhatsApp</a>
+        <button id="pase-editar" type="button" class="text-xs text-champagneLight/60 underline underline-offset-4">Cambiar nombre</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FOOTER CELEBRA -->
+  <footer class="bg-nightDark/90 backdrop-blur-md text-white/90 px-5 pt-16 pb-24 text-center border-t border-white/10 mt-12">
+    <div class="max-w-4xl mx-auto">
+      <h4 class="font-display text-3xl text-roseAccent mb-2">¿Querés tu propia invitación web?</h4>
+      <p class="text-sm text-white/70 mb-8">Diseños exclusivos e interactivos para tus eventos</p>
+      <a href="https://celebrainvitaciones.com/" target="_blank" rel="noopener" class="btn btn-ghost">Ver plantillas de Celebra <span aria-hidden="true">→</span></a>
+      <div class="flex items-center justify-center gap-6 my-8 text-white/60">
+        <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-roseAccent transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="https://wa.me/message/JOQHWJMOS5VAH1" target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:text-roseAccent transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0 1 .157 11.891C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         </a>
       </div>
-
-      <div class="w-16 h-px bg-white/10 mx-auto mb-8"></div>
-
-      <div class="reveal-section flex items-center justify-center gap-6 mb-8 text-white/60">
-        <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-partyGold transition-colors">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.646-.069-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://wa.me/message/JOQHWJMOS5VAH1" target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:text-partyGold transition-colors">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.893 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        </a>
-      </div>
-
-      <div class="border-t border-white/10 pt-5 text-[11px] text-white/40">
-        <p class="font-display text-xs sm:text-sm text-partyGold mb-0.5 truncate">Delfina • Mis 18 Años ✨</p>
-        <p class="opacity-70">Diseñado por Celebra Invitaciones</p>
-      </div>
-
+      <p class="font-display text-sm text-roseAccent"><span id="footer-nombre">Delfina</span> · Mis 18 años</p>
+      <p class="text-[11px] text-white/40 mt-1">Diseñado por Celebra Invitaciones</p>
     </div>
   </footer>
-
 </main>
 
-<!-- BOTÓN MÚSICA FLOTANTE -->
-<button id="music-toggle" aria-label="Música" class="music-btn fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center text-white bg-partyGold/90 active:scale-90 transition-transform border border-white/20">
-  <svg id="icon-play" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5V19L19 12L8 5Z"/></svg>
-  <svg id="icon-pause" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" class="hidden"><path d="M7 5H10V19H7V5ZM14 5H17V19H14V5Z"/></svg>
-</button>
-
-<audio id="audio-player" loop preload="auto">
-  <source src="" type="audio/mpeg">
-</audio>
+<audio id="audio-player" loop preload="none"></audio>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  var C = CONFIG;
+  var $ = function (id) { return document.getElementById(id); };
+  var nombreLindo = (C.nombre || '').charAt(0) + (C.nombre || '').slice(1).toLowerCase();
 
-  // Imagen de fondo fija
-  var mainBg = document.getElementById('main-background');
-  if (mainBg && CONFIG.fotoPortada) {
-    mainBg.style.backgroundImage = "url('" + CONFIG.fotoPortada + "')";
-  }
+  function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove('show'); }, 2600); }
 
-  // Foto portada marco
-  var heroImg = document.getElementById('hero-foto-principal');
-  if (heroImg && CONFIG.fotoHeroFrame) {
-    heroImg.src = CONFIG.fotoHeroFrame;
-  }
+  // Fotos y textos
+  if (C.fotoPortada) $('main-background').style.backgroundImage = "url('" + C.fotoPortada + "')";
+  $('hero-foto-principal').src = C.fotoHeroFrame || '';
+  $('vinilo-inicial').textContent = nombreLindo.charAt(0);
+  $('vinilo-num').textContent = C.numero + ' años';
+  $('rsvp-avatar').src = C.fotoRSVP || '';
+  $('nombre-titulo-sub').textContent = C.nombre;
+  $('hero-numero').textContent = C.numero;
+  $('hero-fecha').textContent = C.fechaCorta || '';
+  $('frase-texto').textContent = C.frase || '';
+  $('frase-firma').textContent = nombreLindo;
+  $('fecha-textual').textContent = C.fechaTextual || '';
+  $('hora-recepcion').textContent = C.horaRecepcion || '';
+  $('lugar-nombre').textContent = C.lugarNombre || '';
+  $('lugar-direccion').textContent = C.lugarDireccion || '';
+  $('dresscode-titulo').textContent = C.dressCodeTitulo || '';
+  $('dresscode-desc').textContent = C.dressCodeDescripcion || '';
+  $('carrusel-titulo').textContent = C.tituloCarrusel || '';
+  $('regalos-titulo').textContent = C.tituloRegalos || '';
+  $('regalos-mensaje').textContent = C.mensajeRegalos || '';
+  $('ubicacion-btn').href = C.mapsUrl || '#';
+  $('wishlist-btn').href = C.wishlistUrl || '#';
+  $('regalo-titular').textContent = C.regaloTitular || '';
+  $('regalo-alias').textContent = C.regaloAlias || '';
+  $('regalo-cbu').textContent = C.regaloCbu || '';
+  $('cancion-nombre').textContent = C.cancionNombre || '';
+  $('cancion-artista').textContent = C.cancionArtista || '';
+  if (!C.cancionNombre) $('cancion-linea').classList.add('hidden');
+  if (!C.cancionArtista) $('cancion-artista-wrap').classList.add('hidden');
+  $('footer-nombre').textContent = nombreLindo;
+  document.querySelectorAll('.pass-nombre-evento').forEach(function (e) { e.textContent = nombreLindo; });
 
-  // Textos y enlaces
-  document.getElementById('nombre-titulo-sub').textContent = CONFIG.nombre || 'DELFINA';
-  document.getElementById('frase-texto').textContent = CONFIG.frase || '';
-  document.getElementById('fecha-textual').textContent = CONFIG.fechaTextual || '';
-  document.getElementById('hora-recepcion').textContent = CONFIG.horaRecepcion || '';
-  document.getElementById('dresscode-titulo').textContent = CONFIG.dressCodeTitulo || '';
-  document.getElementById('dresscode-desc').textContent = CONFIG.dressCodeDescripcion || '';
-  document.getElementById('carrusel-titulo').textContent = CONFIG.tituloCarrusel || '';
-  document.getElementById('regalos-titulo').textContent = CONFIG.tituloRegalos || '';
-  document.getElementById('regalos-mensaje').textContent = CONFIG.mensajeRegalos || '';
-  document.getElementById('ubicacion-btn').href = CONFIG.mapsUrl || '#';
-  document.getElementById('wishlist-btn').href = CONFIG.wishlistUrl || '#';
-  document.getElementById('rsvp-avatar').src = CONFIG.fotoRSVP || '';
-  document.getElementById('rsvp-btn').href = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(CONFIG.whatsappMensaje);
-
-  // Datos bancarios
-  document.getElementById('regalo-titular').textContent = CONFIG.regaloTitular || '';
-  document.getElementById('regalo-alias').textContent = CONFIG.regaloAlias || '';
-  document.getElementById('regalo-cbu').textContent = CONFIG.regaloCbu || '';
-
-  // Modal Regalos
-  var openModalBtn = document.getElementById('open-regalos-modal');
-  var closeModalBtn = document.getElementById('close-regalos-modal');
-  var modal = document.getElementById('modal-regalos');
-
-  if (openModalBtn && closeModalBtn && modal) {
-    openModalBtn.addEventListener('click', function() {
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-    });
-    closeModalBtn.addEventListener('click', function() {
-      modal.classList.add('opacity-0', 'pointer-events-none');
-    });
-  }
-
-  // Copiar datos bancarios
-  function copiarTexto(texto, btn) {
-    navigator.clipboard.writeText(texto).then(function() {
-      var original = btn.textContent;
-      btn.textContent = "¡Copiado!";
-      setTimeout(function() { btn.textContent = original; }, 2000);
-    });
-  }
-
-  document.getElementById('copy-alias-btn')?.addEventListener('click', function() {
-    copiarTexto(CONFIG.regaloAlias, this);
-  });
-  document.getElementById('copy-cbu-btn')?.addEventListener('click', function() {
-    copiarTexto(CONFIG.regaloCbu, this);
+  // Itinerario
+  var it = $('itinerario');
+  (C.itinerario || []).forEach(function (p) {
+    var li = document.createElement('li');
+    li.className = 'pl-6 relative';
+    li.innerHTML = '<span class="absolute -left-[5px] top-2 w-[9px] h-[9px] rounded-full bg-partyGold shadow-[0_0_10px_#b043b4]"></span>' +
+      '<p class="font-display text-2xl text-roseAccent leading-none"></p><p class="text-sm font-semibold text-white mt-1"></p><p class="text-sm text-champagneLight/60"></p>';
+    var ps = li.querySelectorAll('p'); ps[0].textContent = p.hora + ' hs'; ps[1].textContent = p.titulo; ps[2].textContent = p.detalle;
+    it.appendChild(li);
   });
 
-  // Animación de aparición suave al hacer Scroll
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
+  // Aparición al hacer scroll (lo que ya está a la vista aparece de inmediato)
+  var secs = document.querySelectorAll('.reveal-section');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+    secs.forEach(function (s) { if (s.getBoundingClientRect().top < innerHeight) s.classList.add('visible'); else io.observe(s); });
+  } else secs.forEach(function (s) { s.classList.add('visible'); });
 
-  document.querySelectorAll('.reveal-section').forEach(el => revealObserver.observe(el));
-
-  // Reproductor de Música
-  var audio = document.getElementById('audio-player');
-  var musicBtn = document.getElementById('music-toggle');
-  var iconPlay = document.getElementById('icon-play');
-  var iconPause = document.getElementById('icon-pause');
-
-  if (audio && musicBtn && CONFIG.audioUrl) {
-    audio.src = CONFIG.audioUrl;
-    musicBtn.addEventListener('click', function() {
-      if (audio.paused) {
-        audio.play();
-        iconPlay.classList.add('hidden');
-        iconPause.classList.remove('hidden');
-      } else {
-        audio.pause();
-        iconPlay.classList.remove('hidden');
-        iconPause.classList.add('hidden');
-      }
-    });
+  // ===== MÚSICA: se controla tocando el disco =====
+  var audio = $('audio-player'), tt = $('turntable');
+  function setPlaying(on) {
+    tt.classList.toggle('playing', on);
+    tt.setAttribute('aria-pressed', on);
+    tt.setAttribute('aria-label', on ? 'Pausar música' : 'Reproducir música');
+    $('vinilo-hint').classList.toggle('hidden', on);
+    $('vinilo-now').classList.toggle('hidden', !on);
+    $('eq').classList.toggle('paused', !on);
   }
-
-  // Botón Playlist / Tema musical
-  var sendSongBtn = document.getElementById('send-song-btn');
-  var songInput = document.getElementById('song-input');
-  if (sendSongBtn && songInput) {
-    sendSongBtn.addEventListener('click', function() {
-      var cancion = songInput.value.trim();
-      if (!cancion) {
-        alert("Por favor ingresá el nombre de la canción antes de enviar.");
-        return;
-      }
-      var mensajeFinal = "¡Hola Delfi! 🎵 Para la fiesta me gustaría recomendar esta canción: " + cancion;
-      var url = 'https://wa.me/' + CONFIG.whatsappNumero + '?text=' + encodeURIComponent(mensajeFinal);
-      window.open(url, '_blank');
-    });
+  function toggleMusic() {
+    if (!C.audioUrl) { toast('Todavía no hay música cargada'); return; }
+    if (!audio.src) audio.src = C.audioUrl;
+    if (audio.paused) {
+      audio.play().then(function () { setPlaying(true); }).catch(function () {
+        setPlaying(false);
+        toast('No se pudo reproducir la música');
+        // ⚠️ Si ves este aviso: revisá que el .mp3 exista en la ruta de CONFIG.audioUrl
+      });
+    } else { audio.pause(); setPlaying(false); }
   }
+  tt.addEventListener('click', toggleMusic);
+  tt.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMusic(); } });
+  // Si la invitada sale de la página o bloquea el celular, la música se pausa
+  document.addEventListener('visibilitychange', function () { if (document.hidden && !audio.paused) { audio.pause(); setPlaying(false); } });
+
+  // Canción sugerida
+  $('send-song-btn').addEventListener('click', function () {
+    var c = $('song-input').value.trim();
+    if (!c) { $('song-input').focus(); toast('Escribí el nombre de la canción'); return; }
+    window.location.href = 'https://wa.me/' + C.whatsappNumero + '?text=' + encodeURIComponent('¡Hola ' + nombreLindo + '! 🎵 Para la fiesta te recomiendo: ' + c);
+  });
+
+  // Regalos
+  $('toggle-banco').addEventListener('click', function () {
+    var open = $('banco').classList.toggle('hidden') === false;
+    this.setAttribute('aria-expanded', open);
+    this.textContent = open ? 'Ocultar datos' : 'Ver datos para transferir';
+  });
+  function copiar(texto, el) {
+    function ok() { var o = el.textContent; el.textContent = '¡Copiado!'; setTimeout(function () { el.textContent = o; }, 1800); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, fb); else fb();
+    function fb() { var ta = document.createElement('textarea'); ta.value = texto; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove(); }
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () { copiar(b.dataset.copy === 'alias' ? C.regaloAlias : C.regaloCbu, b); });
+  });
 
   // Cuenta regresiva
-  var countdownEl = document.getElementById('countdown');
-  var targetDate = new Date(CONFIG.fechaISO).getTime();
-
-  function crearUnidadContador(valor, label) {
-    return `
-      <div class="flex flex-col items-center bg-black/40 rounded-lg p-3 border border-white/10">
-        <span class="font-display text-2xl sm:text-3xl font-light text-roseAccent">${String(valor).padStart(2, '0')}</span>
-        <span class="text-[8px] uppercase font-medium text-champagneLight/60 tracking-wider mt-1">${label}</span>
-      </div>
-    `;
+  var cd = $('countdown'), target = new Date(C.fechaISO).getTime();
+  function unidad(v, l) { return '<div class="py-5"><span class="block font-display text-4xl font-light text-white">' + String(v).padStart(2, '0') + '</span><span class="block text-[11px] uppercase tracking-[0.2em] text-roseAccent mt-1">' + l + '</span></div>'; }
+  function tick() {
+    var d = target - Date.now();
+    if (isNaN(target)) { cd.innerHTML = '<p class="col-span-4 py-6 text-sm text-champagneLight/70">Revisá la fecha en CONFIG.fechaISO</p>'; return; }
+    if (d <= 0) { cd.innerHTML = '<p class="col-span-4 py-6 font-display italic text-3xl text-white">¡Llegó el gran día!</p>'; return; }
+    cd.innerHTML = unidad(Math.floor(d / 864e5), 'Días') + unidad(Math.floor(d % 864e5 / 36e5), 'Hs') + unidad(Math.floor(d % 36e5 / 6e4), 'Min') + unidad(Math.floor(d % 6e4 / 1e3), 'Seg');
   }
+  tick(); setInterval(tick, 1000);
 
-  function renderCountdown() {
-    if (!countdownEl) return;
-    var now = new Date().getTime();
-    var diff = Math.max(0, targetDate - now);
+  // Carrusel
+  var track = $('carrusel-track'), dots = $('carrusel-dots'), idx = 0, fotos = C.fotosCarrusel || [];
+  fotos.forEach(function (src, i) {
+    var s = document.createElement('div'); s.className = 'carrusel-slide h-full';
+    s.innerHTML = '<img class="w-full h-full object-cover" alt="Foto ' + (i + 1) + '" loading="lazy">'; s.querySelector('img').src = src; track.appendChild(s);
+    var d = document.createElement('button'); d.className = 'dot' + (i === 0 ? ' active' : ''); d.setAttribute('aria-label', 'Ir a foto ' + (i + 1));
+    d.addEventListener('click', function () { ir(i); }); dots.appendChild(d);
+  });
+  function ir(i) { if (!fotos.length) return; idx = (i + fotos.length) % fotos.length; track.style.transform = 'translateX(-' + idx * 100 + '%)'; dots.querySelectorAll('.dot').forEach(function (d, k) { d.classList.toggle('active', k === idx); }); }
+  $('carrusel-prev').addEventListener('click', function () { ir(idx - 1); });
+  $('carrusel-next').addEventListener('click', function () { ir(idx + 1); });
+  var x0 = null; track.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) ir(idx + (dx < 0 ? 1 : -1)); x0 = null; });
 
-    var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    var segundos = Math.floor((diff % (1000 * 60)) / 1000);
-
-    countdownEl.innerHTML = 
-      crearUnidadContador(dias, 'Días') +
-      crearUnidadContador(horas, 'Hs') +
-      crearUnidadContador(minutos, 'Min') +
-      crearUnidadContador(segundos, 'Seg');
+  // ===== PASE DE ACCESO CON QR FICTICIO =====
+  function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function qrSVG(text) {
+    var N = 25, r = rng(hash(text)), m = [], i, j;
+    for (i = 0; i < N; i++) { m[i] = []; for (j = 0; j < N; j++) m[i][j] = r() > 0.52; }
+    function finder(y, x) { for (var a = -1; a < 8; a++) for (var b = -1; b < 8; b++) { var yy = y + a, xx = x + b; if (yy < 0 || xx < 0 || yy >= N || xx >= N) continue; var ring = Math.max(Math.abs(a - 3), Math.abs(b - 3)); m[yy][xx] = ring !== 2 && ring !== 4; } }
+    finder(0, 0); finder(0, N - 7); finder(N - 7, 0);
+    for (i = 8; i < N - 8; i++) { m[6][i] = i % 2 === 0; m[i][6] = i % 2 === 0; }
+    var p = ''; for (i = 0; i < N; i++) for (j = 0; j < N; j++) if (m[i][j]) p += 'M' + j + ' ' + i + 'h1v1h-1z';
+    return '<svg viewBox="-1 -1 ' + (N + 2) + ' ' + (N + 2) + '" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><rect x="-1" y="-1" width="' + (N + 2) + '" height="' + (N + 2) + '" fill="#fff"/><path d="' + p + '" fill="#3b0b3e"/></svg>';
   }
-  renderCountdown();
-  setInterval(renderCountdown, 1000);
-
-  // Carrusel de Galería de Fotos
-  var track = document.getElementById('carrusel-track');
-  var dotsWrap = document.getElementById('carrusel-dots');
-  var indice = 0;
-  var total = (CONFIG.fotosCarrusel && CONFIG.fotosCarrusel.length) || 0;
-
-  if (track && dotsWrap && total > 0) {
-    CONFIG.fotosCarrusel.forEach(function(src, i) {
-      var slide = document.createElement('div');
-      slide.className = 'carrusel-slide h-full w-full flex-shrink-0';
-      slide.innerHTML = '<img src="' + src + '" class="w-full h-full object-cover" alt="Foto ' + (i+1) + '">';
-      track.appendChild(slide);
-
-      var dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Ir a foto ' + (i+1));
-      dot.addEventListener('click', function() { irA(i); });
-      dotsWrap.appendChild(dot);
-    });
-
-    function irA(i) {
-      indice = (i + total) % total;
-      track.style.transform = 'translateX(-' + (indice * 100) + '%)';
-      var dots = dotsWrap.querySelectorAll('.dot');
-      dots.forEach(function(d, idx) {
-        if (idx === indice) d.classList.add('active');
-        else d.classList.remove('active');
-      });
-    }
-
-    document.getElementById('carrusel-prev')?.addEventListener('click', function() { irA(indice - 1); });
-    document.getElementById('carrusel-next')?.addEventListener('click', function() { irA(indice + 1); });
+  var KEY = 'pase-' + C.codigoPrefijo + '-' + C.fechaISO;
+  function mostrarPase(nombre) {
+    var codigo = C.codigoPrefijo + '-' + (hash(nombre.toLowerCase() + C.fechaISO) % 9000 + 1000);
+    $('pase-invitado').textContent = nombre;
+    $('pase-codigo').textContent = codigo;
+    $('pase-fecha').textContent = C.fechaTextual;
+    $('pase-hora').textContent = (C.horaRecepcion || '').split('—')[0].trim();
+    $('pase-qr').innerHTML = qrSVG(codigo + '|' + nombre);
+    $('pase-wa').href = 'https://wa.me/' + C.whatsappNumero + '?text=' + encodeURIComponent((C.rsvpMensaje || C.whatsappMensaje).replace('{nombre}', nombre).replace('{codigo}', codigo));
+    $('rsvp-form').hidden = true; $('pase').hidden = false;
+    $('pase-acciones').classList.remove('hidden'); $('pase-acciones').classList.add('flex');
+    try { localStorage.setItem(KEY, nombre); } catch (e) {}
   }
-
+  $('rsvp-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var n = $('rsvp-nombre').value.trim().replace(/\s+/g, ' ');
+    if (n.length < 2) { $('rsvp-nombre').focus(); toast('Escribí tu nombre para sacar el pase'); return; }
+    mostrarPase(n);
+    $('pase').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  $('pase-editar').addEventListener('click', function () {
+    $('pase').hidden = true; $('rsvp-form').hidden = false;
+    $('pase-acciones').classList.add('hidden'); $('pase-acciones').classList.remove('flex');
+    $('rsvp-nombre').value = $('pase-invitado').textContent; $('rsvp-nombre').focus();
+    try { localStorage.removeItem(KEY); } catch (e) {}
+  });
+  try { var guardado = localStorage.getItem(KEY); if (guardado) mostrarPase(guardado); } catch (e) {}
 });
 </script>
-
 </body>
 </html>

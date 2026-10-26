@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Te invito a celebrar mis XV años - Francesca">
+<title>Francesca · Mis XV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&family=Josefin+Sans:wght@200;300;400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fffdfc;
+    --ink: #3d3438;
+    --soft: #8f8389;
+    --rose: #c3909f;
+    --blush: #f7eff1;
+    --line: #ece1e4;
+    --script: 'WindSong', cursive;
+    --caps: 'Josefin Sans', sans-serif;
+    --serif: 'Cormorant Garamond', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: #f4eee9; color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+  img { display: block; max-width: 100%; }
+  button, input, textarea { font: inherit; color: inherit; }
+
+  /* ===== FONDO FIJO (foto completa) ===== */
+  .stage { position: fixed; inset: 0; height: 100vh; height: 100svh; z-index: 0; overflow: hidden; pointer-events: none; }
+  .bg { position: absolute; inset: -3% 0; background: #f4eee9 center / cover no-repeat; will-change: transform; transition: opacity 1.2s ease; }
+  .bg-final { opacity: 0; }
+  /* velo suave para que las hojas se lean; desaparece en el final para ver la foto completa */
+  .veil { position: absolute; inset: 0; background: rgba(255, 252, 250, .32); transition: opacity .3s linear; }
+
+  main { position: relative; z-index: 1; }
+
+  /* ===== PORTADA ===== */
+  .hero { overflow: hidden; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 18vh 18px 16vh; position: relative; }
+  .hero::before { content: ""; position: absolute; left: 50%; top: 50%; width: 140%; height: 62%; transform: translate(-50%, -52%); background: radial-gradient(closest-side, rgba(255,253,251,.82), rgba(255,253,251,.5) 55%, rgba(255,253,251,0)); z-index: -1; }
+  .caps { font-family: var(--caps); font-weight: 300; font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--soft); }
+  .hero .caps { color: var(--ink); font-weight: 400; }
+  .hero-name { font-family: var(--script); font-weight: 400; font-size: clamp(3.6rem, 19vw, 8.5rem); line-height: 1.15; color: var(--ink); margin: 14px 0 6px; width: 100%; white-space: nowrap; text-shadow: 0 0 24px rgba(255,255,255,.7); }
+  .hero-date { display: flex; align-items: center; justify-content: center; gap: 16px; font-family: var(--caps); font-weight: 400; font-size: 19px; letter-spacing: .3em; color: var(--ink); text-shadow: 0 0 14px rgba(255,255,255,.9); }
+  .hero-date::before, .hero-date::after { content: ""; width: 34px; height: 1px; background: var(--ink); opacity: .55; }
+  .scroll-cue { margin-top: 8vh; display: flex; flex-direction: column; align-items: center; }
+  .scroll-cue span { width: 1px; height: 44px; background: linear-gradient(var(--ink), transparent); animation: cue 2.4s ease-in-out infinite; transform-origin: top; }
+  @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+  /* ===== BOTÓN DE MÚSICA (flotante, solo líneas) ===== */
+  .music { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 30; width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,.92); background: rgba(61, 52, 56, .2); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 18px rgba(40, 25, 30, .18); transition: transform .3s, background .3s; }
+  .music:hover { transform: scale(1.06); }
+  .music svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+  .music .eq { display: none; }
+  .music.playing .note { display: none; }
+  .music.playing .eq { display: block; }
+  .music.playing .eq line { animation: eq 1s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .music.playing .eq line:nth-child(2) { animation-delay: .2s; }
+  .music.playing .eq line:nth-child(3) { animation-delay: .4s; }
+  .music.playing .eq line:nth-child(4) { animation-delay: .1s; }
+  @keyframes eq { 0%, 100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
+  .music-hint { position: fixed; right: 76px; bottom: calc(29px + env(safe-area-inset-bottom)); z-index: 30; padding: 7px 12px 6px; border-radius: 999px; background: rgba(61, 52, 56, .35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-family: var(--caps); font-weight: 400; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #fff; pointer-events: none; transition: opacity .6s; }
+  .music-hint.off { opacity: 0; }
+
+  /* ===== HOJAS BLANCAS QUE SUBEN ===== */
+  .sheet { position: relative; background: var(--paper); margin: 0 auto 17vh; width: min(100% - 28px, 560px); padding: 58px 30px; box-shadow: 0 40px 70px -40px rgba(70, 45, 55, .45), 0 0 0 1px rgba(236, 225, 228, .7); }
+  .sheet:first-of-type { margin-top: 4vh; }
+  .js .sheet { opacity: 0; transform: translateY(90px); transition: opacity 1.1s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1); }
+  .js .sheet.in { opacity: 1; transform: none; }
+  .sheet-title { font-family: var(--caps); font-weight: 300; font-size: 26px; letter-spacing: .06em; color: var(--ink); line-height: 1.3; }
+  .center { text-align: center; }
+  .rule { width: 46px; height: 1px; background: var(--rose); margin: 22px auto; border: 0; }
+
+  .frase { font-family: var(--serif); font-style: italic; font-size: 25px; line-height: 1.45; color: var(--ink); }
+  .firma { font-family: var(--script); font-size: 46px; color: var(--rose); margin-top: 16px; line-height: 1; }
+
+  /* cuenta regresiva */
+  .count { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 26px; }
+  .count div { text-align: center; }
+  .count div + div { border-left: 1px solid var(--line); }
+  .count b { display: block; font-family: var(--caps); font-weight: 200; font-size: 40px; color: var(--ink); }
+  .count small { font-family: var(--caps); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--soft); }
+  .count .done { grid-column: 1 / -1; font-family: var(--serif); font-style: italic; font-size: 26px; padding: 8px 0; }
+  .save { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; padding: 14px 26px; border: 1px solid var(--ink); background: transparent; font-family: var(--caps); font-weight: 400; font-size: 12px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink); text-decoration: none; cursor: pointer; transition: background .3s, color .3s; }
+  .save:hover { background: var(--ink); color: #fff; }
+  .save svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; }
+  .save-alt { display: block; margin-top: 14px; font-size: 15px; color: var(--soft); }
+  .save-alt a { color: var(--soft); text-underline-offset: 3px; }
+
+  /* celebración: dos columnas */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; margin-top: 30px; }
+  .agenda li { list-style: none; font-family: var(--caps); font-weight: 300; font-size: 17px; line-height: 1.5; color: var(--ink); }
+  .agenda li + li { margin-top: 12px; }
+  .agenda small { display: block; font-size: 12px; letter-spacing: .2em; color: var(--rose); }
+  .lugar { text-align: right; font-size: 17px; line-height: 1.45; color: var(--soft); }
+  .lugar strong { display: block; font-weight: 500; color: var(--ink); font-size: 19px; margin-bottom: 4px; }
+  .link { display: inline-block; margin-top: 14px; font-family: var(--caps); font-weight: 400; font-size: 12px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rose); padding-bottom: 4px; }
+
+  /* galería */
+  .gallery { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; margin-top: 28px; height: 430px; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery img:first-child { grid-row: 1 / 3; }
+
+  /* dress code */
+  .chips { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+  .chips i { width: 28px; height: 28px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+  .chips-label { margin-top: 12px; font-family: var(--caps); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--soft); }
+  .muted { font-size: 18px; line-height: 1.5; color: var(--soft); }
+
+  /* regalos */
+  .alias { margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 2px; text-align: left; }
+  .alias small { display: block; font-family: var(--caps); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--rose); }
+  .alias span { font-family: var(--caps); font-weight: 400; font-size: 16px; letter-spacing: .06em; }
+  .btn-line { background: none; border: 1px solid var(--ink); padding: 10px 18px; font-family: var(--caps); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+  .btn { display: block; width: 100%; text-align: center; background: var(--ink); color: #fff; border: 0; padding: 17px 20px; font-family: var(--caps); font-weight: 400; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background .3s; }
+  .btn:hover { background: #5a4a52; }
+
+  /* confirmación */
+  .form { margin-top: 26px; display: grid; gap: 14px; }
+  .field { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent; padding: 12px 2px; font-size: 19px; font-family: var(--serif); }
+  .field:focus { outline: none; border-color: var(--rose); }
+  .field::placeholder { color: #b9adb2; font-style: italic; }
+  .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .choice label { border: 1px solid var(--line); padding: 13px 8px; text-align: center; font-family: var(--caps); font-size: 13px; letter-spacing: .12em; cursor: pointer; transition: all .25s; }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice input:checked + label { border-color: var(--ink); background: var(--ink); color: #fff; }
+  .choice input:focus-visible + label { outline: 2px solid var(--rose); outline-offset: 2px; }
+  .note { min-height: 20px; font-size: 15px; color: #b0607a; text-align: center; }
+
+  /* ===== FINAL: la foto completa + gracias ===== */
+  footer { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: flex-end; justify-content: center; padding: 30vh 16px calc(96px + env(safe-area-inset-bottom)); }
+  .thanks { width: min(100%, 420px); text-align: center; padding: 30px 24px 26px; background: rgba(255, 253, 251, .74); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 20px 50px -20px rgba(40, 25, 30, .35); }
+  .thanks-title { font-family: var(--script); font-size: 64px; line-height: 1.1; color: var(--ink); }
+  .thanks-msg { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.45; color: var(--ink); margin-top: 4px; }
+  .credit { margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(61, 52, 56, .15); }
+  .credit small { display: block; font-family: var(--caps); font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--soft); }
+  .credit .brand { display: inline-block; margin-top: 8px; font-family: var(--caps); font-weight: 600; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rose); padding-bottom: 4px; }
+  .socials { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+  .socials a { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(61, 52, 56, .35); display: grid; place-items: center; color: var(--ink); transition: background .3s, color .3s; }
+  .socials a:hover { background: var(--ink); color: #fff; }
+  .socials svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+  .toast { position: fixed; left: 50%; bottom: 88px; transform: translate(-50%, 20px); opacity: 0; transition: all .35s; z-index: 40; background: var(--ink); color: #fff; font-family: var(--caps); font-size: 13px; letter-spacing: .08em; padding: 11px 20px; pointer-events: none; white-space: nowrap; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 360px) { .sheet { padding: 48px 22px; } .split { grid-template-columns: 1fr; } .lugar { text-align: left; } }
+  @media (prefers-reduced-motion: reduce) {
+    .js .sheet { opacity: 1; transform: none; transition: none; }
+    .scroll-cue span, .music.playing .eq line { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- =========================================================
+     CONFIGURACIÓN — lo único que tenés que editar
+     ========================================================= -->
+<script>
+const CONFIG = {
+  nombre: "Francesca",
+  edad: "XV",
+
+  frase: "Hay flores que se abren una sola vez en la vida. Esta noche es la mía, y quiero que estés conmigo para verla florecer.",
+
+  fechaISO: "2027-03-13T21:00:00",          // AAAA-MM-DDTHH:MM:00 — cuenta regresiva y "Guardar fecha"
+  husoHorario: "-03:00",                    // Argentina = -03:00 (no cambiar si la fiesta es en Argentina)
+  duracionHoras: 6,                         // cuánto dura la fiesta (para el evento del calendario)
+  fechaTextual: "13 · 03 · 2027",           // como se ve en la portada
+  fechaLarga: "Sábado 13 de marzo de 2027",
+
+  agenda: [
+    { hora: "21:00", titulo: "Recepción" },
+    { hora: "22:30", titulo: "Vals" },
+    { hora: "23:30", titulo: "Fiesta" }
+  ],
+  lugarNombre: "Salón Las Camelias",
+  lugarDireccion: "Av. Siempreviva 1234, Buenos Aires",
+  mapsUrl: "https://maps.google.com/?q=Buenos+Aires",
+
+  dressCode: "Elegante",
+  dressCodeDetalle: "Con colores cálidos",
+  dressCodeColores: ["#8e3b36", "#b8643f", "#c99645", "#d8b48f", "#7a4a2e"],  // paleta sugerida (los circulitos)
+
+  mensajeRegalos: "Tu presencia es mi mejor regalo. Si querés hacerme un obsequio, podés ver mi lista de deseos o hacer una transferencia.",
+  // 🎁 WISHLIST: pegá acá el link de tu lista (si lo dejás vacío "", el botón no aparece)
+  wishlistUrl: "https://www.google.com",
+  regaloAlias: "FRANCESCA.XV",
+  regaloCbu: "0000003100012345678901",
+  regaloTitular: "Francesca Rossi",
+
+  whatsappNumero: "5491100000000",
+  rsvpMensajeSi: "¡Hola Francesca! 🌸 Confirmo mi asistencia a tus XV. Soy {nombre}. {mensaje}",
+  rsvpMensajeNo: "¡Hola Francesca! 🌸 Soy {nombre}. Lamentablemente no voy a poder ir a tus XV. {mensaje}",
+
+  mensajeGracias: "por ser parte de esta noche tan especial.",
+
+  // ⚠️ MÚSICA: subí tu .mp3 a images/francesca/ y poné acá el nombre exacto del archivo.
+  audioUrl: "images/francesca/iconos/bilieilish.mp3",
+
+  // 🖼️ FONDO: foto vertical que se ve detrás de toda la invitación y completa al final.
+  fondo: "images/francesca/fondo3.png",
+  // Opcional: otra foto que aparece SOLO al final (en el "Gracias"). Dejá "" para repetir el fondo.
+  fondoFinal: "",
+
+  fotos: [
+    "images/francesca/momentos.png",
+    "images/francesca/franmomento.png",
+    "images/francesca/fondo3.png"
+  ]
+};
+</script>
+
+<div class="stage" aria-hidden="true">
+  <div class="bg" id="bg"></div>
+  <div class="bg bg-final" id="bg-final"></div>
+  <div class="veil" id="veil"></div>
+</div>
+
+<!-- Botón de música flotante -->
+<button class="music" id="music" type="button" aria-pressed="false" aria-label="Reproducir música">
+  <svg class="note" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+  <svg class="eq" viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="8" x2="6" y2="16"/><line x1="10" y1="5" x2="10" y2="19"/><line x1="14" y1="7" x2="14" y2="17"/><line x1="18" y1="9" x2="18" y2="15"/></svg>
+</button>
+<span class="music-hint" id="music-hint">Tocá para la música</span>
+
+<main>
+  <!-- PORTADA -->
+  <header class="hero">
+    <p class="caps">Mis <span id="edad">XV</span> años</p>
+    <h1 class="hero-name" id="nombre">Francesca</h1>
+    <p class="hero-date" id="fecha-corta"></p>
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </header>
+
+  <!-- FRASE -->
+  <section class="sheet center">
+    <p class="caps">Un día para florecer</p>
+    <hr class="rule">
+    <p class="frase" id="frase"></p>
+    <p class="firma" id="firma"></p>
+  </section>
+
+  <!-- CUENTA REGRESIVA + GUARDAR FECHA -->
+  <section class="sheet center">
+    <h2 class="sheet-title">Faltan</h2>
+    <div class="count" id="count"></div>
+    <p class="muted" style="margin-top:22px" id="fecha-larga"></p>
+    <a class="save" id="save" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+      Guardar fecha
+    </a>
+    <span class="save-alt" id="save-alt">¿Usás iPhone u Outlook? <a id="ics" href="#" download="xv.ics">Descargá el evento</a></span>
+  </section>
+
+  <!-- LA CELEBRACIÓN -->
+  <section class="sheet">
+    <h2 class="sheet-title">La celebración</h2>
+    <div class="split">
+      <ul class="agenda" id="agenda"></ul>
+      <div class="lugar">
+        <strong id="lugar-nombre"></strong>
+        <span id="lugar-direccion"></span><br>
+        <a class="link" id="maps" href="#" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="sheet center">
+    <h2 class="sheet-title">Momentos</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="sheet center">
+    <h2 class="sheet-title">Vestimenta</h2>
+    <hr class="rule">
+    <p class="frase" style="font-size:30px" id="dress"></p>
+    <p class="muted" style="margin-top:4px;font-size:20px" id="dress-detalle"></p>
+    <div class="chips" id="chips"></div>
+    <p class="chips-label" id="chips-label">Paleta sugerida</p>
+  </section>
+
+  <!-- REGALOS -->
+  <section class="sheet center">
+    <h2 class="sheet-title">Regalos</h2>
+    <hr class="rule">
+    <p class="muted" id="regalos"></p>
+    <a class="btn" id="wishlist-btn" href="#" target="_blank" rel="noopener" style="margin-top:24px">Ver mi lista de deseos</a>
+    <div class="alias">
+      <div><small>Alias</small><span id="alias"></span></div>
+      <button class="btn-line" type="button" data-copy="alias">Copiar</button>
+    </div>
+    <div class="alias" style="border-top:0">
+      <div style="min-width:0"><small>CBU / CVU</small><span id="cbu" style="font-size:13px;word-break:break-all"></span></div>
+      <button class="btn-line" type="button" data-copy="cbu">Copiar</button>
+    </div>
+    <p class="muted" style="font-size:15px;margin-top:12px">Titular: <span id="titular"></span></p>
+  </section>
+
+  <!-- CONFIRMACIÓN -->
+  <section class="sheet center" id="rsvp">
+    <h2 class="sheet-title">¿Me acompañás?</h2>
+    <hr class="rule">
+    <p class="muted">Confirmá tu asistencia y te espero.</p>
+    <form class="form" id="form" novalidate>
+      <input class="field" id="r-nombre" type="text" placeholder="Tu nombre y apellido" autocomplete="name">
+      <div class="choice" role="radiogroup" aria-label="Asistencia">
+        <input type="radio" name="asis" id="asis-si" value="si" checked><label for="asis-si">Asistiré</label>
+        <input type="radio" name="asis" id="asis-no" value="no"><label for="asis-no">No podré</label>
+      </div>
+      <input class="field" id="r-msg" type="text" placeholder="Un mensaje para mí (opcional)">
+      <p class="note" id="note" role="status"></p>
+      <button class="btn" type="submit">Confirmar por WhatsApp</button>
+    </form>
+  </section>
+</main>
+
+<!-- FINAL: la foto se ve completa + gracias + créditos -->
+<footer id="final">
+  <div class="thanks">
+    <p class="thanks-title">Gracias</p>
+    <p class="thanks-msg" id="gracias"></p>
+    <div class="credit">
+      <small>Invitación diseñada por</small>
+      <a class="brand" href="https://celebrainvitaciones.com/" target="_blank" rel="noopener">Celebra Invitaciones</a>
+      <div class="socials">
+        <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram de Celebra Invitaciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>
+        </a>
+        <a href="https://wa.me/5491136218114?text=Hola%20Celebra!%20Vi%20la%20invitaci%C3%B3n%20Francesca%20y%20quiero%20una%20para%20mi%20evento%20%E2%9C%A8" target="_blank" rel="noopener" aria-label="WhatsApp de Celebra Invitaciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3.5 20.5l1.4-4.3a8.5 8.5 0 1 1 15.6-4.6z"/><path d="M9 8.6c.3 2.9 2.6 5.3 5.6 5.8l.9-1.3-1.7-.9-.8.8a4.4 4.4 0 0 1-2.4-2.4l.8-.8-.9-1.7z"/></svg>
+        </a>
+        <a href="https://celebrainvitaciones.com/" target="_blank" rel="noopener" aria-label="Sitio web de Celebra Invitaciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5S9.7 5.9 12 3.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<audio id="audio" loop preload="none"></audio>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var C = CONFIG, $ = function (id) { return document.getElementById(id); };
+  function toast(m) { var t = $('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function () { t.classList.remove('show'); }, 2400); }
+
+  // Textos e imágenes
+  $('bg').style.backgroundImage = 'url("' + C.fondo + '")';
+  if (C.fondoFinal) $('bg-final').style.backgroundImage = 'url("' + C.fondoFinal + '")';
+  $('nombre').textContent = C.nombre; $('edad').textContent = C.edad;
+  $('fecha-corta').textContent = C.fechaTextual; $('fecha-larga').textContent = C.fechaLarga;
+  $('frase').textContent = C.frase; $('firma').textContent = C.nombre; $('gracias').textContent = C.mensajeGracias;
+  $('lugar-nombre').textContent = C.lugarNombre; $('lugar-direccion').textContent = C.lugarDireccion; $('maps').href = C.mapsUrl;
+  $('dress').textContent = C.dressCode; $('dress-detalle').textContent = C.dressCodeDetalle;
+  $('regalos').textContent = C.mensajeRegalos; $('alias').textContent = C.regaloAlias; $('cbu').textContent = C.regaloCbu; $('titular').textContent = C.regaloTitular;
+  if (C.wishlistUrl) $('wishlist-btn').href = C.wishlistUrl; else $('wishlist-btn').style.display = 'none';
+  var cols = C.dressCodeColores || [];
+  cols.forEach(function (c) { var i = document.createElement('i'); i.style.background = c; $('chips').appendChild(i); });
+  if (!cols.length) $('chips-label').style.display = 'none';
+  (C.agenda || []).forEach(function (a) { var li = document.createElement('li'); li.innerHTML = '<small></small><span></span>'; li.children[0].textContent = a.hora + ' hs'; li.children[1].textContent = a.titulo; $('agenda').appendChild(li); });
+  (C.fotos || []).slice(0, 3).forEach(function (src, i) { var im = document.createElement('img'); im.src = src; im.alt = 'Foto ' + (i + 1); im.loading = 'lazy'; $('gallery').appendChild(im); });
+
+  // El nombre siempre entra en una sola línea
+  function fit(el) { el.style.fontSize = ''; var fs = parseFloat(getComputedStyle(el).fontSize), w = el.clientWidth; while (el.scrollWidth > w && fs > 28) { fs -= 2; el.style.fontSize = fs + 'px'; } }
+  function fitAll() { fit($('nombre')); }
+  fitAll(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll); window.addEventListener('resize', fitAll);
+
+  // Hojas que suben al hacer scroll
+  var sheets = document.querySelectorAll('.sheet');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
+    sheets.forEach(function (s) { if (s.getBoundingClientRect().top < innerHeight * 0.9) s.classList.add('in'); else io.observe(s); });
+  } else sheets.forEach(function (s) { s.classList.add('in'); });
+
+  // Fondo: movimiento suave + al llegar al final se quita el velo y se ve la foto completa
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bg = $('bg'), bgf = $('bg-final'), veil = $('veil'), fin = $('final'), ticking = false;
+  function onScroll() {
+    var y = window.scrollY, max = Math.max(1, document.documentElement.scrollHeight - innerHeight), k = y / max;
+    if (!reduce) bg.style.transform = 'scale(' + (1.06 - k * 0.06) + ')';
+    var r = fin.getBoundingClientRect().top / innerHeight;        // 1 = el final entra; 0 = el final llena la pantalla
+    var p = Math.min(1, Math.max(0, 1 - r));
+    veil.style.opacity = String(1 - p);
+    if (C.fondoFinal) bgf.style.opacity = p > .5 ? '1' : '0';
+    ticking = false;
+  }
+  onScroll(); window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  window.addEventListener('resize', onScroll);
+
+  // Música (botón flotante)
+  var audio = $('audio'), mb = $('music'), hint = $('music-hint');
+  setTimeout(function () { hint.classList.add('off'); }, 6000);
+  function setPlaying(on) {
+    mb.classList.toggle('playing', on); mb.setAttribute('aria-pressed', on);
+    mb.setAttribute('aria-label', on ? 'Pausar música' : 'Reproducir música');
+  }
+  mb.addEventListener('click', function () {
+    hint.classList.add('off');
+    if (!C.audioUrl) return;
+    if (!audio.src) audio.src = C.audioUrl;
+    if (audio.paused) audio.play().then(function () { setPlaying(true); }).catch(function () { setPlaying(false); toast('No se pudo reproducir la música'); /* ⚠️ revisá CONFIG.audioUrl */ });
+    else { audio.pause(); setPlaying(false); }
+  });
+  document.addEventListener('visibilitychange', function () { if (document.hidden && !audio.paused) { audio.pause(); setPlaying(false); } });
+
+  // Cuenta regresiva
+  var start = new Date(C.fechaISO + (C.husoHorario || '')), target = start.getTime(), cd = $('count');
+  if (isNaN(target)) { start = new Date(C.fechaISO); target = start.getTime(); }
+  function u(v, l) { return '<div><b>' + String(v).padStart(2, '0') + '</b><small>' + l + '</small></div>'; }
+  function tick() {
+    if (isNaN(target)) { cd.innerHTML = '<p class="done">Revisá la fecha en CONFIG.fechaISO</p>'; return; }
+    var d = target - Date.now();
+    if (d <= 0) { cd.innerHTML = '<p class="done">¡Llegó el gran día!</p>'; return; }
+    cd.innerHTML = u(Math.floor(d / 864e5), 'Días') + u(Math.floor(d % 864e5 / 36e5), 'Hs') + u(Math.floor(d % 36e5 / 6e4), 'Min') + u(Math.floor(d % 6e4 / 1e3), 'Seg');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Guardar fecha → Google Calendar (Android / compu) o archivo .ics (iPhone, Outlook) con recordatorios
+  if (!isNaN(target)) {
+    var end = new Date(target + (C.duracionHoras || 6) * 36e5);
+    var z = function (d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+    var titulo = 'XV de ' + C.nombre, lugar = C.lugarNombre + ', ' + C.lugarDireccion;
+    var link = /^https?:/.test(location.href) ? location.href.split('#')[0] : '';
+    var desc = '¡Te espero para celebrar mis XV! ✨' + (link ? '\nInvitación: ' + link : '');
+    var gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(titulo) +
+      '&dates=' + z(start) + '/' + z(end) + '&details=' + encodeURIComponent(desc) + '&location=' + encodeURIComponent(lugar);
+    var esc = function (s) { return String(s).replace(/([,;\\])/g, '\\$1').replace(/\n/g, '\\n'); };
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Celebra Invitaciones//XV//ES', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
+      'UID:' + z(start) + '-' + C.nombre.replace(/\W/g, '') + '@celebrainvitaciones.com', 'DTSTAMP:' + z(new Date()),
+      'DTSTART:' + z(start), 'DTEND:' + z(end), 'SUMMARY:' + esc(titulo), 'LOCATION:' + esc(lugar), 'DESCRIPTION:' + esc(desc),
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + esc('Mañana son los ' + titulo), 'TRIGGER:-P1D', 'END:VALARM',
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + esc('Hoy son los ' + titulo), 'TRIGGER:-PT3H', 'END:VALARM',
+      'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    var icsUrl = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+    var esApple = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    $('ics').href = icsUrl; $('ics').download = 'XV-' + C.nombre + '.ics';
+    if (esApple) {                                   // iPhone: abre "Agregar al calendario" directo
+      $('save').href = icsUrl; $('save').removeAttribute('target'); $('save').setAttribute('download', 'XV-' + C.nombre + '.ics');
+      $('save-alt').innerHTML = '¿Usás Google Calendar? <a href="' + gcal + '" target="_blank" rel="noopener">Abrilo acá</a>';
+    } else {
+      $('save').href = gcal;
+    }
+  } else { $('save').style.display = 'none'; $('save-alt').style.display = 'none'; }
+
+  // Copiar alias / CBU
+  function copiar(txt, el) {
+    function ok() { var o = el.textContent; el.textContent = '¡Copiado!'; setTimeout(function () { el.textContent = o; }, 1800); }
+    function fb2() { var ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove(); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(ok, fb2); else fb2();
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (b) { b.addEventListener('click', function () { copiar(b.dataset.copy === 'alias' ? C.regaloAlias : C.regaloCbu, b); }); });
+
+  // Confirmación por WhatsApp
+  $('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var n = $('r-nombre').value.trim(), msg = $('r-msg').value.trim(), si = $('asis-si').checked;
+    if (n.length < 2) { $('note').textContent = 'Escribí tu nombre para confirmar'; $('r-nombre').focus(); return; }
+    $('note').textContent = '';
+    var t = (si ? C.rsvpMensajeSi : C.rsvpMensajeNo).replace('{nombre}', n).replace('{mensaje}', msg);
+    window.location.href = 'https://wa.me/' + C.whatsappNumero + '?text=' + encodeURIComponent(t.trim());
+  });
+});
+</script>
+</body>
+</html>
