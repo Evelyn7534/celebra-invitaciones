@@ -130,6 +130,129 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
 
   a:focus-visible,button:focus-visible{outline:2px solid #58698C;outline-offset:3px;border-radius:8px;}
 </style>
+<!-- Datos estructurados de Celebra: pegar dentro del <head> de index.html, antes de </head> -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://celebrainvitaciones.com/#organization",
+      "name": "Celebra Invitaciones",
+      "alternateName": "Celebra",
+      "url": "https://celebrainvitaciones.com/",
+      "logo": "https://celebrainvitaciones.com/images/logo/logoweb.svg",
+      "description": "Invitaciones web interactivas para cumpleaños de 15, 18, 30 o la edad que celebres. Confirmación de asistencia con menú, lista de regalos, mapa y trivia, enviadas por WhatsApp.",
+      "areaServed": "AR",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+54 9 11 3621-8114",
+        "contactType": "customer service",
+        "availableLanguage": "es"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://celebrainvitaciones.com/#website",
+      "url": "https://celebrainvitaciones.com/",
+      "name": "Celebra Invitaciones",
+      "inLanguage": "es-AR",
+      "publisher": { "@id": "https://celebrainvitaciones.com/#organization" }
+    },
+    {
+      "@type": "Product",
+      "name": "Invitación digital Plan Clásica",
+      "description": "Invitación web para festejos íntimos o familiares: confirmación por WhatsApp, hasta 10 fotos, música de fondo, mapa interactivo y mesa de regalos o datos bancarios.",
+      "image": "https://celebrainvitaciones.com/images/martinaquince-mockup.png",
+      "brand": { "@id": "https://celebrainvitaciones.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://celebrainvitaciones.com/#precios",
+        "price": "40000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@id": "https://celebrainvitaciones.com/#organization" }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Invitación digital Plan Premium Celebra",
+      "description": "La experiencia completa e interactiva: todo lo de Clásica más confirmación en vivo con menú y acompañantes, trivia, álbum de fotos por QR, playlist integrada y wishlist opcional.",
+      "image": "https://celebrainvitaciones.com/images/mockup1.png",
+      "brand": { "@id": "https://celebrainvitaciones.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://celebrainvitaciones.com/#precios",
+        "price": "65000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@id": "https://celebrainvitaciones.com/#organization" }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Invitación digital Plan Exclusiva",
+      "description": "Invitación diseñada desde cero: todo lo de Premium más diseño 100% a medida, invitación en dúo, wishlist incluida y entrega express en 12 horas.",
+      "image": "https://celebrainvitaciones.com/images/sofiquincemockup.png",
+      "brand": { "@id": "https://celebrainvitaciones.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://celebrainvitaciones.com/#precios",
+        "price": "90000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@id": "https://celebrainvitaciones.com/#organization" }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tarda la entrega de mi invitación?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El tiempo de entrega estándar es de 3 a 5 días hábiles una vez enviada toda la información de tu fiesta. Si la necesitás con urgencia, contamos con el servicio opcional de Entrega Express en menos de 12 horas (+$12.000)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Mis invitados necesitan descargar algo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La invitación se abre desde el link, en cualquier celular, sin descargar aplicaciones ni completar formularios externos. Todo ocurre dentro de la invitación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo poner mis datos bancarios y una lista de regalos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Todos los planes incluyen mesa de regalos o datos bancarios. En el Plan Premium Celebra podés sumar una Wishlist para que tus invitados elijan qué regalarte directamente desde la web."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuáles son los medios de pago disponibles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Podés abonar mediante Transferencia Bancaria (con un 10% de descuento) o a través de Mercado Pago. Además, podés congelar el precio señando la invitación con el 50% y abonar el resto al momento de la entrega."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo pedir un diseño 100% personalizado si no me convence un modelo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Por supuesto. Si no encontrás el diseño perfecto en nuestro catálogo, lo diseñamos a tu medida. Contanos tu idea, estética o temática por WhatsApp y creamos una invitación única para vos."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 <body class="bg-bg text-ink font-sans antialiased">
 
