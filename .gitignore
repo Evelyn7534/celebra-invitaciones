@@ -1,1 +1,7 @@
 .DS_Store
+
+# Archivos personales: no se publican en la web
+*.pdf
+*.mp3
+estrategia-*.html
+Celebra Catálogo Rediseño.html
