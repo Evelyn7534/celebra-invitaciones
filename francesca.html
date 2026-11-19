@@ -32,6 +32,11 @@
   .bg-final { opacity: 0; }
   /* velo suave para que las hojas se lean; desaparece en el final para ver la foto completa */
   .veil { position: absolute; inset: 0; background: rgba(255, 252, 250, .32); transition: opacity .3s linear; }
+  /* En computadora la foto no se estira (se veía borrosa): va centrada en su formato vertical, con la misma foto desenfocada a los costados */
+  @media (min-width: 760px) {
+    .stage::before { content: ""; position: absolute; inset: -80px; background: var(--bgimg, none) center / cover no-repeat; filter: blur(42px) saturate(1.05); opacity: .9; }
+    .bg { left: 50%; right: auto; width: calc(106svh * .6667); margin-left: calc(106svh * -.33335); box-shadow: 0 0 90px rgba(40, 25, 30, .18); }
+  }
 
   main { position: relative; z-index: 1; }
 
@@ -128,7 +133,7 @@
   .note { min-height: 20px; font-size: 15px; color: #b0607a; text-align: center; }
 
   /* ===== FINAL: la foto completa + gracias ===== */
-  footer { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: flex-end; justify-content: center; padding: 30vh 16px calc(96px + env(safe-area-inset-bottom)); }
+  footer { position: relative; z-index: 1; min-height: 0; display: flex; align-items: flex-end; justify-content: center; padding: 14vh 16px calc(96px + env(safe-area-inset-bottom)); }
   .thanks { width: min(100%, 420px); text-align: center; padding: 30px 24px 26px; background: rgba(255, 253, 251, .74); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 20px 50px -20px rgba(40, 25, 30, .35); }
   .thanks-title { font-family: var(--script); font-size: 64px; line-height: 1.1; color: var(--ink); }
   .thanks-msg { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.45; color: var(--ink); margin-top: 4px; }
@@ -150,6 +155,8 @@
     html { scroll-behavior: auto; }
   }
 </style>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 </head>
 <body>
 <script>document.documentElement.classList.add('js');</script>
@@ -351,6 +358,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Textos e imágenes
   $('bg').style.backgroundImage = 'url("' + C.fondo + '")';
+  $('bg').parentNode.style.setProperty('--bgimg', 'url("' + C.fondo + '")');
   if (C.fondoFinal) $('bg-final').style.backgroundImage = 'url("' + C.fondoFinal + '")';
   $('nombre').textContent = C.nombre; $('edad').textContent = C.edad;
   $('fecha-corta').textContent = C.fechaTextual; $('fecha-larga').textContent = C.fechaLarga;

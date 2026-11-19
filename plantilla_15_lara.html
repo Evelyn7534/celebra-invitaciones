@@ -67,6 +67,8 @@
   #demo-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);opacity:0;z-index:70;background:#382A40;color:#FDF2F8;font-size:12px;padding:10px 16px;border-radius:999px;max-width:88vw;text-align:center;transition:all .3s ease;pointer-events:none;}
   #demo-toast.ver{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 </head>
 <body class="font-sans antialiased overflow-x-hidden tex-soft bloqueado" style="background:#F8F1E9; color:#382A40;">
 
@@ -155,7 +157,7 @@ const CONFIG = {
 
   <!-- PORTADA -->
   <section class="relative min-h-[100svh] flex items-end overflow-hidden">
-    <img id="portada-img" src="images/lara-15/portada.jpg" alt="Portada Lara" class="absolute inset-0 w-full h-full object-cover object-center">
+    <img id="portada-img" src="images/lara-15/portada.jpg" alt="Portada Lara" class="absolute inset-0 w-full h-full object-cover" style="object-position:40% 15%;">
     <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
     <div class="relative z-10 w-full px-6 pb-14 pt-32 text-right text-white">
       <h1 id="nombre-titulo" class="font-serif text-6xl sm:text-7xl leading-none mb-2"></h1>
@@ -173,7 +175,7 @@ const CONFIG = {
 
   <!-- FOTO + CUENTA REGRESIVA -->
   <section class="grid md:grid-cols-2">
-    <div id="secundaria-bg" class="aspect-[4/5] md:aspect-auto bg-cover bg-center bg-gradient-to-br from-[#C9A6AE] to-[#8C6D78]"></div>
+    <div id="secundaria-bg" class="aspect-[4/5] md:aspect-auto md:min-h-[520px] bg-cover bg-gradient-to-br from-[#C9A6AE] to-[#8C6D78]" style="background-position:45% 12%;"></div>
     <div class="bg-roseDeep tex flex items-center justify-center px-8 py-16">
       <div class="fade-in text-center relative pt-8">
         <img 
