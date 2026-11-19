@@ -105,6 +105,9 @@
 
   /* ---- 1. Portada ---- */
   .s1 .content{justify-content:flex-end;padding-bottom:128px;}
+  .s1.top .content{justify-content:flex-start;padding-top:118px;}
+  .s1.top .shade{background:linear-gradient(180deg,rgba(40,15,35,.55) 0%,rgba(40,15,35,.18) 38%,rgba(0,0,0,0) 55%,rgba(25,10,25,.45) 100%);}
+  .s1.top .tap-hint{position:absolute;bottom:96px;left:0;right:0;justify-content:center;}
   .big-name{font-family:var(--serif);font-style:italic;font-size:clamp(5.4rem,28vw,8.4rem);line-height:.82;margin:12px 0 16px;text-shadow:0 6px 30px rgba(0,0,0,.35);}
   .date-pill{display:inline-flex;gap:8px;align-items:center;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-size:.78rem;font-weight:500;letter-spacing:.22em;}
   .tap-hint{margin-top:22px;font-size:.78rem;opacity:.85;display:flex;align-items:center;gap:6px;animation:nudge 1.4s ease-in-out infinite;}
@@ -286,13 +289,14 @@ const CONFIG = {
   sugerenciasCanciones: ["Tini", "Taylor Swift", "Karol G", "Bad Bunny"],
 
   // FOTOS
-  fotoPerfil: "images/lara-15/avatar.png",
-  fotoPortada: "images/lara-15/portada.jpg",
-  fotoCuenta: "images/lara-15/segunda_foto.jpg",
+  fotoPerfil: "images/stories-15/perfil.jpg",
+  fotoPortada: "images/stories-15/portada.jpg",
+  portadaTexto: "arriba",            // "arriba" o "abajo": dónde va el nombre según la foto
+  fotoCuenta: "images/stories-15/portada.jpg",
   fotosMomentos: [                    // se pueden poner hasta 6
-    { src: "images/lara-15/portada.jpg", texto: "mi día 🌸" },
-    { src: "images/lara-15/segunda_foto.jpg", texto: "✨ quince ✨" },
-    { src: "images/lara-15/avatar.png", texto: "te espero" }
+    { src: "images/stories-15/momento-tiara.jpg", texto: "mi día 🌸" },
+    { src: "images/stories-15/momento-torta.jpg", texto: "🎂 quince 🎂" },
+    { src: "images/stories-15/portada.jpg", texto: "te espero ✨" }
   ],
 
   celebraWhatsapp: "5491136218114",
@@ -537,7 +541,8 @@ const CONFIG = {
   $('avatar').src = C.fotoPerfil; $('avatar').alt = 'Foto de ' + C.nombre;
   document.querySelectorAll('.avatar-img').forEach(function (i) { i.src = C.fotoPerfil; i.alt = ''; });
   var bg = function (id, src) { $(id).style.backgroundImage = "url('" + src + "')"; };
-  bg('ph-portada', C.fotoPortada); bg('ph-cuenta', C.fotoCuenta); bg('ph-rsvp', C.fotoPortada); bg('ph-final', C.fotoCuenta);
+  bg('ph-portada', C.fotoPortada);
+  if (C.portadaTexto === 'arriba') document.querySelector('.s1').classList.add('top'); bg('ph-cuenta', C.fotoCuenta); bg('ph-rsvp', C.fotoPortada); bg('ph-final', C.fotoCuenta);
   bg('backdrop', C.fotoPortada); bg('lock', C.fotoPortada);
   $('celebra-web').href = $('celebra-web2').href = C.celebraWeb;
   $('celebra-ig').href = C.celebraInstagram;
