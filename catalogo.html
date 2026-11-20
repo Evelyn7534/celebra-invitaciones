@@ -114,7 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- BANNER SUPERIOR -->
 <div class="w-full bg-accent text-ink text-center text-[13px] sm:text-sm font-semibold py-2.5 px-4">
-  Señá con el 50% y congelá el precio · 10% OFF pagando por transferencia
+  🎉 Oferta de lanzamiento: invitaciones desde $29.900 con transferencia · Save the Date de regalo con Premium
 </div>
 
 <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur-md border-b border-line">
@@ -167,6 +167,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-cat ("15" o "18-25"), el color de fondo del .stage, la imagen,
           el link de la demo, el nombre, las etiquetas y el texto de WhatsApp.
         -->
+
+        <!-- NUEVO. EMMA · SOFT / CLEAN -->
+        <article class="design-card reveal flex flex-col" data-cat="15" data-name="Emma">
+          <a href="plantilla_15_soft.html" target="_blank" rel="noopener" class="stage block relative pt-2 pb-3" data-view>
+            <span class="absolute top-3 left-3 z-10 rounded-full bg-primary text-white text-[10px] sm:text-xs font-bold tracking-wide px-2.5 py-1 shadow-md">🤍 NUEVO</span>
+            <img src="images/mockupsoft.webp" alt="Invitación digital modelo Emma, Mis 15 años estilo soft y minimalista, con sobre interactivo" loading="lazy" class="mx-auto h-[270px] sm:h-[340px] lg:h-[380px] w-auto object-contain drop-shadow-xl">
+          </a>
+          <div class="px-1 flex flex-col gap-3 flex-1 text-center">
+            <div>
+              <h2 class="font-serif text-lg sm:text-2xl leading-tight">Emma</h2>
+              <p class="text-[11px] sm:text-xs text-inkSoft mt-0.5">Mis 15 · Soft y minimalista</p>
+            </div>
+            <div class="mt-auto grid sm:grid-cols-2 gap-2">
+              <a href="plantilla_15_soft.html" target="_blank" rel="noopener" data-view class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-line text-ink text-xs sm:text-sm font-bold py-2.5 hover:border-primary hover:text-primary transition-colors"><svg class="w-4 h-4"><use href="#i-eye"/></svg>Ver en vivo</a>
+              <a href="https://wa.me/5491136218114?text=Hola!%20Me%20gust%C3%B3%20el%20dise%C3%B1o%20Emma%20(soft%20y%20minimalista)%20para%20mi%20invitaci%C3%B3n" target="_blank" rel="noopener" data-choose class="inline-flex items-center justify-center rounded-xl bg-primary text-white text-xs sm:text-sm font-bold py-2.5 hover:bg-primaryDark transition-colors">Elegir este</a>
+            </div>
+          </div>
+        </article>
 
         <!-- NUEVO. MÍA · MIS STORIES -->
         <article class="design-card reveal flex flex-col" data-cat="15" data-name="Mía">
@@ -516,5 +534,61 @@ document.addEventListener('click', function(e){
   window.dataLayer.push({ event: 'click_whatsapp', ubicacion: a.getAttribute('data-track') || (a.hasAttribute('data-choose') ? 'elegir-diseno' : 'otro'), pagina: location.pathname });
 });
 </script>
+
+<!-- ============ PROMO OFERTA DE LANZAMIENTO (aparece a los 3,5 s, una vez por visita) ============ -->
+<style>
+  #promo{position:fixed;z-index:9999;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:calc(100% - 28px);max-width:400px;transform:translate(-50%,130%);opacity:0;
+    transition:transform .6s cubic-bezier(.2,1.2,.3,1),opacity .4s ease;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:#262B36;}
+  #promo.show{transform:translate(-50%,0);opacity:1;}
+  #promo .pc{position:relative;overflow:hidden;border-radius:24px;background:#fff;box-shadow:0 28px 70px -18px rgba(88,60,120,.55);}
+  #promo .top{position:relative;padding:20px 20px 18px;color:#fff;background:linear-gradient(120deg,#8F7BD0 0%,#C98BB5 55%,#E8A0A8 100%);}
+  #promo .top::after{content:"✨";position:absolute;right:56px;top:16px;font-size:22px;animation:tw 2s ease-in-out infinite;}
+  @keyframes tw{50%{transform:scale(1.3) rotate(15deg);opacity:.7}}
+  #promo .tag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.22em;color:#5a3f8f;background:#fff;border-radius:999px;padding:5px 11px;}
+  #promo h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:22px;line-height:1.15;margin:12px 0 0;}
+  #promo .price{display:flex;align-items:baseline;gap:8px;margin-top:6px;}
+  #promo .price b{font-family:"Playfair Display",Georgia,serif;font-size:44px;line-height:1;font-weight:700;}
+  #promo .price span{font-size:12.5px;opacity:.95;line-height:1.3;}
+  #promo .body{padding:14px 18px 16px;}
+  #promo .gift{display:flex;gap:10px;align-items:center;padding:11px 12px;border-radius:14px;background:#FBEFF3;border:1px dashed #E0A9BC;font-size:13px;line-height:1.35;}
+  #promo .gift span{font-size:22px;}
+  #promo .fast{display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:12px;color:#5B6270;}
+  #promo .wa{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;border-radius:14px;padding:14px;font-size:15px;font-weight:800;text-decoration:none;background:#25D366;color:#fff;box-shadow:0 10px 24px -10px rgba(37,211,102,.8);animation:pl 2.4s ease-in-out infinite;}
+  @keyframes pl{50%{transform:scale(1.03)}}
+  #promo .ver{display:block;text-align:center;margin-top:10px;font-size:13px;font-weight:700;color:#58698C;text-decoration:underline;text-underline-offset:3px;}
+  #promo .x{position:absolute;z-index:2;top:12px;right:12px;width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.3);color:#fff;font-size:19px;line-height:1;cursor:pointer;}
+  @media (min-width:900px){#promo{left:28px;bottom:28px;transform:translateY(130%);}#promo.show{transform:none;}}
+  @media (prefers-reduced-motion: reduce){#promo,#promo *{transition:none;animation:none!important;}}
+</style>
+<div id="promo" role="dialog" aria-label="Oferta de lanzamiento" aria-hidden="true">
+  <div class="pc">
+    <button class="x" type="button" aria-label="Cerrar">×</button>
+    <div class="top">
+      <span class="tag">🎉 OFERTA DE LANZAMIENTO</span>
+      <h3>Tu invitación de XV</h3>
+      <div class="price"><span>desde</span><b>$29.900</b><span>con<br>transferencia</span></div>
+    </div>
+    <div class="body">
+      <div class="gift"><span>🎁</span><div><b>Save the Date de regalo</b> con el plan Premium</div></div>
+      <div class="fast"><span>⏱️ Lista en 48-72 h</span><span>🔒 Congelá el precio</span></div>
+      <a class="wa" href="https://wa.me/5491136218114?text=Hola!%20Vi%20la%20oferta%20de%20lanzamiento%20y%20quiero%20mi%20invitaci%C3%B3n%20%F0%9F%92%9C" target="_blank" rel="noopener" data-promo="wa">💬 Quiero la mía</a>
+      <a class="ver" href="#grid" data-promo="ver">Ver todos los diseños</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='celebra-promo-visto', p=document.getElementById('promo'); if(!p) return;
+  try{ if(sessionStorage.getItem(KEY)) return; }catch(e){}
+  function close(){ p.classList.remove('show'); p.setAttribute('aria-hidden','true'); try{sessionStorage.setItem(KEY,'1');}catch(e){} }
+  setTimeout(function(){ p.classList.add('show'); p.setAttribute('aria-hidden','false'); }, 3500);
+  p.querySelector('.x').addEventListener('click', close);
+  p.querySelectorAll('[data-promo]').forEach(function(a){ a.addEventListener('click', function(){
+    close(); if(a.dataset.promo==='ver' && /catalogo\.html$/.test(location.pathname)){ /* ya está en el catálogo */ }
+    try{ if(window.gtag) gtag('event','promo_click',{tipo:a.dataset.promo}); }catch(e){}
+  }); });
+})();
+</script>
+
 </body>
 </html>
