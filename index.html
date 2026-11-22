@@ -357,12 +357,14 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
 
       <!-- Demo interactiva -->
       <div class="relative flex flex-col items-center">
-        <!-- Tarjeta flotante: panel de confirmaciones -->
-        <div class="float-card hidden sm:block absolute -left-2 lg:-left-10 top-16 z-10 w-[210px] bg-white rounded-2xl border border-line shadow-xl p-4">
-          <div class="text-[10px] font-bold uppercase tracking-[0.12em] text-inkSoft mb-2">Tu panel de invitados</div>
-          <div class="flex items-baseline gap-1.5 mb-2"><span id="stat-yes" class="font-serif text-3xl font-semibold tabular-nums">142</span><span class="text-xs text-inkSoft">confirmados de 180</span></div>
-          <div class="h-1.5 rounded-full bg-cream2 overflow-hidden mb-2.5"><div id="stat-bar" class="h-full bg-primary rounded-full transition-all duration-700" style="width:78.9%"></div></div>
-          <div class="text-[11px] text-inkSoft">🥗 12 vegetarianos · 🌾 4 sin TACC</div>
+        <!-- Tarjeta flotante: confirmaciones que llegan a WhatsApp -->
+        <div class="float-card hidden sm:block absolute -left-2 lg:-left-10 top-16 z-10 w-[230px] bg-white rounded-2xl border border-line shadow-xl p-4">
+          <div class="text-[10px] font-bold uppercase tracking-[0.12em] text-inkSoft mb-2.5">Te llega a tu WhatsApp</div>
+          <div class="space-y-2 text-[11.5px] leading-snug">
+            <div class="rounded-xl bg-[#E7F8EC] px-3 py-2"><b class="block text-ink">Laura Gómez</b><span class="text-inkSoft">🎀 ¡Confirmo! · 2 acompañantes</span></div>
+            <div class="rounded-xl bg-[#E7F8EC] px-3 py-2"><b class="block text-ink">Tía Marce</b><span class="text-inkSoft">🎀 ¡Confirmo! · menú vegetariano</span></div>
+          </div>
+          <span id="stat-yes" hidden>142</span><div id="stat-bar" hidden></div>
         </div>
         <!-- Tarjeta flotante: notificación -->
         <div id="toast" class="float-card b hidden sm:flex absolute -right-2 lg:-right-12 top-[250px] z-10 items-center gap-3 bg-white rounded-2xl border border-line shadow-xl pl-3 pr-4 py-3 max-w-[230px]">
@@ -382,7 +384,7 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
                 <div class="absolute inset-x-0 bottom-0 p-5 text-white text-center">
                   <div class="font-serif italic text-lg opacity-90">Mis XV</div>
                   <div class="font-serif text-[2.6rem] leading-none mb-1">Lara</div>
-                  <div class="text-[10px] tracking-[0.2em] uppercase opacity-85 mb-4">Sábado 21 de noviembre · 21 h</div>
+                  <div id="demo-fecha" class="text-[10px] tracking-[0.2em] uppercase opacity-85 mb-4">Sábado 20 de marzo · 21 h</div>
                   <div class="grid grid-cols-4 gap-1.5 mb-4 tabular-nums" aria-label="Cuenta regresiva">
                     <div class="cd-box"><div class="text-lg font-semibold" data-cd="d">00</div><div class="text-[8px] uppercase tracking-wider opacity-80">días</div></div>
                     <div class="cd-box"><div class="text-lg font-semibold" data-cd="h">00</div><div class="text-[8px] uppercase tracking-wider opacity-80">horas</div></div>
@@ -630,6 +632,7 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
           </div>
           <div class="flex flex-col gap-3">
             <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20reservar%20el%20Plan%20Cl%C3%A1sica%20con%20se%C3%B1a" data-mp="clasica" target="_blank" rel="noopener" data-track="plan-clasica" class="w-full text-center py-3.5 px-4 bg-primary text-white font-bold text-sm rounded-xl hover:bg-primaryDark transition-colors shadow-md">Reservar con seña · $16.600</a>
+            <p class="text-[11px] text-inkSoft text-center -mt-1">Pagás seguro con Mercado Pago. Después escribinos por WhatsApp con el comprobante y arrancamos 💜</p>
             <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20el%20Plan%20Cl%C3%A1sica%20pagando%20por%20transferencia" target="_blank" rel="noopener" data-track="plan-clasica-wa" class="w-full text-center py-3 px-4 bg-white border border-primary text-primary font-bold text-sm rounded-xl hover:bg-primary hover:text-white transition-colors">Pagar por transferencia ($29.900)</a>
             <a href="martiquince.html" class="w-full text-center py-2 text-primary font-semibold text-sm hover:underline underline-offset-4">Ver ejemplo</a>
           </div>
@@ -637,7 +640,7 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
 
         <!-- PLAN 2: PREMIUM CELEBRA -->
         <div class="bg-primary text-white rounded-3xl p-7 border border-primary flex flex-col justify-between shadow-2xl relative lg:-translate-y-4 ring-2 ring-accent/60">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink font-bold text-xs px-4 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">Más elegido</div>
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink font-bold text-xs px-4 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">Recomendado</div>
           <div>
             <h3 class="font-serif text-2xl font-bold mb-1">Premium Celebra</h3>
             <p class="text-white/80 text-sm mb-6">La experiencia completa e interactiva</p>
@@ -655,6 +658,7 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
           </div>
           <div class="flex flex-col gap-3">
             <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20reservar%20el%20Plan%20Premium%20Celebra%20con%20se%C3%B1a" data-mp="premium" target="_blank" rel="noopener" data-track="plan-premium" class="w-full text-center py-3.5 px-4 bg-accent text-ink font-bold text-sm rounded-xl hover:bg-accentSoft transition-colors shadow-md">Reservar con seña · $23.250</a>
+            <p class="text-[11px] text-white/80 text-center -mt-1">Pagás seguro con Mercado Pago. Después escribinos por WhatsApp con el comprobante y arrancamos 💜</p>
             <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20el%20Plan%20Premium%20Celebra%20pagando%20por%20transferencia" target="_blank" rel="noopener" data-track="plan-premium-wa" class="w-full text-center py-3 px-4 bg-white/10 border border-white/60 text-white font-bold text-sm rounded-xl hover:bg-white hover:text-primary transition-colors">Pagar por transferencia ($41.900)</a>
             <a href="plantilla_15_lara.html" class="w-full text-center py-2 text-white font-semibold text-sm hover:underline underline-offset-4">Ver ejemplo</a>
           </div>
@@ -1068,7 +1072,11 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
   if (!reduce) auto = setInterval(function(){ show(order[(current + 1) % order.length]); }, 4500);
 
   /* ---------- Cuenta regresiva (evento de ejemplo: 21/11/2026 21 h) ---------- */
-  var target = new Date('2026-11-21T21:00:00-03:00').getTime();
+  /* fecha de la demo siempre a futuro: el sábado que cae ~75 días después de hoy, 21 h */
+  var _d = new Date(); _d.setDate(_d.getDate() + 75); _d.setDate(_d.getDate() + ((6 - _d.getDay() + 7) % 7)); _d.setHours(21, 0, 0, 0);
+  var _m = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var _f = document.getElementById('demo-fecha'); if (_f) _f.textContent = 'Sábado ' + _d.getDate() + ' de ' + _m[_d.getMonth()] + ' · 21 h';
+  var target = _d.getTime();
   function pad(n){ return (n < 10 ? '0' : '') + n; }
   function tick(){
     var diff = Math.max(0, target - Date.now());
@@ -1215,7 +1223,11 @@ document.addEventListener('click', function(e){
   var KEY='celebra-promo-visto', p=document.getElementById('promo'); if(!p) return;
   try{ if(sessionStorage.getItem(KEY)) return; }catch(e){}
   function close(){ p.classList.remove('show'); p.setAttribute('aria-hidden','true'); try{sessionStorage.setItem(KEY,'1');}catch(e){} }
-  setTimeout(function(){ p.classList.add('show'); p.setAttribute('aria-hidden','false'); }, 3500);
+  var shown=false; function show(){ if(shown) return; shown=true; p.classList.add('show'); p.setAttribute('aria-hidden','false'); }
+  /* aparece cuando la persona ya vio los planes y siguió bajando sin elegir, o a los 45 s */
+  var pl=document.getElementById('precios');
+  if(pl && 'IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting && e.boundingClientRect.top<0) show(); }); },{threshold:0}).observe(pl); }
+  setTimeout(show, 45000);
   p.querySelector('.x').addEventListener('click', close);
   p.querySelectorAll('[data-promo]').forEach(function(a){ a.addEventListener('click', function(){
     close(); if(a.dataset.promo==='ver' && /catalogo\.html$/.test(location.pathname)){ /* ya está en el catálogo */ }
@@ -1236,7 +1248,7 @@ document.addEventListener('click', function(e){
 <div id="buybar" aria-hidden="true"><div class="p">Invitaciones desde<b>$29.900</b></div><a href="#precios" data-track="buybar">Reservá tu fecha →</a></div>
 <script>
 /* LINKS DE MERCADO PAGO PARA LA SEÑA: pegá acá cada link cuando lo crees. Si está vacío, el botón abre WhatsApp. */
-const MP_LINKS = { clasica: "", premium: "" };
+const MP_LINKS = { clasica: "https://mpago.li/1FGA3La", premium: "https://mpago.li/1GzC3LT" };
 (function(){
   document.querySelectorAll('[data-mp]').forEach(function(a){ var u = MP_LINKS[a.dataset.mp]; if (u) a.href = u; });
   try{ var c = getComputedStyle(document.querySelector('.bg-primary')).backgroundColor; if(c) document.getElementById('buybar').style.setProperty('--bb', c);}catch(e){}
