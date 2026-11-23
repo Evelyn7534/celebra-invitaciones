@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nos casamos</title>
+<meta name="description" content="Invitación digital de casamiento · Celebra Invitaciones">
+<meta property="og:title" content="Nos casamos">
+<meta property="og:description" content="Tocá el moño para abrir la invitación">
+<meta name="theme-color" content="#F2EBDD">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%234B1C22'/%3E%3Ctext x='32' y='42' font-size='28' text-anchor='middle' fill='%23F2EBDD' font-family='serif'%3E%26%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#F2EBDD; --papel2:#EAE1CF; --tinta:#4B1C22; --tinta2:#7A3A40; --oliva:#6B7346; --rosa:#C9A39A; --gris:#7C7268;
+    --serif:"Instrument Serif",Georgia,serif; --mano:"Caveat",cursive; --sans:"Jost",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:300;color:var(--tinta);background:#E3D9C6;-webkit-font-smoothing:antialiased}
+  body.locked{overflow:hidden}
+  .app{max-width:480px;margin:0 auto;background:var(--papel);position:relative;overflow:hidden;min-height:100vh}
+  /* grano de papel en toda la invitación */
+  .app::before{content:"";position:fixed;inset:0;max-width:480px;margin:0 auto;pointer-events:none;z-index:50;opacity:.32;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .3  0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .cap{font-family:var(--sans);font-size:.62rem;letter-spacing:.36em;text-transform:uppercase;color:var(--oliva);font-weight:500}
+  .mano{font-family:var(--mano);color:var(--tinta2)}
+  section{position:relative;padding:90px 28px;text-align:center}
+  h2{font-family:var(--serif);font-weight:400;font-size:3.1rem;line-height:1;letter-spacing:-.01em;margin-top:10px}
+  h2 em{font-style:italic;color:var(--tinta2)}
+  .regla{width:100%;height:1px;background:repeating-linear-gradient(90deg,var(--tinta) 0 6px,transparent 6px 12px);opacity:.25;margin:0 auto}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border:1px solid var(--tinta);border-radius:999px;color:var(--tinta);text-decoration:none;font-family:var(--sans);
+       font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;background:transparent;cursor:pointer;transition:background .3s,color .3s}
+  .btn:hover,.btn.fill{background:var(--tinta);color:var(--papel)}
+  /* aparición al bajar */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+  /* trazos que se dibujan */
+  .draw path,.draw line,.draw circle,.draw rect,.draw ellipse,.draw polyline{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.55,.1,.3,1)}
+  .in .draw path,.in .draw line,.in .draw circle,.in .draw rect,.in .draw ellipse,.in .draw polyline,.draw.in path,.draw.in line,.draw.in circle,.draw.in rect,.draw.in ellipse,.draw.in polyline{stroke-dashoffset:0}
+
+  /* ---------- APERTURA: papel vegetal con cinta ---------- */
+  #intro{position:fixed;inset:0;z-index:100;max-width:480px;margin:0 auto;overflow:hidden;cursor:pointer}
+  #intro .vegetal{position:absolute;inset:0;background:rgba(246,241,232,.62);-webkit-backdrop-filter:blur(7px) saturate(.9);backdrop-filter:blur(7px) saturate(.9);
+     transition:transform 1.5s cubic-bezier(.7,0,.25,1) 1.15s,opacity 1.1s ease 1.5s;transform-origin:50% 0}
+  #intro .vegetal::after{content:"";position:absolute;inset:0;opacity:.5;background:linear-gradient(115deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 35%,rgba(255,255,255,.35) 60%,rgba(255,255,255,0) 80%)}
+  #intro .cinta-v,#intro .cinta-h{position:absolute;background:linear-gradient(90deg,#3E161B,#6A2A31 40%,#521D23 60%,#3A1418);box-shadow:0 2px 6px rgba(40,10,12,.35)}
+  #intro .cinta-v{left:50%;top:-2%;width:34px;margin-left:-17px;height:104%;transition:transform 1.1s cubic-bezier(.6,0,.3,1) .35s}
+  #intro .cinta-h{top:56%;left:-2%;height:34px;margin-top:-17px;width:104%;background:linear-gradient(180deg,#3E161B,#6A2A31 40%,#521D23 60%,#3A1418);transition:transform 1.1s cubic-bezier(.6,0,.3,1) .5s}
+  #intro .monio{position:absolute;left:50%;top:56%;width:150px;height:120px;margin:-62px 0 0 -75px;transition:transform .9s cubic-bezier(.5,-0.3,.5,1),opacity .6s ease .2s;animation:respira 3s ease-in-out infinite}
+  @keyframes respira{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+  #intro .etiqueta{position:absolute;left:50%;top:56%;width:215px;margin-left:8px;margin-top:46px;z-index:3;transform-origin:10px 0;transform:rotate(-9deg);transition:opacity .5s, transform .9s ease;animation:hamaca 4s ease-in-out infinite}
+  @keyframes hamaca{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(-5deg)}}
+  #intro .etiqueta .hilo{position:absolute;left:4px;top:-40px;width:1px;height:46px;background:#6A2A31;transform:rotate(-24deg);transform-origin:bottom}
+  #intro .etiqueta .papel{position:relative;background:#FBF7EE;padding:16px 16px 14px 26px;clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%);box-shadow:0 10px 18px -10px rgba(60,30,20,.5);text-align:left}
+  #intro .etiqueta .papel::before{content:"";position:absolute;left:12px;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:#E3D9C6;box-shadow:inset 0 1px 1px rgba(0,0,0,.2)}
+  #intro .etiqueta .mano{font-size:1.35rem;line-height:1;white-space:nowrap}
+  #intro .etiqueta .cap{display:block;margin-top:6px;color:var(--tinta);font-size:.55rem;letter-spacing:.28em}
+  #intro .tocar{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:4;background:rgba(251,247,238,.92);border-radius:999px;padding:6px 18px 4px;text-align:center;font-family:var(--mano);font-size:1.4rem;color:var(--tinta2);transition:opacity .4s;box-shadow:0 6px 14px -8px rgba(60,30,20,.4)}
+  #intro .tocar svg{display:none!important}
+  #intro .tocar svg{display:block;margin:4px auto 0;width:40px;height:26px}
+  #intro.abierto .monio{transform:translateY(-30px) scale(.4) rotate(-20deg);opacity:0;animation:none}
+  #intro.abierto .cinta-v{transform:translateY(104%)}
+  #intro.abierto .cinta-h{transform:translateX(104%)}
+  #intro.abierto .etiqueta,#intro.abierto .tocar{opacity:0;animation:none}
+  #intro.abierto .vegetal{transform:translateY(-112%) rotate(-4deg);opacity:0}
+  #intro.fin{pointer-events:none}
+
+  /* ---------- 1. PORTADA ---------- */
+  .portada{min-height:100vh;min-height:100svh;padding:13vh 26px 40px;display:flex;flex-direction:column;align-items:center}
+  .portada .rama{width:120px;height:46px;color:var(--oliva)}
+  .portada .nos{font-family:var(--mano);font-size:1.9rem;color:var(--tinta2);margin-top:14px}
+  .nombres{font-family:var(--serif);font-weight:400;line-height:.88;letter-spacing:-.02em;margin-top:12px}
+  .nombres span{display:block;font-size:5.4rem}
+  .nombres i{display:block;font-size:2.6rem;font-style:italic;color:var(--tinta2);margin:6px 0}
+  .portada .sub{position:relative;width:220px;height:16px;margin:10px auto 0;color:var(--tinta2)}
+  .portada .fecha{margin-top:26px;font-family:var(--serif);font-size:1.6rem;letter-spacing:.12em}
+  .portada .lugar{margin-top:6px;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gris)}
+  .portada .nota{position:absolute;right:20px;top:63%;transform:rotate(8deg);font-family:var(--mano);font-size:1.25rem;color:var(--oliva);text-align:left;line-height:1.1}
+  .portada .nota svg{width:44px;height:30px;display:block;margin:4px 0 0 -6px;color:var(--oliva)}
+  .portada .bajar{margin-top:auto;padding-top:40px;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gris)}
+  .portada .bajar i{display:block;width:1px;height:34px;background:var(--tinta);opacity:.4;margin:10px auto 0;animation:baja 2.2s ease-in-out infinite;transform-origin:top}
+  @keyframes baja{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+  .portada > *{opacity:.55;transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .portada .bajar,.portada .nota{opacity:0}
+  body.abierta .portada > *{opacity:1;transform:none}
+  body.abierta .portada > :nth-child(1){transition-delay:1.9s} body.abierta .portada > :nth-child(2){transition-delay:2.1s}
+  body.abierta .portada > :nth-child(3){transition-delay:2.3s} body.abierta .portada > :nth-child(4){transition-delay:2.6s}
+  body.abierta .portada > :nth-child(5){transition-delay:2.8s} body.abierta .portada > :nth-child(6){transition-delay:2.9s}
+  body.abierta .portada > :nth-child(7){transition-delay:3.4s} body.abierta .portada > :nth-child(8){transition-delay:3.8s}
+
+  /* ---------- 2. FOTO ---------- */
+  .foto{padding:20px 28px 80px}
+  .polaroid{position:relative;width:86%;margin:0 auto;background:#FBF8F1;padding:12px 12px 54px;box-shadow:0 30px 40px -28px rgba(60,30,20,.45),0 2px 6px rgba(60,30,20,.12);transform:rotate(-2.5deg)}
+  .polaroid .img{position:relative;aspect-ratio:4/5;overflow:hidden;background:#cfc3b0}
+  .polaroid img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.18) contrast(1.02) saturate(.9);transform:scale(1.15);transition:transform 2.4s cubic-bezier(.2,.7,.2,1)}
+  .polaroid .velo{position:absolute;inset:0;background:var(--papel2);transform-origin:top;transition:transform 1.4s cubic-bezier(.7,0,.2,1)}
+  .foto.in .velo{transform:scaleY(0)} .foto.in img{transform:scale(1)}
+  .polaroid .pie{position:absolute;left:0;right:0;bottom:12px;font-family:var(--mano);font-size:1.6rem;color:var(--tinta2)}
+  .polaroid .cinta{position:absolute;top:-14px;left:50%;width:96px;height:28px;margin-left:-48px;background:rgba(201,163,154,.55);transform:rotate(3deg);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+  .foto .frase{margin-top:46px;font-family:var(--serif);font-style:italic;font-size:1.7rem;line-height:1.3}
+  .foto .frase-sub{margin-top:14px;font-size:.95rem;line-height:1.7;color:var(--gris)}
+
+  /* ---------- 3. CALENDARIO + CUENTA ---------- */
+  .cal{background:var(--papel2)}
+  .mes{font-family:var(--serif);font-size:2rem;font-style:italic;margin-top:14px}
+  .grilla{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;max-width:320px;margin:20px auto 0;font-family:var(--serif);font-size:1.15rem}
+  .grilla b{font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:.14em;color:var(--oliva);padding-bottom:8px}
+  .grilla span{position:relative;padding:8px 0}
+  .grilla span.dia{color:var(--tinta);font-weight:400}
+  .grilla span.dia svg{position:absolute;left:50%;top:50%;width:52px;height:44px;margin:-23px 0 0 -26px;color:var(--tinta2);overflow:visible}
+  .grilla span.dia .corazon{position:absolute;right:-6px;top:-8px;font-family:var(--mano);font-size:1rem;color:var(--tinta2)}
+  .cd{display:flex;justify-content:center;gap:18px;margin-top:34px}
+  .cd div{min-width:58px}
+  .cd b{display:block;font-family:var(--serif);font-weight:400;font-size:2.6rem;line-height:1;font-variant-numeric:lining-nums tabular-nums}
+  .cd small{font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gris)}
+  .cal .mano.chica{display:block;margin-top:20px;font-size:1.35rem}
+
+  /* ---------- 4. DÓNDE ---------- */
+  .donde .estancia{width:100%;max-width:340px;height:auto;margin:24px auto 0;display:block;color:var(--tinta)}
+  .donde .nombre-lugar{font-family:var(--serif);font-size:2.2rem;margin-top:16px;line-height:1.05}
+  .donde .dir{margin-top:8px;color:var(--gris);font-size:.92rem}
+  .horas{display:grid;grid-template-columns:1fr 1px 1fr;gap:18px;align-items:center;margin:28px auto 26px;max-width:320px}
+  .horas .sep{height:56px;background:var(--tinta);opacity:.2}
+  .horas b{display:block;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1}
+  .horas small{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oliva)}
+
+  /* ---------- 5. EL PLAN ---------- */
+  .plan{background:var(--papel2)}
+  .pasos{margin:32px auto 0;max-width:330px;text-align:left}
+  .paso{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px dashed rgba(75,28,34,.22)}
+  .paso svg{width:46px;height:46px;color:var(--tinta)}
+  .paso b{display:block;font-family:var(--serif);font-weight:400;font-size:1.5rem;line-height:1.05}
+  .paso span{font-size:.82rem;color:var(--gris)}
+  .paso time{font-family:var(--mano);font-size:1.5rem;color:var(--tinta2)}
+
+  /* ---------- 6. DRESS CODE ---------- */
+  .dress .tipo{font-family:var(--serif);font-size:2.4rem;font-style:italic;margin-top:16px}
+  .dress p{margin:12px auto 0;max-width:330px;color:var(--gris);line-height:1.7;font-size:.95rem}
+  .chips{display:flex;justify-content:center;gap:10px;margin-top:24px}
+  .chips i{width:44px;height:58px;display:block;box-shadow:0 6px 10px -6px rgba(60,30,20,.4);clip-path:polygon(0 4%,12% 0,30% 3%,52% 0,70% 2%,88% 0,100% 3%,98% 30%,100% 60%,97% 100%,70% 97%,44% 100%,20% 97%,0 100%,3% 66%,0 34%)}
+  .chips i:nth-child(odd){transform:rotate(-3deg)} .chips i:nth-child(even){transform:rotate(4deg)}
+  .dress .mano.chica{display:block;margin-top:18px;font-size:1.3rem}
+
+  /* ---------- 7. REGALO ---------- */
+  .regalo{background:var(--tinta);color:var(--papel)}
+  .regalo .cap{color:var(--rosa)}
+  .regalo h2 em{color:var(--rosa)}
+  .regalo p{margin:16px auto 24px;max-width:320px;line-height:1.7;opacity:.85}
+  .regalo .btn{border-color:var(--papel);color:var(--papel)}
+  .regalo .btn:hover{background:var(--papel);color:var(--tinta)}
+  #datos{max-height:0;overflow:hidden;transition:max-height .7s ease}
+  #datos.open{max-height:300px}
+  .dato{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid rgba(242,235,221,.3);border-radius:12px;padding:13px 16px;margin-top:12px;text-align:left}
+  .dato small{display:block;font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rosa)}
+  .dato span{font-size:.92rem;word-break:break-all}
+  .copiar{border:1px solid var(--papel);background:none;border-radius:999px;padding:7px 12px;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--papel);cursor:pointer;font-family:var(--sans)}
+  .copiar.ok{background:var(--papel);color:var(--tinta)}
+
+  /* ---------- 8. CONFIRMACIÓN ---------- */
+  .rsvp form{margin:30px auto 0;max-width:360px;text-align:left}
+  .rsvp .q{font-family:var(--serif);font-size:1.35rem;margin:26px 0 10px}
+  .rsvp .q:first-child{margin-top:0}
+  .opt{display:flex;align-items:center;gap:12px;font-size:1rem;padding:7px 0;cursor:pointer}
+  .opt input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:1px solid var(--tinta);background:transparent;margin:0;flex:none;cursor:pointer;position:relative;border-radius:50%}
+  .opt input:checked::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--tinta)}
+  .cant{display:flex;align-items:center;gap:22px}
+  .cant button{width:46px;height:46px;border-radius:50%;border:1px solid var(--tinta);background:transparent;font-size:1.2rem;cursor:pointer;color:var(--tinta)}
+  .cant b{font-family:var(--serif);font-weight:400;font-size:1.8rem;min-width:20px;text-align:center}
+  .rsvp input.txt,.rsvp textarea,.rsvp select{display:block;width:100%;padding:12px 2px;border:0;border-bottom:1px solid rgba(75,28,34,.45);background:transparent;font-family:var(--sans);font-size:1.05rem;color:var(--tinta);border-radius:0;appearance:none;-webkit-appearance:none}
+  .rsvp textarea{resize:vertical;min-height:70px}
+  .rsvp input.txt::placeholder,.rsvp textarea::placeholder{color:#A59A8E}
+  .rsvp input:focus,.rsvp textarea:focus,.rsvp select:focus{outline:none;border-bottom-color:var(--tinta)}
+  .hide{display:none!important}
+  .rsvp .enviar{display:flex;justify-content:center;margin-top:30px}
+  .rsvp .hasta{display:block;margin-top:10px;font-size:1.3rem}
+
+  /* ---------- 9. FINAL ---------- */
+  .final{padding:70px 28px 46px;background:var(--papel2)}
+  .sello{position:relative;width:170px;height:170px;margin:0 auto}
+  .sello svg.giro{position:absolute;inset:0;width:100%;height:100%;animation:gira 22s linear infinite;color:var(--tinta)}
+  @keyframes gira{to{transform:rotate(360deg)}}
+  .sello .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:2.6rem;letter-spacing:-.02em}
+  .sello .ini i{font-size:1.4rem;color:var(--tinta2);margin:0 4px}
+  .final .gracias{font-family:var(--mano);font-size:1.8rem;color:var(--tinta2);margin-top:24px}
+  .celebra{margin-top:46px;font-size:.78rem;color:var(--gris)}
+  .celebra a{color:var(--tinta);text-underline-offset:3px}
+  .celebra .quiero{display:block;margin-top:10px;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--oliva)}
+
+  /* ---------- música ---------- */
+  #musica{position:fixed;z-index:60;right:max(16px,calc(50% - 224px));bottom:20px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(75,28,34,.3);
+          background:rgba(242,235,221,.92);color:var(--tinta);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .6s;box-shadow:0 10px 20px -12px rgba(60,30,20,.6)}
+  #musica.show{opacity:1;pointer-events:auto}
+  #musica .eq{display:flex;gap:3px;align-items:flex-end;height:16px}
+  #musica .eq i{width:2px;background:currentColor;border-radius:2px;height:4px}
+  #musica.on .eq i{animation:eq 1s ease-in-out infinite}
+  #musica .eq i:nth-child(2){animation-delay:.2s}#musica .eq i:nth-child(3){animation-delay:.4s}#musica .eq i:nth-child(4){animation-delay:.1s}
+  @keyframes eq{0%,100%{height:4px}50%{height:16px}}
+  #toast{position:fixed;left:50%;bottom:84px;transform:translate(-50%,20px);background:var(--tinta);color:var(--papel);font-size:.8rem;padding:11px 18px;border-radius:999px;opacity:0;transition:all .4s;z-index:120;pointer-events:none}
+  #toast.on{opacity:1;transform:translate(-50%,0)}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="locked">
+
+<!-- ======================================================
+     CONFIGURACIÓN DE DATOS (lo único que se edita)
+     ====================================================== -->
+<script>
+const CONFIG = {
+  novia: "Lucía",
+  novio: "Tomás",
+  fechaISO: "2027-03-20T17:30:00",
+  duracionHoras: 10,
+  fechaCorta: "20 · 03 · 2027",
+  fechaTexto: "Sábado 20 de marzo de 2027",
+  mes: "Marzo 2027",
+  diaDelMes: 20,
+  primerDiaSemana: 1,        // día de la semana del 1° del mes (0 = domingo, 1 = lunes … 6 = sábado)
+  diasDelMes: 31,
+  lugarCorto: "Cañuelas · Buenos Aires",
+
+  fotoUrl: "images/romimateo/romiportada.png",
+  pieFoto: "nosotros, hace un ratito",
+  frase: "Después de tantas mateadas, viajes y domingos juntos, decidimos hacerlo oficial.",
+  fraseSub: "Y no se nos ocurre mejor forma de festejarlo que con vos.",
+
+  lugarNombre: "Estancia Los Aromos",
+  lugarDireccion: "Ruta 6, km 87 · Cañuelas",
+  lugarMaps: "https://maps.google.com/?q=Ca%C3%B1uelas+Buenos+Aires",
+  horaCeremonia: "17:30",
+  horaFiesta: "19:00",
+
+  plan: [
+    ["anillos", "17:30", "Ceremonia", "Nos damos el sí bajo el aromo"],
+    ["copas", "19:00", "Recepción", "Copas y algo rico al atardecer"],
+    ["plato", "21:30", "Cena", "En la galería de la estancia"],
+    ["nota", "23:30", "A bailar", "Hasta que el cuerpo diga basta"],
+    ["luna", "04:30", "Fin de fiesta", "Con un último abrazo"]
+  ],
+
+  dressCode: "Elegante sport",
+  dressTexto: "Es al aire libre y sobre el pasto: mejor tacos anchos y algo abrigado para la noche. El blanco queda para la novia.",
+  paleta: ["#6B7346", "#C9A39A", "#E6D5B8", "#7A3A40", "#A8B3A0"],
+
+  audioUrl: "images/romimateo/musica/thinkingoutloud.mp3",
+
+  regaloTexto: "Lo más lindo es que estés. Si además nos querés ayudar con la luna de miel, te dejamos los datos.",
+  regaloAlias: "LUCIAYTOMI.BODA",
+  regaloCbu: "0000003100098765432109",
+  regaloTitular: "Lucía Fernández",
+
+  whatsappNumero: "5491136218114",
+  confirmarHasta: "20 de febrero",
+
+  celebraWhatsapp: "5491136218114",
+  celebraWeb: "https://celebrainvitaciones.com/"
+};
+</script>
+
+<!-- APERTURA -->
+<div id="intro" role="button" aria-label="Tocá el moño para abrir la invitación">
+  <div class="vegetal"></div>
+    <div class="cinta-v"></div>
+  <div class="cinta-h"></div>
+  <svg class="monio" viewBox="0 0 150 120" aria-hidden="true">
+    <defs>
+      <linearGradient id="raso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6E2C33"/><stop offset=".45" stop-color="#4A1A20"/><stop offset=".6" stop-color="#7B3A41"/><stop offset="1" stop-color="#3A1418"/></linearGradient>
+      <filter id="sombraM"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2a0c10" flood-opacity=".4"/></filter>
+    </defs>
+    <g filter="url(#sombraM)">
+      <path d="M75 58C56 30 20 22 12 40c-7 16 18 32 63 18z" fill="url(#raso)"/>
+      <path d="M75 58c19-28 55-36 63-18 7 16-18 32-63 18z" fill="url(#raso)"/>
+      <path d="M70 62c-8 18-20 38-34 54l14-2c10-14 20-32 26-50z" fill="url(#raso)"/>
+      <path d="M80 62c8 18 20 38 34 54l-14-2c-10-14-20-32-26-50z" fill="url(#raso)"/>
+      <path d="M30 40c10-4 26 2 40 14M120 40c-10-4-26 2-40 14" stroke="#8A4950" stroke-width="1" fill="none" opacity=".6"/>
+      <ellipse cx="75" cy="58" rx="11" ry="10" fill="#5A2128"/>
+      <path d="M68 55c4-3 10-3 14 0" stroke="#8A4950" stroke-width="1" fill="none"/>
+    </g>
+  </svg>
+  <div class="etiqueta"><div class="hilo"></div><div class="papel"><div class="mano">para vos, con amor</div><span class="cap" id="env-nombres"></span></div></div>
+  <div class="tocar">tocá el moño
+    <svg viewBox="0 0 40 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 4c8 2 18 8 26 16M32 20l-1-8M32 20l-8 0"/></svg>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- 1. PORTADA -->
+  <section class="portada">
+    <svg class="rama draw" viewBox="0 0 120 46" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+      <path pathLength="1" d="M8 38C34 30 70 22 112 10"/>
+      <path pathLength="1" d="M28 33c-4-8-2-15 4-19 3 7 1 14-4 19zM46 28c-2-9 2-15 9-18 1 8-3 14-9 18zM64 23c0-9 5-15 12-17 0 8-5 14-12 17zM82 18c2-8 8-13 15-14-2 8-7 12-15 14z"/>
+      <path pathLength="1" d="M32 35c7 4 15 4 21-1-7-4-15-4-21 1zM52 30c7 3 15 2 21-3-7-3-15-2-21 3zM72 24c7 2 14 0 19-5-7-2-14 0-19 5z"/>
+    </svg>
+    <div class="nos">¡nos casamos!</div>
+    <div class="nombres"><span id="n1"></span><i>&amp;</i><span id="n2"></span></div>
+    <svg class="sub draw" id="subr" viewBox="0 0 220 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path pathLength="1" d="M6 10C50 3 92 13 140 6s58 2 74 0"/></svg>
+    <div class="fecha" id="fecha-corta"></div>
+    <div class="lugar" id="lugar-corto"></div>
+    <div class="nota">¡y queremos<br>que estés!<svg viewBox="0 0 44 30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M38 4C30 6 16 12 8 24M8 24l2-9M8 24l9-2"/></svg></div>
+    <div class="bajar">Bajá despacito<i></i></div>
+  </section>
+
+  <!-- 2. FOTO -->
+  <section class="foto rv" id="sec-foto">
+    <div class="polaroid">
+      <div class="cinta"></div>
+      <div class="img"><img id="foto" alt=""><div class="velo"></div></div>
+      <div class="pie" id="pie-foto"></div>
+    </div>
+    <p class="frase rv d1" id="frase"></p>
+    <p class="frase-sub rv d2" id="frase-sub"></p>
+  </section>
+
+  <div class="regla"></div>
+
+  <!-- 3. CALENDARIO -->
+  <section class="cal rv">
+    <div class="cap">Guardá la fecha</div>
+    <div class="mes" id="mes"></div>
+    <div class="grilla" id="grilla"><b>L</b><b>M</b><b>M</b><b>J</b><b>V</b><b>S</b><b>D</b></div>
+    <div class="cd"><div><b id="cd-d">0</b><small>días</small></div><div><b id="cd-h">00</b><small>horas</small></div><div><b id="cd-m">00</b><small>min</small></div></div>
+    <span class="mano chica">falta poquito…</span>
+    <a class="btn" id="agendar" target="_blank" rel="noopener" style="margin-top:22px">Agendar</a>
+  </section>
+
+  <!-- 4. DÓNDE -->
+  <section class="donde rv">
+    <div class="cap">Ceremonia y fiesta</div>
+    <h2>Nos vemos <em>acá</em></h2>
+    <svg class="estancia draw" viewBox="0 0 320 190" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path pathLength="1" d="M8 152H312"/>
+      <path pathLength="1" d="M62 152V98H258V152"/>
+      <path pathLength="1" d="M50 98L84 70H236L270 98"/>
+      <path pathLength="1" d="M92 76h18M126 76h18M160 76h18M194 76h18M214 84h20M86 84h20"/>
+      <path pathLength="1" d="M74 152V124a12 12 0 0124 0V152M106 152V124a12 12 0 0124 0V152M144 152V118a16 16 0 0132 0V152M190 152V124a12 12 0 0124 0V152M222 152V124a12 12 0 0124 0V152"/>
+      <path pathLength="1" d="M62 110H258"/>
+      <path pathLength="1" d="M198 70V54H212V70"/>
+      <path pathLength="1" d="M205 50c-4-4 2-8-2-12M209 48c-3-3 2-6-1-9"/>
+      <path pathLength="1" d="M30 152V118M30 122c-14 2-22-8-18-18-8-6-2-20 8-18 0-12 18-14 22-4 12-4 20 8 14 16 8 6 2 20-10 18-2 8-10 10-16 6"/>
+      <path pathLength="1" d="M292 152V96M292 70c-8 10-10 26-8 44 4 12 12 12 16 0 2-18 0-34-8-44z"/>
+      <path pathLength="1" d="M150 152c-6 12-16 24-30 34M170 152c6 12 16 24 30 34"/>
+      <path pathLength="1" d="M70 36l5 4 5-4M96 26l4 3 4-3M248 40l5 4 5-4"/>
+    </svg>
+    <div class="nombre-lugar rv d1" id="lugar-nombre"></div>
+    <div class="dir rv d1" id="lugar-dir"></div>
+    <div class="horas rv d2"><div><b id="h-cer"></b><small>Ceremonia</small></div><div class="sep"></div><div><b id="h-fie"></b><small>Fiesta</small></div></div>
+    <a class="btn rv d3" id="maps" target="_blank" rel="noopener">Cómo llegar</a>
+  </section>
+
+  <!-- 5. EL PLAN -->
+  <section class="plan rv">
+    <div class="cap">El gran día</div>
+    <h2>El <em>plan</em></h2>
+    <div class="pasos" id="pasos"></div>
+  </section>
+
+  <!-- 6. DRESS CODE -->
+  <section class="dress rv">
+    <div class="cap">Qué me pongo</div>
+    <div class="tipo" id="dress"></div>
+    <div class="chips" id="chips"></div>
+    <p id="dress-texto"></p>
+    <span class="mano chica">(¡y zapatos cómodos para bailar!)</span>
+  </section>
+
+  <!-- 7. REGALO -->
+  <section class="regalo rv">
+    <div class="cap">Regalos</div>
+    <h2>Luna de <em>miel</em></h2>
+    <p id="regalo-texto"></p>
+    <button class="btn" id="ver-datos">Ver datos</button>
+    <div id="datos">
+      <div class="dato"><div><small>Alias</small><span id="alias"></span></div><button class="copiar" data-c="alias">Copiar</button></div>
+      <div class="dato"><div><small>CBU</small><span id="cbu"></span></div><button class="copiar" data-c="cbu">Copiar</button></div>
+      <div class="dato"><div><small>Titular</small><span id="titular"></span></div></div>
+    </div>
+  </section>
+
+  <!-- 8. CONFIRMACIÓN -->
+  <section class="rsvp rv" id="confirmar">
+    <div class="cap">Confirmación</div>
+    <h2>¿Venís<em>?</em></h2>
+    <span class="mano hasta">confirmanos antes del <span id="hasta"></span></span>
+    <form id="form" onsubmit="return false">
+      <div class="q">¿Nos acompañás?</div>
+      <label class="opt"><input type="radio" name="asis" value="si" checked> ¡Sí, obvio!</label>
+      <label class="opt"><input type="radio" name="asis" value="no"> No voy a poder</label>
+      <div id="extra">
+        <div class="q">¿Cuántos son?</div>
+        <div class="cant"><button type="button" id="menos">−</button><b id="cant">1</b><button type="button" id="mas">+</button></div>
+        <div class="q">¿Vienen niños?</div>
+        <label class="opt"><input type="radio" name="ninos" value="Sí"> Sí</label>
+        <label class="opt"><input type="radio" name="ninos" value="No" checked> No</label>
+        <div class="q">Menú</div>
+        <select id="f-menu"><option>Sin restricciones</option><option>Vegetariano</option><option>Vegano</option><option>Sin TACC</option><option>Otro (lo aclaro abajo)</option></select>
+      </div>
+      <div class="q">Tu nombre</div>
+      <input class="txt" id="f-nombre" autocomplete="name" placeholder="Nombre y apellido">
+      <div class="q">Unas palabras para los novios</div>
+      <textarea id="f-msg" placeholder="(opcional)"></textarea>
+      <div class="enviar"><button class="btn fill" id="enviar" type="button">Confirmar por WhatsApp</button></div>
+    </form>
+  </section>
+
+  <!-- 9. FINAL -->
+  <section class="final">
+    <div class="sello">
+      <svg class="giro" viewBox="0 0 170 170"><defs><path id="circ" d="M85 85m-66 0a66 66 0 1 1 132 0a66 66 0 1 1-132 0"/></defs>
+        <circle cx="85" cy="85" r="80" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5"/>
+        <circle cx="85" cy="85" r="52" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5"/>
+        <text font-family="Jost, sans-serif" font-size="11" letter-spacing="4.2" fill="currentColor"><textPath href="#circ" id="txt-circ"></textPath></text>
+      </svg>
+      <div class="ini" id="ini"></div>
+    </div>
+    <div class="gracias">¡te esperamos!</div>
+    <div class="celebra">
+      Hecha con amor por <a id="celebra-web" target="_blank" rel="noopener">Celebra</a>
+      <a class="quiero" id="quiero" target="_blank" rel="noopener">Quiero una invitación así →</a>
+    </div>
+  </section>
+</div>
+
+<button id="musica" aria-label="Música"><span class="eq"><i></i><i></i><i></i><i></i></span></button>
+<div id="toast"></div>
+<audio id="audio" loop preload="auto"></audio>
+
+<script>
+(function(){
+  var C = CONFIG, $ = function(id){ return document.getElementById(id); };
+  var wa = function(n, t){ return 'https://wa.me/' + n + '?text=' + encodeURIComponent(t); };
+  var pareja = C.novia + ' & ' + C.novio;
+
+  /* textos */
+  document.title = 'Nos casamos · ' + pareja;
+  $('env-nombres').textContent = C.novia + ' & ' + C.novio;
+  $('n1').textContent = C.novia; $('n2').textContent = C.novio;
+  $('fecha-corta').textContent = C.fechaCorta; $('lugar-corto').textContent = C.lugarCorto;
+  $('foto').src = C.fotoUrl; $('pie-foto').textContent = C.pieFoto;
+  $('frase').textContent = C.frase; $('frase-sub').textContent = C.fraseSub;
+  $('mes').textContent = C.mes;
+  $('lugar-nombre').textContent = C.lugarNombre; $('lugar-dir').textContent = C.lugarDireccion; $('maps').href = C.lugarMaps;
+  $('h-cer').textContent = C.horaCeremonia; $('h-fie').textContent = C.horaFiesta;
+  $('dress').textContent = C.dressCode; $('dress-texto').textContent = C.dressTexto;
+  C.paleta.forEach(function(c){ var i = document.createElement('i'); i.style.background = c; $('chips').appendChild(i); });
+  $('regalo-texto').textContent = C.regaloTexto; $('alias').textContent = C.regaloAlias; $('cbu').textContent = C.regaloCbu; $('titular').textContent = C.regaloTitular;
+  $('hasta').textContent = C.confirmarHasta;
+  $('ini').innerHTML = C.novia.charAt(0) + '<i>&amp;</i>' + C.novio.charAt(0);
+  $('txt-circ').textContent = (C.novia + ' & ' + C.novio + ' · ' + C.fechaCorta + ' · ').toUpperCase();
+  $('celebra-web').href = C.celebraWeb;
+  $('quiero').href = wa(C.celebraWhatsapp, 'Hola Celebra! Vi la invitación de casamiento editorial y quiero una así 🤍');
+
+  /* calendario: semana empieza en lunes */
+  var g = $('grilla'), off = (C.primerDiaSemana + 6) % 7;
+  for (var i = 0; i < off; i++) g.appendChild(document.createElement('span'));
+  for (var d = 1; d <= C.diasDelMes; d++){
+    var s = document.createElement('span'); s.textContent = d;
+    if (d === C.diaDelMes){
+      s.className = 'dia';
+      s.innerHTML = d + '<svg class="draw" viewBox="0 0 52 44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path pathLength="1" d="M30 5C14 2 3 12 5 24s18 17 30 13 14-16 10-24C42 6 34 2 22 6"/></svg><span class="corazon">♡</span>';
+    }
+    g.appendChild(s);
+  }
+
+  /* íconos dibujados a mano */
+  var ICON = {
+    anillos: '<circle pathLength="1" cx="18" cy="28" r="10"/><circle pathLength="1" cx="30" cy="28" r="10"/><path pathLength="1" d="M15 15l3-5 3 5"/>',
+    copas: '<path pathLength="1" d="M10 8h12l-1 10a5 5 0 01-10 0zM16 23v14M11 37h10M26 8h12l-1 10a5 5 0 01-10 0zM32 23v14M27 37h10"/><path pathLength="1" d="M21 6l6 4"/>',
+    plato: '<circle pathLength="1" cx="24" cy="24" r="13"/><circle pathLength="1" cx="24" cy="24" r="8"/><path pathLength="1" d="M6 10v28M4 10v7a2 2 0 004 0v-7M42 10c-3 4-3 10 0 12v16"/>',
+    nota: '<path pathLength="1" d="M18 34V10l18-4v24"/><ellipse pathLength="1" cx="14" cy="34" rx="5" ry="4"/><ellipse pathLength="1" cx="32" cy="30" rx="5" ry="4"/><path pathLength="1" d="M18 16l18-4"/>',
+    luna: '<path pathLength="1" d="M30 8a16 16 0 100 32 13 13 0 010-32z"/><path pathLength="1" d="M36 14l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/>'
+  };
+  C.plan.forEach(function(p, k){
+    var d = document.createElement('div'); d.className = 'paso rv d' + Math.min(3, k);
+    d.innerHTML = '<svg class="draw" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' + (ICON[p[0]] || '') + '</svg><div><b></b><span></span></div><time></time>';
+    d.querySelector('b').textContent = p[2]; d.querySelector('span').textContent = p[3]; d.querySelector('time').textContent = p[1];
+    $('pasos').appendChild(d);
+  });
+
+  /* agendar */
+  var ini = new Date(C.fechaISO), fin = new Date(ini.getTime() + C.duracionHoras * 36e5);
+  var gc = function(x){ return x.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z'; };
+  $('agendar').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Casamiento de ' + pareja) +
+    '&dates=' + gc(ini) + '/' + gc(fin) + '&location=' + encodeURIComponent(C.lugarNombre + ', ' + C.lugarDireccion);
+
+  /* cuenta regresiva */
+  function tick(){
+    var t = Math.max(0, ini - new Date());
+    $('cd-d').textContent = Math.floor(t / 864e5);
+    $('cd-h').textContent = String(Math.floor(t / 36e5) % 24).padStart(2,'0');
+    $('cd-m').textContent = String(Math.floor(t / 6e4) % 60).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 15000);
+
+  /* apertura */
+  var audio = $('audio'), mus = $('musica'), abierto = false;
+  if (C.audioUrl) audio.src = C.audioUrl;
+  $('intro').addEventListener('click', function(){
+    if (abierto) return; abierto = true;
+    this.classList.add('abierto'); document.body.classList.add('abierta');
+    if (C.audioUrl){ audio.play().then(function(){ mus.classList.add('on'); }).catch(function(){}); }
+    setTimeout(function(){ $('subr').classList.add('in'); document.querySelector('.portada .rama').classList.add('in'); }, 2700);
+    setTimeout(function(){ document.body.classList.remove('locked'); $('intro').classList.add('fin'); if (C.audioUrl) mus.classList.add('show'); }, 2700);
+    setTimeout(function(){ $('intro').style.display = 'none'; }, 3300);
+  });
+  mus.onclick = function(){ if (audio.paused){ audio.play(); mus.classList.add('on'); } else { audio.pause(); mus.classList.remove('on'); } };
+
+  /* aparición al bajar */
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .18 });
+  [].forEach.call(document.querySelectorAll('.rv'), function(el){ io.observe(el); });
+
+  /* regalo */
+  $('ver-datos').onclick = function(){ var o = $('datos').classList.toggle('open'); this.textContent = o ? 'Ocultar datos' : 'Ver datos'; };
+  function toast(t){ var e = $('toast'); e.textContent = t; e.classList.add('on'); clearTimeout(e._t); e._t = setTimeout(function(){ e.classList.remove('on'); }, 1800); }
+  [].forEach.call(document.querySelectorAll('.copiar'), function(b){
+    b.onclick = function(){ var v = $(b.dataset.c).textContent;
+      var ok = function(){ b.classList.add('ok'); b.textContent = 'Copiado'; toast('Copiado'); setTimeout(function(){ b.classList.remove('ok'); b.textContent = 'Copiar'; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(v).then(ok, ok); else ok(); };
+  });
+
+  /* confirmación */
+  var cant = 1;
+  function asiste(){ return document.querySelector('input[name=asis]:checked').value; }
+  [].forEach.call(document.querySelectorAll('input[name=asis]'), function(r){ r.onchange = function(){ $('extra').classList.toggle('hide', asiste() === 'no'); }; });
+  $('mas').onclick = function(){ cant = Math.min(10, cant + 1); $('cant').textContent = cant; };
+  $('menos').onclick = function(){ cant = Math.max(1, cant - 1); $('cant').textContent = cant; };
+  $('enviar').onclick = function(){
+    var n = $('f-nombre').value.trim(); if (!n){ toast('Escribí tu nombre'); $('f-nombre').focus(); return; }
+    var t = asiste() === 'si'
+      ? '¡Confirmo mi asistencia al casamiento de ' + pareja + '! 🤍\n👤 ' + n + '\n👥 Somos: ' + cant + '\n👶 Niños: ' + document.querySelector('input[name=ninos]:checked').value + '\n🍽️ Menú: ' + $('f-menu').value
+      : 'No voy a poder ir al casamiento de ' + pareja + ', ¡pero los abrazo fuerte! 🤍\n👤 ' + n;
+    var m = $('f-msg').value.trim(); if (m) t += '\n💌 ' + m;
+    window.open(wa(C.whatsappNumero, t), '_blank');
+  };
+})();
+</script>
+</body>
+</html>

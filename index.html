@@ -240,6 +240,15 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
 }
 </script>
 
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zi7ov3tvnw");
+</script>
+<!-- End Microsoft Clarity -->
 </head>
 <body class="bg-bg text-ink font-sans antialiased">
 <!-- Google Tag Manager (noscript) -->
@@ -568,7 +577,7 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
 
       <div class="reveal mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="/catalogo.html" class="inline-flex items-center justify-center gap-3 rounded-full bg-primary text-white text-sm font-bold px-8 py-4 hover:bg-primaryDark transition-all shadow-md hover:-translate-y-0.5">
-          <span>Ver los 10 diseños</span><svg class="w-4 h-4"><use href="#i-arrow"/></svg>
+          <span>Ver los 13 diseños</span><svg class="w-4 h-4"><use href="#i-arrow"/></svg>
         </a>
         <a href="https://wa.me/5491136218114?text=Hola!%20Quiero%20una%20invitaci%C3%B3n%20personalizada%20para%20mi%20evento" target="_blank" rel="noopener" data-track="diseno-a-pedido" class="inline-flex items-center justify-center rounded-full border border-primary text-primary text-sm font-bold px-7 py-4 hover:bg-primary hover:text-white transition-colors">¿Buscás algo único? Lo diseñamos a tu medida</a>
       </div>
@@ -1048,6 +1057,31 @@ src="https://www.facebook.com/tr?id=2053754282028690&ev=PageView&noscript=1"
       if (typeof fbq === 'function') fbq('track', 'Contact', { content_name: a.getAttribute('data-track') || 'whatsapp' });
     });
   });
+
+  /* ---------- Pixel: interés en la home ---------- */
+  // Abrir una invitación de ejemplo = ViewContent (es la acción que más adelante le vamos a pedir a Meta)
+  document.querySelectorAll('a[href$=".html"]').forEach(function(a){
+    var h = a.getAttribute('href');
+    if (/^(index|catalogo|gracias)\.html$/.test(h)) return;
+    a.addEventListener('click', function(){
+      if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: 'Demo ' + h.replace('.html','') });
+    });
+  });
+  // Ir al catálogo
+  document.querySelectorAll('a[href^="catalogo.html"]').forEach(function(a){
+    a.addEventListener('click', function(){ if (typeof fbq === 'function') fbq('trackCustom', 'IrAlCatalogo'); });
+  });
+  // Tocar las pestañas del celular de muestra (una vez por visita)
+  var probo = false;
+  document.querySelectorAll('.demo-tab').forEach(function(b){
+    b.addEventListener('click', function(){ if (probo) return; probo = true; if (typeof fbq === 'function') fbq('trackCustom', 'ProboDemo', { tab: b.getAttribute('data-tab') }); });
+  });
+  // Llegar a ver los precios (una vez por visita)
+  var prec = document.getElementById('precios');
+  if (prec && 'IntersectionObserver' in window){
+    var ioP = new IntersectionObserver(function(es){ if (es[0].isIntersecting){ ioP.disconnect(); if (typeof fbq === 'function') fbq('trackCustom', 'VioPrecios'); } }, { threshold: .08 });
+    ioP.observe(prec);
+  }
 
   /* ---------- FAQ ---------- */
   var faqs = document.querySelectorAll('.faq-item');
