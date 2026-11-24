@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Julián & María · Nos casamos</title>
+<meta name="description" content="Invitación digital de casamiento · Celebra Invitaciones">
+<meta property="og:title" content="Julián & María · Nos casamos">
+<meta property="og:description" content="Sábado 10 de julio de 2027 · Lobos, Buenos Aires">
+<meta property="og:image" content="https://celebrainvitaciones.com/images/julian-maria/portada.jpg">
+<meta name="theme-color" content="#241E1B">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=EB+Garamond:ital,wght@0,400;1,400;1,500&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --marfil:#F7F2EA; --papel:#FBF8F3; --arena:#E8DCCB; --champan:#B89A6A; --champan2:#9C7F52;
+    --cafe:#241E1B; --cafe2:#3A302B; --tinta:#2A2320; --gris:#6F655F; --linea:rgba(42,35,32,.14); --linea-c:rgba(247,242,234,.18);
+    --disp:"Italiana",Georgia,serif; --it:"EB Garamond",Georgia,serif; --num:"EB Garamond",Georgia,serif; --sans:"Figtree",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cafe);color:var(--tinta);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body.locked{overflow:hidden;height:100svh}
+  img{display:block;max-width:100%}
+  .app{max-width:480px;margin:0 auto;background:var(--marfil);position:relative;overflow:hidden;box-shadow:0 0 90px rgba(0,0,0,.4)}
+  .k{font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;font-weight:500;color:var(--gris)}
+  .it{font-family:var(--it);font-style:italic}
+  .n{font-family:var(--num);font-variant-numeric:lining-nums}
+  h2{font-family:var(--disp);font-weight:400;font-size:2.6rem;line-height:1.04;letter-spacing:.01em}
+  section{position:relative;padding:84px 28px}
+  .oscuro{background:var(--cafe);color:var(--marfil)}
+  .oscuro .k{color:rgba(247,242,234,.6)}
+  .rv{opacity:0;transform:translateY(22px);transition:opacity 1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+  /* ================= ENTRADA (intro) ================= */
+  #entrada{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px;
+           background:radial-gradient(90% 60% at 50% 40%,#3A302B 0%,#241E1B 70%);transition:opacity 1s ease .9s}
+  #entrada.fin{opacity:0;pointer-events:none}
+  .ticket{position:relative;width:100%;max-width:330px;display:flex;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45));transform:rotate(-2deg);transition:transform 1.4s cubic-bezier(.7,0,.25,1)}
+  #entrada.fin .ticket{transform:translateY(-120vh) rotate(-8deg)}
+  .t-main,.t-stub{background:
+      radial-gradient(rgba(42,35,32,.05) .7px,transparent .8px) 0 0/5px 5px,
+      linear-gradient(160deg,#FBF8F3,#EFE6D8)}
+  .t-main{flex:1;padding:26px 22px 22px;border-radius:6px 0 0 6px;position:relative;
+          -webkit-mask:radial-gradient(circle 9px at 100% 0,transparent 98%,#000) top right/100% 51% no-repeat,radial-gradient(circle 9px at 100% 100%,transparent 98%,#000) bottom right/100% 51% no-repeat;
+                  mask:radial-gradient(circle 9px at 100% 0,transparent 98%,#000) top right/100% 51% no-repeat,radial-gradient(circle 9px at 100% 100%,transparent 98%,#000) bottom right/100% 51% no-repeat}
+  .t-main::after{content:"";position:absolute;inset:8px;border:1px solid rgba(184,154,106,.5);border-right:0;border-radius:3px 0 0 3px;pointer-events:none}
+  .t-main .k{font-size:.56rem;color:var(--champan2)}
+  .t-main .nombres-t{margin-top:16px;font-family:var(--disp);font-size:2.35rem;line-height:.95;color:var(--tinta)}
+  .t-main .nombres-t .it{display:block;font-size:1.5rem;color:var(--champan2);margin:2px 0 2px 18px}
+  .t-datos{margin-top:18px;display:grid;grid-template-columns:auto auto;gap:10px 18px}
+  .t-datos small{display:block;font-size:.5rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gris)}
+  .t-datos b{display:block;margin-top:2px;font-family:var(--num);font-variant-numeric:lining-nums;font-weight:400;font-size:.98rem}
+  .t-para{margin-top:16px;padding-top:12px;border-top:1px dashed rgba(42,35,32,.25);font-family:var(--it);font-style:italic;font-size:1rem;color:var(--gris)}
+  .t-para b{font-style:normal;font-family:var(--sans);font-weight:500;font-size:.82rem;color:var(--tinta);letter-spacing:.02em}
+  .t-stub{width:78px;border-radius:0 6px 6px 0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:18px 0;
+          border-left:2px dashed rgba(42,35,32,.28);transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .8s ease .3s;transform-origin:0 100%;
+          -webkit-mask:radial-gradient(circle 9px at 0 0,transparent 98%,#000) top left/100% 51% no-repeat,radial-gradient(circle 9px at 0 100%,transparent 98%,#000) bottom left/100% 51% no-repeat;
+                  mask:radial-gradient(circle 9px at 0 0,transparent 98%,#000) top left/100% 51% no-repeat,radial-gradient(circle 9px at 0 100%,transparent 98%,#000) bottom left/100% 51% no-repeat}
+  .t-stub .v{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--champan2);font-weight:500}
+  .t-stub .num{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--num);font-variant-numeric:lining-nums;font-size:1.3rem;letter-spacing:.08em}
+  .t-stub .barras{width:34px;height:46px;background:repeating-linear-gradient(0deg,var(--tinta) 0 1px,transparent 1px 3px,var(--tinta) 3px 5px,transparent 5px 6px,var(--tinta) 6px 7px,transparent 7px 10px);opacity:.75}
+  .roto .t-stub{transform:translate(30px,40px) rotate(24deg);opacity:0}
+  .cortar{margin-top:40px;display:flex;align-items:center;gap:12px;background:none;border:0;color:var(--marfil);font:500 .66rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer;padding:12px}
+  .cortar svg{width:18px;height:18px;color:var(--champan);animation:tij 1.8s ease-in-out infinite}
+  @keyframes tij{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+  .cortar-sub{margin-top:4px;font-family:var(--it);font-style:italic;font-size:.95rem;color:rgba(247,242,234,.55)}
+
+  /* ================= HERO foto completa ================= */
+  .hero{position:relative;min-height:100svh;padding:0;color:var(--marfil);display:flex;flex-direction:column;justify-content:flex-end;background:var(--cafe)}
+  .hero .bg{position:absolute;inset:0;overflow:hidden}
+  .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.14);transition:transform 9s cubic-bezier(.2,.6,.2,1)}
+  .abierta .hero .bg img{transform:scale(1)}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,30,27,.55) 0%,rgba(36,30,27,0) 26%,rgba(36,30,27,0) 42%,rgba(36,30,27,.72) 74%,rgba(36,30,27,.92) 100%)}
+  .hero .top{position:absolute;left:24px;right:24px;top:calc(22px + env(safe-area-inset-top,0px));display:flex;justify-content:space-between;align-items:center;z-index:2}
+  .hero .top .k{color:rgba(247,242,234,.85)}
+  .hero .contenido{position:relative;z-index:2;padding:0 24px 34px}
+  .hero .nos{font-family:var(--it);font-style:italic;font-size:1.25rem;color:var(--arena);opacity:0;transform:translateY(14px);transition:all 1.1s ease .5s}
+  .hero .nom{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(4.4rem,23vw,6.4rem);line-height:.86;letter-spacing:-.005em;opacity:0;transform:translateY(24px);transition:all 1.3s cubic-bezier(.2,.7,.2,1) .7s}
+  .hero .nom.m{text-align:right;transition-delay:1s}
+  .hero .amp{display:block;font-family:var(--it);font-style:italic;font-size:2.4rem;line-height:1;color:var(--champan);margin:4px 0 2px 32%;opacity:0;transition:opacity 1.2s ease .9s}
+  .abierta .hero .nos,.abierta .hero .nom,.abierta .hero .amp{opacity:1;transform:none}
+  .hero .base{margin-top:26px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding-top:16px;border-top:1px solid var(--linea-c);opacity:0;transition:opacity 1.2s ease 1.4s}
+  .abierta .hero .base{opacity:1}
+  .hero .base .fecha{font-family:var(--num);font-variant-numeric:lining-nums;font-size:1.55rem;letter-spacing:.1em}
+  .hero .base .lugar{text-align:right;font-size:.78rem;line-height:1.5;color:rgba(247,242,234,.8)}
+  .bajar{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;padding-bottom:22px;color:rgba(247,242,234,.7);text-decoration:none}
+  .bajar i{width:1px;height:30px;background:linear-gradient(var(--marfil),transparent);animation:bajar 2s ease-in-out infinite;transform-origin:top}
+  @keyframes bajar{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+  /* ================= PLAYER + CUENTA ================= */
+  .cuenta{padding-top:64px;padding-bottom:76px;text-align:center}
+  .player{max-width:300px;margin:0 auto;text-align:left}
+  .player .tema{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .player .tema b{font-family:var(--it);font-style:italic;font-weight:400;font-size:1.2rem}
+  .player .tema span{font-size:.72rem;color:var(--gris)}
+  .barra{position:relative;height:2px;background:var(--linea);margin-top:14px}
+  .barra i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--champan)}
+  .barra i::after{content:"";position:absolute;right:-4px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--champan)}
+  .tiempos{display:flex;justify-content:space-between;font-size:.64rem;color:var(--gris);margin-top:8px;font-variant-numeric:tabular-nums}
+  .ctrl{display:flex;justify-content:center;align-items:center;gap:34px;margin-top:6px}
+  .ctrl button{background:none;border:0;color:var(--gris);cursor:pointer;display:flex;padding:6px}
+  .ctrl svg{width:15px;height:15px}
+  .ctrl #pp{width:46px;height:46px;border-radius:50%;border:1px solid var(--tinta);align-items:center;justify-content:center;color:var(--tinta)}
+  .ctrl #pp svg{width:18px;height:18px}
+  .nums{display:flex;justify-content:center;align-items:flex-start;margin-top:48px}
+  .nums div{min-width:62px}
+  .nums b{display:block;font-family:var(--num);font-variant-numeric:lining-nums tabular-nums;font-weight:400;font-size:3.2rem;line-height:1;color:var(--tinta)}
+  .nums small{display:block;margin-top:8px;font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gris)}
+  .nums .sep{min-width:0;font-family:var(--num);font-size:2.3rem;line-height:1.1;color:var(--champan);padding:0 2px}
+  .cuenta .para{margin-top:32px;font-family:var(--it);font-style:italic;font-size:1.1rem;color:var(--gris)}
+
+  /* ================= REENCUENTRO ================= */
+  .historia{background:var(--papel);padding-top:92px}
+  .laurel{position:absolute;right:16px;top:60px;width:30px;height:300px;color:var(--champan);opacity:.3}
+  .foto-anillo{position:relative;width:78%;margin-top:40px}
+  .foto-anillo::before{content:"";position:absolute;left:18px;top:18px;right:-18px;bottom:-18px;background:var(--arena)}
+  .foto-anillo img{position:relative;width:100%;aspect-ratio:474/520;object-fit:cover}
+  .foto-anillo figcaption{position:absolute;right:-40px;bottom:30px;writing-mode:vertical-rl;transform:rotate(180deg)}
+  .historia .intro{margin-top:56px;font-size:.98rem;line-height:1.75;color:#4d433f}
+  .historia .intro p+p{margin-top:14px}
+  .historia .intro .it{font-size:1.28rem;color:var(--tinta);line-height:1.45}
+  .dos{margin-top:62px}
+  .dos .tit{display:flex;align-items:center;gap:14px}
+  .dos .tit .ley{font-size:.7rem;color:var(--gris);display:flex;gap:14px;margin-left:auto}
+  .dos .tit .ley i{display:inline-block;width:16px;height:1px;vertical-align:middle;margin-right:6px}
+  .linea-t{position:relative;margin-top:24px;padding-left:78px}
+  .linea-t svg{position:absolute;left:0;top:0;width:64px;height:100%;overflow:visible}
+  .linea-t svg path{fill:none;stroke-width:1.3;vector-effect:non-scaling-stroke}
+  .punto{position:absolute;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--papel);border:1px solid var(--tinta);transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+  .punto.on{transform:scale(1)}
+  .punto.grande{width:13px;height:13px;margin:-6.5px 0 0 -6.5px;background:var(--champan);border-color:var(--champan)}
+  .punto.anillo{width:16px;height:16px;margin:-8px 0 0 -8px;background:transparent;border:1.4px solid var(--tinta)}
+  .linea-t ol{list-style:none}
+  .linea-t li{height:176px;display:flex;flex-direction:column;justify-content:center}
+  .linea-t li .an{font-family:var(--num);font-variant-numeric:lining-nums;font-size:1.6rem;letter-spacing:.04em;line-height:1;color:var(--champan2)}
+  .linea-t li h3{margin-top:6px;font-family:var(--it);font-style:italic;font-weight:400;font-size:1.3rem;line-height:1.2}
+  .linea-t li p{margin-top:4px;font-size:.86rem;line-height:1.55;color:var(--gris)}
+
+  /* ================= SÉ TESTIGO (oscuro) ================= */
+  .testigo h2{text-align:center}
+  .testigo > .k{text-align:center;display:block}
+  .momento{margin-top:44px;display:grid;grid-template-columns:64px 1fr;gap:18px;padding-bottom:30px;border-bottom:1px solid var(--linea-c)}
+  .momento+.momento{margin-top:30px}
+  .momento .hora{font-family:var(--num);font-variant-numeric:lining-nums;font-size:1.65rem;line-height:1;color:var(--champan)}
+  .momento .hora small{display:block;margin-top:6px;font-family:var(--sans);font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(247,242,234,.6)}
+  .momento h3{font-family:var(--it);font-style:italic;font-weight:400;font-size:1.45rem;line-height:1.1}
+  .momento p{margin-top:6px;font-size:.88rem;line-height:1.55;color:rgba(247,242,234,.75)}
+  .momento a{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--marfil);text-decoration:none;border-bottom:1px solid var(--champan);padding-bottom:4px}
+  .momento a svg{width:12px;height:12px;color:var(--champan)}
+  .dress{margin-top:46px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end}
+  .dress h3{margin-top:10px;font-family:var(--disp);font-weight:400;font-size:1.9rem;line-height:1.02}
+  .dress p{grid-column:1/-1;font-size:.84rem;line-height:1.6;color:rgba(247,242,234,.72)}
+  .paleta{display:flex;padding-bottom:6px}
+  .paleta i{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--cafe);margin-left:-6px;box-shadow:0 0 0 1px var(--linea-c)}
+  .paleta i:first-child{margin-left:0}
+
+  /* ================= ÁLBUM ================= */
+  .album{background:var(--marfil);padding-left:0;padding-right:0;padding-bottom:70px}
+  .album .cab{padding:0 28px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+  .album .cab .cuantas{font-family:var(--num);font-variant-numeric:lining-nums;font-size:.9rem;color:var(--gris)}
+  .tira{margin-top:34px;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 28px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tira::-webkit-scrollbar{display:none}
+  .tira button{flex:none;scroll-snap-align:center;border:0;padding:0;background:none;cursor:zoom-in;position:relative}
+  .tira img{height:330px;width:auto;aspect-ratio:var(--ar,3/4);object-fit:cover;transition:transform .5s ease}
+  .tira button:nth-child(even) img{height:270px;margin-top:30px}
+  .tira button span{position:absolute;left:0;bottom:-18px;font-family:var(--num);font-variant-numeric:lining-nums;font-size:.72rem;color:var(--gris)}
+  .tira button:nth-child(even) span{bottom:12px}
+  .album .pista{padding:16px 28px 0;display:flex;align-items:center;gap:12px;font-size:.72rem;color:var(--gris)}
+  .album .pista i{flex:1;height:1px;background:var(--linea);position:relative;overflow:hidden}
+  .album .pista i b{position:absolute;left:0;top:0;bottom:0;width:30%;background:var(--tinta);transition:transform .2s linear}
+  #lb{position:fixed;inset:0;z-index:70;background:rgba(20,16,14,.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+  #lb.on{opacity:1;pointer-events:auto}
+  #lb img{max-width:92vw;max-height:78svh;object-fit:contain;transform:scale(.96);transition:transform .4s}
+  #lb.on img{transform:none}
+  #lb .x,#lb .ant,#lb .sig{position:absolute;background:none;border:0;color:var(--marfil);cursor:pointer;padding:14px;font:300 .7rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase}
+  #lb .x{top:calc(14px + env(safe-area-inset-top,0px));right:10px}
+  #lb .ant{left:6px;bottom:30px}#lb .sig{right:6px;bottom:30px}
+  #lb .cont{position:absolute;bottom:42px;left:0;right:0;text-align:center;font-family:var(--num);font-size:.9rem;color:rgba(247,242,234,.7);pointer-events:none}
+
+  /* ================= ITINERARIO ================= */
+  .dia{background:var(--papel);padding-bottom:74px}
+  .dia h2{margin-top:12px}
+  .agenda{list-style:none;margin-top:38px}
+  .agenda li{display:grid;grid-template-columns:58px 34px 1fr;align-items:center;gap:12px;padding:15px 0;border-top:1px solid var(--linea)}
+  .agenda li:last-child{border-bottom:1px solid var(--linea)}
+  .agenda .h{font-family:var(--num);font-variant-numeric:lining-nums;font-size:1.2rem}
+  .agenda svg{width:26px;height:26px;color:var(--champan2);fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+  .agenda b{font-weight:400;font-size:.98rem}
+  .agenda span{display:block;font-size:.76rem;color:var(--gris);margin-top:2px}
+
+  /* ================= REGALO ================= */
+  .regalo h2{font-size:2.35rem;line-height:1.12}
+  .regalo .sub{margin-top:20px;font-size:.92rem;line-height:1.7;color:var(--gris);max-width:330px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:28px;font:500 .68rem/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--tinta);background:transparent;border:1px solid var(--tinta);padding:17px 26px;cursor:pointer;text-decoration:none;transition:background .3s,color .3s}
+  .btn:active,.btn.fill{background:var(--cafe);color:var(--marfil);border-color:var(--cafe)}
+  .datos{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s ease}
+  .datos.open{grid-template-rows:1fr}
+  .datos>div{overflow:hidden}
+  .tarjeta{margin-top:26px;border:1px solid var(--linea);background:var(--papel);padding:22px 20px}
+  .fila{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0}
+  .fila+.fila{border-top:1px dashed var(--linea)}
+  .fila small{display:block;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gris)}
+  .fila b{display:block;margin-top:4px;font-weight:500;font-size:.9rem;word-break:break-all}
+  .copiar{flex:none;font:500 .6rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;background:none;border:1px solid var(--linea);padding:9px 12px;cursor:pointer;color:var(--tinta)}
+
+  /* ================= INFO ÚTIL ================= */
+  .info{background:var(--papel);padding-bottom:70px}
+  .info h2{margin-top:12px}
+  .faq{margin-top:32px}
+  .faq details{border-top:1px solid var(--linea)}
+  .faq details:last-child{border-bottom:1px solid var(--linea)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:19px 0;font-family:var(--it);font-style:italic;font-size:1.18rem}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary i{flex:none;position:relative;width:12px;height:12px}
+  .faq summary i::before,.faq summary i::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--tinta);transition:transform .35s}
+  .faq summary i::after{transform:rotate(90deg)}
+  .faq details[open] summary i::after{transform:rotate(0)}
+  .faq details p{padding:0 30px 20px 0;font-size:.88rem;line-height:1.65;color:var(--gris)}
+
+  /* ================= CANCIÓN ================= */
+  .cancion{background:var(--arena);text-align:center;padding-top:70px;padding-bottom:70px}
+  .disco{width:86px;height:86px;margin:0 auto 22px;border-radius:50%;background:repeating-radial-gradient(circle,#241E1B 0 2px,#352c27 2px 3px);position:relative;animation:gira 6s linear infinite;animation-play-state:paused}
+  .disco::after{content:"";position:absolute;inset:32px;border-radius:50%;background:var(--champan)}
+  .sonando .disco{animation-play-state:running}
+  @keyframes gira{to{transform:rotate(360deg)}}
+  .cancion h2{font-size:2.1rem}
+  .cancion p{margin:12px auto 0;max-width:290px;font-size:.88rem;line-height:1.6;color:#5a4f49}
+
+  /* ================= RSVP ================= */
+  .rsvp{background:var(--marfil);padding-bottom:90px}
+  .rsvp .rosa{position:absolute;right:-60px;top:24px;width:260px;opacity:.2;pointer-events:none;transform:scaleX(-1)}
+  .rsvp h2{position:relative;font-size:2.7rem;line-height:1.08}
+  .rsvp .antes{position:relative;margin-top:18px;font-family:var(--it);font-style:italic;font-size:1.15rem;line-height:1.5;color:var(--gris)}
+  .rsvp .para-quien{position:relative;margin-top:22px;display:none;padding:12px 16px;border:1px solid var(--linea);font-size:.86rem}
+  .rsvp .para-quien.on{display:block}
+  form{position:relative;margin-top:30px}
+  .q{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;color:var(--gris);margin:24px 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips button{font:400 .88rem/1 var(--sans);padding:13px 18px;border:1px solid var(--linea);background:var(--papel);color:var(--tinta);cursor:pointer;transition:all .25s}
+  .chips button.on{background:var(--cafe);color:var(--marfil);border-color:var(--cafe)}
+  .txt,textarea{width:100%;font:300 1rem/1.4 var(--sans);color:var(--tinta);background:transparent;border:0;border-bottom:1px solid rgba(42,35,32,.3);padding:10px 0;outline:none;border-radius:0;-webkit-appearance:none}
+  textarea{min-height:70px;resize:none}
+  .txt:focus,textarea:focus{border-bottom-color:var(--tinta)}
+  #enviar{width:100%;margin-top:34px}
+
+  /* ================= CIERRE con foto ================= */
+  .cierre{min-height:88svh;padding:0;display:flex;flex-direction:column;justify-content:flex-end;color:var(--marfil);background:var(--cafe)}
+  .cierre .bg{position:absolute;inset:0;overflow:hidden}
+  .cierre .bg img{width:100%;height:118%;object-fit:cover;object-position:50% 50%;will-change:transform}
+  .cierre .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,30,27,.15) 0%,rgba(36,30,27,.2) 40%,rgba(36,30,27,.85) 82%,#241E1B 100%)}
+  .cierre .txt-c{position:relative;z-index:2;padding:0 28px 56px}
+  .cierre .frase{font-family:var(--it);font-style:italic;font-size:2.3rem;line-height:1.08}
+  .cierre .firma{margin-top:22px;display:flex;align-items:center;gap:14px}
+  .cierre .firma i{flex:1;height:1px;background:var(--linea-c)}
+  .cierre .firma span{font-family:var(--disp);font-size:1.5rem;letter-spacing:.08em}
+  .cierre .firma small{font-family:var(--num);font-variant-numeric:lining-nums;font-size:.8rem;letter-spacing:.22em;color:rgba(247,242,234,.7)}
+
+  /* ================= MÚSICA flotante + toast ================= */
+  #musica{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(36,30,27,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:scale(.6);transition:all .5s;box-shadow:0 10px 24px -12px rgba(0,0,0,.6)}
+  #musica.show{opacity:1;transform:none}
+  #musica .eq{display:flex;align-items:flex-end;gap:2px;height:14px}
+  #musica .eq i{width:2px;height:4px;background:var(--marfil)}
+  #musica.on .eq i{animation:eq 1s ease-in-out infinite}
+  #musica.on .eq i:nth-child(2){animation-delay:.2s}#musica.on .eq i:nth-child(3){animation-delay:.4s}#musica.on .eq i:nth-child(4){animation-delay:.1s}
+  @keyframes eq{0%,100%{height:4px}50%{height:14px}}
+  #toast{position:fixed;left:50%;bottom:84px;transform:translate(-50%,20px);background:var(--cafe);color:var(--marfil);font-size:.8rem;padding:11px 18px;opacity:0;transition:all .4s;z-index:80;pointer-events:none;white-space:nowrap}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+  /* ================= FOOTER OFICIAL CELEBRA ================= */
+  footer.cfooter{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--cafe);color:var(--marfil);padding:40px 24px calc(120px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--linea-c)}
+  .cfooter .cf-g{font-family:var(--it);font-style:italic;font-size:1.45rem;line-height:1.2}
+  .cfooter .cf-s{margin-top:8px;max-width:290px;font-size:.85rem;line-height:1.55;color:rgba(247,242,234,.7)}
+  .cfooter .cf-cta{display:inline-block;margin-top:22px;background:var(--champan);color:var(--cafe);text-decoration:none;font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;padding:15px 28px}
+  .cfooter .cf-sep{display:block;width:48px;height:1px;background:var(--linea-c);margin:28px 0 18px}
+  .cfooter .cf-marca{color:var(--marfil);text-decoration:none;font-size:.82rem;font-weight:600}
+  .cfooter .cf-der{margin-top:3px;font-size:.7rem;color:rgba(247,242,234,.55)}
+  .cfooter .cf-mail{margin-top:12px;color:rgba(247,242,234,.85);font-size:.78rem}
+  .cfooter .cf-redes{display:flex;gap:14px;margin-top:16px}
+  .cfooter .cf-redes a{width:38px;height:38px;border-radius:50%;border:1px solid var(--linea-c);display:flex;align-items:center;justify-content:center;color:var(--marfil)}
+  .cfooter .cf-redes svg{width:16px;height:16px}
+</style>
+</head>
+<body class="locked">
+
+<!-- ============ ENTRADA ============ -->
+<div id="entrada" role="dialog" aria-label="Tu entrada a la boda">
+  <div class="ticket" id="ticket">
+    <div class="t-main">
+      <span class="k">Entrada · Pase personal</span>
+      <div class="nombres-t"><span id="t-n1">Julián</span><span class="it">&amp;</span><span id="t-n2">María</span></div>
+      <div class="t-datos">
+        <div><small>Fecha</small><b id="t-fecha">10 . 07 . 2027</b></div>
+        <div><small>Hora</small><b id="t-hora">17:00 h</b></div>
+        <div style="grid-column:1/-1"><small>Lugar</small><b id="t-lugar">Estancia Los Álamos, Lobos</b></div>
+      </div>
+      <p class="t-para" id="t-para">Para vos, <b>con todo nuestro cariño</b></p>
+    </div>
+    <div class="t-stub">
+      <span class="v">Admite</span>
+      <span class="num" id="t-num">Nº 0107</span>
+      <span class="barras" aria-hidden="true"></span>
+    </div>
+  </div>
+  <button class="cortar" id="cortar" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.6 7.6L20 18M8.6 16.4L20 6"/></svg>
+    Cortá tu entrada
+  </button>
+  <p class="cortar-sub">y pasá a la invitación</p>
+</div>
+
+<div class="app" id="app">
+
+  <!-- 1. HERO: foto a pantalla completa -->
+  <header class="hero" id="inicio">
+    <div class="bg"><img id="foto-hero" src="images/julian-maria/portada.jpg" alt="Julián y María"></div>
+    <div class="top"><span class="k">Nos casamos</span><span class="k" id="hero-dia">Sábado</span></div>
+    <div class="contenido">
+      <p class="nos">Con la alegría de volver a elegirnos,</p>
+      <span class="nom" id="n-1">Julián</span>
+      <span class="amp">&amp;</span>
+      <span class="nom m" id="n-2">María</span>
+      <div class="base">
+        <div class="fecha" id="hero-fecha">10.07.27</div>
+        <div class="lugar" id="hero-lugar">Estancia Los Álamos<br>Lobos, Buenos Aires</div>
+      </div>
+    </div>
+    <a class="bajar k" href="#cuenta" style="color:rgba(247,242,234,.7)">Deslizá<i></i></a>
+  </header>
+
+  <!-- 2. PLAYER + CUENTA REGRESIVA -->
+  <section class="cuenta" id="cuenta">
+    <div class="player rv">
+      <div class="tema"><b id="tema">Thinking Out Loud</b><span id="artista">Ed Sheeran</span></div>
+      <div class="barra"><i id="prog"></i></div>
+      <div class="tiempos"><span id="t-act">0:00</span><span id="t-tot">4:41</span></div>
+      <div class="ctrl">
+        <button type="button" id="prev" aria-label="Desde el principio"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+        <button type="button" id="pp" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor" id="pp-ic"><path d="M8 5v14l11-7z"/></svg></button>
+        <button type="button" id="next" aria-label="Adelantar"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+      </div>
+    </div>
+    <div class="nums rv d1" aria-live="polite">
+      <div><b id="cd-d">000</b><small>días</small></div><div class="sep">:</div>
+      <div><b id="cd-h">00</b><small>horas</small></div><div class="sep">:</div>
+      <div><b id="cd-m">00</b><small>min</small></div><div class="sep">:</div>
+      <div><b id="cd-s">00</b><small>seg</small></div>
+    </div>
+    <p class="para rv d2">para decir que sí, otra vez y para siempre</p>
+  </section>
+
+  <!-- 3. NUESTRO REENCUENTRO + DOS CAMINOS -->
+  <section class="historia" id="historia">
+    <svg class="laurel" viewBox="0 0 30 300" fill="currentColor" aria-hidden="true"><path d="M15 0v300" stroke="currentColor" stroke-width="1"/><g id="hojas"></g></svg>
+    <span class="k rv">Nuestra historia</span>
+    <h2 class="rv d1" style="margin-top:12px">Nuestro<br>reencuentro</h2>
+    <figure class="foto-anillo rv d2">
+      <img src="images/julian-maria/anillo.jpg" alt="El anillo de compromiso" loading="lazy">
+      <figcaption class="k">Lobos · 2026</figcaption>
+    </figure>
+    <div class="intro rv">
+      <p class="it" id="historia-frase"></p>
+      <p id="historia-texto"></p>
+    </div>
+    <div class="dos">
+      <div class="tit rv">
+        <span class="k">Dos caminos</span>
+        <span class="ley"><span><i style="background:#6F655F"></i>él</span><span><i style="background:#B89A6A"></i>ella</span></span>
+      </div>
+      <div class="linea-t" id="linea-t">
+        <svg viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+          <path id="camino-a" stroke="#6F655F" d="M44 0 V140 C44 210 62 250 50 300 C40 340 18 380 18 450 V560 C18 640 50 640 50 700 V1000"/>
+          <path id="camino-b" stroke="#B89A6A" d="M56 0 V140 C56 210 38 250 50 300 C60 340 82 380 82 450 V560 C82 640 50 640 50 700 V1000"/>
+        </svg>
+        <span class="punto" style="left:28px;top:10%" data-p=".1"></span><span class="punto" style="left:36px;top:10%" data-p=".1"></span>
+        <span class="punto" style="left:32px;top:30%" data-p=".3"></span>
+        <span class="punto" style="left:11.5px;top:50%" data-p=".5"></span><span class="punto" style="left:52.5px;top:50%" data-p=".5"></span>
+        <span class="punto grande" style="left:32px;top:70%" data-p=".7"></span>
+        <span class="punto anillo" style="left:32px;top:90%" data-p=".9"></span>
+        <ol id="capitulos"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SÉ TESTIGO (oscuro) -->
+  <section class="testigo oscuro" id="evento">
+    <span class="k rv">El gran día</span>
+    <h2 class="rv d1" style="margin-top:12px">Sé testigo de<br>nuestro día</h2>
+    <div id="momentos"></div>
+    <div class="dress rv">
+      <div><span class="k">Dress code</span><h3 id="dress-titulo">Formal o cóctel</h3></div>
+      <div class="paleta" id="paleta"></div>
+      <p id="dress-texto"></p>
+    </div>
+  </section>
+
+  <!-- 5. ÁLBUM -->
+  <section class="album" id="album">
+    <div class="cab">
+      <div><span class="k rv">Álbum</span><h2 class="rv d1" style="margin-top:12px">Un poquito<br><span class="it" style="font-size:.88em">de nosotros</span></h2></div>
+      <span class="cuantas rv d2" id="cuantas">06 fotos</span>
+    </div>
+    <div class="tira rv d2" id="tira"></div>
+    <div class="pista"><span>Deslizá</span><i><b id="tira-barra"></b></i><span>Tocá para ampliar</span></div>
+  </section>
+
+  <!-- 6. ITINERARIO -->
+  <section class="dia">
+    <span class="k rv">Itinerario</span>
+    <h2 class="rv d1">Así va<br><span class="it" style="font-size:.9em">a ser la noche</span></h2>
+    <ul class="agenda" id="agenda"></ul>
+  </section>
+
+  <!-- 7. REGALO -->
+  <section class="regalo" id="regalos">
+    <span class="k rv">Regalos</span>
+    <h2 class="rv d1" style="margin-top:14px">Tu presencia es el único regalo que pedimos.</h2>
+    <p class="sub rv d2">Si además querés acompañarnos con un detalle para nuestra luna de miel, te dejamos los datos.</p>
+    <button class="btn rv d3" type="button" id="ver-datos">Ver datos bancarios</button>
+    <div class="datos" id="datos"><div>
+      <div class="tarjeta">
+        <div class="fila"><div><small>Alias</small><b id="d-alias"></b></div><button class="copiar" type="button" data-c="d-alias">Copiar</button></div>
+        <div class="fila"><div><small>CBU</small><b id="d-cbu"></b></div><button class="copiar" type="button" data-c="d-cbu">Copiar</button></div>
+        <div class="fila"><div><small>Titular</small><b id="d-titular"></b></div></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 8. INFO ÚTIL -->
+  <section class="info">
+    <span class="k rv">Antes de venir</span>
+    <h2 class="rv d1">Lo que tenés<br>que saber</h2>
+    <div class="faq rv d2" id="faq"></div>
+  </section>
+
+  <!-- 9. CANCIÓN -->
+  <section class="cancion">
+    <div class="disco rv" aria-hidden="true"></div>
+    <h2 class="rv d1">¿Qué canción<br>no puede faltar?</h2>
+    <p class="rv d2">Contanos cuál te hace salir a la pista y la sumamos a la lista del DJ.</p>
+    <a class="btn rv d3" id="cancion-btn" target="_blank" rel="noopener">Sugerir canción</a>
+  </section>
+
+  <!-- 10. RSVP -->
+  <section class="rsvp" id="confirmar">
+    <img class="rosa" src="images/julian-maria/rosa.png" alt="" aria-hidden="true">
+    <h2 class="rv">Esperamos verte<br>desde el altar.</h2>
+    <p class="antes rv d1">Confirmanos antes del <span id="rsvp-limite">10 de junio</span>. ¡Salud!</p>
+    <p class="para-quien" id="para-quien"></p>
+    <form onsubmit="return false" class="rv d2">
+      <div class="q">¿Venís?</div>
+      <div class="chips" data-g="asis"><button type="button" class="on">Sí, voy</button><button type="button">No puedo</button></div>
+      <div class="q">¿Cuántos son?</div>
+      <div class="chips" data-g="cant"><button type="button" class="on">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button></div>
+      <div class="q">Menú</div>
+      <div class="chips" data-g="menu"><button type="button" class="on">Clásico</button><button type="button">Vegetariano</button><button type="button">Sin TACC</button></div>
+      <div class="q">Nombre y apellido</div>
+      <input class="txt" id="f-nombre" autocomplete="name" placeholder="Como figura en tu entrada">
+      <div class="q">Un mensaje para los novios</div>
+      <textarea id="f-msg" placeholder="(opcional)"></textarea>
+      <button class="btn fill" id="enviar" type="button">Confirmar asistencia</button>
+    </form>
+  </section>
+
+  <!-- 11. CIERRE con foto -->
+  <section class="cierre">
+    <div class="bg"><img id="cierre-img" src="images/julian-maria/cierre.jpg" alt="" loading="lazy"></div>
+    <div class="txt-c">
+      <p class="frase rv">Gracias por ser parte<br>de nuestra historia.</p>
+      <div class="firma rv d1"><span id="c-ini">J &amp; M</span><i></i><small id="cierre-fecha">10 . 07 . 27</small></div>
+    </div>
+  </section>
+
+  <!-- FOOTER OFICIAL CELEBRA INVITACIONES -->
+  <footer class="cfooter">
+    <p class="cf-g">¿Te gustó esta invitación?</p>
+    <p class="cf-s">Diseñá la tuya con nosotros y compartila con todos tus invitados.</p>
+    <a class="cf-cta" id="quiero" target="_blank" rel="noopener">Quiero una así 💛</a>
+    <span class="cf-sep"></span>
+    <a class="cf-marca" href="https://celebrainvitaciones.com/" target="_blank" rel="noopener">Celebra Invitaciones Web</a>
+    <p class="cf-der">Todos los derechos reservados.</p>
+    <a class="cf-mail" href="mailto:celebrainvitaciones@gmail.com">celebrainvitaciones@gmail.com</a>
+    <div class="cf-redes">
+      <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" aria-label="WhatsApp Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg></a>
+      <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a>
+      <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Facebook Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></a>
+      <a href="https://celebrainvitaciones.com/" target="_blank" rel="noopener" aria-label="Sitio de Celebra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5S9.7 5.9 12 3.5z"/></svg></a>
+    </div>
+  </footer>
+</div>
+
+<div id="lb" role="dialog" aria-label="Foto ampliada">
+  <button class="x" type="button" id="lb-x">Cerrar</button>
+  <img id="lb-img" alt="">
+  <button class="ant" type="button" id="lb-ant">← Ant</button>
+  <span class="cont" id="lb-cont"></span>
+  <button class="sig" type="button" id="lb-sig">Sig →</button>
+</div>
+<button id="musica" aria-label="Música"><span class="eq"><i></i><i></i><i></i><i></i></span></button>
+<div id="toast"></div>
+<audio id="audio" loop preload="auto"></audio>
+
+<script>
+/* ======================================================
+   CONFIG — todo lo editable de la invitación está acá.
+   Tip: agregá ?invitado=Familia%20Pérez al link y la
+   entrada sale con el nombre de cada invitado.
+   ====================================================== */
+const CONFIG = {
+  novio: "Julián",
+  novia: "María",
+  fechaISO: "2027-07-10T17:00:00-03:00",
+  fechaCorta: "10.07.27",
+  fechaLarga: "10 . 07 . 2027",
+  hora: "17:00 h",
+  diaSemana: "Sábado",
+  lugarCorto: "Estancia Los Álamos, Lobos",
+  lugarHero: "Estancia Los Álamos<br>Lobos, Buenos Aires",
+  fotoPortada: "images/julian-maria/portada.jpg",
+  fotoCierre: "images/julian-maria/cierre.jpg",
+  momentos: [
+    { hora: "17:00", tag: "Ceremonia", titulo: "Capilla Santa Rosa", texto: "Camino Real s/n, Lobos. Llegá unos minutos antes: queremos verte entrar.", mapa: "https://maps.app.goo.gl/g19nQKNH4izZWbWs6" },
+    { hora: "18:30", tag: "Fiesta", titulo: "Estancia Los Álamos", texto: "Ruta 41 km 172, Lobos. A 10 minutos de la capilla.", mapa: "https://maps.app.goo.gl/g19nQKNH4izZWbWs6" }
+  ],
+  dressTitulo: "Formal<br>o cóctel",
+  dressTexto: "Tonos tierra, champagne y neutros. El blanco y el marfil, para la novia.",
+  paleta: ["#E8DCCB", "#B89A6A", "#8C7B6B", "#5E6650", "#3A302B"],
+  album: [
+    { src: "images/julian-maria/album-1.jpg", ar: "3/4" },
+    { src: "images/julian-maria/album-3.jpg", ar: "3/2" },
+    { src: "images/julian-maria/album-2.jpg", ar: "474/520" },
+    { src: "images/julian-maria/album-5.jpg", ar: "4/5" },
+    { src: "images/julian-maria/album-4.jpg", ar: "496/614" },
+    { src: "images/julian-maria/album-6.jpg", ar: "4/5" }
+  ],
+  historiaFrase: "Después de años, la vida nos volvió a unir.",
+  historiaTexto: "Lo que empezó como amistad en la infancia y un primer amor en la adolescencia, hoy renace con más fuerza. Estamos listos para escribir un nuevo capítulo, más maduros, pero con el mismo brillo en los ojos.",
+  capitulos: [
+    { an: "1998", titulo: "Amigos de la vereda", texto: "Bicis, figuritas y la misma cuadra en Lobos." },
+    { an: "2004", titulo: "El primer amor", texto: "Un baile de egresados y un beso que nunca olvidamos." },
+    { an: "2009", titulo: "Cada uno por su lado", texto: "Otras ciudades, otros trabajos, la vida." },
+    { an: "2024", titulo: "El reencuentro", texto: "Un casamiento ajeno, una mesa compartida. Y fue como si nada." },
+    { an: "2027", titulo: "Para siempre", texto: "Esta vez, sin soltarnos." }
+  ],
+  agenda: [
+    { h: "17:00", ic: "anillos", t: "Ceremonia", s: "Capilla Santa Rosa" },
+    { h: "18:30", ic: "copas", t: "Recepción", s: "Brindis en el parque" },
+    { h: "20:30", ic: "plato", t: "Cena", s: "Salón principal" },
+    { h: "22:30", ic: "pista", t: "Baile", s: "Abrimos la pista" },
+    { h: "04:00", ic: "luna", t: "Fin de fiesta", s: "Hasta el último tema" }
+  ],
+  alias: "JULIAN.MARIA.BODA",
+  cbu: "0000003100012345678901",
+  titular: "María Fernández",
+  faq: [
+    { q: "¿Puedo ir con chicos?", a: "Amamos a los chicos de la familia, pero esta noche es solo para adultos." },
+    { q: "¿Hay estacionamiento?", a: "Sí, la estancia tiene estacionamiento propio y gratuito." },
+    { q: "¿Va a haber transporte?", a: "Sale una combi desde Plaza Italia (CABA) a las 15:30 y vuelve al terminar. Avisanos al confirmar." },
+    { q: "¿Dónde me puedo alojar?", a: "Hay posadas en el centro de Lobos, a 10 minutos. Si nos escribís, te pasamos las que recomendamos." }
+  ],
+  rsvpLimite: "10 de junio",
+  tema: "Thinking Out Loud",
+  artista: "Ed Sheeran",
+  audioUrl: "images/romimateo/musica/thinkingoutloud.mp3",
+  whatsappNumero: "5491136218114",
+  celebraWhatsapp: "5491136218114"
+};
+
+(function(){
+  const C = CONFIG, $ = id => document.getElementById(id);
+  const wa = (n, t) => 'https://wa.me/' + n + '?text=' + encodeURIComponent(t);
+  const pareja = C.novio + ' y ' + C.novia, pad = (n, l) => String(n).padStart(l || 2, '0');
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+  /* --- invitado personalizado (?invitado=...) --- */
+  const invitado = (new URLSearchParams(location.search).get('invitado') || '').trim().slice(0, 60);
+  if (invitado){
+    $('t-para').innerHTML = 'Para <b>' + esc(invitado) + '</b>';
+    $('para-quien').textContent = 'Esta invitación es para ' + invitado + '.'; $('para-quien').classList.add('on');
+    $('f-nombre').value = invitado;
+  }
+
+  /* --- textos --- */
+  $('t-n1').textContent = C.novio; $('t-n2').textContent = C.novia;
+  $('t-fecha').textContent = C.fechaLarga; $('t-hora').textContent = C.hora; $('t-lugar').textContent = C.lugarCorto;
+  $('t-num').textContent = 'Nº ' + C.fechaCorta.replace(/\./g, '').slice(0, 4);
+  $('n-1').textContent = C.novio; $('n-2').textContent = C.novia;
+  $('hero-dia').textContent = C.diaSemana; $('hero-fecha').textContent = C.fechaCorta; $('hero-lugar').innerHTML = C.lugarHero;
+  $('foto-hero').src = C.fotoPortada; $('cierre-img').src = C.fotoCierre;
+  $('c-ini').textContent = C.novio[0] + ' & ' + C.novia[0]; $('cierre-fecha').textContent = C.fechaCorta.replace(/\./g, ' . ');
+  $('rsvp-limite').textContent = C.rsvpLimite;
+  $('historia-frase').textContent = C.historiaFrase; $('historia-texto').textContent = C.historiaTexto;
+  $('dress-titulo').innerHTML = C.dressTitulo; $('dress-texto').textContent = C.dressTexto;
+  $('tema').textContent = C.tema; $('artista').textContent = C.artista;
+  $('d-alias').textContent = C.alias; $('d-cbu').textContent = C.cbu; $('d-titular').textContent = C.titular;
+  $('paleta').innerHTML = C.paleta.map(c => '<i style="background:' + c + '"></i>').join('');
+  $('capitulos').innerHTML = C.capitulos.map(c => '<li class="rv"><span class="an">' + c.an + '</span><h3>' + c.titulo + '</h3><p>' + c.texto + '</p></li>').join('');
+
+  const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0113 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
+  $('momentos').innerHTML = C.momentos.map(m => '<div class="momento rv"><div class="hora">' + m.hora + '<small>' + m.tag + '</small></div><div><h3>' + m.titulo + '</h3><p>' + m.texto + '</p><a href="' + m.mapa + '" target="_blank" rel="noopener">' + pin + 'Cómo llegar</a></div></div>').join('');
+
+  const IC = {
+    anillos: '<circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M13 5l2-2 2 2-2 2z"/>',
+    copas: '<path d="M6 3h5l-.5 5a2 2 0 01-4 0zM13 3h5l-.5 5a2 2 0 01-4 0zM8.5 10v8M15.5 10v8M6 21h5M13 21h5"/>',
+    plato: '<circle cx="12" cy="13" r="6"/><circle cx="12" cy="13" r="3"/><path d="M3 4v6M3 10v11M21 4c-2 1-2 5 0 6v11"/>',
+    pista: '<circle cx="12" cy="9" r="6"/><path d="M6 9h12M12 3v12M8 4.5l8 9M16 4.5l-8 9M12 15v6"/>',
+    luna: '<path d="M19 15.5A8 8 0 019.5 5 7 7 0 1019 15.5z"/>'
+  };
+  $('agenda').innerHTML = C.agenda.map(a => '<li class="rv"><span class="h">' + a.h + '</span><svg viewBox="0 0 24 24">' + (IC[a.ic] || '') + '</svg><div><b>' + a.t + '</b><span>' + a.s + '</span></div></li>').join('');
+  $('faq').innerHTML = C.faq.map(f => '<details><summary>' + f.q + '<i></i></summary><p>' + f.a + '</p></details>').join('');
+
+  let h = ''; for (let y = 14; y < 290; y += 22){ h += '<path d="M15 ' + y + 'c-6-2-9-7-9-12 6 1 9 6 9 12zM15 ' + (y + 11) + 'c6-2 9-7 9-12-6 1-9 6-9 12z"/>'; }
+  $('hojas').innerHTML = h;
+
+  $('cancion-btn').href = wa(C.whatsappNumero, '🎶 Para el casamiento de ' + pareja + ' no puede faltar: ');
+  $('quiero').href = wa(C.celebraWhatsapp, '¡Hola Celebra! Vi la invitación de ' + pareja + ' y quiero una así 💛');
+
+  /* --- álbum + visor --- */
+  const fotos = C.album;
+  $('cuantas').textContent = pad(fotos.length) + ' fotos';
+  $('tira').innerHTML = fotos.map((f, i) => '<button type="button" data-i="' + i + '" aria-label="Ver foto ' + (i + 1) + '"><img src="' + f.src + '" alt="Foto ' + (i + 1) + '" loading="lazy" style="--ar:' + (f.ar || '3/4') + '"><span>' + pad(i + 1) + '</span></button>').join('');
+  const tira = $('tira'), tb = $('tira-barra');
+  tira.addEventListener('scroll', () => { const m = tira.scrollWidth - tira.clientWidth; tb.style.transform = 'translateX(' + (m ? tira.scrollLeft / m * 233 : 0) + '%)'; }, { passive: true });
+  let actual = 0;
+  const lb = $('lb'), lbi = $('lb-img');
+  const ver = i => { actual = (i + fotos.length) % fotos.length; lbi.src = fotos[actual].src; $('lb-cont').textContent = pad(actual + 1) + ' / ' + pad(fotos.length); };
+  tira.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; ver(+b.dataset.i); lb.classList.add('on'); });
+  $('lb-x').addEventListener('click', () => lb.classList.remove('on'));
+  $('lb-ant').addEventListener('click', () => ver(actual - 1)); $('lb-sig').addEventListener('click', () => ver(actual + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('on'); });
+  let x0 = null;
+  lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) ver(actual + (dx < 0 ? 1 : -1)); x0 = null; });
+  addEventListener('keydown', e => { if (!lb.classList.contains('on')) return; if (e.key === 'Escape') lb.classList.remove('on'); if (e.key === 'ArrowRight') ver(actual + 1); if (e.key === 'ArrowLeft') ver(actual - 1); });
+
+  /* --- cuenta regresiva --- */
+  const meta = new Date(C.fechaISO).getTime();
+  function tick(){
+    let d = Math.max(0, meta - Date.now()) / 1000;
+    $('cd-d').textContent = pad(Math.floor(d / 86400), 3); d %= 86400;
+    $('cd-h').textContent = pad(Math.floor(d / 3600)); d %= 3600;
+    $('cd-m').textContent = pad(Math.floor(d / 60)); $('cd-s').textContent = pad(Math.floor(d % 60));
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* --- música + player --- */
+  const audio = $('audio'), mus = $('musica');
+  if (C.audioUrl) audio.src = C.audioUrl;
+  const fmt = s => isFinite(s) ? Math.floor(s / 60) + ':' + pad(Math.floor(s % 60)) : '0:00';
+  const PLAY = '<path d="M8 5v14l11-7z"/>', PAUSA = '<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>';
+  function estado(){
+    const on = !audio.paused;
+    mus.classList.toggle('on', on); document.body.classList.toggle('sonando', on);
+    $('pp-ic').innerHTML = on ? PAUSA : PLAY; $('pp').setAttribute('aria-label', on ? 'Pausar' : 'Reproducir');
+  }
+  const toggle = () => { if (audio.paused) audio.play().catch(()=>{}); else audio.pause(); };
+  audio.addEventListener('play', estado); audio.addEventListener('pause', estado);
+  audio.addEventListener('loadedmetadata', () => { $('t-tot').textContent = fmt(audio.duration); });
+  audio.addEventListener('timeupdate', () => { $('t-act').textContent = fmt(audio.currentTime); if (audio.duration) $('prog').style.width = (audio.currentTime / audio.duration * 100) + '%'; });
+  mus.addEventListener('click', toggle); $('pp').addEventListener('click', toggle);
+  $('prev').addEventListener('click', () => { audio.currentTime = 0; });
+  $('next').addEventListener('click', () => { if (audio.duration) audio.currentTime = Math.min(audio.duration - 1, audio.currentTime + 15); });
+
+  /* --- cortar la entrada --- */
+  $('cortar').addEventListener('click', () => {
+    if (C.audioUrl) audio.play().catch(()=>{});
+    $('ticket').classList.add('roto');
+    setTimeout(() => { $('entrada').classList.add('fin'); document.body.classList.remove('locked'); }, 650);
+    setTimeout(() => { document.body.classList.add('abierta'); }, 1100);
+    setTimeout(() => { mus.classList.add('show'); $('entrada').style.display = 'none'; }, 2300);
+  });
+
+  /* --- aparición al scrollear --- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  /* --- dos caminos + parallax del cierre --- */
+  const lt = $('linea-t'), pa = $('camino-a'), pb = $('camino-b'), puntos = lt.querySelectorAll('.punto');
+  [pa, pb].forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; p.dataset.l = L; });
+  const cierre = document.querySelector('.cierre'), cimg = $('cierre-img');
+  let pend = false;
+  function onScroll(){
+    pend = false;
+    const vh = innerHeight, r = lt.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (vh * .62 - r.top) / r.height));
+    [pa, pb].forEach(el => { el.style.strokeDashoffset = el.dataset.l * (1 - p); });
+    puntos.forEach(pt => pt.classList.toggle('on', p >= +pt.dataset.p));
+    const rc = cierre.getBoundingClientRect();
+    if (rc.bottom > 0 && rc.top < vh) cimg.style.transform = 'translateY(' + ((rc.top + rc.height / 2 - vh / 2) * -.1 - 40) + 'px)';
+  }
+  addEventListener('scroll', () => { if (!pend){ pend = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* --- regalo --- */
+  $('ver-datos').addEventListener('click', e => { const d = $('datos'); d.classList.toggle('open'); e.currentTarget.textContent = d.classList.contains('open') ? 'Ocultar datos' : 'Ver datos bancarios'; });
+  const toast = t => { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 1800); };
+  document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', () => {
+    const v = $(b.dataset.c).textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => toast('Copiado ✓')).catch(() => toast(v));
+  }));
+
+  /* --- RSVP --- */
+  document.querySelectorAll('.chips').forEach(g => g.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    g.querySelectorAll('button').forEach(b => b.classList.remove('on')); e.target.classList.add('on');
+  }));
+  const sel = g => document.querySelector('.chips[data-g="' + g + '"] .on').textContent;
+  $('enviar').addEventListener('click', () => {
+    const nombre = $('f-nombre').value.trim();
+    if (!nombre){ toast('Escribí tu nombre 🙂'); $('f-nombre').focus(); return; }
+    const va = sel('asis') === 'Sí, voy';
+    let t = '💍 Casamiento de ' + pareja + '\n' + (va ? '✅ Confirmo asistencia' : '❌ No voy a poder ir') + '\nNombre: ' + nombre;
+    if (va) t += '\nSomos: ' + sel('cant') + '\nMenú: ' + sel('menu');
+    const m = $('f-msg').value.trim(); if (m) t += '\nMensaje: ' + m;
+    window.open(wa(C.whatsappNumero, t), '_blank');
+  });
+})();
+</script>
+</body>
+</html>
