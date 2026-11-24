@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mis 15 · Julita</title>
+<meta name="description" content="Invitación digital de 15 años · Celebra Invitaciones">
+<meta property="og:title" content="Mis 15 · Julita">
+<meta property="og:description" content="Quiero verte en mi gran noche · Sábado 17 de abril de 2027">
+<meta property="og:image" content="https://celebrainvitaciones.com/images/julita/fondo.jpg">
+<meta name="theme-color" content="#F2A7C1">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Mrs+Saint+Delafield&family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa:#F2A7C1; --rosa2:#E8779F; --fucsia:#D2386F; --frambuesa:#8E1E4F; --blanco:#FFFFFF; --nube:#FFF4F8;
+    --tinta:#5A1835; --gris:#9A6B80; --vidrio:rgba(255,255,255,.74); --borde:rgba(255,255,255,.9);
+    --gorda:"Bagel Fat One",system-ui,sans-serif; --firma:"Mrs Saint Delafield",cursive; --serif:"Fraunces",Georgia,serif; --sans:"Outfit",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:400;color:var(--tinta);background:#F2A7C1;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body.locked{overflow:hidden;height:100svh}
+  /* fondo de peluche fijo (también en iPhone) */
+  .peluche{position:fixed;inset:0;z-index:0;background:#F2A7C1 url("images/julita/fondo.jpg") center/cover no-repeat}
+  .peluche::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 40%,rgba(255,255,255,0) 40%,rgba(142,30,79,.18) 100%)}
+  .app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 18px 40px}
+  .rv{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+  /* letras cromadas */
+  .cromo{font-family:var(--gorda);font-weight:400;line-height:.9;letter-spacing:.01em;color:#fff;
+         background:linear-gradient(180deg,#FFFFFF 0%,#FFE9F2 38%,#F7B6CE 52%,#FFFFFF 64%,#FFD3E3 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+         filter:drop-shadow(0 2px 0 #E8779F) drop-shadow(0 6px 0 #C93D6F) drop-shadow(0 14px 18px rgba(120,20,60,.35))}
+  .firma{font-family:var(--firma);font-weight:400;color:#fff;text-shadow:0 2px 10px rgba(142,30,79,.45)}
+
+  /* brillitos */
+  .brillo{position:absolute;width:22px;height:22px;color:#fff;pointer-events:none;animation:titila 2.6s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(255,255,255,.9))}
+  @keyframes titila{0%,100%{opacity:.2;transform:scale(.6) rotate(0)}50%{opacity:1;transform:scale(1) rotate(20deg)}}
+
+  /* tarjetas de vidrio */
+  .card{position:relative;margin-top:22px;background:var(--vidrio);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border:1.5px solid var(--borde);
+        border-radius:34px;padding:38px 24px 34px;text-align:center;box-shadow:0 24px 40px -26px rgba(142,30,79,.55),inset 0 1px 0 #fff}
+  .card .etq{display:inline-block;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:var(--fucsia)}
+  .card h2{margin-top:10px;font-family:var(--serif);font-weight:400;font-style:italic;font-size:2.3rem;line-height:1.05;color:var(--tinta)}
+  .card p{margin-top:12px;font-size:.95rem;line-height:1.65;color:var(--gris)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:24px;padding:16px 28px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;
+       font:600 .78rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#fff;
+       background:linear-gradient(180deg,#F58DB4,#D2386F);box-shadow:0 10px 20px -10px rgba(210,56,111,.9),inset 0 1px 0 rgba(255,255,255,.55)}
+  .btn svg{width:16px;height:16px}
+  .btn.blanco{background:#fff;color:var(--fucsia);box-shadow:0 10px 20px -12px rgba(142,30,79,.6)}
+
+  /* ================= ENTRADA ================= */
+  #entrada{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;
+           background:#F2A7C1 url("images/julita/fondo.jpg") center/cover no-repeat;transition:opacity .9s ease .5s,transform 1.4s cubic-bezier(.7,0,.2,1) .3s}
+  #entrada::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 46%,rgba(255,255,255,.35),rgba(255,255,255,0) 70%)}
+  #entrada.fin{opacity:0;transform:scale(1.35);pointer-events:none}
+  #entrada > *{position:relative}
+  #entrada .mis{font-size:4.4rem;line-height:.6;margin-bottom:-6px;transform:rotate(-8deg)}
+  #entrada .quince{font-size:10.5rem}
+  #entrada .nombre{font-size:4.6rem;margin-top:2px;letter-spacing:.02em}
+  #entrada .chau{margin-top:30px;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:#fff;text-shadow:0 1px 8px rgba(142,30,79,.5)}
+  #corazon{margin-top:18px;width:86px;height:86px;border:0;background:none;cursor:pointer;animation:late 1.4s ease-in-out infinite;filter:drop-shadow(0 10px 14px rgba(142,30,79,.45))}
+  #corazon svg{width:100%;height:100%}
+  @keyframes late{0%,100%{transform:scale(1)}15%{transform:scale(1.12)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
+  #entrada.pop #corazon{animation:none;transform:scale(1.8);opacity:0;transition:all .5s ease}
+
+  /* ================= HERO ================= */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 0 60px}
+  .hero .fecha-top{font-size:.7rem;letter-spacing:.36em;font-weight:600;color:#fff;text-shadow:0 1px 6px rgba(142,30,79,.5);background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.6);padding:9px 16px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .hero .nombre{margin-top:34px;font-size:clamp(5.2rem,28vw,7.8rem)}
+  .hero .mis{margin-top:26px;font-size:5rem;line-height:.8}
+  .abierta .hero .mis.anim{transform:rotate(-6deg)}
+  .frase-sec{position:relative;min-height:78svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 0}
+  .sticker.grande{padding:26px 30px 22px;border-radius:28px}
+  .sticker.grande p{font-size:2.2rem;line-height:1.08}
+  .sticker.grande.rv{transform:translateY(40px) rotate(-8deg) scale(.85)}
+  .sticker.grande.rv.in{transform:rotate(-3deg)}
+  .sticker{position:relative;margin-top:30px;display:inline-block;background:#fff;color:var(--fucsia);border-radius:22px;padding:18px 24px 16px;transform:rotate(-3deg);
+           box-shadow:0 16px 26px -14px rgba(142,30,79,.6),0 0 0 6px rgba(255,255,255,.45)}
+  .sticker p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.6rem;line-height:1.1}
+  .sticker p b{font-family:var(--gorda);font-weight:400;font-style:normal;color:var(--fucsia)}
+  .sticker::after{content:"";position:absolute;right:-12px;top:-14px;width:36px;height:36px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23D2386F' d='M12 21s-7.5-4.6-10-9.2C.4 8.6 2.4 4.5 6.2 4.5c2.2 0 3.7 1.3 4.6 2.6L12 8.6l1.2-1.5c.9-1.3 2.4-2.6 4.6-2.6 3.8 0 5.8 4.1 4.2 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center/contain no-repeat;transform:rotate(14deg)}
+  .hero .bajar{position:absolute;bottom:18px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:6px;color:#fff;font-size:.62rem;letter-spacing:.3em;font-weight:600;text-shadow:0 1px 6px rgba(142,30,79,.5)}
+  .hero .bajar i{width:2px;height:28px;border-radius:2px;background:#fff;animation:bajar 1.8s ease-in-out infinite;transform-origin:top}
+  @keyframes bajar{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{opacity:0}}
+  .hero .anim{opacity:0;transform:translateY(24px) scale(.94);transition:opacity 1s ease,transform 1.2s cubic-bezier(.2,.9,.25,1.2)}
+  .abierta .hero .anim{opacity:1;transform:none}
+  .abierta .hero .a1{transition-delay:.9s}.abierta .hero .a2{transition-delay:1.1s}.abierta .hero .a3{transition-delay:1.35s}.abierta .hero .a4{transition-delay:1.75s}
+
+  /* ================= CALENDARIO ================= */
+  .mes{margin-top:6px;font-family:var(--gorda);font-size:2.6rem;color:var(--fucsia);line-height:1}
+  .mes small{display:block;margin-top:4px;font-family:var(--sans);font-size:.75rem;letter-spacing:.3em;color:var(--gris);font-weight:500}
+  .grilla{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:22px auto 0;max-width:300px}
+  .grilla b{font-size:.6rem;letter-spacing:.12em;font-weight:600;color:var(--rosa2);padding-bottom:6px}
+  .grilla span{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1;font-size:.92rem;color:var(--tinta);border-radius:50%}
+  .grilla span.dia{color:#fff;font-weight:600;z-index:1}
+  .grilla span.dia::before{content:"";position:absolute;inset:-8px;z-index:-1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F58DB4'/%3E%3Cstop offset='1' stop-color='%23D2386F'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M12 21s-7.5-4.6-10-9.2C.4 8.6 2.4 4.5 6.2 4.5c2.2 0 3.7 1.3 4.6 2.6L12 8.6l1.2-1.5c.9-1.3 2.4-2.6 4.6-2.6 3.8 0 5.8 4.1 4.2 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center/contain no-repeat;animation:late 1.8s ease-in-out infinite}
+  .hora{margin-top:24px;padding-top:22px;border-top:1.5px dashed rgba(210,56,111,.3)}
+  .hora .dia-txt{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--tinta)}
+  .hora .hs{display:block;margin-top:4px;font-family:var(--gorda);font-size:3.4rem;line-height:1;color:var(--fucsia)}
+  .hora .hs small{font-family:var(--sans);font-size:1rem;font-weight:600;letter-spacing:.1em;margin-left:4px}
+  .cd{display:flex;justify-content:center;gap:10px;margin-top:22px}
+  .cd div{min-width:62px;background:#fff;border-radius:18px;padding:12px 6px 10px;box-shadow:0 8px 14px -10px rgba(142,30,79,.5)}
+  .cd b{display:block;font-family:var(--gorda);font-weight:400;font-size:1.7rem;line-height:1;color:var(--fucsia);font-variant-numeric:tabular-nums}
+  .cd small{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);font-weight:600}
+
+  /* ================= LUGAR ================= */
+  .lugar-ic{width:64px;height:64px;margin:0 auto;color:var(--fucsia)}
+  .lugar .nom{margin-top:14px;font-family:var(--gorda);font-size:2rem;line-height:1.05;color:var(--tinta)}
+
+  /* ================= DRESS ================= */
+  .dress .tipo{margin-top:8px;font-family:var(--gorda);font-size:2.4rem;color:var(--fucsia);line-height:1}
+  .dress .ojo{display:inline-block;margin-top:18px;background:var(--fucsia);color:#fff;border-radius:999px;padding:10px 18px;font-size:.85rem;font-weight:500;transform:rotate(-2deg)}
+
+  /* ================= REGALO ================= */
+  .sobre{width:74px;height:56px;margin:0 auto 4px;color:var(--fucsia)}
+  #datos{max-height:0;overflow:hidden;transition:max-height .7s ease}
+  #datos.open{max-height:320px}
+  .dato{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border-radius:18px;padding:13px 16px;margin-top:10px;text-align:left}
+  .dato:first-child{margin-top:20px}
+  .dato small{display:block;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rosa2);font-weight:600}
+  .dato span{font-size:.92rem;word-break:break-all;color:var(--tinta)}
+  .copiar{flex:none;border:1.5px solid var(--rosa);background:none;border-radius:999px;padding:8px 12px;font:600 .58rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--fucsia);cursor:pointer}
+
+  /* ================= RSVP ================= */
+  form{margin-top:22px;text-align:left}
+  .q{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--rosa2);margin:20px 0 9px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips button{font:500 .9rem/1 var(--sans);padding:13px 17px;border-radius:999px;border:1.5px solid rgba(210,56,111,.25);background:#fff;color:var(--tinta);cursor:pointer;transition:all .25s}
+  .chips button.on{background:var(--fucsia);border-color:var(--fucsia);color:#fff}
+  .txt,textarea{width:100%;font:400 1rem/1.4 var(--sans);color:var(--tinta);background:#fff;border:1.5px solid rgba(210,56,111,.2);border-radius:18px;padding:14px 16px;outline:none;-webkit-appearance:none}
+  textarea{min-height:80px;resize:none}
+  .txt:focus,textarea:focus{border-color:var(--fucsia)}
+  #enviar{width:100%}
+
+  /* ================= CIERRE ================= */
+  .cierre{text-align:center;padding:80px 0 60px;position:relative}
+  .cierre .te{font-size:3.6rem;line-height:.7;transform:rotate(-6deg)}
+  .cierre .nombre{font-size:5.4rem;margin-top:6px}
+  .cierre .f{margin-top:18px;font-size:.72rem;letter-spacing:.36em;font-weight:600;color:#fff;text-shadow:0 1px 6px rgba(142,30,79,.5)}
+
+  /* ================= MÚSICA + TOAST ================= */
+  #musica{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:50px;height:50px;border-radius:50%;border:0;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:scale(.6);transition:all .5s;box-shadow:0 10px 22px -10px rgba(142,30,79,.7)}
+  #musica.show{opacity:1;transform:none}
+  #musica .eq{display:flex;align-items:flex-end;gap:2.5px;height:15px}
+  #musica .eq i{width:3px;height:4px;border-radius:3px;background:var(--fucsia)}
+  #musica.on .eq i{animation:eq 1s ease-in-out infinite}
+  #musica.on .eq i:nth-child(2){animation-delay:.2s}#musica.on .eq i:nth-child(3){animation-delay:.4s}#musica.on .eq i:nth-child(4){animation-delay:.1s}
+  @keyframes eq{0%,100%{height:4px}50%{height:15px}}
+  #toast{position:fixed;left:50%;bottom:86px;transform:translate(-50%,20px);background:var(--frambuesa);color:#fff;font-size:.82rem;padding:11px 18px;border-radius:999px;opacity:0;transition:all .4s;z-index:80;pointer-events:none;white-space:nowrap}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.hero .anim{opacity:1;transform:none}}
+
+  /* ================= FOOTER OFICIAL CELEBRA ================= */
+  footer.cfooter{position:relative;z-index:1;max-width:480px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--frambuesa);color:#fff;
+                 padding:48px 24px calc(120px + env(safe-area-inset-bottom,0px));border-radius:34px 34px 0 0}
+  .cfooter .cf-g{font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1.2}
+  .cfooter .cf-s{margin-top:8px;max-width:290px;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.78)}
+  .cfooter .cf-cta{display:inline-block;margin-top:22px;background:#fff;color:var(--frambuesa);text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:15px 28px;border-radius:999px}
+  .cfooter .cf-sep{display:block;width:48px;height:1px;background:rgba(255,255,255,.3);margin:28px 0 18px}
+  .cfooter .cf-marca{color:#fff;text-decoration:none;font-size:.84rem;font-weight:600}
+  .cfooter .cf-der{margin-top:3px;font-size:.7rem;color:rgba(255,255,255,.6)}
+  .cfooter .cf-mail{margin-top:12px;color:rgba(255,255,255,.9);font-size:.8rem}
+  .cfooter .cf-redes{display:flex;gap:14px;margin-top:16px}
+  .cfooter .cf-redes a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;color:#fff}
+  .cfooter .cf-redes svg{width:16px;height:16px}
+</style>
+</head>
+<body class="locked">
+
+<div class="peluche" aria-hidden="true"></div>
+
+<!-- ============ ENTRADA ============ -->
+<div id="entrada" role="dialog" aria-label="Entrada a la invitación">
+  <div class="firma mis">mis</div>
+  <div class="cromo quince">15</div>
+  <div class="cromo nombre" id="e-nombre">JULITA</div>
+  <p class="chau">tocá el corazón para entrar</p>
+  <button id="corazon" type="button" aria-label="Entrar">
+    <svg viewBox="0 0 24 24"><defs><linearGradient id="gc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#FFD3E3"/><stop offset="1" stop-color="#F58DB4"/></linearGradient></defs>
+      <path fill="url(#gc)" stroke="#fff" stroke-width=".6" d="M12 21s-7.5-4.6-10-9.2C.4 8.6 2.4 4.5 6.2 4.5c2.2 0 3.7 1.3 4.6 2.6L12 8.6l1.2-1.5c.9-1.3 2.4-2.6 4.6-2.6 3.8 0 5.8 4.1 4.2 7.3C19.5 16.4 12 21 12 21z"/>
+      <path d="M6.5 7.2c-1.3.3-2.2 1.4-2.3 2.8" stroke="#fff" stroke-width=".9" stroke-linecap="round" fill="none"/></svg>
+  </button>
+</div>
+
+<div class="app">
+
+  <!-- 1. HERO -->
+  <header class="hero" id="inicio">
+    <svg class="brillo" style="left:6%;top:16%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <svg class="brillo" style="right:10%;top:30%;animation-delay:.8s;width:16px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <svg class="brillo" style="left:14%;bottom:24%;animation-delay:1.5s;width:14px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <svg class="brillo" style="right:6%;bottom:30%;animation-delay:.4s" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <span class="fecha-top anim a1" id="fecha-top">17 · 04 · 2027</span>
+    <div class="cromo nombre anim a2" id="h-nombre">Julita</div>
+    <div class="firma mis anim a3">mis 15</div>
+    <div class="bajar anim a4">BAJÁ<i></i></div>
+  </header>
+
+  <!-- 1b. LA FRASE (aparece al hacer scroll) -->
+  <section class="frase-sec">
+    <svg class="brillo" style="left:10%;top:22%;animation-delay:.3s" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <svg class="brillo" style="right:12%;bottom:26%;animation-delay:1.1s;width:16px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <div class="sticker grande rv"><p id="frase">Quiero verte en<br>mi <b>gran noche</b></p></div>
+  </section>
+
+  <!-- 2. CALENDARIO + HORA + AGENDAR -->
+  <section class="card rv" id="fecha">
+    <span class="etq">Guardá la fecha</span>
+    <div class="mes" id="mes">Abril<small>2027</small></div>
+    <div class="grilla" id="grilla"><b>L</b><b>M</b><b>M</b><b>J</b><b>V</b><b>S</b><b>D</b></div>
+    <div class="hora">
+      <div class="dia-txt" id="dia-txt">Sábado 17 de abril</div>
+      <span class="hs" id="hs">21:30<small>HS</small></span>
+    </div>
+    <div class="cd" aria-live="polite">
+      <div><b id="cd-d">0</b><small>días</small></div><div><b id="cd-h">00</b><small>horas</small></div><div><b id="cd-m">00</b><small>min</small></div><div><b id="cd-s">00</b><small>seg</small></div>
+    </div>
+    <a class="btn" id="agendar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Agendar</a>
+  </section>
+
+  <!-- 3. LUGAR -->
+  <section class="card lugar rv">
+    <svg class="lugar-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 54V30L32 16l18 14v24z"/><path d="M26 54V40h12v14"/><path d="M8 54h48"/><path d="M32 8l1.5 3.5L37 13l-3.5 1.5L32 18l-1.5-3.5L27 13l3.5-1.5z" fill="currentColor"/></svg>
+    <span class="etq" style="margin-top:14px">La fiesta</span>
+    <div class="nom" id="lugar-nombre">Salón Lumière</div>
+    <p id="lugar-dir">Av. del Libertador 4100, Palermo</p>
+    <a class="btn blanco" id="maps" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0113 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Cómo llegar</a>
+  </section>
+
+  <!-- 4. DRESS CODE -->
+  <section class="card dress rv">
+    <span class="etq">Dress code</span>
+    <div class="tipo" id="dress">Elegante</div>
+    <p id="dress-texto">Ponete linda, lindo, ¡y con zapatos para bailar toda la noche!</p>
+    <span class="ojo" id="dress-ojo">💗 El rosa es solo para mí</span>
+  </section>
+
+  <!-- 5. REGALO -->
+  <section class="card rv">
+    <svg class="sobre" viewBox="0 0 74 56" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="6" width="68" height="46" rx="8"/><path d="M5 10l32 24 32-24"/><path d="M37 30c-3-2.4-6-4.2-6-7a3 3 0 016-1.2 3 3 0 016 1.2c0 2.8-3 4.6-6 7z" fill="currentColor" stroke="none"/></svg>
+    <span class="etq">Regalos</span>
+    <h2>Lluvia de sobres</h2>
+    <p id="regalo-texto">Tu presencia es lo más importante. Si querés hacerme un regalo, habrá un buzón en la fiesta o te dejo mis datos.</p>
+    <button class="btn" type="button" id="ver-datos">Ver datos</button>
+    <div id="datos">
+      <div class="dato"><div><small>Alias</small><span id="alias"></span></div><button class="copiar" type="button" data-c="alias">Copiar</button></div>
+      <div class="dato"><div><small>CBU</small><span id="cbu"></span></div><button class="copiar" type="button" data-c="cbu">Copiar</button></div>
+      <div class="dato"><div><small>Titular</small><span id="titular"></span></div></div>
+    </div>
+  </section>
+
+  <!-- 6. CANCIÓN -->
+  <section class="card rv">
+    <span class="etq">Playlist</span>
+    <h2>¿Qué tema<br>no puede faltar?</h2>
+    <p>Pedime tu canción y la sumo a la lista del DJ.</p>
+    <a class="btn blanco" id="cancion-btn" target="_blank" rel="noopener">🎶 Sugerir canción</a>
+  </section>
+
+  <!-- 7. CONFIRMACIÓN -->
+  <section class="card rv" id="confirmar">
+    <span class="etq">Confirmación</span>
+    <h2>¿Venís a<br>mi fiesta?</h2>
+    <p>Confirmame antes del <b id="hasta" style="color:var(--fucsia)">17 de marzo</b></p>
+    <form onsubmit="return false">
+      <div class="q">¿Venís?</div>
+      <div class="chips" data-g="asis"><button type="button" class="on">¡Sí, voy! 💃</button><button type="button">No puedo 😢</button></div>
+      <div class="q">¿Cuántos son?</div>
+      <div class="chips" data-g="cant"><button type="button" class="on">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button></div>
+      <div class="q">Menú</div>
+      <div class="chips" data-g="menu"><button type="button" class="on">Clásico</button><button type="button">Vegetariano</button><button type="button">Sin TACC</button></div>
+      <div class="q">Tu nombre</div>
+      <input class="txt" id="f-nombre" autocomplete="name" placeholder="Nombre y apellido">
+      <div class="q">Un mensajito para mí</div>
+      <textarea id="f-msg" placeholder="(opcional)"></textarea>
+      <button class="btn" id="enviar" type="button">Confirmar por WhatsApp</button>
+    </form>
+  </section>
+
+  <!-- 8. CIERRE -->
+  <section class="cierre rv">
+    <div class="firma te">¡te espero!</div>
+    <div class="cromo nombre" id="c-nombre">Julita</div>
+    <div class="f" id="c-fecha">17 · 04 · 2027</div>
+  </section>
+</div>
+
+<!-- FOOTER OFICIAL CELEBRA INVITACIONES -->
+<footer class="cfooter">
+  <p class="cf-g">¿Te gustó esta invitación?</p>
+  <p class="cf-s">Diseñá la tuya con nosotros y compartila con todos tus invitados.</p>
+  <a class="cf-cta" id="quiero" target="_blank" rel="noopener">Quiero una así 💗</a>
+  <span class="cf-sep"></span>
+  <a class="cf-marca" href="https://celebrainvitaciones.com/" target="_blank" rel="noopener">Celebra Invitaciones Web</a>
+  <p class="cf-der">Todos los derechos reservados.</p>
+  <a class="cf-mail" href="mailto:celebrainvitaciones@gmail.com">celebrainvitaciones@gmail.com</a>
+  <div class="cf-redes">
+    <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" aria-label="WhatsApp Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg></a>
+    <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a>
+    <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Facebook Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></a>
+    <a href="https://celebrainvitaciones.com/" target="_blank" rel="noopener" aria-label="Sitio de Celebra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5S9.7 5.9 12 3.5z"/></svg></a>
+  </div>
+</footer>
+
+<button id="musica" aria-label="Música"><span class="eq"><i></i><i></i><i></i><i></i></span></button>
+<div id="toast"></div>
+<audio id="audio" loop preload="auto"></audio>
+
+<script>
+/* ======================================================
+   CONFIG — todo lo editable de la invitación está acá
+   ====================================================== */
+const CONFIG = {
+  nombre: "Julita",
+  frase: "Quiero verte en<br>mi <b>gran noche</b>",
+  fechaISO: "2027-04-17T21:30:00-03:00",
+  duracionHoras: 6,
+  fechaCorta: "17 · 04 · 2027",
+  diaTexto: "Sábado 17 de abril",
+  hora: "21:30",
+  mes: "Abril",
+  anio: "2027",
+  diaDelMes: 17,
+  primerDiaSemana: 4,   // día de la semana del 1° del mes (0 = domingo … 4 = jueves … 6 = sábado)
+  diasDelMes: 30,
+  lugarNombre: "Salón Lumière",
+  lugarDireccion: "Av. del Libertador 4100, Palermo",
+  lugarMaps: "https://maps.google.com/?q=Av.+del+Libertador+4100+Buenos+Aires",
+  dress: "Elegante",
+  dressTexto: "Ponete linda, lindo, ¡y con zapatos para bailar toda la noche!",
+  dressOjo: "💗 El rosa es solo para mí",
+  regaloAlias: "JULITA.MIS15",
+  regaloCbu: "0000003100055544433322",
+  regaloTitular: "Julieta Romero",
+  confirmarHasta: "17 de marzo",
+  audioUrl: "images/martiquince/iconos/mileycyrus.mp3",
+  whatsappNumero: "5491136218114",
+  celebraWhatsapp: "5491136218114"
+};
+
+(function(){
+  const C = CONFIG, $ = id => document.getElementById(id);
+  const wa = (n, t) => 'https://wa.me/' + n + '?text=' + encodeURIComponent(t);
+  const pad = n => String(n).padStart(2, '0');
+
+  /* textos */
+  document.title = 'Mis 15 · ' + C.nombre;
+  $('e-nombre').textContent = C.nombre.toUpperCase();
+  $('h-nombre').textContent = C.nombre; $('c-nombre').textContent = C.nombre;
+  $('frase').innerHTML = C.frase;
+  $('fecha-top').textContent = C.fechaCorta; $('c-fecha').textContent = C.fechaCorta;
+  $('mes').innerHTML = C.mes + '<small>' + C.anio + '</small>';
+  $('dia-txt').textContent = C.diaTexto; $('hs').innerHTML = C.hora + '<small>HS</small>';
+  $('lugar-nombre').textContent = C.lugarNombre; $('lugar-dir').textContent = C.lugarDireccion; $('maps').href = C.lugarMaps;
+  $('dress').textContent = C.dress; $('dress-texto').textContent = C.dressTexto; $('dress-ojo').textContent = C.dressOjo;
+  $('alias').textContent = C.regaloAlias; $('cbu').textContent = C.regaloCbu; $('titular').textContent = C.regaloTitular;
+  $('hasta').textContent = C.confirmarHasta;
+  $('cancion-btn').href = wa(C.whatsappNumero, '🎶 Para tus 15, ' + C.nombre + ', no puede faltar: ');
+  $('quiero').href = wa(C.celebraWhatsapp, '¡Hola Celebra! Vi la invitación de 15 de ' + C.nombre + ' y quiero una así 💗');
+
+  /* calendario (semana empieza en lunes) */
+  const g = $('grilla'), off = (C.primerDiaSemana + 6) % 7;
+  for (let i = 0; i < off; i++) g.appendChild(document.createElement('span'));
+  for (let d = 1; d <= C.diasDelMes; d++){ const s = document.createElement('span'); s.textContent = d; if (d === C.diaDelMes) s.className = 'dia'; g.appendChild(s); }
+
+  /* agendar en Google Calendar */
+  const ini = new Date(C.fechaISO), fin = new Date(ini.getTime() + C.duracionHoras * 36e5);
+  const gc = x => x.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  $('agendar').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Mis 15 · ' + C.nombre) +
+    '&dates=' + gc(ini) + '/' + gc(fin) + '&location=' + encodeURIComponent(C.lugarNombre + ', ' + C.lugarDireccion);
+
+  /* cuenta regresiva */
+  function tick(){
+    let t = Math.max(0, ini - Date.now()) / 1000;
+    $('cd-d').textContent = Math.floor(t / 86400); t %= 86400;
+    $('cd-h').textContent = pad(Math.floor(t / 3600)); t %= 3600;
+    $('cd-m').textContent = pad(Math.floor(t / 60)); $('cd-s').textContent = pad(Math.floor(t % 60));
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* entrada */
+  const audio = $('audio'), mus = $('musica');
+  if (C.audioUrl) audio.src = C.audioUrl;
+  const estado = () => mus.classList.toggle('on', !audio.paused);
+  audio.addEventListener('play', estado); audio.addEventListener('pause', estado);
+  $('corazon').addEventListener('click', () => {
+    if (C.audioUrl) audio.play().catch(()=>{});
+    $('entrada').classList.add('pop');
+    setTimeout(() => { $('entrada').classList.add('fin'); document.body.classList.remove('locked'); document.body.classList.add('abierta'); }, 250);
+    setTimeout(() => { mus.classList.add('show'); $('entrada').style.display = 'none'; }, 2000);
+  });
+  mus.addEventListener('click', () => { if (audio.paused) audio.play().catch(()=>{}); else audio.pause(); });
+
+  /* aparición */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  /* regalo */
+  $('ver-datos').addEventListener('click', e => { const o = $('datos').classList.toggle('open'); e.currentTarget.textContent = o ? 'Ocultar datos' : 'Ver datos'; });
+  const toast = t => { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 1800); };
+  document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', () => {
+    const v = $(b.dataset.c).textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => toast('Copiado 💗')).catch(() => toast(v));
+  }));
+
+  /* confirmación */
+  document.querySelectorAll('.chips').forEach(gr => gr.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    gr.querySelectorAll('button').forEach(b => b.classList.remove('on')); e.target.classList.add('on');
+  }));
+  const sel = gr => document.querySelector('.chips[data-g="' + gr + '"] .on').textContent;
+  $('enviar').addEventListener('click', () => {
+    const n = $('f-nombre').value.trim();
+    if (!n){ toast('Escribí tu nombre 💗'); $('f-nombre').focus(); return; }
+    const va = sel('asis').indexOf('Sí') === 0;
+    let t = '💗 Mis 15 de ' + C.nombre + '\n' + (va ? '✅ ¡Voy!' : '❌ No voy a poder ir') + '\nNombre: ' + n;
+    if (va) t += '\nSomos: ' + sel('cant') + '\nMenú: ' + sel('menu');
+    const m = $('f-msg').value.trim(); if (m) t += '\nMensaje: ' + m;
+    window.open(wa(C.whatsappNumero, t), '_blank');
+  });
+})();
+</script>
+</body>
+</html>
