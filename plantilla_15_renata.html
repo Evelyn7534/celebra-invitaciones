@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mis XV · Renata</title>
+<meta name="description" content="Invitación digital de 15 años · Celebra Invitaciones">
+<meta property="og:title" content="Mis XV · Renata">
+<meta property="og:description" content="Sábado 22 de mayo de 2027">
+<meta property="og:image" content="https://celebrainvitaciones.com/images/renata/chicaquince.jpeg">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Ballet&family=Inter+Tight:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blanco:#FFFFFF; --hielo:#F6F5F3; --negro:#111111; --gris:#8A8784; --linea:rgba(17,17,17,.12);
+    --caps:"Tenor Sans",Helvetica,sans-serif; --script:"Ballet",cursive; --sans:"Inter Tight",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:300;color:var(--negro);background:var(--hielo);-webkit-font-smoothing:antialiased}
+  body.locked{overflow:hidden;height:100svh}
+  img{display:block;max-width:100%}
+  .app{max-width:480px;margin:0 auto;background:var(--blanco);position:relative;overflow:hidden}
+  .caps{font-family:var(--caps);font-size:.66rem;letter-spacing:.42em;text-transform:uppercase}
+  section{position:relative;padding:92px 30px;text-align:center}
+  h2{font-family:var(--caps);font-weight:400;font-size:1.05rem;letter-spacing:.38em;text-transform:uppercase}
+  .script{font-family:var(--script);font-weight:400;line-height:1}
+  .moño{width:44px;height:26px;margin:0 auto 18px;color:var(--negro)}
+  .rv{opacity:0;transform:translateY(18px);transition:opacity 1.1s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:30px;padding:16px 30px;border:1px solid var(--negro);background:transparent;color:var(--negro);
+       font-family:var(--caps);font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .3s,color .3s}
+  .btn:active,.btn.fill{background:var(--negro);color:var(--blanco)}
+  .fino{width:1px;height:54px;background:var(--negro);margin:0 auto 30px;opacity:.35}
+
+  /* ================= PORTADA ================= */
+  .portada{position:relative;text-align:center;min-height:100svh;padding:0;color:var(--blanco);background:#cfcac6}
+  .portada .bg{position:absolute;inset:0;overflow:hidden}
+  .portada .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform:scale(1.1);transition:transform 7s cubic-bezier(.2,.6,.2,1)}
+  .abierta .portada .bg img{transform:scale(1)}
+  .portada .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.05) 26%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.62) 78%,rgba(0,0,0,.72) 100%)}
+  .portada .marco{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.7);pointer-events:none;z-index:2}
+  .portada .arriba{position:absolute;top:calc(34px + env(safe-area-inset-top,0px));left:0;right:0;z-index:3}
+  .portada .abajo{position:absolute;left:0;right:0;bottom:64px;z-index:3;padding:0 30px}
+  .portada .xv{font-family:var(--caps);font-size:1rem;letter-spacing:.6em;padding-left:.6em}
+  .portada .nombre{font-size:clamp(5.4rem,27vw,7.6rem);margin-top:14px;text-shadow:0 4px 30px rgba(0,0,0,.25)}
+  .portada .fecha{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;font-family:var(--caps);font-size:.72rem;letter-spacing:.4em}
+  .portada .fecha i{width:28px;height:1px;background:rgba(255,255,255,.8)}
+  .portada .anim{opacity:0;transform:translateY(16px);transition:opacity 1.3s ease,transform 1.4s cubic-bezier(.2,.7,.2,1)}
+  .abierta .portada .anim{opacity:1;transform:none}
+  .abierta .portada .a1{transition-delay:.6s}.abierta .portada .a2{transition-delay:.9s}.abierta .portada .a3{transition-delay:1.2s}
+
+  /* contador sobre la foto */
+  .reloj{display:grid;grid-template-columns:repeat(4,1fr);margin:30px auto 0;max-width:330px}
+  .reloj div+div{border-left:1px solid rgba(255,255,255,.4)}
+  .reloj b{display:block;font-family:var(--sans);font-weight:200;font-size:2.5rem;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:#fff}
+  .reloj small{display:block;margin-top:9px;font-family:var(--caps);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+
+  /* ================= FRASE ================= */
+  .frase{background:var(--hielo);padding-top:80px;padding-bottom:80px}
+  .frase p{font-size:2.9rem;line-height:1.1}
+  .frase small{display:block;margin-top:20px;font-size:.92rem;line-height:1.7;color:var(--gris);max-width:300px;margin-left:auto;margin-right:auto}
+
+  /* ================= FECHA + HORA ================= */
+  .dia{padding-bottom:84px}
+  .semana{display:grid;grid-template-columns:repeat(7,1fr);margin-top:36px;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+  .semana span{padding:14px 0 12px;font-size:.98rem}
+  .semana span small{display:block;font-family:var(--caps);font-size:.48rem;letter-spacing:.2em;color:var(--gris);margin-bottom:6px}
+  .semana span.hoy{background:var(--negro);color:var(--blanco)}
+  .semana span.hoy small{color:rgba(255,255,255,.6)}
+  .mes-anio{margin-top:16px;font-family:var(--caps);font-size:.66rem;letter-spacing:.42em;color:var(--gris)}
+  .hora{margin-top:44px}
+  .hora b{display:block;font-family:var(--sans);font-weight:200;font-size:3.6rem;line-height:1;letter-spacing:-.02em}
+  .hora span{display:block;margin-top:10px;font-family:var(--caps);font-size:.6rem;letter-spacing:.4em;color:var(--gris)}
+
+  /* ================= LUGAR ================= */
+  .lugar{background:var(--negro);color:var(--blanco)}
+  .lugar .fino{background:var(--blanco)}
+  .lugar .moño{color:var(--blanco)}
+  .lugar .nom{margin-top:22px;font-family:var(--caps);font-size:1.5rem;line-height:1.4;letter-spacing:.18em;text-transform:uppercase}
+  .lugar p{margin-top:12px;font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.7)}
+  .lugar .btn{border-color:var(--blanco);color:var(--blanco)}
+
+  /* ================= DRESS ================= */
+  .dress .tipo{margin-top:20px;font-size:3.3rem}
+  .dress p{margin-top:12px;font-size:.92rem;line-height:1.7;color:var(--gris)}
+  .lazos{display:flex;justify-content:center;gap:22px;margin-top:28px}
+  .lazos span{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--caps);font-size:.5rem;letter-spacing:.24em;color:var(--gris)}
+  .lazos i{width:34px;height:34px;border-radius:50%;border:1px solid var(--linea)}
+
+  /* ================= GALERÍA ================= */
+  .galeria{padding:0}
+  .galeria .grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  .galeria img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:grayscale(.15)}
+  .galeria img:first-child{grid-column:1/-1;aspect-ratio:4/3}
+
+  /* ================= REGALO ================= */
+  .regalo p{margin:16px auto 0;max-width:310px;font-size:.92rem;line-height:1.7;color:var(--gris)}
+  #datos{max-height:0;overflow:hidden;transition:max-height .7s ease}
+  #datos.open{max-height:320px}
+  .dato{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--linea);padding:16px 0;text-align:left}
+  .dato:first-child{margin-top:24px;border-top:1px solid var(--linea)}
+  .dato small{display:block;font-family:var(--caps);font-size:.52rem;letter-spacing:.26em;color:var(--gris)}
+  .dato span{font-size:.95rem;word-break:break-all}
+  .copiar{flex:none;border:1px solid var(--negro);background:none;padding:8px 12px;font-family:var(--caps);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;color:var(--negro)}
+
+  /* ================= RSVP ================= */
+  .rsvp{background:var(--hielo)}
+  .rsvp .hasta{margin-top:14px;font-size:.92rem;color:var(--gris)}
+  form{margin-top:34px;text-align:left}
+  .q{font-family:var(--caps);font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gris);margin:26px 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips button{font:300 .92rem/1 var(--sans);padding:13px 18px;border:1px solid var(--linea);background:var(--blanco);color:var(--negro);cursor:pointer;transition:all .25s}
+  .chips button.on{background:var(--negro);border-color:var(--negro);color:var(--blanco)}
+  .txt,textarea{width:100%;font:300 1rem/1.4 var(--sans);color:var(--negro);background:transparent;border:0;border-bottom:1px solid rgba(17,17,17,.3);padding:11px 0;outline:none;border-radius:0;-webkit-appearance:none}
+  textarea{min-height:70px;resize:none}
+  #enviar{width:100%}
+
+  /* ================= CIERRE ================= */
+  .cierre{padding:100px 30px 90px}
+  .cierre .t{font-size:3.6rem}
+  .cierre .caps{margin-top:18px;color:var(--gris)}
+
+  /* ================= MÚSICA + TOAST ================= */
+  #musica{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:52px;height:52px;border-radius:50%;border:0;background:var(--negro);color:var(--blanco);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:scale(.6);transition:all .5s;box-shadow:0 10px 22px -10px rgba(0,0,0,.5)}
+  #musica.show{opacity:1;transform:none}
+  #musica svg{width:18px;height:18px}
+  #toast{position:fixed;left:50%;bottom:86px;transform:translate(-50%,20px);background:var(--negro);color:#fff;font-size:.82rem;padding:11px 18px;opacity:0;transition:all .4s;z-index:80;pointer-events:none;white-space:nowrap}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ================= MOVIMIENTO ================= */
+  /* foto que respira + parallax */
+  .portada .bg img{animation:respira 18s ease-in-out 2s infinite alternate}
+  @keyframes respira{from{transform:scale(1)}to{transform:scale(1.08) translateY(-1.5%)}}
+  .portada .bg{will-change:transform}
+  /* MIS XV que se acomoda */
+  .portada .xv{transition:letter-spacing 2s cubic-bezier(.2,.7,.2,1) .5s,opacity 1.3s ease .5s!important;letter-spacing:1.4em}
+  .abierta .portada .xv{letter-spacing:.6em}
+  /* el nombre se escribe */
+  .portada .nombre{clip-path:inset(0 100% 0 0);transition:clip-path 2.4s cubic-bezier(.6,0,.2,1) 1s,opacity .4s ease 1s!important}
+  .abierta .portada .nombre{clip-path:inset(0 -10% 0 0)}
+  /* números que suben al cambiar */
+  .reloj b.tic{animation:tic .5s cubic-bezier(.2,.8,.2,1)}
+  @keyframes tic{from{transform:translateY(-35%);opacity:0}to{transform:none;opacity:1}}
+  /* lluvia de moñitos sobre la foto */
+  .lluvia{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+  .lluvia svg{position:absolute;top:-40px;width:28px;height:17px;color:rgba(255,255,255,.85);animation:cae 14s linear infinite;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+  @keyframes cae{0%{transform:translate(0,0) rotate(-10deg);opacity:0}10%{opacity:1}50%{transform:translate(24px,52vh) rotate(14deg)}90%{opacity:.9}100%{transform:translate(-10px,104vh) rotate(-12deg);opacity:0}}
+  /* moños que se dibujan y se hamacan */
+  svg.moño{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s cubic-bezier(.6,0,.3,1) .2s,opacity 1.1s ease,transform 1.2s}
+  svg.moño.in{stroke-dashoffset:0}
+  .moño.in{animation:hamaca 4s ease-in-out 2.2s infinite}
+  @keyframes hamaca{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+  /* frase palabra por palabra */
+  .frase p .w{display:inline-block;opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1),filter .8s ease}
+  .frase p.in .w{opacity:1;transform:none;filter:none}
+  .frase p.rv{opacity:1;transform:none}
+  /* semana en cascada y día que late */
+  .semana span{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .semana.in span{opacity:1;transform:none}
+  .semana.in span.hoy{animation:late 2.2s ease-in-out 1.4s infinite}
+  @keyframes late{0%,100%{box-shadow:0 0 0 0 rgba(17,17,17,.25)}50%{box-shadow:0 0 0 8px rgba(17,17,17,0)}}
+  /* línea que crece en la fiesta */
+  .lugar .fino{transform:scaleY(0);transform-origin:top;transition:transform 1.4s cubic-bezier(.6,0,.3,1)}
+  .lugar .fino.in{transform:none}
+  /* puntitos de color que rebotan */
+  .lazos span{opacity:0;transform:scale(.4);transition:opacity .5s,transform .7s cubic-bezier(.3,1.6,.5,1)}
+  .lazos.in span{opacity:1;transform:none}
+  .lazos.in span:nth-child(2){transition-delay:.15s}.lazos.in span:nth-child(3){transition-delay:.3s}
+  /* brillo que pasa por los botones */
+  .btn{position:relative;overflow:hidden}
+  .btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:brillo 4.5s ease-in-out infinite}
+  .lugar .btn::after,.btn.fill::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.3),transparent)}
+  @keyframes brillo{0%,60%{left:-60%}100%{left:130%}}
+  /* "Te espero" que se escribe */
+  .cierre .t{clip-path:inset(0 100% 0 0);transition:clip-path 2.2s cubic-bezier(.6,0,.2,1) .3s}
+  .cierre .t.in{clip-path:inset(0 -10% 0 0)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+  /* ================= FOOTER OFICIAL CELEBRA ================= */
+  footer.cfooter{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--negro);color:var(--blanco);padding:48px 24px calc(120px + env(safe-area-inset-bottom,0px))}
+  .cfooter .cf-g{font-family:var(--caps);font-size:.95rem;letter-spacing:.3em;text-transform:uppercase;line-height:1.5}
+  .cfooter .cf-s{margin-top:8px;max-width:290px;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.7)}
+  .cfooter .cf-cta{display:inline-block;margin-top:22px;background:var(--blanco);color:var(--negro);text-decoration:none;font-family:var(--caps);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;padding:15px 26px}
+  .cfooter .cf-sep{display:block;width:48px;height:1px;background:rgba(255,255,255,.3);margin:28px 0 18px}
+  .cfooter .cf-marca{color:#fff;text-decoration:none;font-size:.84rem;font-weight:500}
+  .cfooter .cf-der{margin-top:3px;font-size:.7rem;color:rgba(255,255,255,.55)}
+  .cfooter .cf-mail{margin-top:12px;color:rgba(255,255,255,.85);font-size:.8rem}
+  .cfooter .cf-redes{display:flex;gap:14px;margin-top:16px}
+  .cfooter .cf-redes a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff}
+  .cfooter .cf-redes svg{width:16px;height:16px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="lazo" viewBox="0 0 90 54"><path pathLength="1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+    d="M45 22C36 10 18 2 10 8s-2 22 14 22c9 0 16-4 21-8zm0 0c9-12 27-20 35-14s2 22-14 22c-9 0-16-4-21-8zm-3 2c-3 8-10 20-18 28m22-28c3 8 10 20 18 28M41 20c-1 3 0 6 4 6s5-3 4-6"/></symbol>
+</svg>
+
+<div class="app">
+
+  <!-- 1. PORTADA: foto + contador -->
+  <header class="portada">
+    <div class="bg"><img id="foto" src="images/renata/chicaquince.jpeg" alt=""></div>
+    <div class="marco"></div>
+    <div class="lluvia" aria-hidden="true"><svg style="left:12%;animation-delay:0s"><use href="#lazo"/></svg><svg style="left:70%;animation-delay:3.5s;width:22px"><use href="#lazo"/></svg><svg style="left:40%;animation-delay:7s;width:18px"><use href="#lazo"/></svg><svg style="left:85%;animation-delay:10s"><use href="#lazo"/></svg></div>
+    <div class="abajo">
+      <div class="xv anim a1">MIS XV</div>
+      <div class="script nombre anim a2" id="p-nombre">Renata</div>
+      <div class="reloj anim a3" aria-live="polite" style="margin-top:22px">
+        <div><b id="cd-d">0</b><small>Días</small></div>
+        <div><b id="cd-h">00</b><small>Horas</small></div>
+        <div><b id="cd-m">00</b><small>Min</small></div>
+        <div><b id="cd-s">00</b><small>Seg</small></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. FRASE -->
+  <section class="frase">
+    <p class="script rv" id="frase">Quiero que seas parte de esta noche</p>
+    <small class="rv d1" id="frase-sub">Hay momentos que se esperan toda la vida. Este es uno de ellos, y no sería lo mismo sin vos.</small>
+  </section>
+
+  <!-- 4. EL DÍA + HORA -->
+  <section class="dia">
+    <h2 class="rv">El día</h2>
+    <div class="semana rv d1" id="semana"></div>
+    <div class="mes-anio rv d1" id="mes-anio">MAYO 2027</div>
+    <div class="hora rv d2"><b id="hora">21:30</b><span>Te espero</span></div>
+    <a class="btn rv d3" id="agendar" target="_blank" rel="noopener">Agendar</a>
+  </section>
+
+  <!-- 5. LUGAR -->
+  <section class="lugar">
+    <div class="fino rv"></div>
+    <h2 class="rv">La fiesta</h2>
+    <div class="nom rv d1" id="lugar-nombre">Palacio Sans Souci</div>
+    <p class="rv d2" id="lugar-dir">Av. Mitre 2000, Victoria</p>
+    <a class="btn rv d3" id="maps" target="_blank" rel="noopener">Cómo llegar</a>
+  </section>
+
+  <!-- 6. DRESS CODE -->
+  <section class="dress">
+    <svg class="moño rv"><use href="#lazo"/></svg>
+    <h2 class="rv d1">Dress code</h2>
+    <div class="script tipo rv d1" id="dress">Elegante</div>
+    <p class="rv d2" id="dress-texto">Blanco y negro, como mi noche. El color lo pongo yo.</p>
+    <div class="lazos rv d3"><span><i style="background:#111"></i>NEGRO</span><span><i style="background:#fff"></i>BLANCO</span><span><i style="background:#8A8784"></i>GRIS</span></div>
+  </section>
+
+  <!-- 7. GALERÍA -->
+  <section class="galeria rv" id="galeria"><div class="grid" id="grid"></div></section>
+
+  <!-- 8. REGALO -->
+  <section class="regalo">
+    <h2 class="rv">Regalos</h2>
+    <p class="rv d1" id="regalo-texto">Tu presencia es mi mejor regalo. Si querés sumar algo más, te dejo mis datos.</p>
+    <button class="btn rv d2" type="button" id="ver-datos">Ver datos</button>
+    <div id="datos">
+      <div class="dato"><div><small>ALIAS</small><span id="alias"></span></div><button class="copiar" type="button" data-c="alias">Copiar</button></div>
+      <div class="dato"><div><small>CBU</small><span id="cbu"></span></div><button class="copiar" type="button" data-c="cbu">Copiar</button></div>
+      <div class="dato"><div><small>TITULAR</small><span id="titular"></span></div></div>
+    </div>
+  </section>
+
+  <!-- 9. CONFIRMACIÓN -->
+  <section class="rsvp" id="confirmar">
+    <h2 class="rv">Confirmá tu asistencia</h2>
+    <p class="hasta rv d1">Antes del <span id="hasta">22 de abril</span></p>
+    <form onsubmit="return false" class="rv d2">
+      <div class="q">¿Venís?</div>
+      <div class="chips" data-g="asis"><button type="button" class="on">Sí, voy</button><button type="button">No puedo</button></div>
+      <div class="q">¿Cuántos son?</div>
+      <div class="chips" data-g="cant"><button type="button" class="on">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button></div>
+      <div class="q">Menú</div>
+      <div class="chips" data-g="menu"><button type="button" class="on">Clásico</button><button type="button">Vegetariano</button><button type="button">Sin TACC</button></div>
+      <div class="q">Nombre y apellido</div>
+      <input class="txt" id="f-nombre" autocomplete="name">
+      <div class="q">Un mensaje (opcional)</div>
+      <textarea id="f-msg"></textarea>
+      <button class="btn fill" id="enviar" type="button">Confirmar por WhatsApp</button>
+    </form>
+  </section>
+
+  <!-- 10. CIERRE -->
+  <section class="cierre">
+    <svg class="moño rv"><use href="#lazo"/></svg>
+    <div class="script t rv d1">Te espero</div>
+    <div class="caps rv d2" id="c-firma">Renata · 22.05.27</div>
+  </section>
+
+  <!-- FOOTER OFICIAL CELEBRA INVITACIONES -->
+  <footer class="cfooter">
+    <p class="cf-g">¿Te gustó esta invitación?</p>
+    <p class="cf-s">Diseñá la tuya con nosotros y compartila con todos tus invitados.</p>
+    <a class="cf-cta" id="quiero" target="_blank" rel="noopener">Quiero una así</a>
+    <span class="cf-sep"></span>
+    <a class="cf-marca" href="https://celebrainvitaciones.com/" target="_blank" rel="noopener">Celebra Invitaciones Web</a>
+    <p class="cf-der">Todos los derechos reservados.</p>
+    <a class="cf-mail" href="mailto:celebrainvitaciones@gmail.com">celebrainvitaciones@gmail.com</a>
+    <div class="cf-redes">
+      <a href="https://wa.me/5491136218114" target="_blank" rel="noopener" aria-label="WhatsApp Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.11-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg></a>
+      <a href="https://www.instagram.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Instagram Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></a>
+      <a href="https://www.facebook.com/celebrainvitacioness/" target="_blank" rel="noopener" aria-label="Facebook Celebra Invitaciones"><svg viewBox="0 0 24 24" fill="none"><path d="M14 8H16V5H14C12 5 10.5 6.5 10.5 8.5V11H8.5V14H10.5V20H13.5V14H15.5L16 11H13.5V9C13.5 8.4 13.9 8 14 8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></a>
+      <a href="https://celebrainvitaciones.com/" target="_blank" rel="noopener" aria-label="Sitio de Celebra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5S9.7 5.9 12 3.5z"/></svg></a>
+    </div>
+  </footer>
+</div>
+
+<button id="musica" aria-label="Pausar música"><svg viewBox="0 0 24 24" fill="currentColor" id="mus-ic"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg></button>
+<div id="toast"></div>
+<audio id="audio" loop preload="auto"></audio>
+
+<script>
+/* ======================================================
+   CONFIG — todo lo editable de la invitación está acá
+   ====================================================== */
+const CONFIG = {
+  nombre: "Renata",
+  fechaISO: "2027-05-22T21:30:00-03:00",
+  duracionHoras: 6,
+  fechaCorta: "22 · 05 · 27",
+  diaSemana: "Sábado",
+  mesAnio: "Mayo 2027",
+  hora: "21:30",
+  foto: "images/renata/chicaquince.jpeg",
+  galeria: [],                 // ej: ["images/renata/g1.jpg", "images/renata/g2.jpg", "images/renata/g3.jpg"]
+  frase: "Quiero que seas parte de esta noche",
+  fraseSub: "Hay momentos que se esperan toda la vida. Este es uno de ellos, y no sería lo mismo sin vos.",
+  lugarNombre: "Palacio Sans Souci",
+  lugarDireccion: "Av. Mitre 2000, Victoria",
+  lugarMaps: "https://maps.google.com/?q=Palacio+Sans+Souci+Victoria",
+  dress: "Elegante",
+  dressTexto: "Blanco y negro, como mi noche. El color lo pongo yo.",
+  regaloAlias: "RENATA.MISXV",
+  regaloCbu: "0000003100011122233344",
+  regaloTitular: "Renata Gómez",
+  confirmarHasta: "22 de abril",
+  audioUrl: "images/renata/hayuncuento.mp3",
+  whatsappNumero: "5491136218114",
+  celebraWhatsapp: "5491136218114"
+};
+
+(function(){
+  const C = CONFIG, $ = id => document.getElementById(id);
+  const wa = (n, t) => 'https://wa.me/' + n + '?text=' + encodeURIComponent(t);
+  const pad = n => String(n).padStart(2, '0');
+
+  document.title = 'Mis XV · ' + C.nombre;
+  $('p-nombre').textContent = C.nombre;
+  $('foto').src = C.foto;
+  $('frase').innerHTML = C.frase.split(' ').map((w, k) => '<span class="w" style="transition-delay:' + (k * .12) + 's">' + w + '</span>').join(' '); $('frase-sub').textContent = C.fraseSub;
+  $('mes-anio').textContent = C.mesAnio.toUpperCase(); $('hora').textContent = C.hora;
+  $('lugar-nombre').textContent = C.lugarNombre; $('lugar-dir').textContent = C.lugarDireccion; $('maps').href = C.lugarMaps;
+  $('dress').textContent = C.dress; $('dress-texto').textContent = C.dressTexto;
+  $('alias').textContent = C.regaloAlias; $('cbu').textContent = C.regaloCbu; $('titular').textContent = C.regaloTitular;
+  $('hasta').textContent = C.confirmarHasta;
+  $('c-firma').textContent = C.nombre + ' · ' + C.fechaCorta.replace(/ · /g, '.');
+  $('quiero').href = wa(C.celebraWhatsapp, '¡Hola Celebra! Vi la invitación de 15 de ' + C.nombre + ' y quiero una así 🤍');
+
+  /* galería (solo si hay fotos) */
+  if (C.galeria.length) $('grid').innerHTML = C.galeria.map(s => '<img src="' + s + '" alt="" loading="lazy">').join('');
+  else $('galeria').remove();
+
+  /* semana del evento: 3 días antes y 3 después */
+  const ini = new Date(C.fechaISO), dias = ['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
+  let h = '';
+  for (let k = -3; k <= 3; k++){ const d = new Date(ini); d.setDate(ini.getDate() + k); h += '<span' + (k === 0 ? ' class="hoy"' : '') + '><small>' + dias[d.getDay()] + '</small>' + d.getDate() + '</span>'; }
+  $('semana').innerHTML = h;
+  $('semana').querySelectorAll('span').forEach((x, k) => x.style.transitionDelay = (k * .09) + 's');
+
+  /* agendar */
+  const fin = new Date(ini.getTime() + C.duracionHoras * 36e5), gc = x => x.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  $('agendar').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Mis XV · ' + C.nombre) + '&dates=' + gc(ini) + '/' + gc(fin) + '&location=' + encodeURIComponent(C.lugarNombre + ', ' + C.lugarDireccion);
+
+  /* cuenta regresiva */
+  function tick(){
+    let t = Math.max(0, ini - Date.now()) / 1000;
+    const v = { 'cd-d': Math.floor(t / 86400), 'cd-h': pad(Math.floor(t % 86400 / 3600)), 'cd-m': pad(Math.floor(t % 3600 / 60)), 'cd-s': pad(Math.floor(t % 60)) };
+    for (const id in v){ const el = $(id), nv = String(v[id]); if (el.textContent !== nv){ el.textContent = nv; el.classList.remove('tic'); void el.offsetWidth; el.classList.add('tic'); } }
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* música: arranca con el primer toque o scroll (los celulares no dejan autoplay) */
+  const audio = $('audio'), mus = $('musica');
+  const PLAY = '<path d="M8 5v14l11-7z"/>', PAUSA = '<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>';
+  if (C.audioUrl) audio.src = C.audioUrl;
+  const estado = () => { $('mus-ic').innerHTML = audio.paused ? PLAY : PAUSA; mus.setAttribute('aria-label', audio.paused ? 'Reproducir música' : 'Pausar música'); };
+  audio.addEventListener('play', estado); audio.addEventListener('pause', estado); estado();
+  let tocado = false;
+  const arrancar = e => { if (tocado || (e && e.target && e.target.closest && e.target.closest('#musica'))) return; tocado = true; if (C.audioUrl) audio.play().catch(()=>{}); quitar(); };
+  const quitar = () => ['pointerdown','touchstart','scroll','keydown'].forEach(ev => removeEventListener(ev, arrancar, true));
+  ['pointerdown','touchstart','scroll','keydown'].forEach(ev => addEventListener(ev, arrancar, { capture: true, passive: true }));
+  if (C.audioUrl) audio.play().then(() => { tocado = true; quitar(); }).catch(()=>{});
+  mus.classList.add('show');
+  mus.addEventListener('click', () => { tocado = true; quitar(); if (audio.paused) audio.play().catch(()=>{}); else audio.pause(); });
+  requestAnimationFrame(() => setTimeout(() => document.body.classList.add('abierta'), 80));
+
+  /* parallax suave de la foto */
+  const bgp = document.querySelector('.portada .bg');
+  addEventListener('scroll', () => { const y = scrollY; if (y < innerHeight * 1.2) bgp.style.transform = 'translateY(' + (y * .35) + 'px)'; }, { passive: true });
+
+  /* aparición */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  /* regalo */
+  $('ver-datos').addEventListener('click', e => { const o = $('datos').classList.toggle('open'); e.currentTarget.textContent = o ? 'Ocultar datos' : 'Ver datos'; });
+  const toast = t => { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 1800); };
+  document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', () => {
+    const v = $(b.dataset.c).textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => toast('Copiado')).catch(() => toast(v));
+  }));
+
+  /* confirmación */
+  document.querySelectorAll('.chips').forEach(g => g.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    g.querySelectorAll('button').forEach(b => b.classList.remove('on')); e.target.classList.add('on');
+  }));
+  const sel = g => document.querySelector('.chips[data-g="' + g + '"] .on').textContent;
+  $('enviar').addEventListener('click', () => {
+    const n = $('f-nombre').value.trim();
+    if (!n){ toast('Escribí tu nombre'); $('f-nombre').focus(); return; }
+    const va = sel('asis') === 'Sí, voy';
+    let t = '🤍 Mis XV de ' + C.nombre + '\n' + (va ? '✅ ¡Voy!' : '❌ No voy a poder ir') + '\nNombre: ' + n;
+    if (va) t += '\nSomos: ' + sel('cant') + '\nMenú: ' + sel('menu');
+    const m = $('f-msg').value.trim(); if (m) t += '\nMensaje: ' + m;
+    window.open(wa(C.whatsappNumero, t), '_blank');
+  });
+})();
+</script>
+</body>
+</html>
