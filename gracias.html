@@ -93,11 +93,11 @@ fbq('track', 'PageView');
 <script>
 /* Compra para Meta: se marca UNA sola vez por navegador y plan.
    Link para mandar a la clienta después de cobrar la seña:
-   celebrainvitaciones.com/gracias.html?plan=clasica   (seña $16.600)
+   celebrainvitaciones.com/gracias.html?plan=clasica   (seña $12.450)
    celebrainvitaciones.com/gracias.html?plan=premium   (seña $23.250)
    Otro monto: agregá &v=30000 (en pesos, sin puntos) */
 (function(){
-  var PLANES = { clasica: { nombre: 'Plan Clásica', valor: 16600 }, premium: { nombre: 'Plan Premium Celebra', valor: 23250 }, exclusiva: { nombre: 'Plan Exclusiva', valor: 0 } };
+  var PLANES = { clasica: { nombre: 'Plan Clásica', valor: 12450 }, premium: { nombre: 'Plan Premium Celebra', valor: 23250 }, exclusiva: { nombre: 'Plan Exclusiva', valor: 0 } };
   var q = new URLSearchParams(location.search), clave = (q.get('plan') || '').toLowerCase(), p = PLANES[clave];
   var valor = parseInt(q.get('v'), 10) || (p ? p.valor : 0);
   var texto = 'Hola! Ya reservé mi invitación' + (p ? ' (' + p.nombre + ')' : '') + ' 💜 Te paso los datos de mi evento:';
